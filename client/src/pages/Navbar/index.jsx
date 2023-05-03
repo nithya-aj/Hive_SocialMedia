@@ -12,15 +12,15 @@ const Navbar = () => {
 
   return (
     <>
-      <Box sx={{ backgroundColor: { background }, padding: '1rem' }}>
-        <Grid container spacing={2}>
-          <Grid item xs={2}>
+      <Box sx={{ backgroundColor: {background}, py:'1rem' }}>
+        <Grid container >
+          <Grid item xs={2} >
             <LogoWidget />
           </Grid>
-          <Grid item xs={7.5}>
+          <Grid item xs={7.5} >
             <SearchBar placeholder="Search anything..." />
           </Grid>
-          <Grid item xs={2.5}>
+          <Grid item xs={2.5} >
             <NavItems />
           </Grid>
         </Grid>

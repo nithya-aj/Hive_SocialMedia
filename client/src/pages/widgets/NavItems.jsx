@@ -35,7 +35,7 @@ const NavItems = () => {
                     <Box sx={{ display: 'flex' }}>
                         <Avatar variant="rounded" sx={{ width: 34, height: 34 }} style={{ backgroundColor: dark }} />
                         <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, alignItems: 'center', ml: '-1px', backgroundColor: alt, pr: isMediumScreen ? 0 : '0.5rem', borderRadius: "0px 4px 4px 0px" }}>
-                            <Box sx={{ p: '5px' }}><Typography sx={{ pl: "5px", fontWeight: '600', color: text }} variant="button">Nithya</Typography></Box>
+                            <Box sx={{ p: '5px' }}><Typography sx={{ pl: "5px", fontWeight: '600', color: text }} variant="button">Irin</Typography></Box>
                         </Box>
                     </Box>
                 </Box>
@@ -56,10 +56,10 @@ const NavItems = () => {
                                 <IoIosNotifications style={{ fontSize: '1.5rem', color: text }} /> </>
                         }
                     </FlexBetween>
-                    <Box sx={{ display: 'flex' }}>
+                    <Box sx={{ display: 'flex', border:`1px solid ${dark}`, borderRadius:'5px'}}>
                         <Avatar variant="rounded" sx={{ width: 34, height: 34 }} style={{ backgroundColor: dark }} />
                         <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, alignItems: 'center', ml: '-1px', backgroundColor: alt, pr: isMediumScreen ? 0 : '0.5rem', borderRadius: "0px 4px 4px 0px" }}>
-                            <Box sx={{ p: '5px' }}><Typography sx={{ pl: "5px", fontWeight: '600', color: text }} variant="button">Nithya</Typography></Box>
+                            <Box sx={{ p: '5px' }}><Typography sx={{ pl: "5px", fontWeight: '600', color: text }} variant="button">Irin</Typography></Box>
                         </Box>
                     </Box>
                 </Box>
