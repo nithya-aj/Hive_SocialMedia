@@ -5,7 +5,7 @@ import { themeSettings } from 'theme'
 
 const App = () => {
 
-    const mode = "dark"
+    const mode = "light"
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
 
     return (

@@ -6,7 +6,7 @@ import SidebarNavItems from './SidebarNavItems'
 const SideBarItems = () => {
     return (
         <>
-            <Box sx={{ padding: '2rem', height:'100%'}}>
+            <Box sx={{ padding: '2rem', height: '100%' }}>
                 <UserWidget />
                 <SidebarNavItems />
             </Box>

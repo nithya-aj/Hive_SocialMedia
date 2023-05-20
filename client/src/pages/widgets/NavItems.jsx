@@ -1,11 +1,11 @@
 import { useTheme } from '@emotion/react'
 import React from 'react'
 import FlexBetween from 'components/FlexBetween';
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { RiSunLine, RiMoonLine } from "react-icons/ri";
 import { BiMessageDetail } from "react-icons/bi";
-import { IoIosNotifications } from "react-icons/io";
 import Avatar from '@mui/material/Avatar';
 import { Box, Typography, useMediaQuery } from '@mui/material';
+import { IoNotificationsOutline } from "react-icons/io5";
 
 const NavItems = () => {
 
@@ -22,17 +22,17 @@ const NavItems = () => {
                 <Box sx={{ display: "flex", justifyContent: 'space-evenly' }}>
                     <FlexBetween gap={2} mr={2}>
                         {theme.palette.mode === 'dark' ? (
-                            <MdLightMode style={{ fontSize: '1.5rem', color: text }} />
+                            <RiSunLine style={{ fontSize: '1.5rem', color: text }} />
                         ) : (
-                            <MdDarkMode style={{ fontSize: '1.5rem', color: text }} />
+                            <RiMoonLine style={{ fontSize: '1.5rem', color: text }} />
                         )}
                         {isMediumScreen ? "" :
                             <>
                                 <BiMessageDetail style={{ fontSize: '1.5rem', color: text }} />
-                                <IoIosNotifications style={{ fontSize: '1.5rem', color: text }} /> </>
+                                <IoNotificationsOutline style={{ fontSize: '1.5rem', color: text }} /> </>
                         }
                     </FlexBetween>
-                    <Box sx={{ display: 'flex' }}>
+                    <Box sx={{ display: 'flex', border: `1px solid ${dark}`, borderRadius: '5px' }}>
                         <Avatar variant="rounded" sx={{ width: 34, height: 34 }} style={{ backgroundColor: dark }} />
                         <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, alignItems: 'center', ml: '-1px', backgroundColor: alt, pr: isMediumScreen ? 0 : '0.5rem', borderRadius: "0px 4px 4px 0px" }}>
                             <Box sx={{ p: '5px' }}><Typography sx={{ pl: "5px", fontWeight: '600', color: text }} variant="button">Irin</Typography></Box>
@@ -46,17 +46,17 @@ const NavItems = () => {
 
                     <FlexBetween gap={2} >
                         {theme.palette.mode === 'dark' ? (
-                            <MdLightMode style={{ fontSize: '1.5rem', color: text }} />
+                            <RiSunLine style={{ fontSize: '1.5rem', color: text }} />
                         ) : (
-                            <MdDarkMode style={{ fontSize: '1.5rem', color: text }} />
+                            <RiMoonLine style={{ fontSize: '1.5rem', color: text }} />
                         )}
                         {isMediumScreen ? "" :
                             <>
                                 <BiMessageDetail style={{ fontSize: '1.5rem', color: text }} />
-                                <IoIosNotifications style={{ fontSize: '1.5rem', color: text }} /> </>
+                                <IoNotificationsOutline style={{ fontSize: '1.5rem', color: text }} /> </>
                         }
                     </FlexBetween>
-                    <Box sx={{ display: 'flex', border:`1px solid ${dark}`, borderRadius:'5px'}}>
+                    <Box sx={{ display: 'flex', border: `1px solid ${dark}`, borderRadius: '5px' }}>
                         <Avatar variant="rounded" sx={{ width: 34, height: 34 }} style={{ backgroundColor: dark }} />
                         <Box sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'flex' }, alignItems: 'center', ml: '-1px', backgroundColor: alt, pr: isMediumScreen ? 0 : '0.5rem', borderRadius: "0px 4px 4px 0px" }}>
                             <Box sx={{ p: '5px' }}><Typography sx={{ pl: "5px", fontWeight: '600', color: text }} variant="button">Irin</Typography></Box>
