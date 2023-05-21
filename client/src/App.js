@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import HomePage from 'pages/HomePage'
-import { Box, CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { themeSettings } from 'theme'
 
 const App = () => {
 
-    const mode = "light"
+    const mode = "dark"
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
 
     return (

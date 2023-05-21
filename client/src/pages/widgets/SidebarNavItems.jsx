@@ -40,8 +40,8 @@ const SidebarNavItems = () => {
             <List sx={{ width: '100%', maxWidth: 360, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', height: '100%' }}>
                 <Box sx={{ marginTop: "1rem" }}>
                     {items.map((item, id) => (
-                        <ListItem key={id}>
-                            <ListItemAvatar sx={{ minWidth: {xs:'0px', lg:'40px'} }}>
+                        <ListItem key={id} sx={{ cursor: 'pointer' }}>
+                            <ListItemAvatar sx={{ minWidth: { xs: '0px', lg: '40px' } }}>
                                 <item.icon style={{ fontSize: 'x-large' }} />
                             </ListItemAvatar>
                             <ListItemText primary={
@@ -52,8 +52,8 @@ const SidebarNavItems = () => {
                     ))}
                 </Box>
                 <Box>
-                    <ListItem>
-                        <ListItemAvatar sx={{ minWidth: {xs:'0px', lg:'40px'} }}>
+                    <ListItem sx={{ cursor: 'pointer' }}> 
+                        <ListItemAvatar sx={{ minWidth: { xs: '0px', lg: '40px' } }}>
                             <IoSettingsOutline style={{ fontSize: 'x-large' }} />
                         </ListItemAvatar>
                         <ListItemText primary={

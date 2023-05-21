@@ -12,19 +12,19 @@ const Navbar = () => {
 
   return (
     <>
-      <Box sx={{ backgroundColor: {background}, py:'1rem' }}>
+      <Box sx={{ backgroundColor: { background }, py: '1rem' }}>
         <Grid container >
-          <Grid item xs={2} >
+          <Grid item lg={2} md={1.5} xs={2} sm={2}>
             <LogoWidget />
           </Grid>
-          <Grid item xs={7.5} >
+          <Grid item lg={7.5} md={7.5} xs={7.5} sm={7.5}>
             <SearchBar placeholder="Search anything..." />
           </Grid>
-          <Grid item xs={2.5} >
+          <Grid item lg={2.5} md={3} xs={2.5} sm={2.5}>
             <NavItems />
           </Grid>
         </Grid>
-      </Box>
+      </Box> 
     </>
   )
 }
