@@ -1,16 +1,14 @@
 import { Box } from '@mui/material'
-import Navbar from 'pages/Navbar'
-import HomePageWidget from 'pages/widgets/HomePageWidget'
+import ChatHome from 'components/MainHome'
+import Navbar from 'components/Navbar'
 import React from 'react'
 
 const HomePage = () => {
     return (
-        <>
-            <Box sx={{display:'flex', flexDirection:'column', height:'100vh'}}>
-                <Navbar />
-                <HomePageWidget />
-            </Box>
-        </>
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+            <Navbar />
+            <ChatHome />
+        </Box>
     )
 }
 

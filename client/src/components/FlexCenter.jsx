@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 
 const FlexCenter = styled(Box)({
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center"
 })
 

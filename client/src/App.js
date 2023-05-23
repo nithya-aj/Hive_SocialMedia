@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
-import HomePage from 'pages/HomePage'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { themeSettings } from 'theme'
+import HomePage from 'pages/HomePage'
 
 const App = () => {
 
@@ -12,10 +12,10 @@ const App = () => {
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                    <HomePage />
+                <HomePage />
             </ThemeProvider>
-        </>
-    )
+        </> 
+    ) 
 }
 
 export default App

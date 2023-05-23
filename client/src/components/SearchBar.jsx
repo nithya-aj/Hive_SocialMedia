@@ -7,17 +7,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useTheme } from '@emotion/react';
 import { Box } from '@mui/material';
 
-const SearchBar = ({ placeholder }) => {
+const SearchBar = ({ placeholder, width }) => {
 
     const theme = useTheme()
     const mediumMain = theme.palette.neutral.mediumMain
     const alt = theme.palette.background.alt
 
     return (
-        <Box>
+        <Box sx={{ width}}>
             <Paper
                 component="form"
-                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', height: "2rem", backgroundColor: alt, boxShadow: 'none' }}
+                sx={{ display: 'flex', alignItems: 'center', height: "2rem", backgroundColor: alt, boxShadow: 'none', borderRadius:'10px' }}
             >
                 <InputBase
                     sx={{ ml: 1, flex: 1, color: mediumMain }}
