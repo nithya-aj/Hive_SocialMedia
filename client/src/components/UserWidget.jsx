@@ -13,7 +13,7 @@ const UserWidget = () => {
 
     return (
         <Box sx={{
-            // minWidth: { lg: '13rem', md: '10rem' },
+            width: { lg: '12rem', md: '9rem' },
             backgroundColor: { md: alt, sm: 'transparent' },
             borderRadius: '10px',
             display: "flex",
@@ -25,7 +25,7 @@ const UserWidget = () => {
             margin: '0rem 1rem 1rem 1rem'
         }}>
             <Box>
-                <UserAvatar></UserAvatar>
+                <UserAvatar sidebar={true}/>
             </Box>
             <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
                 <Typography variant="h5" gutterBottom sx={{ fontWeight: '500', marginBottom: '0' }}>
