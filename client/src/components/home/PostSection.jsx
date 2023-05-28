@@ -10,8 +10,8 @@ const PostSection = () => {
   const alt = theme.palette.background.alt
 
   return (
-    <Box bgcolor={alt} sx={{ height: '100%', borderRadius: '10px 10px 0px 0px' }}>
-      <Grid container sx={{ height: '100%', padding: '1.5rem 1.5rem 0rem 1.5rem' }}>
+    <Box bgcolor={alt} sx={{ borderRadius: '10px 10px 0px 0px', height: '90vh', overflow: 'auto' }}>
+      <Grid container sx={{ padding: '1.5rem 1.5rem 0rem 1.5rem' }}>
         <Grid item xs={8} sx={{ flexGrow: 1, paddingRight: '0.7rem' }}>
           <PostSectionRight />
         </Grid>
@@ -23,4 +23,4 @@ const PostSection = () => {
   )
 }
 
-export default PostSection
+export default PostSection 

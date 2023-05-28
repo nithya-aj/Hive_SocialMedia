@@ -1,8 +1,8 @@
 import { Box, Button, Grid, Typography } from '@mui/material'
 import React from 'react'
-import UserAvatar from './UserAvatar'
+import UserAvatar from '../widget/UserAvatar'
 import { useTheme } from '@emotion/react'
-import InputBar from './InputBar'
+import InputBar from '../widget/InputBar'
 import { IoImage } from "react-icons/io5";
 import { FaPhotoVideo } from "react-icons/fa";
 import IconButton from '@mui/material/IconButton';

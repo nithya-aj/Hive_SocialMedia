@@ -5,7 +5,7 @@ import { BiMessageDetail } from "react-icons/bi";
 import Avatar from '@mui/material/Avatar';
 import { Box } from '@mui/material';
 import { IoNotificationsOutline } from "react-icons/io5";
-import FlexBetween from './FlexBetween'
+import FlexBetween from '../widget/FlexBetween'
 
 const NavRight = () => {
 

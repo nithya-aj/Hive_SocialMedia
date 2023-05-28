@@ -3,8 +3,8 @@ import React from 'react'
 
 function RightBar() {
     return (
-        <Box sx={{ position: 'fixed',zIndex:2000}}>
-            <p>hi</p>
+        <Box bgcolor={'peachpuff'}>
+            hi
         </Box>
     )
 }

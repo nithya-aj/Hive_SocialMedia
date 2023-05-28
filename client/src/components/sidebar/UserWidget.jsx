@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import UserAvatar from 'components/UserAvatar';
+import UserAvatar from 'components/widget/UserAvatar';
 import { useTheme } from '@emotion/react';
 
 const UserWidget = () => {

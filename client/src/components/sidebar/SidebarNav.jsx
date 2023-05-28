@@ -10,6 +10,8 @@ import { HiOutlineViewGrid } from "react-icons/hi";
 import { CiUser } from "react-icons/ci";
 import { Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
+import { IoSettingsOutline } from "react-icons/io5";
+
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -41,6 +43,10 @@ function SidebarNav() {
         {
             name: "Profile",
             icon: CiUser
+        },
+        {
+            name:"Settings",
+            icon: IoSettingsOutline
         }
     ]
 
