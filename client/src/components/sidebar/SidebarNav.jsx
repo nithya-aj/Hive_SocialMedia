@@ -11,6 +11,7 @@ import { CiUser } from "react-icons/ci";
 import { Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import { IoSettingsOutline } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -26,11 +27,13 @@ function SidebarNav() {
     const items = [
         {
             name: "Feed",
-            icon: HiOutlineViewGrid
+            icon: HiOutlineViewGrid,
+            link: '/'
         },
         {
             name: "Friends",
-            icon: FiUserPlus
+            icon: FiUserPlus,
+            link: '/friends'
         },
         {
             name: "Messages",
@@ -38,15 +41,18 @@ function SidebarNav() {
         },
         {
             name: "Notifications",
-            icon: IoNotificationsOutline
+            icon: IoNotificationsOutline,
+            link: '/notifications'
         },
         {
             name: "Profile",
-            icon: CiUser
+            icon: CiUser,
+            link: '/profile/id'
         },
         {
-            name:"Settings",
-            icon: IoSettingsOutline
+            name: "Settings",
+            icon: IoSettingsOutline,
+            link: '/settings'
         }
     ]
 
@@ -54,22 +60,24 @@ function SidebarNav() {
     const alt = theme.palette.background.alt
 
     return (
-        <Box sx={{ width: {lg:'81%', md:'92%'} }}>
+        <Box sx={{ width: { lg: '81%', md: '92%' } }}>
             {items.map((item) => (
-                <Stack key={item.name}>
-                    <Item sx={{
-                        height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: { lg: 'flex-start', md: 'flex-start', sm: 'flex-start', xs: 'center' },
-                        background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '1rem',
-                        ':hover': {
-                            backgroundColor: alt
-                        }
-                    }}>
-                        <Box style={{ fontSize: 'x-large', marginLeft: { lg: '6px' }, display: 'flex', alignItems: 'center' }}>
-                            {<item.icon />}
-                        </Box>
-                        <Typography style={{ marginLeft: '10px' }} sx={{ display: { lg: 'block', md: 'block', sm: 'block', xs: 'none' } }}>{item.name}</Typography>
-                    </Item>
-                </Stack>
+                <Link to={item.link} style={{ textDecoration: 'none' }}> 
+                    <Stack key={item.name}>
+                        <Item sx={{
+                            height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: { lg: 'flex-start', md: 'flex-start', sm: 'flex-start', xs: 'center' },
+                            background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '1rem',
+                            ':hover': {
+                                backgroundColor: alt
+                            }
+                        }}>
+                            <Box style={{ fontSize: 'x-large', marginLeft: { lg: '6px' }, display: 'flex', alignItems: 'center' }}>
+                                {<item.icon />}
+                            </Box>
+                            <Typography style={{ marginLeft: '10px' }} sx={{ display: { lg: 'block', md: 'block', sm: 'block', xs: 'none' } }}>{item.name}</Typography>
+                        </Item>
+                    </Stack>
+                </Link>
             ))}
         </Box>
     )
