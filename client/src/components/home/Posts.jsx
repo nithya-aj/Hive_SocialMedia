@@ -33,12 +33,12 @@ export default function Posts() {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-
-    const theme = useTheme()  
+ 
+    const theme = useTheme()
     const darkBg = theme.palette.background.darkBg
 
     return (
-        <Card sx={{ mt: '1rem', pb: '1rem', borderRadius: '10px', backgroundColor: darkBg }}>
+        <Card variant="outlined" sx={{ mt: '1rem', pb: '1rem', borderRadius: '10px', backgroundColor: darkBg }}>
             <CardHeader
                 avatar={
                     <UserAvatar />
@@ -53,9 +53,10 @@ export default function Posts() {
             />
             <CardMedia
                 component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
+                image="https://source.unsplash.com/featured/"
                 alt="Paella dish"
+                sx={{ p: '1rem', borderRadius: '1.5rem', objectFit: 'contain' }}
+                style={{ width: '100%', height: '20rem', objectFit: 'cover' }}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -100,7 +101,7 @@ export default function Posts() {
 
             </FormControl>
             <Collapse in={expanded} timeout="auto" unmountOnExit >
-                <CardContent sx={{ padding: '0rem' }} style={{ paddingBottom: '0rem' }}>
+                <CardContent sx={{ padding: '0rem', mt: '0.5rem' }} style={{ paddingBottom: '0rem' }}>
                     <List
                         sx={{
                             width: '100%',
@@ -110,13 +111,13 @@ export default function Posts() {
                             '& ul': { padding: 0 },
                             padding: '0rem'
                         }}>
-                        <Grid container spacing={1}>
-                            <Grid item xs={1}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                        <Grid container>
+                            <Grid item xs={2} lg={1.3} md={1.5} >
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
+                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x198" sx={{ height: '2.3rem', width: '2.3rem' }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={11}>
+                            <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                         <Typography>
@@ -127,20 +128,20 @@ export default function Posts() {
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
-                                        <Typography>
+                                        <Typography variant='body2'>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>
                                 </ListItemText>
                             </Grid>
                         </Grid>
-                        <Grid container spacing={1} >
-                            <Grid item xs={1}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                        <Grid container >
+                            <Grid item xs={2} lg={1.3} md={1.5} >
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
+                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x199" sx={{ height: '2.3rem', width: '2.3rem' }} />
                                 </Box>
                             </Grid>
-                            <Grid item xs={11}>
+                            <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                         <Typography>
@@ -151,7 +152,103 @@ export default function Posts() {
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
+                                        <Typography variant='body2'>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
+                                        </Typography>
+                                    </Box>
+                                </ListItemText>
+                            </Grid>
+                        </Grid>
+                        <Grid container >
+                            <Grid item xs={2} lg={1.3} md={1.5} >
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
+                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x200" sx={{ height: '2.3rem', width: '2.3rem' }} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={10} lg={10.7} md={10.5}>
+                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                         <Typography>
+                                            Ali Connors
+                                        </Typography>
+                                        <Typography variant='caption'>
+                                            3 days ago
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ mt: '2px' }}>
+                                        <Typography variant='body2'>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        </Typography>
+                                    </Box>
+                                </ListItemText>
+                            </Grid>
+                        </Grid>
+                        <Grid container >
+                            <Grid item xs={2} lg={1.3} md={1.5} >
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
+                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x201" sx={{ height: '2.3rem', width: '2.3rem' }} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={10} lg={10.7} md={10.5}>
+                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Typography>
+                                            Ali Connors
+                                        </Typography>
+                                        <Typography variant='caption'>
+                                            3 days ago
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ mt: '2px' }}>
+                                        <Typography variant='body2'>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
+                                        </Typography>
+                                    </Box>
+                                </ListItemText>
+                            </Grid>
+                        </Grid>
+                        <Grid container >
+                            <Grid item xs={2} lg={1.3} md={1.5} >
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
+                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x202" sx={{ height: '2.3rem', width: '2.3rem' }} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={10} lg={10.7} md={10.5}>
+                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Typography>
+                                            Ali Connors
+                                        </Typography>
+                                        <Typography variant='caption'>
+                                            3 days ago
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ mt: '2px' }}>
+                                        <Typography variant='body2'>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
+                                        </Typography>
+                                    </Box>
+                                </ListItemText>
+                            </Grid>
+                        </Grid>
+                        <Grid container >
+                            <Grid item xs={2} lg={1.3} md={1.5} >
+                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
+                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x203" sx={{ height: '2.3rem', width: '2.3rem' }} />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={10} lg={10.7} md={10.5}>
+                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                        <Typography>
+                                            Ali Connors
+                                        </Typography>
+                                        <Typography variant='caption'>
+                                            3 days ago
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ mt: '2px' }}>
+                                        <Typography variant='body2'>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>

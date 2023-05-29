@@ -7,7 +7,6 @@ import { useTheme } from '@emotion/react';
 
 const StyledBox = styled(Box)(({ theme }) => ({
     height: '8rem',
-    backgroundImage: 'url(https://picsum.photos/seed/picsum/200/300)',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -34,12 +33,12 @@ const StyledBox = styled(Box)(({ theme }) => ({
 const Story = () => {
 
     const theme = useTheme()
-    const main = theme.palette.background.main
+    const darkBg = theme.palette.background.darkBg
 
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3 }} style={{ overflowX: 'auto' }}>
-                <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: main }}>
+                <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: darkBg }}>
                     <Avatar sx={{ height: '2rem', width: '2rem' }}>
                         <HiPlus />
                     </Avatar>
@@ -48,7 +47,7 @@ const Story = () => {
                     </Typography>
                 </Card>
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x2011)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
@@ -68,7 +67,7 @@ const Story = () => {
                 </StyledBox>
 
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x210)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
@@ -88,7 +87,7 @@ const Story = () => {
                 </StyledBox>
 
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x205)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
@@ -107,7 +106,7 @@ const Story = () => {
                     </Typography>
                 </StyledBox>
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x203)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
@@ -126,7 +125,7 @@ const Story = () => {
                     </Typography>
                 </StyledBox>
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x208)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
@@ -145,7 +144,7 @@ const Story = () => {
                     </Typography>
                 </StyledBox>
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x243)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
@@ -165,7 +164,7 @@ const Story = () => {
                 </StyledBox>
 
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x204)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
@@ -184,7 +183,7 @@ const Story = () => {
                     </Typography>
                 </StyledBox>
 
-                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 } }}>
+                <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x209)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',

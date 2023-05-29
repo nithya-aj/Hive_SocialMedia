@@ -54,7 +54,7 @@ function SidebarNav() {
     const alt = theme.palette.background.alt
 
     return (
-        <Box sx={{ width: '94%' }}>
+        <Box sx={{ width: {lg:'81%', md:'92%'} }}>
             {items.map((item) => (
                 <Stack key={item.name}>
                     <Item sx={{

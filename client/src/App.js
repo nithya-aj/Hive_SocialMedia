@@ -12,10 +12,12 @@ const App = () => {
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
+
                 <HomePage />
+
             </ThemeProvider>
-        </> 
-    ) 
+        </>
+    )
 }
 
 export default App

@@ -10,7 +10,7 @@ const UserWidget = () => {
     const alt = theme.palette.background.alt
     // const text = theme.palette.neutral.dark
     // const dark = theme.palette.primary.dark
-
+ 
     return (
         <Box sx={{
             width: { lg: '12rem', md: '9rem' },
