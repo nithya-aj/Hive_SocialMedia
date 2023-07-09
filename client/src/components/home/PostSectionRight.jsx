@@ -1,16 +1,16 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import Stories from './Stories'
-import SharePost from './SharePost'
-import Posts from './Posts'
+import UpdateProfile from './PostRight/UpdateProfile';
+import FriendsReq from './PostRight/FriendsReq';
 
 function PostSectionRight() {
     return (
-        <Box >
-            <Stories />
-            <SharePost />
-            <Posts />
-            <Posts />
+        <Box sx={{
+            position: 'sticky', top: '1.5rem', borderRadius: '10px', overflow: 'hidden', gap: 2,
+            display: 'flex', flexDirection: 'column'
+        }}>
+            <UpdateProfile />
+            <FriendsReq />
         </Box>
     )
 }

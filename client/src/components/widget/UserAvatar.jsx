@@ -35,15 +35,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const UserAvatar = ({ sidebar }) => {
     return (
         <Box sx={{ height: '2.7rem', width: '2.7rem', background: "linear-gradient(90deg, rgba(65,88,208,1) 0%, rgba(200,80,192,1) 46%, rgba(255,204,112,1) 100%)", borderRadius: '50%' }}>
-            {sidebar ? (<StyledBadge
-                sx={{ position: 'relative', left: '2.4px', top: '2.8px' }}
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                variant="dot"
-            >
-                <Avatar sx={{ width: 38, height: 38 }} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </StyledBadge>) :
-                (<StyledBadge
+            {sidebar ? (
+                <StyledBadge
+                    sx={{ position: 'relative', left: '2.4px', top: '2.8px' }}
+                    overlap="circular"
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    variant="dot"
+                >
+                    <Avatar sx={{ width: 38, height: 38 }} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                </StyledBadge>) : (
+                <StyledBadge
                     sx={{ position: 'relative', left: '2.4px', top: '2.8px' }}
                     overlap="circular"
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

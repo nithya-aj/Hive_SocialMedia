@@ -10,7 +10,7 @@ const UserWidget = () => {
     const alt = theme.palette.background.alt
     // const text = theme.palette.neutral.dark
     // const dark = theme.palette.primary.dark
- 
+
     return (
         <Box sx={{
             width: { lg: '12rem', md: '9rem' },
@@ -25,7 +25,7 @@ const UserWidget = () => {
             margin: '0rem 1rem 1rem 1rem'
         }}>
             <Box>
-                <UserAvatar sidebar={true}/>
+                <UserAvatar height='2.7rem' width='2.7rem' avatarH='38' avatarW='38' sidebar={true} />
             </Box>
             <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
                 <Typography variant="h5" gutterBottom sx={{ fontWeight: '500', marginBottom: '0' }}>

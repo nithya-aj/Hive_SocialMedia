@@ -9,11 +9,12 @@ import RightBar from 'components/rightbar/RightBar'
 
 const Paths = () => {
   const theme = useTheme()
-  const alt = theme.palette.background.alt
+  const alt = theme.palette.background.alt 
+  const main = theme.palette.background.main
   return (
     <>
       <Navbar />
-      <Grid container sx={{ flexGrow: 1 }} >
+      <Grid container sx={{ flexGrow: 1 }} backgroundColor={main}>
         <Grid item xs={2}>
           <Sidebar />
         </Grid>
