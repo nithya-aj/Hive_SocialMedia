@@ -1,5 +1,6 @@
 import { db } from "../connect.js"
 import bcrypt from 'bcryptjs'
+import jwt from "jsonwebtoken"
 
 // user registration
 export const register = (req, res) => {
@@ -24,7 +25,25 @@ export const register = (req, res) => {
 
 // user login
 export const login = (req, res) => {
+    const q = "SELECT * FROM users WHERE userName= ?"
+    db.query(q, [req.body.userName], (err, data) => {
+        if (err) return res.status(500).json(err)
+        if (data.length === 0) return res.status(404).json("User not found!")
 
+        const checkPassword = bcrypt.compareSync(req.body.password, data[0].password)
+        if (!checkPassword) return res.status(400).json("Wrong password or usrname")
+
+        const token = jwt.sign({ id: data[0].id }, "secretKey")
+
+        const { password, ...others } = data[0]
+
+        res
+            .cookie("accessToken", token, {
+                httpOnly: true,
+            })
+            .status(200)
+            .json(others)
+    })
 }
 
 // user logout
