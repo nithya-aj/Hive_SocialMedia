@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import React, { useRef, useState } from 'react'
 import UserAvatar from '../widget/UserAvatar'
 import { useTheme } from '@emotion/react'
@@ -35,7 +35,7 @@ function SharePost() {
     };
 
     return (
-        <Box sx={{ backgroundColor: main, mt: '1rem', p: '1rem', borderRadius: '10px' }}>
+        <Box sx={{ backgroundColor: main, mt: '1rem', p: '1rem', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {previewImage && (
                 <Box
                     sx={{
@@ -73,8 +73,8 @@ function SharePost() {
                 <UserAvatar />
                 <InputBar />
             </Box>
-            <Grid container wrap="nowrap" gap={1} sx={{ mt: '1rem' }}>
-                <Grid item xs={2.5}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '0.5rem', lg: '3rem', md: '2rem' } }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton aria-label="upload picture" component="label">
                             <input hidden accept="image/*" type="file" ref={fileInputRef} onChange={handleFileSelected} />
@@ -82,24 +82,22 @@ function SharePost() {
                         </IconButton>
                         <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' } }}>Photo</Typography>
                     </Box>
-                </Grid>
-                <Grid item xs={6.5}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton aria-label="video">
                             <FaPhotoVideo />
                         </IconButton>
                         <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' } }}>Video</Typography>
                     </Box>
-                </Grid>
-                <Grid item xs={3} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                </Box>
+                <Box>
                     <Button sx={{ display: { xs: 'none', sm: 'flex' } }} variant="contained" endIcon={<SendRoundedIcon />}>
                         post
                     </Button>
                     <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
                         <SendRoundedIcon />
                     </IconButton>
-                </Grid>
-            </Grid>
+                </Box>
+            </Box>
         </Box>
     )
 }

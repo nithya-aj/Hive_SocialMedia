@@ -7,10 +7,12 @@ import Notifications from 'pages/Notifications'
 import Settings from 'pages/Settings'
 import Paths from 'pages/Paths'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from 'pages/LoginPage'
+import RegisterPage from 'pages/RegisterPage'
 
 const App = () => {
 
-    const mode = "dark"
+    const mode = "dark" 
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
 
     return (
@@ -20,6 +22,8 @@ const App = () => {
 
                 <Router>
                     <Routes>
+                        <Route path='/login' element={<LoginPage />} />
+                        <Route path='/register' element={<RegisterPage />} />
                         <Route exact path='' element={<Paths />}>
                             <Route path='/' element={<HomePage />} />
                             <Route path='/friends' element={<Friends />} />

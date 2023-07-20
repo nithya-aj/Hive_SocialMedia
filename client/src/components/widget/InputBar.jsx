@@ -11,7 +11,7 @@ const InputBar = () => {
     const alt = theme.palette.background.alt
 
     return (
-        <Box sx={{ width: '92%' }}>
+        <Box sx={{ width: '100%' }}>
             <Paper
                 component="form"
                 sx={{ display: 'flex', alignItems: 'center', height: "2.5rem", backgroundColor: alt, boxShadow: 'none', borderRadius: '10px' }}
