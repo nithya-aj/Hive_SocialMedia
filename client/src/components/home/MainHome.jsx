@@ -5,7 +5,7 @@ import PostSection from './PostSection'
 import RightBar from '../rightbar/RightBar'
 import { useTheme } from '@emotion/react';
 
-function ChatHome() {
+function MainHome() {
 
     const theme = useTheme()
     const main = theme.palette.background.main
@@ -25,4 +25,4 @@ function ChatHome() {
     )
 }
 
-export default ChatHome
+export default MainHome

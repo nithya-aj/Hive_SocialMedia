@@ -69,8 +69,10 @@ function SharePost() {
                     </IconButton>
                 </Box>
             )}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <UserAvatar />
+            <Box sx={{ display: 'flex', alignItems: 'center', gap:'16px' }}>
+                <Box>
+                    <UserAvatar />
+                </Box>
                 <InputBar />
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

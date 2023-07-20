@@ -9,7 +9,7 @@ import RightBar from 'components/rightbar/RightBar'
 
 const Paths = () => {
   const theme = useTheme()
-  const alt = theme.palette.background.alt 
+  const alt = theme.palette.background.alt
   const main = theme.palette.background.main
   return (
     <>

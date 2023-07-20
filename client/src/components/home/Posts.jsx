@@ -33,13 +33,19 @@ export default function Posts() {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
- 
+
     const theme = useTheme()
     const darkBg = theme.palette.background.darkBg
 
     return (
         <Card variant="outlined" sx={{ mt: '1rem', pb: '1rem', borderRadius: '10px', backgroundColor: darkBg }}>
             <CardHeader
+                sx={{
+                    ".css-sgoict-MuiCardHeader-action": {
+                        marginTop: '4px',
+                        marginRight: '0px'
+                    }
+                }}
                 avatar={
                     <UserAvatar />
                 }
@@ -65,9 +71,9 @@ export default function Posts() {
                     if you like.
                 </Typography>
             </CardContent>
-            <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Box >
-                    <IconButton aria-label="add to favorites" sx={{ mr: '0.5rem' }}>
+            <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <IconButton aria-label="add to favorites">
                         <AiOutlineHeart />
                     </IconButton>
                     <ExpandMore
@@ -83,7 +89,7 @@ export default function Posts() {
                     <IoBookmarkOutline />
                 </IconButton>
             </CardActions>
-            <FormControl variant="standard" sx={{ mx: 1, width: '-webkit-fill-available' }}>
+            <FormControl variant="standard" sx={{ px: '1rem', width: '-webkit-fill-available' }}> 
                 <Input
                     placeholder='Enter your comment...'
                     id="standard-adornment-weight"

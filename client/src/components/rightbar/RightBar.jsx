@@ -7,8 +7,8 @@ import SearchBar from 'components/widget/SearchBar';
 
 function RightBar() {
     return (
-        <Box >
-            <Box sx={{ px: '0.5rem' }}>
+        <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}> 
+            <Box sx={{ px: '0.8rem' }}>
                 <SearchBar />
             </Box>
             <Box sx={{
@@ -16,15 +16,14 @@ function RightBar() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 px: '1rem',
-                mt: '1rem'
             }}>
                 <Typography variant='h5'>Message</Typography>
                 <Typography variant='caption'>See All</Typography>
             </Box>
             <FlexCenter>
-                <Divider sx={{ height: '1px', width: '90%', mt: '10px' }} />
+                <Divider sx={{ height: '1px', width: '90%' }} />
             </FlexCenter>
-            <Box sx={{ maxHeight: '33rem', overflow: 'auto' }}>
+            <Box sx={{  overflow: 'auto', maxHeight: '33rem' }}>
                 <CardHeader
                     avatar={
                         <Avatar aria-label="avatar">
