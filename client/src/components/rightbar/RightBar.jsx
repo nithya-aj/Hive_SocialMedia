@@ -1,4 +1,4 @@
-import { Avatar, Box, CardHeader, Divider, IconButton, Typography } from '@mui/material'
+import { Avatar, Box, Divider, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FlexCenter from 'components/widget/FlexCenter';
@@ -23,315 +23,94 @@ function RightBar() {
             <FlexCenter>
                 <Divider sx={{ height: '1px', width: '90%' }} />
             </FlexCenter>
-            <Box sx={{ overflow: 'auto' }}>
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Alex"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
+            <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                    <Avatar aria-label="avatar">
+                        R
+                    </Avatar>
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
+                        textOverflow: 'ellipsis',
                     }}>
-                        Can you please share your latest work on react, I want to check something...
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Felix"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
+                        <Typography sx={{ fontSize: '0.75rem' }}>Alex</Typography>
+                        <Typography variant="caption" noWrap >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                    <Avatar aria-label="avatar">
+                        R
+                    </Avatar>
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
+                        textOverflow: 'ellipsis',
                     }}>
-                        Check it out...seems wonderful...Check it out...seems wonderful...Check it out...seems wonderful...
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
+                        <Typography sx={{ fontSize: '0.75rem' }}>Alex</Typography>
+                        <Typography variant="caption" noWrap >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                </Box><Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                    <Avatar aria-label="avatar">
+                        R
+                    </Avatar>
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
+                        textOverflow: 'ellipsis',
                     }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
+                        <Typography sx={{ fontSize: '0.75rem' }}>Alex</Typography>
+                        <Typography variant="caption" noWrap >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                </Box><Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                    <Avatar aria-label="avatar">
+                        R
+                    </Avatar>
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
+                        textOverflow: 'ellipsis',
                     }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
+                        <Typography sx={{ fontSize: '0.75rem' }}>Alex</Typography>
+                        <Typography variant="caption" noWrap >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                </Box><Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                    <Avatar aria-label="avatar">
+                        R
+                    </Avatar>
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
+                        textOverflow: 'ellipsis',
                     }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="avatar">
-                            R
-                        </Avatar>
-                    }
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
-                    }
-                    title="Meenu"
-                    subheader={<Typography variant="caption" noWrap sx={{
-                        display: 'inline-block',
-                        width: '8rem',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        Hey!
-                    </Typography>}
-                />
+                        <Typography sx={{ fontSize: '0.75rem' }}>Alex</Typography>
+                        <Typography variant="caption" noWrap >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                </Box>
             </Box>
         </Box>
     )

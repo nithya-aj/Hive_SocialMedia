@@ -12,7 +12,7 @@ import RegisterPage from 'pages/RegisterPage'
 
 const App = () => {
 
-    const mode = "dark" 
+    const mode = "light"
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
 
     return (

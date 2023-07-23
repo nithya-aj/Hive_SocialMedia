@@ -1,10 +1,10 @@
 // color design tokens export
 export const colorTokens = {
     grey: {
-        0: "#FFFFFF",
-        10: "#F6F6F6",
+        0: "#FFFEFE",
+        10: "#FBF9FA",
         50: "#F0F0F0",
-        100: "#E0E0E0",
+        100: "#fbfbfb",
         200: "#C2C2C2",
         300: "#A3A3A3",
         400: "#858585",
@@ -51,7 +51,6 @@ export const themeSettings = (mode) => {
                     },
                     background: {
                         main: colorTokens.grey[900],
-                        darkBg: colorTokens.grey[1000],
                         alt: colorTokens.grey[700],
                     },
                 }
@@ -68,8 +67,9 @@ export const themeSettings = (mode) => {
                         mediumMain: colorTokens.grey[400],
                         medium: colorTokens.grey[300],
                         light: colorTokens.grey[50],
+                        border:colorTokens.grey[100] 
                     },
-                    background: {
+                    background: {      
                         main: colorTokens.grey[0],
                         alt: colorTokens.grey[10],
                     },
@@ -78,7 +78,7 @@ export const themeSettings = (mode) => {
         typography: {
             fontFamily: ["Rubik", "sans-serif"].join(","),
             fontSize: 12,
-            h1: {
+            h1: {  
                 fontFamily: ["Rubik", "sans-serif"].join(","),
                 fontSize: 40,
             },

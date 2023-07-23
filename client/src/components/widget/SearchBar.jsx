@@ -12,12 +12,16 @@ const SearchBar = ({ placeholder, width, sharePost }) => {
     const theme = useTheme()
     const mediumMain = theme.palette.neutral.mediumMain
     const alt = theme.palette.background.alt
+    const border = theme.palette.neutral.border
 
     return (
         <Box sx={{ width }}>
             <Paper
                 component="form"
-                sx={{ display: 'flex', alignItems: 'center', height: "2.5rem", backgroundColor: alt, boxShadow: 'none', borderRadius: '10px' }}
+                sx={{
+                    display: 'flex', alignItems: 'center', height: "2.5rem", backgroundColor: alt, boxShadow: 'none',
+                    borderRadius: '10px', border: `1px solid ${border}`
+                }}
             >
                 <InputBase
                     sx={{ ml: 1, flex: 1, color: mediumMain }}
@@ -31,7 +35,7 @@ const SearchBar = ({ placeholder, width, sharePost }) => {
                     </IconButton>
                 </>
             </Paper>
-        </Box> 
+        </Box>
     )
 }
 
