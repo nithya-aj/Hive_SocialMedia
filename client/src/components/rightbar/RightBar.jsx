@@ -7,7 +7,7 @@ import SearchBar from 'components/widget/SearchBar';
 
 function RightBar() {
     return (
-        <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}> 
+        <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column', height: '100%' }}>
             <Box sx={{ px: '0.8rem' }}>
                 <SearchBar />
             </Box>
@@ -23,7 +23,7 @@ function RightBar() {
             <FlexCenter>
                 <Divider sx={{ height: '1px', width: '90%' }} />
             </FlexCenter>
-            <Box sx={{  overflow: 'auto', maxHeight: '33rem' }}>
+            <Box sx={{ overflow: 'auto' }}>
                 <CardHeader
                     avatar={
                         <Avatar aria-label="avatar">
@@ -66,6 +66,138 @@ function RightBar() {
                         textOverflow: 'ellipsis'
                     }}>
                         Check it out...seems wonderful...Check it out...seems wonderful...Check it out...seems wonderful...
+                    </Typography>}
+                />
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="avatar">
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="Meenu"
+                    subheader={<Typography variant="caption" noWrap sx={{
+                        display: 'inline-block',
+                        width: '8rem',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
+                        Hey!
+                    </Typography>}
+                />
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="avatar">
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="Meenu"
+                    subheader={<Typography variant="caption" noWrap sx={{
+                        display: 'inline-block',
+                        width: '8rem',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
+                        Hey!
+                    </Typography>}
+                />
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="avatar">
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="Meenu"
+                    subheader={<Typography variant="caption" noWrap sx={{
+                        display: 'inline-block',
+                        width: '8rem',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
+                        Hey!
+                    </Typography>}
+                />
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="avatar">
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="Meenu"
+                    subheader={<Typography variant="caption" noWrap sx={{
+                        display: 'inline-block',
+                        width: '8rem',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
+                        Hey!
+                    </Typography>}
+                />
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="avatar">
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="Meenu"
+                    subheader={<Typography variant="caption" noWrap sx={{
+                        display: 'inline-block',
+                        width: '8rem',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
+                        Hey!
+                    </Typography>}
+                />
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="avatar">
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="Meenu"
+                    subheader={<Typography variant="caption" noWrap sx={{
+                        display: 'inline-block',
+                        width: '8rem',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
+                        Hey!
                     </Typography>}
                 />
                 <CardHeader

@@ -7,7 +7,7 @@ import Navbar from 'components/navbar/Navbar'
 import Sidebar from 'components/sidebar/Sidebar'
 import RightBar from 'components/rightbar/RightBar'
 
-const Paths = () => {
+const MainHome = () => {
   const theme = useTheme()
   const alt = theme.palette.background.alt
   const main = theme.palette.background.main
@@ -19,11 +19,11 @@ const Paths = () => {
           <Sidebar />
         </Grid>
         <Grid item xs={8} >
-          <Box bgcolor={alt} sx={{ borderRadius: '10px 10px 0px 0px', height: '90vh', overflow: 'auto' }}>
+          <Box bgcolor={alt} sx={{ borderRadius: '10px 10px 0px 0px', height: '90vh', overflow: 'auto', pb: '1rem' }}>
             <Outlet />
           </Box>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ height: '90vh', pb: '1rem' }}>
           <RightBar />
         </Grid>
       </Grid>
@@ -32,4 +32,4 @@ const Paths = () => {
   )
 }
 
-export default Paths
+export default MainHome

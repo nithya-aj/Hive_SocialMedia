@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { themeSettings } from 'theme'
-import HomePage from 'pages/HomePage'
+import HomePage from 'pages/FeedsPage'
 import Friends from 'pages/Friends'
 import Notifications from 'pages/Notifications'
 import Settings from 'pages/Settings'
-import Paths from 'pages/Paths'
+import Paths from 'pages/MainHome'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from 'pages/LoginPage'
 import RegisterPage from 'pages/RegisterPage'
