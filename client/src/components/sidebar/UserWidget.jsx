@@ -13,7 +13,8 @@ const UserWidget = () => {
 
     return (
         <Box sx={{
-            width: { lg: '12rem', md: '9rem' },
+            bgcolor: 'yellow',
+            width: { lg: '80%', md: '92%' },
             backgroundColor: { md: alt, sm: 'transparent' },
             borderRadius: '10px',
             display: "flex",
@@ -22,7 +23,6 @@ const UserWidget = () => {
             height: '3.8rem',
             paddingLeft: { lg: '1rem', md: '1rem', sm: '0px', xs: '0px' },
             gap: 1,
-            margin: '0rem 1rem 1rem 1rem'
         }}>
             <Box>
                 <UserAvatar height='2.7rem' width='2.7rem' avatarH='38' avatarW='38' sidebar={true} />

@@ -7,9 +7,9 @@ import SearchBar from 'components/widget/SearchBar';
 
 function RightBar() {
     return (
-        <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column', height: '100%' }}>
+        <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column', height: '100%', pb: '1rem' }}>
             <Box sx={{ px: '0.8rem' }}>
-                <SearchBar />
+                <SearchBar placeholder={'Search users...'} />
             </Box>
             <Box sx={{
                 display: 'flex',
@@ -59,7 +59,8 @@ function RightBar() {
                     <IconButton aria-label="settings">
                         <MoreVertIcon />
                     </IconButton>
-                </Box><Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar">
                         R
                     </Avatar>
@@ -76,7 +77,8 @@ function RightBar() {
                     <IconButton aria-label="settings">
                         <MoreVertIcon />
                     </IconButton>
-                </Box><Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar">
                         R
                     </Avatar>
@@ -93,7 +95,8 @@ function RightBar() {
                     <IconButton aria-label="settings">
                         <MoreVertIcon />
                     </IconButton>
-                </Box><Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar">
                         R
                     </Avatar>

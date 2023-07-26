@@ -3,16 +3,14 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
-import { RiMessage3Line } from "react-icons/ri";
-import { FiUserPlus } from "react-icons/fi";
-import { IoNotificationsOutline } from "react-icons/io5";
-import { HiOutlineViewGrid } from "react-icons/hi";
-import { CiUser } from "react-icons/ci";
 import { Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
-import { IoSettingsOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-
+import { AiFillHome } from "react-icons/ai";
+import { BiSolidMessageSquareDetail } from "react-icons/bi";
+import { IoNotifications } from "react-icons/io5";
+import { IoMdSettings } from "react-icons/io";
+import { FaUserPlus, FaUser } from "react-icons/fa";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,52 +25,53 @@ function SidebarNav() {
     const items = [
         {
             name: "Feed",
-            icon: HiOutlineViewGrid,
+            icon: AiFillHome,
             link: '/'
         },
         {
             name: "Friends",
-            icon: FiUserPlus,
+            icon: FaUserPlus,
             link: '/friends'
         },
         {
             name: "Messages",
-            icon: RiMessage3Line
+            icon: BiSolidMessageSquareDetail
         },
         {
             name: "Notifications",
-            icon: IoNotificationsOutline,
+            icon: IoNotifications,
             link: '/notifications'
         },
         {
             name: "Profile",
-            icon: CiUser,
+            icon: FaUser,
             link: '/profile/id'
         },
         {
             name: "Settings",
-            icon: IoSettingsOutline,
+            icon: IoMdSettings,
             link: '/settings'
         }
     ]
 
     const theme = useTheme()
     const alt = theme.palette.background.alt
+    const main = theme.palette.neutral.main
 
     return (
-        <Box sx={{ width: { lg: '81%', md: '92%' } }}>
+        <Box sx={{ width: { lg: '81%', md: '92%' }, height: '100%' }}>
             {items.map((item) => (
-                <Link to={item.link} style={{ textDecoration: 'none' }}> 
+                <Link to={item.link} style={{ textDecoration: 'none' }}>
                     <Stack key={item.name}>
                         <Item sx={{
                             height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: { lg: 'flex-start', md: 'flex-start', sm: 'flex-start', xs: 'center' },
-                            background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '1rem',
+                            background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '2rem',
                             ':hover': {
                                 backgroundColor: alt
                             }
                         }}>
                             <Box style={{ fontSize: 'x-large', marginLeft: { lg: '6px' }, display: 'flex', alignItems: 'center' }}>
-                                {<item.icon />}
+                                {item.icon === FaUser ? <item.icon style={{ fontSize: "1.3rem", color: main }} /> : <item.icon style={{ color: main }} />}
                             </Box>
                             <Typography style={{ marginLeft: '10px' }} sx={{ display: { lg: 'block', md: 'block', sm: 'block', xs: 'none' } }}>{item.name}</Typography>
                         </Item>

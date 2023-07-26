@@ -10,9 +10,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from 'pages/LoginPage'
 import RegisterPage from 'pages/RegisterPage'
 
-const App = () => {
+const App = () => { 
 
-    const mode = "light"
+    const mode = "light" 
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
 
     return (

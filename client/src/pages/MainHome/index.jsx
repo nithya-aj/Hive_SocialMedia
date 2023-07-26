@@ -15,15 +15,15 @@ const MainHome = () => {
     <>
       <Navbar />
       <Grid container sx={{ flexGrow: 1 }} backgroundColor={main}>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ height: '90vh' }}>
           <Sidebar />
         </Grid>
         <Grid item xs={8} >
-          <Box bgcolor={alt} sx={{ borderRadius: '10px 10px 0px 0px', height: '90vh', overflow: 'auto', pb: '1rem' }}>
+          <Box bgcolor={alt} sx={{ borderRadius: '10px 10px 0px 0px', height: '90vh', overflow: 'auto' }}>
             <Outlet />
           </Box>
         </Grid>
-        <Grid item xs={2} sx={{ height: '90vh', pb: '1rem' }}>
+        <Grid item xs={2} sx={{ height: '90vh' }}>
           <RightBar />
         </Grid>
       </Grid>

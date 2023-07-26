@@ -1,19 +1,20 @@
 // color design tokens export
 export const colorTokens = {
     grey: {
-        0: "#FFFEFE",
-        10: "#FBF9FA",
-        50: "#F0F0F0",
-        100: "#fbfbfb",
-        200: "#C2C2C2",
-        300: "#A3A3A3",
-        400: "#858585",
-        500: "#666666",
-        600: "#4D4D4D",
-        700: "#333333",
-        800: "#1A1A1A",
-        900: "#0A0A0A",
-        1000: "#000000",
+        0: "#FFFFFF",
+        10: "#f5f5f5",
+        50: "#EBEBEB",
+        100: "#e0e0e0",
+        200: "#d6d6d6",
+        300: "#CCCCCC",
+        400: "#c2c2c2",
+
+        500: "#3D3D3D",
+        600: "#333333",
+        700: "#292929",
+        800: "#1F1F1F",
+        900: "#141414",
+        1000: "#0a0a0a",
     },
     primary: {
         50: "#E6FBFF",
@@ -47,11 +48,11 @@ export const themeSettings = (mode) => {
                         main: colorTokens.grey[200],
                         mediumMain: colorTokens.grey[300],
                         medium: colorTokens.grey[400],
-                        light: colorTokens.grey[700],
+                        light: colorTokens.grey[600],
                     },
                     background: {
                         main: colorTokens.grey[900],
-                        alt: colorTokens.grey[700],
+                        alt: colorTokens.grey[800],
                     },
                 }
                 : {
@@ -67,9 +68,8 @@ export const themeSettings = (mode) => {
                         mediumMain: colorTokens.grey[400],
                         medium: colorTokens.grey[300],
                         light: colorTokens.grey[50],
-                        border:colorTokens.grey[100] 
                     },
-                    background: {      
+                    background: {
                         main: colorTokens.grey[0],
                         alt: colorTokens.grey[10],
                     },
@@ -78,7 +78,7 @@ export const themeSettings = (mode) => {
         typography: {
             fontFamily: ["Rubik", "sans-serif"].join(","),
             fontSize: 12,
-            h1: {  
+            h1: {
                 fontFamily: ["Rubik", "sans-serif"].join(","),
                 fontSize: 40,
             },
