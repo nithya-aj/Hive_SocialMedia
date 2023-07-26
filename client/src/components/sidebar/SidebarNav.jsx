@@ -62,18 +62,29 @@ function SidebarNav() {
         <Box sx={{ width: { lg: '81%', md: '92%' }, height: '100%' }}>
             {items.map((item) => (
                 <Link to={item.link} style={{ textDecoration: 'none' }}>
-                    <Stack key={item.name}>
+                    <Stack key={item.name} sx={{ position: 'relative' }}>
                         <Item sx={{
                             height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: { lg: 'flex-start', md: 'flex-start', sm: 'flex-start', xs: 'center' },
                             background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '2rem',
                             ':hover': {
-                                backgroundColor: alt
-                            }
+                                backgroundColor: alt,
+                                transform: 'ease-in 4s',
+                                "::before": {
+                                    content: '""',
+                                    position: 'absolute',
+                                    top: '1px',
+                                    left: '0',
+                                    bottom: '2px',
+                                    right: '12.6rem',
+                                    bgcolor: " #9ca5f7",
+                                    borderRadius: '0px 30px 30px 0px',
+                                }
+                            },
                         }}>
                             <Box style={{ fontSize: 'x-large', marginLeft: { lg: '6px' }, display: 'flex', alignItems: 'center' }}>
                                 {item.icon === FaUser ? <item.icon style={{ fontSize: "1.3rem", color: main }} /> : <item.icon style={{ color: main }} />}
                             </Box>
-                            <Typography style={{ marginLeft: '10px' }} sx={{ display: { lg: 'block', md: 'block', sm: 'block', xs: 'none' } }}>{item.name}</Typography>
+                            <Typography style={{ marginLeft: '10px', color: main }} sx={{ display: { lg: 'block', md: 'block', sm: 'block', xs: 'none' } }}>{item.name}</Typography>
                         </Item>
                     </Stack>
                 </Link>
