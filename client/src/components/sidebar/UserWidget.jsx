@@ -8,12 +8,13 @@ const UserWidget = () => {
 
     const theme = useTheme()
     const alt = theme.palette.background.alt
-    // const text = theme.palette.neutral.dark
-    // const dark = theme.palette.primary.dark
+    const light = theme.palette.neutral.light
+    const mediumMain = theme.palette.mediumMain
+    const medium = theme.palette.medium
 
     return (
         <Box sx={{
-            bgcolor: 'yellow',
+            border: `1px solid ${light}`,
             width: { lg: '80%', md: '92%' },
             backgroundColor: { md: alt, sm: 'transparent' },
             borderRadius: '10px',
@@ -25,13 +26,13 @@ const UserWidget = () => {
             gap: 1,
         }}>
             <Box>
-                <UserAvatar height='2.7rem' width='2.7rem' avatarH='38' avatarW='38' sidebar={true} />
+                <UserAvatar sidebar={true} />
             </Box>
             <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
-                <Typography variant="h5" gutterBottom sx={{ fontWeight: '500', marginBottom: '0' }}>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: '600', marginBottom: '0', color: mediumMain }}>
                     Irin Rose
                 </Typography>
-                <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: '300', marginBottom: '0' }}>
+                <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: '300', marginBottom: '0', color: medium }}>
                     @Irin_Rose
                 </Typography>
             </Box>
