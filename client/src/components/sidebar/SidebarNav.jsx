@@ -57,26 +57,29 @@ function SidebarNav() {
     const theme = useTheme()
     const alt = theme.palette.background.alt
     const main = theme.palette.neutral.main
+    const light = theme.palette.neutral.light
+    const purple = theme.palette.neutral.purple
 
     return (
         <Box sx={{ width: { lg: '81%', md: '92%' }, height: '100%' }}>
-            {items.map((item) => (
-                <Link to={item.link} style={{ textDecoration: 'none' }}>
-                    <Stack key={item.name} sx={{ position: 'relative' }}>
+            {items.map((item, id) => (
+                <Link to={item.link} style={{ textDecoration: 'none' }} key={id}>
+                    <Stack sx={{ position: 'relative' }}>
                         <Item sx={{
                             height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: { lg: 'flex-start', md: 'flex-start', sm: 'flex-start', xs: 'center' },
                             background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '2rem',
                             ':hover': {
                                 backgroundColor: alt,
                                 transform: 'ease-in 4s',
+                                border: `1px solid ${light}`,
                                 "::before": {
-                                    content: '""',
+                                    content: '""', 
                                     position: 'absolute',
                                     top: '1px',
                                     left: '0',
                                     bottom: '2px',
                                     right: '12.6rem',
-                                    bgcolor: " #9ca5f7",
+                                    bgcolor: purple,
                                     borderRadius: '0px 30px 30px 0px',
                                 }
                             },

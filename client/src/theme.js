@@ -8,7 +8,6 @@ export const colorTokens = {
         200: "#d6d6d6",
         300: "#CCCCCC",
         400: "#c2c2c2",
-
         500: "#3D3D3D",
         600: "#333333",
         700: "#292929",
@@ -27,7 +26,34 @@ export const colorTokens = {
         700: "#006B7D",
         800: "#00353F",
         900: "#001519",
+        1000: "#FBAC63"
     },
+    orange: {
+        50: "#FDDFC4",
+        100: "#FCD5B1",
+        200: "#FBCA9D",
+        300: "#FBC088",
+        400: "#FBB574",
+        500: "#FBAB60",
+        600: "#FAA04C",
+        700: "#FA9638",
+        800: "#F98B24",
+        900: "#F98110",
+        1000: "#EF7706",
+    },
+    purple: {
+        50: "#C6CCFA",
+        100: "#B4BCF8",
+        200: "#A2ACF6",
+        300: "#909BF4",
+        400: "#7D8BF2",
+        500: "#6A7AF0",
+        600: "#5869EE",
+        700: "#4559ED",
+        800: "#3348EB",
+        900: "#2038E9",
+        1000: "#162DDF",
+    }
 };
 
 // mui theme settings
@@ -49,6 +75,8 @@ export const themeSettings = (mode) => {
                         mediumMain: colorTokens.grey[300],
                         medium: colorTokens.grey[400],
                         light: colorTokens.grey[600],
+                        fontSm: colorTokens.orange[400],
+                        purple: colorTokens.purple[500]
                     },
                     background: {
                         main: colorTokens.grey[900],

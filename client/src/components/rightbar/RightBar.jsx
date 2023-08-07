@@ -3,26 +3,35 @@ import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FlexCenter from 'components/widget/FlexCenter';
 import SearchBar from 'components/widget/SearchBar';
+import { useTheme } from '@emotion/react';
 
 
 function RightBar() {
+
+    const theme = useTheme()
+    const fontSm = theme.palette.neutral.fontSm
+    const main = theme.palette.background.main
+    const mediumMain = theme.palette.mediumMain
+
     return (
         <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column', height: '100%', pb: '1rem' }}>
             <Box sx={{ px: '0.8rem' }}>
                 <SearchBar placeholder={'Search users...'} />
             </Box>
-            <Box sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                px: '1rem',
-            }}>
-                <Typography variant='h5'>Message</Typography>
-                <Typography variant='caption'>See All</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                <Box sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    px: '1rem',
+                }}>
+                    <Typography variant='h5' sx={{ color: mediumMain}}>Message</Typography>
+                    <Typography variant='caption' sx={{ color: fontSm, display: 'flex', alignSelf: 'flex-end' }}>See All</Typography>
+                </Box>
+                <FlexCenter>
+                    <Divider sx={{ height: '1px', width: '90%', backgroundColor: main }} />
+                </FlexCenter>
             </Box>
-            <FlexCenter>
-                <Divider sx={{ height: '1px', width: '90%' }} />
-            </FlexCenter>
             <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar">
