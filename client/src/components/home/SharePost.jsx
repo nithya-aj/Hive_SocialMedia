@@ -18,7 +18,7 @@ function SharePost() {
     const fileInputRef = useRef(null)
     const [selectedImage, setSelectedImage] = useState(null)
     const [previewImage, setPreviewImage] = useState('')
-
+    console.log(selectedImage); 
     const handleFileSelected = (e) => {
         const file = e.target.files[0]
         if (file) {
@@ -94,8 +94,8 @@ function SharePost() {
                     </Box>
                 </Box>
                 <Box>
-                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple }} variant="contained" endIcon={<SendRoundedIcon />}>
-                        post
+                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none' }} variant="contained" endIcon={<SendRoundedIcon />}>
+                        Post
                     </Button>
                     <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
                         <SendRoundedIcon />
