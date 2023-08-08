@@ -13,6 +13,8 @@ function RightBar() {
     const dark = theme.palette.neutral.dark
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
+    const light = theme.palette.neutral.light
+    const textMain = theme.palette.neutral.main 
 
     return (
         <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column', height: '100%', pb: '1rem' }}>
@@ -35,7 +37,7 @@ function RightBar() {
             </Box>
             <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                     <Box sx={{
@@ -53,7 +55,7 @@ function RightBar() {
                     </IconButton>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                     <Box sx={{
@@ -71,7 +73,7 @@ function RightBar() {
                     </IconButton>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                     <Box sx={{
@@ -89,7 +91,7 @@ function RightBar() {
                     </IconButton>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                     <Box sx={{
@@ -107,7 +109,7 @@ function RightBar() {
                     </IconButton>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                     <Box sx={{
