@@ -9,7 +9,7 @@ const UserWidget = () => {
     const theme = useTheme()
     const alt = theme.palette.background.alt
     const light = theme.palette.neutral.light
-    const mediumMain = theme.palette.mediumMain
+    const main = theme.palette.main
     const medium = theme.palette.medium
 
     return (
@@ -29,7 +29,7 @@ const UserWidget = () => {
                 <UserAvatar sidebar={true} />
             </Box>
             <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
-                <Typography variant="h5" gutterBottom sx={{ fontWeight: '600', marginBottom: '0', color: mediumMain }}>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: '600', marginBottom: '0', color: main }}>
                     Irin Rose
                 </Typography>
                 <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: '300', marginBottom: '0', color: medium }}>

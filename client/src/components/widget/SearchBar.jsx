@@ -13,6 +13,7 @@ const SearchBar = ({ placeholder, width, sharePost }) => {
     const main = theme.palette.neutral.main
     const alt = theme.palette.background.alt
     const light = theme.palette.neutral.light
+    const medium = theme.palette.neutral.medium
 
     return (
         <Box sx={{ width }}>
@@ -32,9 +33,9 @@ const SearchBar = ({ placeholder, width, sharePost }) => {
                     <Divider sx={{
                         height: 28,
                         m: 0.5,
-                        borderColor: light 
+                        borderColor: light
                     }} orientation="vertical" />
-                    <IconButton color={main} sx={{ p: '10px' }} aria-label="directions">
+                    <IconButton sx={{ p: '10px', color: medium }} aria-label="directions">
                         <SearchIcon />
                     </IconButton>
                 </>
