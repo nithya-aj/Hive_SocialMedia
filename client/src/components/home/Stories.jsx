@@ -34,12 +34,15 @@ const Story = () => {
 
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
+    const orange = theme.palette.neutral.orange
+    const light = theme.palette.neutral.light
+    const textMain = theme.palette.neutral.main
 
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3 }} style={{ overflowX: 'auto' }}>
-                <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: darkbg }}>
-                    <Avatar sx={{ height: '2rem', width: '2rem' }}>
+                <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', gap: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: darkbg }}>
+                    <Avatar sx={{ height: '2rem', width: '2rem', border: `2px solid ${orange}`, backgroundColor: light, color: textMain }}>
                         <HiPlus />
                     </Avatar>
                     <Typography variant='caption' sx={{ zIndex: '3', textAlign: 'center' }}>
@@ -47,16 +50,39 @@ const Story = () => {
                     </Typography>
                 </Card>
 
+                {/* <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundColor: main }}>
+                    <Avatar
+                        sx={{
+                            height: '2rem',
+                            width: '2rem',
+                            alignSelf: 'start',
+                            border: `2px solid ${orange}`,
+                            position: 'absolute',
+                            left: '0.3rem',
+                            top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
+                        }}
+                    >
+                        <HiPlus />
+                    </Avatar>
+                    <Typography variant='caption' sx={{ zIndex: '3', textAlign: 'center', position: 'absolute', top: '5.3rem' }}>
+                        Create your <br /> story
+                    </Typography>
+                </StyledBox> */}
+
                 <StyledBox sx={{ minWidth: { xs: 70, lg: 90 }, backgroundImage: 'url(https://source.unsplash.com/featured/300x2011)' }}>
                     <Avatar
                         sx={{
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H
@@ -73,10 +99,12 @@ const Story = () => {
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H
@@ -93,10 +121,12 @@ const Story = () => {
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H
@@ -112,10 +142,12 @@ const Story = () => {
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H
@@ -131,10 +163,12 @@ const Story = () => {
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H
@@ -150,10 +184,12 @@ const Story = () => {
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H
@@ -170,10 +206,12 @@ const Story = () => {
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H
@@ -189,10 +227,12 @@ const Story = () => {
                             height: '2rem',
                             width: '2rem',
                             alignSelf: 'start',
-                            border: `2px solid`,
+                            border: `2px solid ${orange}`,
                             position: 'absolute',
                             left: '0.3rem',
                             top: '0.2rem',
+                            backgroundColor: light,
+                            color: textMain
                         }}
                     >
                         H

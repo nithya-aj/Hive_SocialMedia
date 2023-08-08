@@ -2,6 +2,7 @@ import { Badge, Box } from '@mui/material'
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles'
+import { useTheme } from '@emotion/react';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -33,30 +34,27 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const UserAvatar = ({ sidebar }) => {
+    const theme = useTheme()
+    const orange = theme.palette.neutral.orange
     return (
-        <Box sx={{
-            height: '2.6rem', width: '2.6rem', background: "linear-gradient(90deg, rgba(65,88,208,1) 0%, rgba(200,80,192,1) 46%, rgba(255,204,112,1) 100%)", borderRadius: '50%',
-            position: 'relative'
-        }}>
+        <Box>
             {sidebar ? (
                 <StyledBadge
-                    sx={{ position: 'abosulute', left: '2.8px', top: '2.8px' }}
                     overlap="circular"
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                     variant="dot"
                 >
-                    <Avatar sx={{ width: "2.2rem", height: '2.2rem' }} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    <Avatar sx={{ width: "2.5rem", height: '2.5rem', border: `2px solid ${orange}` }} alt="Remy Sharp" src="https://source.unsplash.com/featured/300x198" />
                 </StyledBadge>) : (
                 <StyledBadge
-                    sx={{ position: 'abosulute', left: '2.8px', top: '2.8px' }}
                     overlap="circular"
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 >
-                    <Avatar sx={{ width: "2.2rem", height: '2.2rem' }} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    <Avatar sx={{ width: "2.5rem", height: '2.5rem', border: `2px solid ${orange}` }} alt="Remy Sharp" src="https://source.unsplash.com/featured/300x198" />
                 </StyledBadge>)
             }
         </Box>
     )
 }
 
-export default UserAvatar
+export default UserAvatar 
