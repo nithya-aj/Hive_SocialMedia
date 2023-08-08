@@ -33,18 +33,20 @@ export default function Posts() {
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
-  
+
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
-    const light = theme.palette.neutral.light
     const dark = theme.palette.neutral.dark
+    const main = theme.palette.neutral.main
+    const light = theme.palette.neutral.light
+    const purple = theme.palette.neutral.purple
 
     return (
         <Card sx={{ mt: '1rem', pb: '1rem', borderRadius: '10px', backgroundColor: darkbg }}>
             <CardHeader
                 sx={{
                     ".css-sgoict-MuiCardHeader-action": {
-                        marginTop: '4px', 
+                        marginTop: '4px',
                         marginRight: '0px'
                     },
                     ".css-1ba4o25-MuiTypography-root": {
@@ -95,8 +97,20 @@ export default function Posts() {
                 </IconButton>
             </CardActions>
             <FormControl variant="standard" sx={{
-                px: '1rem', width: '-webkit-fill-available'
-            }}>      
+                px: '1rem', width: '-webkit-fill-available',
+                ".css-uins4q-MuiInputBase-root-MuiInput-root": {
+                    color: main,
+                },
+                ".css-uins4q-MuiInputBase-root-MuiInput-root:before": {
+                    borderBottom: `1px solid ${light}`
+                },
+                ".css-uins4q-MuiInputBase-root-MuiInput-root:after": {
+                    borderBottom: `1px solid ${purple}`
+                },
+                ".css-uins4q-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):not(.Mui-error):before": {
+                    borderBottom: `2px solid ${light}`,   
+                  },
+            }}>
                 <Input
                     placeholder='Enter your comment...'
                     id="standard-adornment-weight"
