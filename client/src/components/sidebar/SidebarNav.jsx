@@ -66,8 +66,8 @@ function SidebarNav() {
                 <Link to={item.link} style={{ textDecoration: 'none' }} key={id}>
                     <Stack sx={{ position: 'relative' }}>
                         <Item sx={{
-                            height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: { lg: 'flex-start', md: 'flex-start', sm: 'flex-start', xs: 'center' },
-                            background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '2rem',
+                            height: '3.5rem', display: 'flex', alignItems: 'center',
+                            background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '1rem',
                             ':hover': {
                                 backgroundColor: alt,
                                 transform: 'ease-in 4s',

@@ -2,10 +2,18 @@ import { Avatar, Box, Card, CardHeader, Divider, IconButton, Typography } from '
 import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FlexCenter from 'components/widget/FlexCenter';
+import { useTheme } from '@emotion/react';
 
 const FriendsReq = () => {
+    const theme = useTheme()
+    const darkbg = theme.palette.background.darkbg
+    const main = theme.palette.background.main
+    const dark = theme.palette.neutral.dark
+    const mediumMain = theme.palette.neutral.mediumMain
+    const medium = theme.palette.neutral.medium
+
     return (
-        <Card sx={{ maxWidth: 345, borderRadius: '10px' }}>
+        <Card sx={{ maxWidth: 345, borderRadius: '10px', backgroundColor: darkbg }}>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -13,11 +21,11 @@ const FriendsReq = () => {
                 px: '1rem',
                 mt: '1rem'
             }}>
-                <Typography variant='h5'>Friend Request</Typography>
-                <Typography variant='caption'>See All</Typography>
+                <Typography variant='h5' sx={{ color: mediumMain }} >Friend Request</Typography>
+                <Typography variant='caption' sx={{ color: medium }}>See All</Typography>
             </Box>
             <FlexCenter>
-                <Divider sx={{ height: '1px', width: '90%', mt:'10px' }} />
+                <Divider sx={{ height: '1px', width: '90%', mt: '10px' }} />
             </FlexCenter>
             <CardHeader
                 avatar={

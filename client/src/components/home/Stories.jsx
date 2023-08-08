@@ -33,12 +33,12 @@ const StyledBox = styled(Box)(({ theme }) => ({
 const Story = () => {
 
     const theme = useTheme()
-    const darkBg = theme.palette.background.darkBg
+    const darkbg = theme.palette.background.darkbg
 
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3 }} style={{ overflowX: 'auto' }}>
-                <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: darkBg }}>
+                <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: darkbg }}>
                     <Avatar sx={{ height: '2rem', width: '2rem' }}>
                         <HiPlus />
                     </Avatar>

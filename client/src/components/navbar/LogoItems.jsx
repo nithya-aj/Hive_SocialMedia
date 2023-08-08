@@ -1,23 +1,20 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react'
 import Hivelogo from 'assets/Hivelogo.png'
-import letterH from 'assets/small-h.png'
-import letterI from 'assets/small-i.png'
-import letterV from 'assets/small-v.png'
-import letterE from 'assets/small-e.png'
+import { useTheme } from '@emotion/react';
 
 const LogoItems = () => {
+    const theme = useTheme()
+    const main = theme.palette.neutral.main
+
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyItems:'center' }}>  
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyItems: 'center' }}>
             <img src={Hivelogo} alt="" style={{ width: '2rem', height: '2rem' }} />
             <Box sx={{ display: 'flex', alignItems: 'center' }} >
-                <img src={letterH} alt="" style={{ width: '1.5rem', height: '1.5rem' }} />
-                <img src={letterI} alt="" style={{ width: '1.5rem', height: '1.5rem' }} />
-                <img src={letterV} alt="" style={{ width: '1.5rem', height: '1.5rem' }} />
-                <img src={letterE} alt="" style={{ width: '1.5rem', height: '1.5rem' }} />
+                <Typography variant="h4" sx={{ fontWeight: '600', letterSpacing: '2px', color: main }}>Hive</Typography>
             </Box>
         </Box>
     )
 }
-
+ 
 export default LogoItems  
