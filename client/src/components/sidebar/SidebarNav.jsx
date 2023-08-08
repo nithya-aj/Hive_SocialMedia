@@ -73,7 +73,7 @@ function SidebarNav() {
                                 transform: 'ease-in 4s',
                                 border: `1px solid ${light}`,
                                 "::before": {
-                                    content: '""', 
+                                    content: '""',
                                     position: 'absolute',
                                     top: '1px',
                                     left: '0',
@@ -81,6 +81,7 @@ function SidebarNav() {
                                     right: '12.6rem',
                                     bgcolor: purple,
                                     borderRadius: '0px 30px 30px 0px',
+                                    width: '4px'
                                 }
                             },
                         }}>
