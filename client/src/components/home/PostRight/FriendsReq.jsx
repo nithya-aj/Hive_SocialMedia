@@ -7,10 +7,11 @@ import { useTheme } from '@emotion/react';
 const FriendsReq = () => {
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
-    const main = theme.palette.background.main
-    const dark = theme.palette.neutral.dark
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
+    const light = theme.palette.neutral.light
+    const textMain = theme.palette.neutral.main
+    const dark = theme.palette.neutral.dark 
 
     return (
         <Card sx={{ maxWidth: 345, borderRadius: '10px', backgroundColor: darkbg }}>
@@ -29,13 +30,13 @@ const FriendsReq = () => {
             </FlexCenter>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 }
                 title="Shajie"
@@ -43,13 +44,13 @@ const FriendsReq = () => {
             />
             <CardHeader
                 avatar={
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 }
                 title="Shajie"
@@ -57,13 +58,13 @@ const FriendsReq = () => {
             />
             <CardHeader
                 avatar={
-                    <Avatar aria-label="avatar">
+                    <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 }
                 title="Shajie"

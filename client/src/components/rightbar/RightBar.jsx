@@ -2,7 +2,7 @@ import { Avatar, Box, Divider, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FlexCenter from 'components/widget/FlexCenter';
-import SearchBar from 'components/widget/SearchBar';
+import SearchBar from 'components/widget/SearchBar';   
 import { useTheme } from '@emotion/react';
 
 
@@ -14,7 +14,7 @@ function RightBar() {
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
-    const textMain = theme.palette.neutral.main 
+    const textMain = theme.palette.neutral.main
 
     return (
         <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column', height: '100%', pb: '1rem' }}>
@@ -36,7 +36,7 @@ function RightBar() {
                 </FlexCenter>
             </Box>
             <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -51,10 +51,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -69,10 +69,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -87,10 +87,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -105,10 +105,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -123,7 +123,7 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: dark }} />
                     </IconButton>
                 </Box>
             </Box>
