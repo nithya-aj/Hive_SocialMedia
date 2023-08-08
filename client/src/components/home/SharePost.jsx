@@ -12,6 +12,8 @@ import { IoIosCloseCircle } from "react-icons/io";
 function SharePost() {
     const theme = useTheme()
     const main = theme.palette.background.main
+    const textMain = theme.palette.neutral.textMain
+    const purple = theme.palette.neutral.purple
 
     const fileInputRef = useRef(null)
     const [selectedImage, setSelectedImage] = useState(null)
@@ -69,7 +71,7 @@ function SharePost() {
                     </IconButton>
                 </Box>
             )}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap:'16px' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                 <Box>
                     <UserAvatar />
                 </Box>
@@ -78,21 +80,21 @@ function SharePost() {
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '0.5rem', lg: '3rem', md: '2rem' } }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton aria-label="upload picture" component="label">
+                        <IconButton aria-label="upload picture" component="label" sx={{ color: purple }}>
                             <input hidden accept="image/*" type="file" ref={fileInputRef} onChange={handleFileSelected} />
                             <IoImage />
                         </IconButton>
-                        <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' } }}>Photo</Typography>
+                        <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' }, color: textMain }}>Photo</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton aria-label="video">
+                        <IconButton aria-label="video" sx={{ color: purple }}>
                             <FaPhotoVideo />
                         </IconButton>
-                        <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' } }}>Video</Typography>
+                        <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' }, color: textMain }}>Video</Typography>
                     </Box>
                 </Box>
                 <Box>
-                    <Button sx={{ display: { xs: 'none', sm: 'flex' } }} variant="contained" endIcon={<SendRoundedIcon />}>
+                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple }} variant="contained" endIcon={<SendRoundedIcon />}>
                         post
                     </Button>
                     <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
