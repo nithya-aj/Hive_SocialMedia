@@ -9,13 +9,15 @@ import Paths from 'pages/MainHome'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from 'pages/LoginPage'
 import RegisterPage from 'pages/RegisterPage'
+import ProfilePage from 'pages/ProfilePage'
+import MessagesPage from 'pages/MessagesPage'
 
-const App = () => { 
-  
-    const mode = "dark"   
+const App = () => {
+
+    const mode = "dark"
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
 
-    return ( 
+    return (
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
@@ -27,15 +29,17 @@ const App = () => {
                         <Route exact path='' element={<Paths />}>
                             <Route path='/' element={<HomePage />} />
                             <Route path='/friends' element={<Friends />} />
+                            <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
+                            <Route path='/profile/:id' element={<ProfilePage />} />
                             <Route path='/settings' element={<Settings />} />
-                        </Route>
+                        </Route> 
                     </Routes>
                 </Router>
 
             </ThemeProvider>
         </>
     )
-}        
+}
 
 export default App     

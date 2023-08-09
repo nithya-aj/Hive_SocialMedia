@@ -35,7 +35,8 @@ function SidebarNav() {
         },
         {
             name: "Messages",
-            icon: BiSolidMessageSquareDetail
+            icon: BiSolidMessageSquareDetail,
+            link: '/messages'
         },
         {
             name: "Notifications",
@@ -45,7 +46,7 @@ function SidebarNav() {
         {
             name: "Profile",
             icon: FaUser,
-            link: '/profile/id'
+            link: '/profile/:id'
         },
         {
             name: "Settings",
