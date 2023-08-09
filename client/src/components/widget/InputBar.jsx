@@ -4,10 +4,10 @@ import InputBase from '@mui/material/InputBase';
 import { useTheme } from '@emotion/react';
 import { Box } from '@mui/material';
 
-const InputBar = () => {
+const InputBar = () => {  
 
     const theme = useTheme()
-    const mediumMain = theme.palette.neutral.mediumMain
+    const main = theme.palette.neutral.main
     const alt = theme.palette.background.alt
 
     return (
@@ -17,7 +17,7 @@ const InputBar = () => {
                 sx={{ display: 'flex', alignItems: 'center', height: "2.5rem", backgroundColor: alt, boxShadow: 'none', borderRadius: '10px' }}
             >
                 <InputBase
-                    sx={{ ml: 1, flex: 1, color: mediumMain }}
+                    sx={{ ml: 1, flex: 1, color: main }}
                     placeholder='What do you want to share today?'
                     inputProps={{ 'aria-label': 'search google maps' }}
                 />

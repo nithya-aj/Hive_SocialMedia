@@ -14,6 +14,7 @@ function SharePost() {
     const main = theme.palette.background.main
     const textMain = theme.palette.neutral.textMain
     const purple = theme.palette.neutral.purple
+    const orange = theme.palette.neutral.orange
 
     const fileInputRef = useRef(null)
     const [selectedImage, setSelectedImage] = useState(null)
@@ -80,14 +81,14 @@ function SharePost() {
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '0.5rem', lg: '3rem', md: '2rem' } }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton aria-label="upload picture" component="label" sx={{ color: purple }}>
+                        <IconButton aria-label="upload picture" component="label" sx={{ color: orange }}>
                             <input hidden accept="image/*" type="file" ref={fileInputRef} onChange={handleFileSelected} />
                             <IoImage />
                         </IconButton>
                         <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' }, color: textMain }}>Photo</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton aria-label="video" sx={{ color: purple }}>
+                        <IconButton aria-label="video" sx={{ color: orange }}>
                             <FaPhotoVideo />
                         </IconButton>
                         <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' }, color: textMain }}>Video</Typography>

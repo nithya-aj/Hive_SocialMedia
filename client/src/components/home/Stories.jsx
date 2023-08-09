@@ -42,7 +42,7 @@ const Story = () => {
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3 }} style={{ overflowX: 'auto' }}>
                 <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', gap: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: darkbg }}>
-                    <Avatar sx={{ height: '2rem', width: '2rem', border: `2px solid ${orange}`, backgroundColor: light, color: textMain }}>
+                    <Avatar sx={{ height: '2rem', width: '2rem', backgroundColor: light, color: textMain }}>
                         <HiPlus />
                     </Avatar>
                     <Typography variant='caption' sx={{ zIndex: '3', textAlign: 'center' }}>
@@ -82,8 +82,9 @@ const Story = () => {
                             left: '0.3rem',
                             top: '0.2rem',
                             backgroundColor: light,
-                            color: textMain
+                            color: textMain,
                         }}
+                        src="https://source.unsplash.com/featured/300x197"
                     >
                         H
                     </Avatar>
@@ -106,8 +107,9 @@ const Story = () => {
                             backgroundColor: light,
                             color: textMain
                         }}
+                        src="https://source.unsplash.com/featured/300x196"
                     >
-                        H
+
                     </Avatar>
                     <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem' }}>
                         nithya
@@ -128,6 +130,7 @@ const Story = () => {
                             backgroundColor: light,
                             color: textMain
                         }}
+                        src="https://source.unsplash.com/featured/300x195"
                     >
                         H
                     </Avatar>
@@ -149,6 +152,7 @@ const Story = () => {
                             backgroundColor: light,
                             color: textMain
                         }}
+                        src="https://source.unsplash.com/featured/300x194"
                     >
                         H
                     </Avatar>
@@ -170,6 +174,7 @@ const Story = () => {
                             backgroundColor: light,
                             color: textMain
                         }}
+                        src="https://source.unsplash.com/featured/300x193"
                     >
                         H
                     </Avatar>
@@ -191,6 +196,7 @@ const Story = () => {
                             backgroundColor: light,
                             color: textMain
                         }}
+                        src="https://source.unsplash.com/featured/300x192"
                     >
                         H
                     </Avatar>
@@ -213,6 +219,7 @@ const Story = () => {
                             backgroundColor: light,
                             color: textMain
                         }}
+                        src="https://source.unsplash.com/featured/300x191"
                     >
                         H
                     </Avatar>
@@ -234,6 +241,7 @@ const Story = () => {
                             backgroundColor: light,
                             color: textMain
                         }}
+                        src="https://source.unsplash.com/featured/300x190"
                     >
                         H
                     </Avatar>

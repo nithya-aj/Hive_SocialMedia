@@ -27,7 +27,7 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function Posts() {
+export default function Post() {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -38,6 +38,7 @@ export default function Posts() {
     const darkbg = theme.palette.background.darkbg
     const dark = theme.palette.neutral.dark
     const main = theme.palette.neutral.main
+    const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
     const purple = theme.palette.neutral.purple
 
@@ -54,10 +55,10 @@ export default function Posts() {
                     }
                 }}
                 avatar={
-                    <UserAvatar />
+                    <UserAvatar /> 
                 }
                 action={
-                    <IconButton aria-label="settings">
+                    <IconButton aria-label="settings" sx={{ color: main }}>
                         <MoreVertIcon />
                     </IconButton>
                 }
@@ -80,7 +81,7 @@ export default function Posts() {
             </CardContent>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1rem' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <IconButton aria-label="add to favorites">
+                    <IconButton sx={{ color: main }} aria-label="add to favorites">
                         <AiOutlineHeart />
                     </IconButton>
                     <ExpandMore
@@ -88,11 +89,12 @@ export default function Posts() {
                         onClick={handleExpandClick}
                         aria-expanded={expanded}
                         aria-label="comments"
+                        sx={{ color: main }}
                     >
                         <FaRegCommentDots />
                     </ExpandMore>
                 </Box>
-                <IconButton aria-label="share">
+                <IconButton sx={{ color: main }} aria-label="share">
                     <IoBookmarkOutline />
                 </IconButton>
             </CardActions>
@@ -108,8 +110,8 @@ export default function Posts() {
                     borderBottom: `1px solid ${purple}`
                 },
                 ".css-uins4q-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):not(.Mui-error):before": {
-                    borderBottom: `2px solid ${light}`,   
-                  },
+                    borderBottom: `2px solid ${light}`,
+                },
             }}>
                 <Input
                     placeholder='Enter your comment...'
@@ -118,6 +120,7 @@ export default function Posts() {
                     endAdornment={
                         <InputAdornment position="end">
                             <IconButton
+                                sx={{ color: main }}
                                 aria-label="toggle password visibility"
                             >
                                 <BiSend />
@@ -147,15 +150,15 @@ export default function Posts() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography>
+                                        <Typography sx={{ color: dark }}>
                                             Ali Connors
                                         </Typography>
-                                        <Typography variant='caption'>
+                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
                                             3 days ago
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2'>
+                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>
@@ -171,15 +174,15 @@ export default function Posts() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography>
+                                        <Typography sx={{ color: dark }}>
                                             Ali Connors
                                         </Typography>
-                                        <Typography variant='caption'>
+                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
                                             3 days ago
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2'>
+                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>
@@ -195,16 +198,16 @@ export default function Posts() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography>
+                                        <Typography sx={{ color: dark }}>
                                             Ali Connors
                                         </Typography>
-                                        <Typography variant='caption'>
+                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
                                             3 days ago
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2'>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>
                                 </ListItemText>
@@ -219,15 +222,15 @@ export default function Posts() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography>
+                                        <Typography sx={{ color: dark }}>
                                             Ali Connors
                                         </Typography>
-                                        <Typography variant='caption'>
+                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
                                             3 days ago
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2'>
+                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>
@@ -243,15 +246,15 @@ export default function Posts() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography>
+                                        <Typography sx={{ color: dark }}>
                                             Ali Connors
                                         </Typography>
-                                        <Typography variant='caption'>
+                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
                                             3 days ago
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2'>
+                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>
@@ -267,15 +270,15 @@ export default function Posts() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography>
+                                        <Typography sx={{ color: dark }}>
                                             Ali Connors
                                         </Typography>
-                                        <Typography variant='caption'>
+                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
                                             3 days ago
                                         </Typography>
                                     </Box>
                                     <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2'>
+                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
                                         </Typography>
                                     </Box>
