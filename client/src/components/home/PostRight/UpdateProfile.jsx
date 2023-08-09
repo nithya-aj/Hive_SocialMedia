@@ -11,6 +11,7 @@ const UpdateProfile = () => {
     const main = theme.palette.neutral.main
     const medium = theme.palette.neutral.medium
     const purple = theme.palette.neutral.purple
+    const mediumpurple = theme.palette.neutral.mediumpurple
 
     return (
         <Card sx={{ borderRadius: '10px', backgroundColor: darkbg, boxShadow: 'none' }}>
@@ -20,7 +21,7 @@ const UpdateProfile = () => {
                 <Typography variant='caption' sx={{ color: medium }}>Let's complete your profile!</Typography>
             </CardMedia>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', pb: '1.5rem' }}>
-                <Button sx={{ display: { xs: 'none', sm: 'flex' }, textTransform: 'none', width: '90%', height: '2.5rem', backgroundColor: purple, fontSize: '15px', color: darkbg }} variant="contained" endIcon={<BsFillArrowRightCircleFill />}>
+                <Button sx={{ display: { xs: 'none', sm: 'flex' }, textTransform: 'none', width: '90%', height: '2.5rem', backgroundColor: purple, fontSize: '15px', color: darkbg, ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<BsFillArrowRightCircleFill />}>
                     Update Now
                 </Button>
             </CardActions>

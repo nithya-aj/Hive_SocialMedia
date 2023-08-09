@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react'
-import Hivelogo from 'assets/Hivelogo.png'
+import Hivelogo from 'assets/logo3.png'
 import { useTheme } from '@emotion/react';
 
 const LogoItems = () => {

@@ -14,6 +14,7 @@ function SharePost() {
     const main = theme.palette.background.main
     const textMain = theme.palette.neutral.main
     const purple = theme.palette.neutral.purple
+    const mediumpurple = theme.palette.neutral.mediumpurple   
     const orange = theme.palette.neutral.orange
 
     const fileInputRef = useRef(null)
@@ -95,11 +96,11 @@ function SharePost() {
                     </Box>
                 </Box>
                 <Box>
-                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem' }} variant="contained" endIcon={<SendRoundedIcon />}>
+                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem', ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<SendRoundedIcon />}>
                         Post
                     </Button>
                     <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
-                        <SendRoundedIcon /> 
+                        <SendRoundedIcon />
                     </IconButton>
                 </Box>
             </Box>

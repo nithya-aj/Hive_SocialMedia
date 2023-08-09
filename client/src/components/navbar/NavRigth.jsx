@@ -21,7 +21,7 @@ const NavRight = () => {
                 <BiSolidMessageSquareDetail style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} />
                 <IoNotifications style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} />
             </Box>
-            <Avatar sx={{ height: '2rem', width: '2rem', cursor: 'pointer', background: "linear-gradient(0deg, rgba(156,165,247,1)  13%, rgba(15,158,183,1) 75%)" }}>H</Avatar>
+            <Avatar sx={{ height: '2rem', width: '2rem', cursor: 'pointer', background: "linear-gradient(90deg, rgba(156,165,247,1) 29%, rgba(249,129,16,1) 100%)" }}>H</Avatar>
         </Box>
     )
 }

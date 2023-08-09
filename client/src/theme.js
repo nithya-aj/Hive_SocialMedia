@@ -77,6 +77,7 @@ export const themeSettings = (mode) => {
                         light: colorTokens.grey[600],
                         fontSm: colorTokens.grey[400],
                         purple: colorTokens.purple[500],
+                        mediumpurple: colorTokens.purple[800],
                         orange: colorTokens.orange[400]
                     },
                     background: {
@@ -100,6 +101,7 @@ export const themeSettings = (mode) => {
                         light: colorTokens.grey[200],
                         fontSm: colorTokens.grey[400],
                         purple: colorTokens.purple[500],
+                        mediumpurple: colorTokens.purple[800],
                         orange: colorTokens.orange[900]
                     },
                     background: {
