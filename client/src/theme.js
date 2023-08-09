@@ -75,9 +75,9 @@ export const themeSettings = (mode) => {
                         mediumMain: colorTokens.grey[300],
                         medium: colorTokens.grey[400],
                         light: colorTokens.grey[600],
-                        fontSm: colorTokens.orange[400],
+                        fontSm: colorTokens.grey[400],
                         purple: colorTokens.purple[500],
-                        orange:colorTokens.orange[400]
+                        orange: colorTokens.orange[400]
                     },
                     background: {
                         main: colorTokens.grey[900],
@@ -94,14 +94,18 @@ export const themeSettings = (mode) => {
                     },
                     neutral: {
                         dark: colorTokens.grey[700],
-                        main: colorTokens.grey[500],
-                        mediumMain: colorTokens.grey[400],
-                        medium: colorTokens.grey[300],
-                        light: colorTokens.grey[50],
+                        main: colorTokens.grey[800],
+                        mediumMain: colorTokens.grey[1000],
+                        medium: colorTokens.grey[500],
+                        light: colorTokens.grey[200],
+                        fontSm: colorTokens.grey[400],
+                        purple: colorTokens.purple[500],
+                        orange: colorTokens.orange[900]
                     },
                     background: {
-                        main: colorTokens.grey[0],
-                        alt: colorTokens.grey[10],
+                        main: colorTokens.grey[10],
+                        alt: colorTokens.grey[50],
+                        darkbg: colorTokens.grey[10]
                     },
                 }),
         },

@@ -2,7 +2,7 @@ import { Avatar, Box, Divider, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FlexCenter from 'components/widget/FlexCenter';
-import SearchBar from 'components/widget/SearchBar';   
+import SearchBar from 'components/widget/SearchBar';
 import { useTheme } from '@emotion/react';
 
 
@@ -15,6 +15,7 @@ function RightBar() {
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
+    const fontSm = theme.palette.neutral.fontSm
 
     return (
         <Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column', height: '100%', pb: '1rem' }}>
@@ -36,7 +37,7 @@ function RightBar() {
                 </FlexCenter>
             </Box>
             <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -44,6 +45,7 @@ function RightBar() {
                         overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
                         textOverflow: 'ellipsis',
+                        color: medium
                     }}>
                         <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
                         <Typography variant="caption" noWrap sx={{ color: medium }} >
@@ -51,10 +53,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -62,6 +64,7 @@ function RightBar() {
                         overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
                         textOverflow: 'ellipsis',
+                        color: medium
                     }}>
                         <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
                         <Typography variant="caption" noWrap sx={{ color: medium }} >
@@ -69,10 +72,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} /> 
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -80,6 +83,7 @@ function RightBar() {
                         overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
                         textOverflow: 'ellipsis',
+                        color: medium
                     }}>
                         <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
                         <Typography variant="caption" noWrap sx={{ color: medium }} >
@@ -87,10 +91,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -98,6 +102,7 @@ function RightBar() {
                         overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
                         textOverflow: 'ellipsis',
+                        color: medium
                     }}>
                         <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
                         <Typography variant="caption" noWrap sx={{ color: medium }} >
@@ -105,10 +110,10 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem', color: dark }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0 0.8rem' }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
@@ -116,6 +121,7 @@ function RightBar() {
                         overflow: 'hidden', display: 'inline-block',
                         whiteSpace: 'nowrap',
                         textOverflow: 'ellipsis',
+                        color: medium
                     }}>
                         <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
                         <Typography variant="caption" noWrap sx={{ color: medium }} >
@@ -123,7 +129,7 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 </Box>
             </Box>

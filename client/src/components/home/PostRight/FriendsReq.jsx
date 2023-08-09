@@ -10,8 +10,8 @@ const FriendsReq = () => {
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
+    const fontSm = theme.palette.neutral.fontSm 
     const textMain = theme.palette.neutral.main
-    const dark = theme.palette.neutral.dark 
 
     return (
         <Card sx={{ maxWidth: 345, borderRadius: '10px', backgroundColor: darkbg }}>
@@ -36,7 +36,7 @@ const FriendsReq = () => {
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 }
                 title="Shajie"
@@ -50,7 +50,7 @@ const FriendsReq = () => {
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 }
                 title="Shajie"
@@ -64,7 +64,7 @@ const FriendsReq = () => {
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: dark }} />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 }
                 title="Shajie"

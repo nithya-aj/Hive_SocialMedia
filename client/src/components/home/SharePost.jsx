@@ -12,14 +12,14 @@ import { IoIosCloseCircle } from "react-icons/io";
 function SharePost() {
     const theme = useTheme()
     const main = theme.palette.background.main
-    const textMain = theme.palette.neutral.textMain
+    const textMain = theme.palette.neutral.main
     const purple = theme.palette.neutral.purple
     const orange = theme.palette.neutral.orange
 
     const fileInputRef = useRef(null)
     const [selectedImage, setSelectedImage] = useState(null)
     const [previewImage, setPreviewImage] = useState('')
-    console.log(selectedImage); 
+    console.log(selectedImage);
     const handleFileSelected = (e) => {
         const file = e.target.files[0]
         if (file) {
@@ -95,11 +95,11 @@ function SharePost() {
                     </Box>
                 </Box>
                 <Box>
-                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none' }} variant="contained" endIcon={<SendRoundedIcon />}>
+                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem' }} variant="contained" endIcon={<SendRoundedIcon />}>
                         Post
                     </Button>
                     <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
-                        <SendRoundedIcon />
+                        <SendRoundedIcon /> 
                     </IconButton>
                 </Box>
             </Box>

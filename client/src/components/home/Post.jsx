@@ -27,6 +27,18 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
+const FormControlStyled = styled(FormControl)(({ theme }) => ({
+    "& .MuiInputBase-root.MuiInput-root:before": {
+        borderBottom: `1px solid ${theme.palette.neutral.light}`,
+    },
+    "& .MuiInputBase-root.MuiInput-root:after": {
+        borderBottom: `1px solid ${theme.palette.neutral.purple}`,
+    },
+    "& .MuiInputBase-root.MuiInput-root:hover:not(.Mui-disabled):not(.Mui-error):before": {
+        borderBottom: `2px solid ${theme.palette.neutral.light}`,
+    },
+}));
+
 export default function Post() {
     const [expanded, setExpanded] = React.useState(false);
 
@@ -39,8 +51,7 @@ export default function Post() {
     const dark = theme.palette.neutral.dark
     const main = theme.palette.neutral.main
     const medium = theme.palette.neutral.medium
-    const light = theme.palette.neutral.light
-    const purple = theme.palette.neutral.purple
+    const fontSm = theme.palette.neutral.fontSm
 
     return (
         <Card sx={{ mt: '1rem', pb: '1rem', borderRadius: '10px', backgroundColor: darkbg }}>
@@ -55,11 +66,11 @@ export default function Post() {
                     }
                 }}
                 avatar={
-                    <UserAvatar /> 
+                    <UserAvatar />
                 }
                 action={
                     <IconButton aria-label="settings" sx={{ color: main }}>
-                        <MoreVertIcon />
+                        <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
                 }
                 title="Lora Eve"
@@ -98,20 +109,8 @@ export default function Post() {
                     <IoBookmarkOutline />
                 </IconButton>
             </CardActions>
-            <FormControl variant="standard" sx={{
+            <FormControlStyled variant="standard" sx={{
                 px: '1rem', width: '-webkit-fill-available',
-                ".css-uins4q-MuiInputBase-root-MuiInput-root": {
-                    color: main,
-                },
-                ".css-uins4q-MuiInputBase-root-MuiInput-root:before": {
-                    borderBottom: `1px solid ${light}`
-                },
-                ".css-uins4q-MuiInputBase-root-MuiInput-root:after": {
-                    borderBottom: `1px solid ${purple}`
-                },
-                ".css-uins4q-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):not(.Mui-error):before": {
-                    borderBottom: `2px solid ${light}`,
-                },
             }}>
                 <Input
                     placeholder='Enter your comment...'
@@ -129,7 +128,7 @@ export default function Post() {
                     }
                 />
 
-            </FormControl>
+            </FormControlStyled>
             <Collapse in={expanded} timeout="auto" unmountOnExit >
                 <CardContent sx={{ padding: '0rem', mt: '0.5rem' }} style={{ paddingBottom: '0rem' }}>
                     <List
