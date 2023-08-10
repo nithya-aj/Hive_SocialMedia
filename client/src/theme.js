@@ -58,8 +58,9 @@ export const themeSettings = (mode) => {
                         medium: colorTokens.grey[400],
                         light: colorTokens.grey[600],
                         fontSm: colorTokens.grey[400],
-                        purple: colorTokens.purple[500],
-                        mediumpurple: colorTokens.purple[800],
+                        purple: colorTokens.purple[300],
+                        mediumpurple: colorTokens.purple[400],
+                        darkpurple: colorTokens.purple[400],
                         orange: colorTokens.orange[400]
                     },
                     background: {
@@ -78,7 +79,8 @@ export const themeSettings = (mode) => {
                         light: colorTokens.grey[200],
                         fontSm: colorTokens.grey[400],
                         purple: colorTokens.purple[500],
-                        mediumpurple: colorTokens.purple[800],
+                        mediumpurple: colorTokens.purple[300],
+                        darkpurple: colorTokens.purple[400],
                         orange: colorTokens.orange[900]
                     },
                     background: {

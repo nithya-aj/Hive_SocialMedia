@@ -16,7 +16,7 @@ const UpdateProfile = () => {
     return (
         <Card sx={{ borderRadius: '10px', backgroundColor: darkbg, boxShadow: 'none' }}>
             <CardMedia sx={{ height: '8rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', }}>
-                <UserAvatar />
+                <UserAvatar />  
                 <Typography sx={{ fontSize: '19px', fontWeight: 300, mt: '0.5rem', color: main }}>Update your profile</Typography>
                 <Typography variant='caption' sx={{ color: medium }}>Let's complete your profile!</Typography>
             </CardMedia>

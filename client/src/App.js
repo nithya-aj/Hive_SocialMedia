@@ -11,7 +11,7 @@ import LoginPage from 'pages/LoginPage'
 import RegisterPage from 'pages/RegisterPage'
 import ProfilePage from 'pages/ProfilePage'
 import MessagesPage from 'pages/MessagesPage'
-
+ 
 const App = () => {
 
     const mode = "dark"
@@ -32,7 +32,7 @@ const App = () => {
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
                             <Route path='/profile/:id' element={<ProfilePage />} />
-                            <Route path='/settings' element={<Settings />} />
+                            <Route path='/settings' element={<Settings />} />  
                         </Route> 
                     </Routes>
                 </Router>
