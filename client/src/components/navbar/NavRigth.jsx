@@ -5,18 +5,23 @@ import { Box } from '@mui/material';
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
+import { useDispatch } from 'react-redux';
+import { setMode } from 'state';
+
 const NavRight = () => {
 
     const theme = useTheme()
     const main = theme.palette.neutral.main
+    const dispatch = useDispatch()
+
 
     return (
         <Box sx={{ width: '100%', p: '0rem 0.5rem 0rem 1rem', display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'flex-end' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 {theme.palette.mode === 'dark' ? (
-                    <HiSun style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} />
+                    <HiSun style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} onClick={() => dispatch(setMode())} />
                 ) : (
-                    <HiMoon style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} />
+                    <HiMoon style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} onClick={() => dispatch(setMode())} />
                 )}
                 <BiSolidMessageSquareDetail style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} />
                 <IoNotifications style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} />

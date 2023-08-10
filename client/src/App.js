@@ -11,17 +11,17 @@ import LoginPage from 'pages/LoginPage'
 import RegisterPage from 'pages/RegisterPage'
 import ProfilePage from 'pages/ProfilePage'
 import MessagesPage from 'pages/MessagesPage'
- 
+import { useSelector } from 'react-redux'
+
 const App = () => {
 
-    const mode = "dark"
-    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
+    const mode = useSelector((state) => state.mode);
+    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
     return (
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-
                 <Router>
                     <Routes>
                         <Route path='/login' element={<LoginPage />} />
@@ -32,8 +32,8 @@ const App = () => {
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
                             <Route path='/profile/:id' element={<ProfilePage />} />
-                            <Route path='/settings' element={<Settings />} />  
-                        </Route> 
+                            <Route path='/settings' element={<Settings />} />
+                        </Route>
                     </Routes>
                 </Router>
 

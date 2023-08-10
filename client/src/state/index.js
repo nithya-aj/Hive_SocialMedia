@@ -1,18 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    mode: "light",
-}
+    mode: "dark"
+};
 
 export const authSlice = createSlice({
-    name: 'auth',
+    name: "auth",
     initialState,
     reducers: {
         setMode: (state) => {
-            state.mode = state.mode === "light" ? "dark" : "light"
+            state.mode = state.mode === "light" ? "dark" : "light";
         }
-    }
-})
+    },
+});
 
-export const { setMode } = authSlice.actions
-export default authSlice.reducer
+export const { setMode } =
+    authSlice.actions;
+export default authSlice.reducer; 
