@@ -13,3 +13,6 @@ export const authSlice = createSlice({
         }
     }
 })
+
+export const { setMode } = authSlice.actions
+export default authSlice.reducer

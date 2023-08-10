@@ -37,6 +37,7 @@ const Story = () => {
     const orange = theme.palette.neutral.orange
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
+    const dark = theme.palette.neutral.dark
 
     return (
         <Box>
@@ -88,7 +89,7 @@ const Story = () => {
                     >
                         H
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
@@ -111,7 +112,7 @@ const Story = () => {
                     >
 
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
@@ -134,7 +135,7 @@ const Story = () => {
                     >
                         H
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
@@ -156,7 +157,7 @@ const Story = () => {
                     >
                         H
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
@@ -178,7 +179,7 @@ const Story = () => {
                     >
                         H
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
@@ -200,7 +201,7 @@ const Story = () => {
                     >
                         H
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
@@ -223,7 +224,7 @@ const Story = () => {
                     >
                         H
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
@@ -245,7 +246,7 @@ const Story = () => {
                     >
                         H
                     </Avatar>
-                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: light }}>
+                    <Typography sx={{ zIndex: '3', position: 'absolute', top: '6.4rem', color: dark }}>
                         nithya
                     </Typography>
                 </StyledBox>
