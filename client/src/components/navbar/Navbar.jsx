@@ -12,7 +12,7 @@ const Navbar = () => {
 
     return (
         <>
-            <Grid container py={'1rem'} sx={{ backgroundColor: main }}> 
+            <Grid container pt={'1rem'} sx={{ backgroundColor: main, pb: { sm: '1rem', xs: '0rem' } }}>
                 <Grid item lg={2} md={2.5} sm={2.5} xs={7} sx={{ display: 'flex', alignItems: 'center', paddingLeft: '1rem' }}>
                     <LogoItems />
                 </Grid>
