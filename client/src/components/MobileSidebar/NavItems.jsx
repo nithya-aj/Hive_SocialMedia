@@ -7,6 +7,7 @@ import { IoMdSettings } from "react-icons/io";
 import { FaUserPlus, FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
+import { motion } from 'framer-motion';
 
 const NavItems = () => {
     const items = [
@@ -43,7 +44,7 @@ const NavItems = () => {
     ]
 
     const theme = useTheme()
-    const white = theme.palette.neutral.white
+    const main = theme.palette.neutral.main
     const orange = theme.palette.neutral.orange
 
     return (
@@ -51,9 +52,9 @@ const NavItems = () => {
             {
                 items.map((item, id) => (
                     <Link to={item.link} style={{ textDecoration: 'none' }} key={id}>
-                        <Box sx={{ fontSize: '1.5rem', cursor: 'pointer', color: white, ":hover": { color: orange } }}>
+                        <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ fontSize: '1.5rem', cursor: 'pointer', color: main, ":hover": { color: orange } }}>
                             <item.icon />
-                        </Box>
+                        </Box> 
                     </Link>
                 ))
             }

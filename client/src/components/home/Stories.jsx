@@ -43,7 +43,7 @@ const Story = () => {
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3, py: '1.5rem' }} style={{ overflowX: 'auto' }}  >
-            <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', gap: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: { sm: darkbg, xs: alt }, boxShadow: 'none' }}>
+            <Card sx={{ minWidth: { xs: 85, lg: 90 }, height: '8rem', display: 'flex', gap: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: { sm: darkbg, xs: alt }, boxShadow: 'none' }}>
                 <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', backgroundColor: darkbg, color: textMain }}>
                     <HiPlus />
                 </Avatar></Box>
@@ -52,7 +52,7 @@ const Story = () => {
                 </Typography>
             </Card>
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x2011)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x2011)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
@@ -75,7 +75,7 @@ const Story = () => {
             </StyledBox>
 
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x210)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x210)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
@@ -98,7 +98,7 @@ const Story = () => {
             </StyledBox>
 
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x205)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x205)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
@@ -120,7 +120,7 @@ const Story = () => {
                 </Typography>
             </StyledBox>
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x203)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x203)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
@@ -142,7 +142,7 @@ const Story = () => {
                 </Typography>
             </StyledBox>
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x208)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x208)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
@@ -164,7 +164,7 @@ const Story = () => {
                 </Typography>
             </StyledBox>
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x243)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x243)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
@@ -187,7 +187,7 @@ const Story = () => {
             </StyledBox>
 
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x204)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x204)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
@@ -209,7 +209,7 @@ const Story = () => {
                 </Typography>
             </StyledBox>
 
-            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 70, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x209)' }}>
+            <StyledBox component={motion.div} whileHover={{ scale: 1.04 }} sx={{ minWidth: { xs: 85, lg: 90 }, cursor: 'pointer', backgroundImage: 'url(https://source.unsplash.com/featured/300x209)' }}>
                 <Avatar
                     sx={{
                         height: '2rem',
