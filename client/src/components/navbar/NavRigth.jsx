@@ -20,7 +20,7 @@ const NavRight = () => {
         <Box component={motion.div} initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            sx={{ width: '100%', p: '0rem 0.5rem 0rem 1rem', display: 'flex', gap: {lg:'1rem', md:'0.5rem'}, alignItems: 'center', justifyContent: 'flex-end' }}
+            sx={{ width: '100%', p: '0rem 0.5rem 0rem 1rem', display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'flex-end' }}
         >
             {theme.palette.mode === 'dark' ? (
                 <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }} onClick={() => dispatch(setMode())}> <HiSun style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} /> </Box>
