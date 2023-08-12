@@ -11,9 +11,7 @@ import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import UserAvatar from '../widget/UserAvatar';
 import { Avatar, Box, FormControl, Grid, Input, InputAdornment, List, ListItemText } from '@mui/material';
-import { IoBookmarkOutline } from "react-icons/io5";
-import { AiOutlineHeart } from "react-icons/ai";
-import { FaRegCommentDots } from "react-icons/fa";
+import { MdOutlineInsertComment, MdTurnedInNot, MdOutlineFavoriteBorder } from "react-icons/md";
 import { BiSend } from "react-icons/bi";
 import { useTheme } from '@mui/material/styles';
 
@@ -93,7 +91,7 @@ export default function Post() {
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1rem' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <IconButton sx={{ color: main }} aria-label="add to favorites">
-                        <AiOutlineHeart />
+                        <MdOutlineFavoriteBorder />
                     </IconButton>
                     <ExpandMore
                         expand={expanded}
@@ -102,11 +100,11 @@ export default function Post() {
                         aria-label="comments"
                         sx={{ color: main }}
                     >
-                        <FaRegCommentDots />
+                        <MdOutlineInsertComment />
                     </ExpandMore>
                 </Box>
                 <IconButton sx={{ color: main }} aria-label="share">
-                    <IoBookmarkOutline />
+                    <MdTurnedInNot />
                 </IconButton>
             </CardActions>
             <FormControlStyled variant="standard" sx={{
