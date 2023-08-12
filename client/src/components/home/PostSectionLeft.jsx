@@ -6,12 +6,14 @@ import { Box } from '@mui/material';
 
 function PostSectionLeft() {
   return (
-    <Box>
-      <Stories />
+    <>
+      <Box sx={{ px: { xs: '0.5rem', sm: '0rem' } }}>
+        <Stories />
+      </Box>
       <SharePost />
       <Posts />
       <Posts />
-    </Box>
+    </>
   )
 }
 

@@ -28,8 +28,8 @@ const NavRight = () => {
                 <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }} onClick={() => dispatch(setMode())}> <HiMoon style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} /> </Box>
             )}
             <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}><BiSolidMessageSquareDetail style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} /></Box>
-            <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}><IoNotifications style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} /></Box>
-            <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.1 }} sx={{ display: 'flex', alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', cursor: 'pointer', background: "linear-gradient(90deg, rgba(156,165,247,1) 29%, rgba(249,129,16,1) 100%)" }}>H</Avatar></Box>
+            <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: { sm: 'flex', xs: 'none' }, alignItems: 'center' }}><IoNotifications style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} /></Box>
+            <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.1 }} sx={{ display: { sm: 'flex', xs: 'none' }, alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', cursor: 'pointer', background: "linear-gradient(90deg, rgba(156,165,247,1) 29%, rgba(249,129,16,1) 100%)" }}>H</Avatar></Box>
         </Box>
     )
 }

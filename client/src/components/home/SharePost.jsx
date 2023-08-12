@@ -12,9 +12,10 @@ import { IoIosCloseCircle } from "react-icons/io";
 function SharePost() {
     const theme = useTheme()
     const main = theme.palette.background.main
+    const alt = theme.palette.background.alt
     const textMain = theme.palette.neutral.main
     const purple = theme.palette.neutral.purple
-    const mediumpurple = theme.palette.neutral.mediumpurple   
+    const mediumpurple = theme.palette.neutral.mediumpurple
     const orange = theme.palette.neutral.orange
 
     const fileInputRef = useRef(null)
@@ -39,7 +40,7 @@ function SharePost() {
     };
 
     return (
-        <Box sx={{ backgroundColor: main, p: '1rem', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <Box sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}> 
             {previewImage && (
                 <Box
                     sx={{

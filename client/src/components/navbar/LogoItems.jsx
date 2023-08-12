@@ -11,7 +11,7 @@ const LogoItems = () => {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyItems: 'center' }}>
             <img src={Hivelogo} alt="" style={{ width: '2rem', height: '2rem' }} />
             <Box sx={{ display: 'flex', alignItems: 'center' }} >
-                <Typography variant="h4" sx={{ fontWeight: '600', letterSpacing: '2px', color: main, display: { xs: 'none', sm: 'block' } }}>Hive</Typography>
+                <Typography variant="h4" sx={{ fontWeight: '600', letterSpacing: '2px', color: main }}>Hive</Typography> 
             </Box>
         </Box>
     )

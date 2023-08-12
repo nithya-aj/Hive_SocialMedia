@@ -46,13 +46,14 @@ export default function Post() {
 
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
+    const alt = theme.palette.background.alt
     const dark = theme.palette.neutral.dark
     const main = theme.palette.neutral.main
     const medium = theme.palette.neutral.medium
     const fontSm = theme.palette.neutral.fontSm
 
     return (
-        <Card sx={{ mt: '1rem', pb: '1rem', borderRadius: '10px', backgroundColor: darkbg }}>
+        <Card sx={{ mt: '1rem', pb: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
             <CardHeader
                 sx={{
                     ".css-sgoict-MuiCardHeader-action": {

@@ -35,6 +35,7 @@ const Story = () => {
 
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
+    const alt = theme.palette.background.alt
     const orange = theme.palette.neutral.orange
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
@@ -42,8 +43,8 @@ const Story = () => {
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3, py: '1.5rem' }} style={{ overflowX: 'auto' }}  >
-            <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', gap: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: darkbg, boxShadow: 'none' }}>
-                <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', backgroundColor: light, color: textMain }}>
+            <Card sx={{ minWidth: { xs: 70, lg: 90 }, height: '8rem', display: 'flex', gap: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: { sm: darkbg, xs: alt }, boxShadow: 'none' }}>
+                <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', backgroundColor: darkbg, color: textMain }}>
                     <HiPlus />
                 </Avatar></Box>
                 <Typography variant='caption' sx={{ zIndex: '3', textAlign: 'center' }}>
