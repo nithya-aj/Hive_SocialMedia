@@ -10,11 +10,11 @@ const FriendsReq = () => {
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
-    const fontSm = theme.palette.neutral.fontSm 
+    const fontSm = theme.palette.neutral.fontSm
     const textMain = theme.palette.neutral.main
 
     return (
-        <Card sx={{ maxWidth: 345, borderRadius: '10px', backgroundColor: darkbg }}>
+        <Card sx={{ width: '100%', borderRadius: '10px', backgroundColor: darkbg }}>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
