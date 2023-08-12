@@ -6,7 +6,7 @@ import PostSectionLeft from './PostSectionLeft'
 const PostSection = () => {
 
   return (
-    <Grid container sx={{ padding: '1.5rem 1.5rem 0rem 1.5rem' }}>
+    <Grid container sx={{ padding: '0rem 1.5rem 0rem 1.5rem' }}>
       <Grid item xs={8.5} sx={{ flexGrow: 1, paddingRight: '0.7rem' }}>
         <PostSectionLeft />
       </Grid>

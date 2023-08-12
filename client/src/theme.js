@@ -52,6 +52,7 @@ export const themeSettings = (mode) => {
                 ? {
                     // palette values for dark mode
                     neutral: {
+                        white: colorTokens.grey[50],
                         dark: colorTokens.grey[50],
                         main: colorTokens.grey[200],
                         mediumMain: colorTokens.grey[300],
@@ -72,7 +73,8 @@ export const themeSettings = (mode) => {
                 : {
                     // palette values for light mode
                     neutral: {
-                        dark: colorTokens.grey[700],
+                        white: colorTokens.grey[50],
+                        dark: colorTokens.grey[500],
                         main: colorTokens.grey[800],
                         mediumMain: colorTokens.grey[1000],
                         medium: colorTokens.grey[500],
