@@ -63,7 +63,7 @@ function SidebarNav() {
     const purple = theme.palette.neutral.purple
 
     return (
-        <Box sx={{ width: { lg: '81%', md: '92%' }, height: '100%' }}>
+        <Box sx={{ width: '100%', height: '100%' }}> 
             {items.map((item, id) => (
                 <Link to={item.link} style={{ textDecoration: 'none' }} key={id}>
                     <Stack sx={{ position: 'relative' }}>

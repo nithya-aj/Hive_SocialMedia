@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 
 function PostSectionLeft() {
   return (
-    <Box >
+    <Box>
       <Stories />
       <SharePost />
       <Posts />
