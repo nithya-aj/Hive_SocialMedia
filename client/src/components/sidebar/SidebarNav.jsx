@@ -11,6 +11,7 @@ import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import { FaUserPlus, FaUser } from "react-icons/fa";
+import { motion } from 'framer-motion';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -66,7 +67,7 @@ function SidebarNav() {
             {items.map((item, id) => (
                 <Link to={item.link} style={{ textDecoration: 'none' }} key={id}>
                     <Stack sx={{ position: 'relative' }}>
-                        <Item sx={{
+                        <Item component={motion.div} whileHover={{ scale: 1 }} sx={{
                             height: '3.5rem', display: 'flex', alignItems: 'center',
                             background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '1rem',
                             ':hover': {
