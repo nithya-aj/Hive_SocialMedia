@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { themeSettings } from 'theme'
-import HomePage from 'pages/FeedsPage'
+import FeedsPage from 'pages/FeedsPage'
 import Friends from 'pages/Friends'
 import Notifications from 'pages/Notifications'
 import Settings from 'pages/Settings'
-import Paths from 'pages/MainHome'
+import MainHome from 'pages/MainHome'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from 'pages/LoginPage'
 import RegisterPage from 'pages/RegisterPage'
@@ -26,8 +26,8 @@ const App = () => {
                     <Routes>
                         <Route path='/login' element={<LoginPage />} />
                         <Route path='/register' element={<RegisterPage />} />
-                        <Route exact path='' element={<Paths />}>
-                            <Route path='/' element={<HomePage />} />
+                        <Route exact path='' element={<MainHome />}>
+                            <Route path='/' element={<FeedsPage />} />
                             <Route path='/friends' element={<Friends />} />
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
