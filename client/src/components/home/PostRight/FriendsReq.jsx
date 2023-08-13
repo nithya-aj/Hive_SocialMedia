@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardHeader, Divider, IconButton, Typography } from '@mui/material'
+import { Avatar, Box, Card, Divider, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FlexCenter from 'components/widget/FlexCenter';
@@ -7,6 +7,8 @@ import { useTheme } from '@emotion/react';
 const FriendsReq = () => {
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
+    const dark = theme.palette.neutral.dark
+    const alt = theme.palette.background.alt
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
@@ -14,62 +16,79 @@ const FriendsReq = () => {
     const textMain = theme.palette.neutral.main
 
     return (
-        <Card sx={{ width: '100%', borderRadius: '10px', backgroundColor: darkbg }}>
+        <Card sx={{ width: '100%', borderRadius: '10px', backgroundColor: darkbg, p: '1rem' }}>
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                px: '1rem',
-                mt: '1rem'
             }}>
                 <Typography variant='h5' sx={{ color: mediumMain }} >Friend Request</Typography>
                 <Typography variant='caption' sx={{ color: medium }}>See All</Typography>
             </Box>
             <FlexCenter>
-                <Divider sx={{ height: '1px', width: '90%', mt: '10px' }} />
+                <Divider sx={{ height: '1px', width: '100%', my: '10px' }} />
             </FlexCenter>
-            <CardHeader
-                avatar={
+            <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', px: '0.5rem', py: '0.8rem', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
-                }
-                action={
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
+                        whiteSpace: 'nowrap',
+                        textOverflow: 'ellipsis',
+                        color: medium
+                    }}>
+                        <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
+                        <Typography variant="caption" noWrap sx={{ color: medium }} >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
                     <IconButton aria-label="settings">
                         <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
-                }
-                title="Shajie"
-                subheader="150 mutual friends"
-            />
-            <CardHeader
-                avatar={
+                </Box>
+
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', px: '0.5rem', py: '0.8rem', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
-                }
-                action={
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
+                        whiteSpace: 'nowrap',
+                        textOverflow: 'ellipsis',
+                        color: medium
+                    }}>
+                        <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
+                        <Typography variant="caption" noWrap sx={{ color: medium }} >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
                     <IconButton aria-label="settings">
                         <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
-                }
-                title="Shajie"
-                subheader="150 mutual friends"
-            />
-            <CardHeader
-                avatar={
+                </Box>
+
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', px: '0.5rem', py: '0.8rem', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
                     <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                         R
                     </Avatar>
-                }
-                action={
+                    <Box sx={{
+                        overflow: 'hidden', display: 'inline-block',
+                        whiteSpace: 'nowrap',
+                        textOverflow: 'ellipsis',
+                        color: medium
+                    }}>
+                        <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
+                        <Typography variant="caption" noWrap sx={{ color: medium }} >
+                            Can you please share your latest work on react, I want to check something...
+                        </Typography>
+                    </Box>
                     <IconButton aria-label="settings">
                         <MoreVertIcon sx={{ color: fontSm }} />
                     </IconButton>
-                }
-                title="Shajie"
-                subheader="150 mutual friends"
-            />
+                </Box>
+            </Box>
         </Card>
     )
 }
