@@ -9,8 +9,9 @@ const UserWidget = () => {
     const theme = useTheme()
     const alt = theme.palette.background.alt
     const light = theme.palette.neutral.light
-    const main = theme.palette.main
-    const medium = theme.palette.medium
+    const main = theme.palette.neutral.main 
+    const medium = theme.palette.neutral.medium
+    const purple = theme.palette.neutral.purple
 
     return (
         <Box sx={{
@@ -23,6 +24,8 @@ const UserWidget = () => {
             height: '3.8rem',
             px: '0.5rem',
             gap: 1,
+            ":hover": { boxShadow: `0px 0px 2px ${purple}` },
+            cursor: 'pointer'
         }}>
             <Box>
                 <UserAvatar sidebar={true} />

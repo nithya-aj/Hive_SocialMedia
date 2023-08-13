@@ -19,7 +19,7 @@ function RightBar() {
     const fontSm = theme.palette.neutral.fontSm
 
     return (
-        <Box sx={{ display: 'flex', gap: '0.8rem', flexDirection: 'column', height: '100%', pb: '0.5rem', px: '0.8rem' }}>
+        <Box sx={{ display: 'flex', gap: '0.8rem', flexDirection: 'column', height: '100%', pb: '0.5rem', px: '0.8rem', p: '1rem 0.8rem 0.5rem 0.8rem' }}>
             <Box >
                 <SearchBar placeholder={'Search users...'} />
             </Box>
