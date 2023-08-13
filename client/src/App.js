@@ -12,6 +12,7 @@ import RegisterPage from 'pages/RegisterPage'
 import ProfilePage from 'pages/ProfilePage'
 import MessagesPage from 'pages/MessagesPage'
 import { useSelector } from 'react-redux'
+import Followers from 'components/Followers'
 
 const App = () => {
 
@@ -28,7 +29,11 @@ const App = () => {
                         <Route path='/register' element={<RegisterPage />} />
                         <Route exact path='' element={<MainHome />}>
                             <Route path='/' element={<FeedsPage />} />
-                            <Route path='/friends' element={<Friends />} />
+                            <Route path='/friends' element={<Friends />} >
+                                <Route path='followers' element={<Followers />} />
+                                <Route path='following' element={<Followers />} />
+                                <Route path='suggestions' element={<Followers />} /> 
+                            </Route>
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
                             <Route path='/profile/:id' element={<ProfilePage />} />

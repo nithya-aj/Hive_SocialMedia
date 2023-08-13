@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react'
-import { Avatar, Box, Pagination, Stack, Typography } from '@mui/material'
-import FlexCenter from 'components/widget/FlexCenter';
+import { Box, Pagination, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { Link, Outlet } from 'react-router-dom';
 
 function Friends() {
 
@@ -12,7 +12,6 @@ function Friends() {
 
   const theme = useTheme()
   const darkbg = theme.palette.background.darkbg
-  const alt = theme.palette.background.alt
   const main = theme.palette.neutral.main
   const purple = theme.palette.neutral.purple
 
@@ -24,36 +23,24 @@ function Friends() {
           alignItems: 'center', justifyContent: 'space-between'
         }}
         >
-          <Typography sx={{
+          <Typography component={Link} to={'followers'} sx={{
             height: '2.5rem', display: 'flex', alignItems: 'center', width: '32%', justifyContent: 'center'
-            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }
-          }}> 
+            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }, textDecoration: 'none'
+          }}>
             398 Followers</Typography>
-          <Typography sx={{
+          <Typography component={Link} to={'following'} sx={{
             height: '2.5rem', display: 'flex', alignItems: 'center', width: '32%', justifyContent: 'center'
-            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }
+            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }, textDecoration: 'none'
           }}>
             398 Following</Typography>
-          <Typography sx={{
+          <Typography component={Link} to={'suggestions'} sx={{
             height: '2.5rem', display: 'flex', alignItems: 'center', width: '32%', justifyContent: 'center'
-            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }
+            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }, textDecoration: 'none'
           }}>
             People you might like</Typography>
         </Box>
-        <Box sx={{ height: '100%', py: '1rem' }}>
-          <Box sx={{ backgroundColor: darkbg, width: '32%', p: '1rem', display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Avatar />
-              <Box>
-                <Typography>Alex</Typography>
-                <Typography>Founder & ceo at doogle</Typography>
-              </Box>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
-              <FlexCenter sx={{ p: '0.5rem', width: '6rem', borderRadius: '8px', border: `1px solid ${alt}` }}>Ignore</FlexCenter>
-              <FlexCenter sx={{ p: '0.5rem', width: '6rem', borderRadius: '8px', border: `1px solid ${alt}` }}>Unfollow</FlexCenter>
-            </Box>
-          </Box>
+        <Box sx={{ py: '1rem', height: '100%' }}>
+          <Outlet />
         </Box>
         <Box sx={{
           height: '2.5rem', width: '100%', backgroundColor: darkbg, display: 'flex',
