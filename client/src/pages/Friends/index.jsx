@@ -1,5 +1,6 @@
 import { useTheme } from '@emotion/react'
-import { Box, Pagination, Stack, Typography } from '@mui/material'
+import { Box, Grid, Pagination, Stack, Typography } from '@mui/material'
+import FriendsCard from 'components/widget/FriendsCard';
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom';
 
@@ -39,7 +40,7 @@ function Friends() {
           }}>
             People you might like</Typography>
         </Box>
-        <Box sx={{ py: '1rem', height: '100%' }}>
+        <Box sx={{ backgroundColor: 'darkblue', height: '100%', py: '1rem' }}>
           <Outlet />
         </Box>
         <Box sx={{

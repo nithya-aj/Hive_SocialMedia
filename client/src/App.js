@@ -30,9 +30,10 @@ const App = () => {
                         <Route exact path='' element={<MainHome />}>
                             <Route path='/' element={<FeedsPage />} />
                             <Route path='/friends' element={<Friends />} >
+                                <Route exact path='' element={<Followers />} /> 
                                 <Route path='followers' element={<Followers />} />
                                 <Route path='following' element={<Followers />} />
-                                <Route path='suggestions' element={<Followers />} /> 
+                                <Route path='suggestions' element={<Followers />} />
                             </Route>
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
