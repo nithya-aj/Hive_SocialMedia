@@ -8,7 +8,7 @@ const Followers = () => {
     const darkbg = theme.palette.background.darkbg
     const alt = theme.palette.background.alt
     return (
-        <Grid container spacing={2} sx={{ p: '1rem 0rem 0rem 1rem', display: 'flex', justifyContent: 'space-between', gap: 2, height: '100%' }}> 
+        <Grid container gap={2} sx={{  display: 'flex', justifyContent: 'space-between', gap: 2, height: '100%' }}> 
             <Grid item width={'32%'} sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <Avatar />
