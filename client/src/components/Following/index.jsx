@@ -15,7 +15,7 @@ const Following = () => {
         <Grid container spacing={3}>
             {following.map((friend, index) => (
                 <Grid item key={index} xs={12} sm={6} md={4}>
-                    <FriendsCard friend={friend} tab={following} />
+                    <FriendsCard friend={friend} tab="following" />
                 </Grid>
             ))}
         </Grid>

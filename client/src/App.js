@@ -20,7 +20,7 @@ const App = () => {
 
     const mode = useSelector((state) => state.mode);
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-
+ 
     return (
         <>
             <ThemeProvider theme={theme}>
@@ -35,7 +35,7 @@ const App = () => {
                                 <Route exact path='' element={<Followers />} />
                                 <Route path='followers' element={<Followers />} />
                                 <Route path='following' element={<Following />} />
-                                <Route path='suggestions' element={<Suggestions />} />
+                                <Route path='suggestions/:page' element={<Suggestions />} />
                             </Route>
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
