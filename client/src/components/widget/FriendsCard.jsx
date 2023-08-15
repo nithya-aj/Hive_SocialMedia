@@ -15,11 +15,19 @@ const FriendsCard = ({ friend }) => {
                     <Typography>{friend.name}</Typography>
                     <Typography>ceo & founder of cole</Typography>
                 </FlexCenter>
-                <Box sx={{ height: '100%', overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center' }}>
-                    <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}` }}>Accept</FlexCenter>
-                    <FlexCenter sx={{ width: '50%', height: '100%' }}>Decline</FlexCenter>
-                </Box>
-            </Box>
+                {friend.tab === 'followers' && < Box sx={{ height: '100%', overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center' }}>
+                    <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}` }}>Ignore</FlexCenter>
+                    <FlexCenter sx={{ width: '50%', height: '100%' }}>Follow</FlexCenter>
+                </Box>}
+                {friend.tab === 'following' && <Box sx={{ height: '100%', overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center' }}>
+                    <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}` }}>Ignore</FlexCenter>
+                    <FlexCenter sx={{ width: '50%', height: '100%' }}>Unfollow</FlexCenter>
+                </Box>}
+                {friend.tab === 'suggestions' && <Box sx={{ height: '100%', overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center' }}>
+                    <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}` }}>Ignore</FlexCenter>
+                    <FlexCenter sx={{ width: '50%', height: '100%' }}>Follow</FlexCenter>
+                </Box>}
+            </Box >
         </>
     )
 }
