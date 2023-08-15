@@ -1,40 +1,24 @@
-import { useTheme } from '@emotion/react'
 import { Grid } from '@mui/material'
 import FriendsCard from 'components/widget/FriendsCard'
 import React from 'react'
 
 const Followers = () => {
-    const theme = useTheme()
-    const darkbg = theme.palette.background.darkbg
+    const followers = [
+        { name: 'Follower 1', buttons: ['Follow', 'Ignore'] },
+        { name: 'Follower 2', buttons: ['Follow', 'Ignore'] },
+        { name: 'Follower 2', buttons: ['Follow', 'Ignore'] },
+        { name: 'Follower 2', buttons: ['Follow', 'Ignore'] },
+        { name: 'Follower 2', buttons: ['Follow', 'Ignore'] },
+        { name: 'Follower 2', buttons: ['Follow', 'Ignore'] },
+    ]
     return (
-        <Grid container sx={{ display: 'flex', justifyContent: 'space-between', height: '100%', gap: '1.3rem' }}>
-            <Grid item xs={3.83} sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
-            <Grid xs={3.83} item sx={{ backgroundColor: darkbg, p: '1rem', display: 'flex', flexDirection: 'column', height: '30%', gap: 3 }}>
-                <FriendsCard />
-            </Grid>
+        // <FriendsCard data={followers} />
+        <Grid container spacing={3}>
+            {followers.map((friend, index) => (
+                <Grid item key={index} xs={12} sm={6} md={4}>
+                    <FriendsCard friend={friend} />
+                </Grid>
+            ))}
         </Grid>
     )
 }

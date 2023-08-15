@@ -1,57 +1,51 @@
 import { useTheme } from '@emotion/react'
-import { Box, Grid, Pagination, Stack, Typography } from '@mui/material'
-import FriendsCard from 'components/widget/FriendsCard';
+import { Box, Pagination, Stack } from '@mui/material'
+import FlexCenter from 'components/widget/FlexCenter';
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom';
 
 function Friends() {
+  const theme = useTheme()
+  const darkbg = theme.palette.background.darkbg
+  const main = theme.palette.neutral.main
+  const purple = theme.palette.neutral.purple
 
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  const theme = useTheme()
-  const darkbg = theme.palette.background.darkbg
-  const main = theme.palette.neutral.main
-  const purple = theme.palette.neutral.purple
+  const TabLink = ({ to, children }) => (
+    <FlexCenter
+      component={Link}
+      to={to}
+      sx={{
+        width: '32%',
+        height: '100%',
+        color: main,
+        cursor: 'pointer',
+        ":hover": { border: `1px solid ${purple}`, borderRadius: '4px 0px 0px 0px' },
+        textDecoration: 'none'
+      }}
+    >
+      {children}
+    </FlexCenter>
+  );
 
   return (
-    <Box sx={{ p: '1rem', backgroundColor: 'transparent', height: '100%' }}>
-      <Box sx={{ height: '100%', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <Box sx={{
-          height: '2.5rem', width: '100%', backgroundColor: darkbg, display: 'flex',
-          alignItems: 'center', justifyContent: 'space-between'
-        }}
-        >
-          <Typography component={Link} to={'followers'} sx={{
-            height: '2.5rem', display: 'flex', alignItems: 'center', width: '32%', justifyContent: 'center'
-            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }, textDecoration: 'none'
-          }}>
-            398 Followers</Typography>
-          <Typography component={Link} to={'following'} sx={{
-            height: '2.5rem', display: 'flex', alignItems: 'center', width: '32%', justifyContent: 'center'
-            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }, textDecoration: 'none'
-          }}>
-            398 Following</Typography>
-          <Typography component={Link} to={'suggestions'} sx={{
-            height: '2.5rem', display: 'flex', alignItems: 'center', width: '32%', justifyContent: 'center'
-            , color: main, cursor: 'pointer', ":hover": { backgroundColor: purple, color: darkbg }, textDecoration: 'none'
-          }}>
-            People you might like</Typography>
-        </Box>
-        <Box sx={{ backgroundColor: 'darkblue', height: '100%', py: '1rem' }}>
-          <Outlet />
-        </Box>
-        <Box sx={{
-          height: '2.5rem', width: '100%', backgroundColor: darkbg, display: 'flex',
-          alignItems: 'center', justifyContent: 'space-evenly', color: main
-        }}
-        >
-          <Stack spacing={2}>
-            <Pagination count={10} page={page} onChange={handleChange} />
-          </Stack>
-        </Box>
+    <Box sx={{ p: '1rem', display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <Box sx={{ height: '2.5rem', borderRadius: '4px 4px 0px 0px', display: 'flex', alignItems: 'center', marginBottom: 'auto', backgroundColor: darkbg, gap: 3, overflow: 'hidden' }}>
+        <TabLink to="followers">Followers</TabLink>
+        <TabLink to="following">Following</TabLink>
+        <TabLink to="suggestions">Suggestions</TabLink>
+      </Box>
+      <Box sx={{ backgroundColor: 'red', height: '100%', py: '1rem', flexGrow: 1 }}>
+        <Outlet />
+      </Box>
+      <Box sx={{ height: '2.5rem', backgroundColor: darkbg, borderRadius: '0px 0px 4px 4px', display: 'flex', alignItems: 'center', marginTop: 'auto', justifyContent: 'center' }}>
+        <Stack spacing={2}>
+          <Pagination count={10} page={page} onChange={handleChange} />
+        </Stack>
       </Box>
     </Box>
   )

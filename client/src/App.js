@@ -13,6 +13,8 @@ import ProfilePage from 'pages/ProfilePage'
 import MessagesPage from 'pages/MessagesPage'
 import { useSelector } from 'react-redux'
 import Followers from 'components/Followers'
+import Following from 'components/Following'
+import Suggestions from 'components/Suggestions'
 
 const App = () => {
 
@@ -30,10 +32,10 @@ const App = () => {
                         <Route exact path='' element={<MainHome />}>
                             <Route path='/' element={<FeedsPage />} />
                             <Route path='/friends' element={<Friends />} >
-                                <Route exact path='' element={<Followers />} /> 
+                                <Route exact path='' element={<Followers />} />
                                 <Route path='followers' element={<Followers />} />
-                                <Route path='following' element={<Followers />} />
-                                <Route path='suggestions' element={<Followers />} />
+                                <Route path='following' element={<Following />} />
+                                <Route path='suggestions' element={<Suggestions />} />
                             </Route>
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
