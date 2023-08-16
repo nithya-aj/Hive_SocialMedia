@@ -1,25 +1,60 @@
-import { Grid } from '@mui/material'
-import FriendsCard from 'components/widget/FriendsCard'
-import React from 'react'
+import { Box, Grid } from '@mui/material';
+import FriendsCard from 'components/widget/FriendsCard';
+import React from 'react';
+import { Pagination } from '@mui/material';
 
 const Following = () => {
     const following = [
         { name: 'Following 1' },
         { name: 'Following 2' },
-        { name: 'Following 2' },
-        { name: 'Following 2' },
-        { name: 'Following 2' },
-        { name: 'Following 2' },
-    ]
-    return (
-        <Grid container spacing={3}>
-            {following.map((friend, index) => (
-                <Grid item key={index} xs={12} sm={6} md={4}>
-                    <FriendsCard friend={friend} tab="following" />
-                </Grid>
-            ))}
-        </Grid>
-    )
-}
+        { name: 'Following 3' },
+        { name: 'Following 4' },
+        { name: 'Following 5' },
+        { name: 'Following 6' },
+        { name: 'Following 7' },
+        { name: 'Following 8' },
+        { name: 'Following 9' },
+        { name: 'Following 10' },
+        { name: 'Following 11' },
+        { name: 'Following 12' },
+        { name: 'Following 13' },
+        { name: 'Following 14' },
+        { name: 'Following 15' },
+        { name: 'Following 16' },
+        { name: 'Following 17' },
+        { name: 'Following 18' },
+        { name: 'Following 19' },
+        { name: 'Following 20' },
+    ];
+    const [page, setPage] = React.useState(1);
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+    const itemsPerPage = 6;
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const displayedFollowing = following.slice(startIndex, endIndex);
 
-export default Following
+    return (
+        <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', marginBottom: 'auto' }}>
+
+            <Grid container spacing={3}>
+                {displayedFollowing.map((follower, index) => (
+                    <Grid item key={index} xs={12} sm={6} md={4}>
+                        <FriendsCard friend={follower} tab="following" />
+                    </Grid>
+                ))}
+            </Grid>
+            <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 'auto', justifyContent: 'center' }}>
+                <Pagination
+                    count={Math.ceil(following.length / itemsPerPage)}
+                    page={page}
+                    onChange={handleChange}
+                    sx={{ mt: 2 }}
+                />
+            </Box>
+        </Box>
+    );
+};
+
+export default Following;
