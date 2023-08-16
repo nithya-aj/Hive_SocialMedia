@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react'
 import { Box } from '@mui/material'
 import FlexCenter from 'components/widget/FlexCenter';
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 function Friends() {
   const theme = useTheme()
@@ -10,22 +10,29 @@ function Friends() {
   const main = theme.palette.neutral.main
   const purple = theme.palette.neutral.purple
 
-  const TabLink = ({ to, children }) => (
-    <FlexCenter
-      component={Link}
-      to={to}
-      sx={{
-        width: '32%',
-        height: '100%',
-        color: main,
-        cursor: 'pointer',
-        ":hover": { border: `1px solid ${purple}`, borderRadius: ' 0px' },
-        textDecoration: 'none'
-      }}
-    >
-      {children}
-    </FlexCenter>
-  );
+  const TabLink = ({ to, children }) => {
+    const location = useLocation();
+    const isActive = location.pathname.includes(to)
+
+    return (
+      <FlexCenter
+        component={Link}
+        to={to}
+        sx={{
+          width: '32%',
+          height: '100%',
+          color: main,
+          cursor: 'pointer',
+          ":hover": { border: `1px solid ${purple}`, borderRadius: '0px' },
+          textDecoration: 'none',
+          border: isActive ? `1px solid ${purple}` : 'transparent'
+        }}
+      >
+        {children}
+      </FlexCenter>
+    );
+  };
+
 
   return (
     <Box sx={{ p: '1rem', display: 'flex', flexDirection: 'column', height: '100%' }}>
