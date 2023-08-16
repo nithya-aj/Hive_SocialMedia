@@ -39,7 +39,7 @@ function Friends() {
         <TabLink to="following">Following</TabLink>
         <TabLink to="suggestions">Suggestions</TabLink>
       </Box>
-      <Box sx={{ backgroundColor: 'red', height: '100%', py: '1rem', flexGrow: 1 }}>
+      <Box sx={{ height: '100%', py: '1rem', flexGrow: 1 }}>
         <Outlet />
       </Box>
       <Box sx={{ height: '2.5rem', backgroundColor: darkbg, borderRadius: '0px 0px 4px 4px', display: 'flex', alignItems: 'center', marginTop: 'auto', justifyContent: 'center' }}>
