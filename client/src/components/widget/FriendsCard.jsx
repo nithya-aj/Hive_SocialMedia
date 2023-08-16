@@ -19,7 +19,7 @@ const FriendsCard = ({ friend, tab }) => {
                 </FlexCenter>
                 {tab === 'followers' &&
                     < Box sx={{ overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center', height: "3rem" }}>
-                        <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}`, fontSize: '1.2rem' }}><IoCloseCircle /></FlexCenter>
+                        <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}`, fontSize: '1.2rem' }} ><IoCloseCircle /></FlexCenter>
                         <FlexCenter sx={{ width: '50%', height: '100%', fontSize: '1.2rem' }}><FaUserPlus /></FlexCenter>
                     </Box>
                 }

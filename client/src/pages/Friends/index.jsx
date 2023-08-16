@@ -37,7 +37,7 @@ function Friends() {
   return (
     <Box sx={{ p: '1rem', display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Box sx={{ height: '3rem', borderRadius: '0px', display: 'flex', alignItems: 'center', marginBottom: 'auto', backgroundColor: darkbg, gap: 3, overflow: 'hidden' }}>
-        <TabLink to="followers">Followers</TabLink>
+        <TabLink to="followers" >Followers</TabLink>
         <TabLink to="following">Following</TabLink>
         <TabLink to="suggestions">Suggestions</TabLink>
       </Box>
