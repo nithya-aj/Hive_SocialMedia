@@ -2,10 +2,10 @@ import { Avatar, Box, Typography } from '@mui/material'
 import React from 'react'
 import FlexCenter from './FlexCenter'
 import { useTheme } from '@emotion/react'
-import { FaUserMinus } from 'react-icons/fa'
+import { FaUserMinus, FaUserPlus } from 'react-icons/fa'
 import { IoCloseCircle } from 'react-icons/io5'
 
-const FriendsCard = ({ friend }) => {
+const FriendsCard = ({ friend, tab }) => {
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
     const alt = theme.palette.background.alt
@@ -17,10 +17,24 @@ const FriendsCard = ({ friend }) => {
                     <Typography>{friend.name}</Typography>
                     <Typography>ceo & founder of cole</Typography>
                 </FlexCenter>
-                <Box sx={{ overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center', height: "2.5rem" }}>
-                    <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}`, fontSize: '1.2rem' }}><IoCloseCircle /></FlexCenter>
-                    <FlexCenter sx={{ width: '50%', height: '100%', fontSize: '1.2rem' }}><FaUserMinus /></FlexCenter>
-                </Box>
+                {tab === 'followers' &&
+                    < Box sx={{ overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center', height: "2.5rem" }}>
+                        <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}`, fontSize: '1.2rem' }}><IoCloseCircle /></FlexCenter>
+                        <FlexCenter sx={{ width: '50%', height: '100%', fontSize: '1.2rem' }}><FaUserPlus /></FlexCenter>
+                    </Box>
+                }
+                {tab === 'following' &&
+                    <Box sx={{ overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center', height: "2.5rem" }}>
+                        <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}`, fontSize: '1.2rem' }}><IoCloseCircle /></FlexCenter>
+                        <FlexCenter sx={{ width: '50%', height: '100%', fontSize: '1.2rem' }}><FaUserMinus /></FlexCenter>
+                    </Box>
+                }
+                {tab === 'suggestions' &&
+                    <Box sx={{ overflow: 'hidden ', borderTop: `1px solid ${alt}`, display: 'flex', alignItems: 'center', height: "2.5rem" }}>
+                        <FlexCenter sx={{ width: '50%', height: '100%', borderRight: `1px solid ${alt}`, fontSize: '1.2rem' }}><IoCloseCircle /></FlexCenter>
+                        <FlexCenter sx={{ width: '50%', height: '100%', fontSize: '1.2rem' }}><FaUserPlus /></FlexCenter>
+                    </Box>
+                }
             </Box>
         </>
     )
