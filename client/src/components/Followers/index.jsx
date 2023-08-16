@@ -39,7 +39,7 @@ const Followers = () => {
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', marginBottom: 'auto' }}>
             <Grid container spacing={3}>
                 {displayedFollowers.map((follower, index) => (
-                    <Grid item key={index} xs={12} sm={6} md={4}>
+                    <Grid item key={index} xs={12} sm={4} md={4}>
                         <FriendsCard friend={follower} tab="followers" />
                     </Grid>
                 ))}
