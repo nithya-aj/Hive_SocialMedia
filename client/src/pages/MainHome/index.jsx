@@ -20,7 +20,7 @@ const MainHome = () => {
           <Sidebar />
         </Grid>
         <Grid item lg={8} md={7} sm={6.5} xs={12} sx={{ pt: '1rem' }}> 
-          <Box sx={{ borderRadius: { sm: '10px 10px 0px 0px' }, height: '90vh', overflow: 'auto', backgroundColor: { sm: alt, xs: main } }}>
+          <Box sx={{ borderRadius: { sm: '10px 10px 0px 0px' }, height: '90vh', overflow: 'auto', backgroundColor: { sm: alt, xs: main }, border: { sm: `2px solid ${alt}`, xs: `2px solid ${main}` } }}>
             <Outlet />
           </Box>
         </Grid>

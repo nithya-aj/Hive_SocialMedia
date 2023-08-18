@@ -14,9 +14,8 @@ function RightBar() {
     const dark = theme.palette.neutral.dark
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
-    const light = theme.palette.neutral.light
+    const light = theme.palette.neutral.light 
     const textMain = theme.palette.neutral.main
-    const fontSm = theme.palette.neutral.fontSm
 
     return (
         <Box sx={{ display: 'flex', gap: '0.8rem', flexDirection: 'column', height: '100%', pb: '0.5rem', px: '0.8rem', p: '1rem 0.8rem 0.5rem 0.8rem' }}>
@@ -53,7 +52,7 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: fontSm }} />
+                        <MoreVertIcon sx={{ color: medium }} />
                     </IconButton>
                 </Box>
 
@@ -73,7 +72,7 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: fontSm }} />
+                        <MoreVertIcon sx={{ color: medium }} />
                     </IconButton>
                 </Box>
 
@@ -93,7 +92,7 @@ function RightBar() {
                         </Typography>
                     </Box>
                     <IconButton aria-label="settings">
-                        <MoreVertIcon sx={{ color: fontSm }} />
+                        <MoreVertIcon sx={{ color: medium }} />
                     </IconButton>
                 </Box>
             </Box>
