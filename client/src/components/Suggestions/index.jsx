@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, useMediaQuery } from '@mui/material';
 import FriendsCard from 'components/widget/FriendsCard';
 import React from 'react';
 import { Pagination } from '@mui/material';
@@ -25,14 +25,17 @@ const Suggestions = () => {
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const itemsPerPage = 6;
+  const extraLargeBreakpoint = 1540
+  const isExtraLarge = useMediaQuery((theme) => theme.breakpoints.up(extraLargeBreakpoint))
+  const spacing = isExtraLarge ? 2 : 3
+  const itemsPerPage = isExtraLarge ? 9 : 6
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const displayedSuggestions = suggestions.slice(startIndex, endIndex);
 
   return (
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', marginBottom: 'auto' }}>
-      <Grid container spacing={3}>
+      <Grid container spacing={spacing}>
         {displayedSuggestions.map((follower, index) => (
           <Grid item key={index} xs={12} sm={6} md={4}>
             <FriendsCard friend={follower} tab="suggestions" />

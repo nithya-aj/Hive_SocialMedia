@@ -30,14 +30,15 @@ const Followers = () => {
     const handleChange = (event, value) => {
         setPage(value);
     };
-    const isExtraLarge = useMediaQuery((theme) => theme.breakpoints.up('xl'))
+    const extraLargeBreakpoint = 1540
+    const isExtraLarge = useMediaQuery((theme) => theme.breakpoints.up(extraLargeBreakpoint))
     const spacing = isExtraLarge ? 2 : 3
     const itemsPerPage = isExtraLarge ? 9 : 6
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const displayedFollowers = followers.slice(startIndex, endIndex);
 
-    return ( 
+    return (
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', marginBottom: 'auto' }}>
             <Grid container spacing={spacing}>
                 {displayedFollowers.map((follower, index) => (
