@@ -21,11 +21,11 @@ function Friends() {
         sx={{
           width: '32%',
           height: '100%',
-          color: main,
+          color: isActive ? purple : main,
           cursor: 'pointer',
-          ":hover": { border: `1px solid ${purple}`, borderRadius: '0px' },
-          textDecoration: 'none',
-          border: isActive ? `1px solid ${purple}` : 'transparent'
+          ":hover": { borderBottom: `1px solid ${purple}`, borderRadius: '0px', color: purple },
+          textDecoration: 'none', 
+          borderBottom: isActive ? `1px solid ${purple}` : 'transparent'
         }}
       >
         {children}
