@@ -11,7 +11,7 @@ function RightBar() {
     const main = theme.palette.background.main
     const alt = theme.palette.background.alt
     const dark = theme.palette.neutral.dark
-    const mediumMain = theme.palette.neutral.mediumMain 
+    const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
@@ -36,8 +36,8 @@ function RightBar() {
                 </FlexCenter>
             </Box>
             <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0.8rem 0.4rem', width: '84%', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0.8rem 0.4rem', width: '84%' }}>
                         <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                             R
                         </Avatar>
@@ -56,8 +56,8 @@ function RightBar() {
                     <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
                 </Box>
 
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0.8rem 0.4rem', width: '84%', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0.8rem 0.4rem', width: '84%' }}>
                         <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                             R
                         </Avatar>
@@ -76,8 +76,8 @@ function RightBar() {
                     <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
                 </Box>
 
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0.8rem 0.4rem', width: '84%', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', p: '0.8rem 0.4rem', width: '84%' }}>
                         <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                             R
                         </Avatar>
@@ -89,7 +89,7 @@ function RightBar() {
                         }}>
                             <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
                             <Typography variant="caption" noWrap sx={{ color: medium }} >
-                                Can you please share your latest work on react, I want to check something... 
+                                Can you please share your latest work on react, I want to check something...
                             </Typography>
                         </Box>
                     </Box>

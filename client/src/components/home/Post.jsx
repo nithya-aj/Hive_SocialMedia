@@ -53,7 +53,7 @@ export default function Post() {
     const fontSm = theme.palette.neutral.fontSm
 
     return (
-        <Card sx={{ mt: '1rem', pb: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
+        <Card sx={{ pb: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
             <CardHeader
                 sx={{
                     ".css-sgoict-MuiCardHeader-action": {
