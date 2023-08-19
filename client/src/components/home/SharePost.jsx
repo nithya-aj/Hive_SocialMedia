@@ -40,13 +40,13 @@ function SharePost() {
     };
 
     return (
-        <Box sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}> 
+        <Box sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {previewImage && (
                 <Box
                     sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        height: '15rem',
+                        height: 'auto',
                         marginBottom: '1rem',
                         borderRadius: '10px',
                         backgroundSize: 'cover',

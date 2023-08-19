@@ -80,7 +80,7 @@ export default function Post() {
                 image="https://source.unsplash.com/featured/"
                 alt="Paella dish"
                 sx={{ p: '1rem', borderRadius: '1.5rem', objectFit: 'contain' }}
-                style={{ width: '100%', height: '20rem', objectFit: 'cover' }}
+                style={{ width: '100%', height: 'auto',maxHeight:'40rem', objectFit: 'cover' }}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
