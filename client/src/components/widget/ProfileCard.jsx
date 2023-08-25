@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { HiAtSymbol } from "react-icons/hi";
 import { HiBuildingOffice } from "react-icons/hi2";
 import { MdCake, MdEdit } from "react-icons/md";
-import { FaUserTag } from "react-icons/fa";
+import { FaUserTag, FaUser } from "react-icons/fa";
 import FlexCenter from './FlexCenter';
 
 
@@ -21,33 +21,38 @@ const ProfileCard = () => {
             <FlexCenter sx={{ height: '4rem', bgcolor: fontSm, position: 'relative' }}>
                 <Typography variant='h4'>Irin Rose</Typography>
                 <Box sx={{
-                    height: "2.1rem", width: '2.1rem', backgroundColor: fontSm, position: 'absolute', top: '3.2rem', left: '15rem',
+                    height: "2.1rem", width: '2.1rem', backgroundColor: fontSm, position: 'absolute', top: '3.2rem', right: '1rem',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', border: `2px solid ${darkbg}`
                 }}>
                     <IconButton ><MdEdit size={'1rem'} style={{ color: darkbg }} /></IconButton>
                 </Box>
             </FlexCenter>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, p: '1rem', color: main }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <HiAtSymbol />
-                    <Typography sx={{ width: '70%' }}>rose_53</Typography>
+                    <Typography >rose_53</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <MdEmail />
-                    <Typography sx={{ width: '70%' }}>rose@gmail.com</Typography>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                    <FaUser />
+                    <Typography >Irin Rose</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <HiBuildingOffice />
-                    <Typography sx={{ width: '70%' }}>Ernakulam</Typography>
-                </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <MdCake />
-                    <Typography sx={{ width: '70%' }}>Fex 21 2002</Typography>
-                </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <FaUserTag />
-                    <Typography sx={{ width: '70%' }}>Ernakulam</Typography>
+                    <Typography >UI/UX designer </Typography>
                 </Box>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                    <MdEmail />
+                    <Typography >rose@gmail.com</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                    <HiBuildingOffice />
+                    <Typography >Ernakulam</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                    <MdCake />
+                    <Typography >Feb 21 2002</Typography>
+                </Box>
+
             </Box>
         </Card>
     )
