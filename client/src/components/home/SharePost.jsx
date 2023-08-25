@@ -7,7 +7,7 @@ import { IoImage } from "react-icons/io5";
 import { FaPhotoVideo } from "react-icons/fa";
 import IconButton from '@mui/material/IconButton';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
-import { IoIosCloseCircle } from "react-icons/io";
+import close from 'assets/close.png'
 
 function SharePost() {
     const theme = useTheme()
@@ -47,6 +47,7 @@ function SharePost() {
                         display: 'flex',
                         alignItems: 'center',
                         height: 'auto',
+                        maxHeight:'35rem',
                         marginBottom: '1rem',
                         borderRadius: '10px',
                         backgroundSize: 'cover',
@@ -67,10 +68,11 @@ function SharePost() {
                             position: 'absolute',
                             top: '0.1rem',
                             right: '0.1rem',
+                            color: main
                         }}
                         onClick={handleCloseImage}
                     >
-                        <IoIosCloseCircle />
+                        <img src={close} alt="" /> 
                     </IconButton>
                 </Box>
             )}

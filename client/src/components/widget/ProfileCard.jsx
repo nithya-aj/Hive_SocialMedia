@@ -14,18 +14,18 @@ const ProfileCard = () => {
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
     const main = theme.palette.neutral.main
-    const fontSm = theme.palette.neutral.fontSm
+    const light = theme.palette.neutral.light
 
     return (
         <Card sx={{ borderRadius: '10px', backgroundColor: darkbg, boxShadow: 'none' }}>
-            <FlexCenter sx={{ height: '4rem', bgcolor: fontSm, position: 'relative' }}>
+            <FlexCenter sx={{ height: '4rem', bgcolor: light, position: 'relative' }}>
                 <Typography variant='h4'>Irin Rose</Typography>
                 <Box sx={{
-                    height: "2.1rem", width: '2.1rem', backgroundColor: fontSm, position: 'absolute', top: '3.2rem', right: '1rem',
+                    height: "2.1rem", width: '2.1rem', backgroundColor: light, position: 'absolute', top: '3.2rem', right: '1rem',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', border: `2px solid ${darkbg}`
                 }}>
                     <IconButton ><MdEdit size={'1rem'} style={{ color: darkbg }} /></IconButton>
-                </Box>
+                </Box> 
             </FlexCenter>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, p: '1rem', color: main }}>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
