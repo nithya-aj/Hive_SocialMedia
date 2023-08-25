@@ -63,6 +63,9 @@ function SidebarNav() {
     const purple = theme.palette.neutral.purple;
 
     const location = useLocation();
+    const isLinkActive = (link) => {
+        return location.pathname === link || location.pathname.startsWith(link + '/');
+    };
 
     return (
         <Box sx={{ width: '100%', height: '100%' }}>
@@ -72,7 +75,7 @@ function SidebarNav() {
                         <Item
                             component={motion.div}
                             whileHover={{ scale: 1 }}
-                            className={location.pathname === item.link ? 'selected' : ''}
+                            className={isLinkActive(item.link) ? 'selected' : ''}
                             sx={{
                                 height: '3.5rem', display: 'flex', alignItems: 'center',
                                 background: 'transparent', boxShadow: 'none', borderRadius: '0px 10px 10px 0px', cursor: 'pointer', paddingLeft: '1rem',
