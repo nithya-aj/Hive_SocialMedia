@@ -1,11 +1,11 @@
 import { useTheme } from '@emotion/react';
-import { Box, Card, IconButton, Typography } from '@mui/material'
+import { Box, Card, Divider, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import { MdEmail } from "react-icons/md";
 import { HiAtSymbol } from "react-icons/hi";
 import { HiBuildingOffice } from "react-icons/hi2";
 import { MdCake, MdEdit } from "react-icons/md";
-import { FaUserTag, FaUser } from "react-icons/fa";
+import { FaUserTag } from "react-icons/fa";
 import FlexCenter from './FlexCenter';
 
 
@@ -18,23 +18,28 @@ const ProfileCard = () => {
 
     return (
         <Card sx={{ borderRadius: '10px', backgroundColor: darkbg, boxShadow: 'none' }}>
-            <FlexCenter sx={{ height: '4rem', bgcolor: light, position: 'relative' }}>
-                <Typography variant='h4'>Irin Rose</Typography>
+            <FlexCenter sx={{ bgcolor: light, flexDirection: 'column', p: '1rem 1rem 1.5rem 1rem' }}>
+                <Typography variant='h5'>Irin Rose</Typography>
+                <Typography variant='caption'>India is my country. All Indians are my brothers and sisters.</Typography>
+                <Divider flexItem sx={{ height: '1.6px', width: '100%', mt: '10px', mb: '4px' }} />
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '100%', textAlign: 'center' }}>
+                    <span> <Typography variant='caption'>43</Typography> <br /> <Typography variant='body2'>Following</Typography></span>
+                    <Divider orientation="vertical" variant="middle" flexItem />
+                    <span> <Typography variant='caption'>284</Typography> <br /> <Typography variant='body2'>Followers</Typography> </span>
+                    <Divider orientation="vertical" variant="middle" flexItem />
+                    <span> <Typography variant='caption'>24</Typography> <br /> <Typography variant='body2'>Posts</Typography> </span>
+                </Box>
+            </FlexCenter>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, p: '1rem', color: main, position: 'relative' }}>
                 <Box sx={{
-                    height: "2.1rem", width: '2.1rem', backgroundColor: light, position: 'absolute', top: '3.2rem', right: '1rem',
+                    height: "2.1rem", width: '2.1rem', backgroundColor: light, position: 'absolute', top: '-1rem', right: '1rem',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', border: `2px solid ${darkbg}`
                 }}>
                     <IconButton ><MdEdit size={'1rem'} style={{ color: darkbg }} /></IconButton>
-                </Box> 
-            </FlexCenter>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, p: '1rem', color: main }}>
+                </Box>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <HiAtSymbol />
                     <Typography >rose_53</Typography>
-                </Box>
-                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <FaUser />
-                    <Typography >Irin Rose</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <FaUserTag />
