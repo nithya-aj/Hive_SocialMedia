@@ -20,9 +20,7 @@ const ProfileCard = () => {
         <Card sx={{ borderRadius: '10px', backgroundColor: darkbg, boxShadow: 'none' }}>
             <FlexCenter sx={{ bgcolor: light, flexDirection: 'column', p: '1rem 1rem 1.5rem 1rem' }}>
                 <Typography variant='h5'>Irin Rose</Typography>
-                <Typography variant='caption'>India is my country. All Indians are my brothers and sisters.</Typography>
-                <Divider flexItem sx={{ height: '1.6px', width: '100%', mt: '10px', mb: '4px' }} />
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '100%', textAlign: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '100%', textAlign: 'center', pt: '0.5rem' }}>
                     <span> <Typography variant='caption'>43</Typography> <br /> <Typography variant='body2'>Following</Typography></span>
                     <Divider orientation="vertical" variant="middle" flexItem />
                     <span> <Typography variant='caption'>284</Typography> <br /> <Typography variant='body2'>Followers</Typography> </span>
