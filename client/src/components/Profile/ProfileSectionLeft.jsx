@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react'
-import { Avatar, Box, Button, IconButton } from '@mui/material' 
+import { Avatar, Box, Button, IconButton, useMediaQuery } from '@mui/material'
 import Post from 'components/home/Post'
 import SharePost from 'components/home/SharePost'
 import React from 'react'
@@ -12,6 +12,7 @@ const ProfileSectionLeft = () => {
   const orange = theme.palette.neutral.orange
   const purple = theme.palette.neutral.purple
   const mediumpurple = theme.palette.neutral.mediumpurple
+  const isExtraSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Box sx={{ borderRadius: '10px 10px 0px 0px', overflow: 'hidden', pb: '2rem' }}>
@@ -29,18 +30,29 @@ const ProfileSectionLeft = () => {
           }}>
             <IconButton ><IoMdCloudUpload size={'1rem'} /></IconButton>
           </Box>
-          <Button variant='contained' sx={{
-            display: 'flex', alignItems: 'center', gap: '0.3rem', textTransform: 'none', alignSelf: 'flex-end', p: '4px 8px', backgroundColor: purple,
-            color: main, ":hover": { backgroundColor: mediumpurple }
-          }}>
-            <IoMdCloudUpload size={'1.1rem'} />
-            Edit Cover Photo
-          </Button>
+
+          {isExtraSmall ? (
+            <Box sx={{
+              height: "1.6rem", width: '1.6rem', backgroundColor: main, alignSelf: 'flex-end',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%'
+            }}>
+              <IconButton ><IoMdCloudUpload size={'1rem'} /></IconButton>
+            </Box>
+          ) : (
+            <Button variant='contained' sx={{
+              display: 'flex', alignItems: 'center', gap: '0.3rem', textTransform: 'none', alignSelf: 'flex-end', p: '4px 8px', backgroundColor: purple,
+              color: main, ":hover": { backgroundColor: mediumpurple }
+            }}>
+              <IoMdCloudUpload size={'1.1rem'} />
+              Edit Cover Photo
+            </Button>
+          )}
+
         </Box>
       </Box>
       <SharePost />
       <Post />
-    </Box>
+    </Box >
   )
 }
 
