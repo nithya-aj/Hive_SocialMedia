@@ -5,7 +5,7 @@ import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import { FaUserPlus, FaUser } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
 import { motion } from 'framer-motion';
 
@@ -47,15 +47,20 @@ const NavItems = () => {
     const main = theme.palette.neutral.main
     const orange = theme.palette.neutral.orange
 
+    const location = useLocation();
+    const isLinkActive = (link) => {
+        return location.pathname === link || location.pathname.startsWith(link + '/');
+    };
+
     return (
         <>
             {
                 items.map((item, id) => (
                     <Link to={item.link} style={{ textDecoration: 'none' }} key={id}>
-                        <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ fontSize: '1.5rem', cursor: 'pointer', color: main, ":hover": { color: orange } }}>
+                        <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ fontSize: '1.5rem', cursor: 'pointer', color: isLinkActive(item.link) ? orange : main, ":hover": { color: orange } }}>
                             <item.icon />
-                        </Box> 
-                    </Link>
+                        </Box>
+                    </Link >
                 ))
             }
         </>
