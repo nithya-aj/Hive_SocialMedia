@@ -16,7 +16,7 @@ const ProfileSectionLeft = () => {
   const textMain = theme.palette.neutral.main
   const fontSm = theme.palette.neutral.fontSm
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}> 
       <Box sx={{ borderRadius: '10px 10px 0px 0px', overflow: 'hidden', pb: { lg: '2rem', xs: '0rem' } }}>
         <Box sx={{
           position: 'relative', height: '8rem', backgroundImage: "url('https://source.unsplash.com/featured/300x48')",

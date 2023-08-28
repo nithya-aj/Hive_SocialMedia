@@ -10,7 +10,7 @@ function Notifications() {
   const textMain = theme.palette.neutral.main
   const fontSm = theme.palette.neutral.fontSm
   return (
-    <Box sx={{ height: '100%', p: '1rem 1rem 0rem', display: 'flex', flexDirection: 'column', gap: '0.14rem', overflowY: 'auto' }}>
+    <Box sx={{ height: '100%', p: { sm: '1rem 1rem 0rem', xs: '0rem' }, display: 'flex', flexDirection: 'column', gap: '0.14rem', overflowY: 'auto' }}>
       <Box sx={{ borderRadius: '10px 10px 0px 0px', display: 'flex', flexDirection: 'column', gap: '0.1rem', overflow: 'hidden' }}>
         <Box sx={{ height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1.5rem', backgroundColor: main }}>
           <Typography variant='body1' sx={{ fontSize: '1rem', color: textMain }}>Notification</Typography>
