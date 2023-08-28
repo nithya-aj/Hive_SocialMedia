@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react'
-import { Avatar, Box, Button, IconButton, useMediaQuery } from '@mui/material'
+import { Avatar, Box, Button, Divider, IconButton, Typography, useMediaQuery } from '@mui/material'
 import Post from 'components/home/Post'
 import SharePost from 'components/home/SharePost'
 import React from 'react'
@@ -13,9 +13,11 @@ const ProfileSectionLeft = () => {
   const purple = theme.palette.neutral.purple
   const mediumpurple = theme.palette.neutral.mediumpurple
   const isExtraSmall = useMediaQuery((theme) => theme.breakpoints.down('sm'))
+  const textMain = theme.palette.neutral.main
+  const fontSm = theme.palette.neutral.fontSm
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Box sx={{ borderRadius: '10px 10px 0px 0px', overflow: 'hidden', pb: '2rem' }}>
+      <Box sx={{ borderRadius: '10px 10px 0px 0px', overflow: 'hidden', pb: { lg: '2rem', xs: '0rem' } }}>
         <Box sx={{
           position: 'relative', height: '8rem', backgroundImage: "url('https://source.unsplash.com/featured/300x48')",
           backgroundSize: 'cover',
@@ -47,7 +49,19 @@ const ProfileSectionLeft = () => {
               Edit Cover Photo
             </Button>
           )}
-
+        </Box>
+        <Box sx={{ bgcolor: { xs: alt, sm: main }, borderRadius: '0rem 0rem 10px 10px', pt: '2rem', pb: '0.5rem', gap: 1, p: '2rem 0rem 1rem 1rem', color: textMain, }}>
+          <Typography variant={isExtraSmall ? 'body1' : 'h5'} sx={{ pl: '2rem' }}>Irin Rose</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography variant={isExtraSmall ? 'subtitle2' : 'subtitle1'} sx={{ pl: '2rem', color: fontSm }}>@irin__32</Typography> <Divider orientation="vertical" variant="middle" flexItem sx={{ color: fontSm, height: '1rem', }} />
+            <Typography variant={isExtraSmall ? 'subtitle2' : 'subtitle1'} sx={{ color: fontSm }}>UI/UX designer</Typography> <Divider orientation="vertical" variant="middle" flexItem sx={{ color: fontSm, height: '1rem' }} />
+            <Typography variant={isExtraSmall ? 'subtitle2' : 'subtitle1'} sx={{ color: fontSm }}>Ernakulam</Typography>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Typography variant={isExtraSmall ? 'subtitle2' : 'subtitle1'} sx={{ pl: '2rem', color: fontSm }}>123 Followers</Typography> <Divider orientation="vertical" variant="middle" flexItem sx={{ color: fontSm, height: '1rem', }} />
+            <Typography variant={isExtraSmall ? 'subtitle2' : 'subtitle1'} sx={{ color: fontSm }}>421 Following</Typography> <Divider orientation="vertical" variant="middle" flexItem sx={{ color: fontSm, height: '1rem' }} />
+            <Typography variant={isExtraSmall ? 'subtitle2' : 'subtitle1'} sx={{ color: fontSm }}>23 Posts</Typography>
+          </Box>
         </Box>
       </Box>
       <SharePost />
