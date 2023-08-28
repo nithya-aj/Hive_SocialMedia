@@ -16,7 +16,7 @@ const ProfileSectionLeft = () => {
   const textMain = theme.palette.neutral.main
   const fontSm = theme.palette.neutral.fontSm
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}> 
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Box sx={{ borderRadius: '10px 10px 0px 0px', overflow: 'hidden', pb: { lg: '2rem', xs: '0rem' } }}>
         <Box sx={{
           position: 'relative', height: '8rem', backgroundImage: "url('https://source.unsplash.com/featured/300x48')",
@@ -50,7 +50,7 @@ const ProfileSectionLeft = () => {
             </Button>
           )}
         </Box>
-        <Box sx={{ bgcolor: { xs: alt, sm: main }, borderRadius: '0rem 0rem 10px 10px', pt: '2rem', pb: '0.5rem', gap: 1, p: '2rem 0rem 1rem 1rem', color: textMain, }}>
+        <Box sx={{ bgcolor: { xs: alt, sm: main }, borderRadius: '0rem 0rem 10px 10px', pt: '2rem', pb: '0.5rem', gap: 1, p: '2rem 0rem 1rem 1rem', color: textMain, display: { xs: 'block', lg: 'none' } }}>
           <Typography variant={isExtraSmall ? 'body1' : 'h5'} sx={{ pl: '2rem' }}>Irin Rose</Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Typography variant={isExtraSmall ? 'subtitle2' : 'subtitle1'} sx={{ pl: '2rem', color: fontSm }}>@irin__32</Typography> <Divider orientation="vertical" variant="middle" flexItem sx={{ color: fontSm, height: '1rem', }} />
