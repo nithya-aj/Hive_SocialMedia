@@ -9,6 +9,7 @@ function Notifications() {
   const main = theme.palette.background.main
   const textMain = theme.palette.neutral.main
   const fontSm = theme.palette.neutral.fontSm
+  const dark = theme.palette.neutral.dark
   return (
     <Box sx={{ height: '100%', p: { sm: '1rem 1rem 0rem', xs: '0rem' }, display: 'flex', flexDirection: 'column', gap: '0.14rem', overflowY: 'auto' }}>
       <Box sx={{ borderRadius: '10px 10px 0px 0px', display: 'flex', flexDirection: 'column', gap: '0.1rem', overflow: 'hidden' }}>
@@ -20,8 +21,8 @@ function Notifications() {
         </Box>
       </Box>
       <Box sx={{ height: '100%', overflowY: 'scroll' }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.1rem' }}>
-          <Box sx={{ height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1.5rem', backgroundColor: main }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ height: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1.5rem', backgroundColor: main, ':hover': { backgroundColor: dark }, cursor: 'pointer' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Avatar src="https://source.unsplash.com/featured/300x138" />
               <Box >

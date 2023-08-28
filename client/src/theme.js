@@ -53,11 +53,12 @@ export const themeSettings = (mode) => {
                     // palette values for dark mode
                     neutral: {
                         white: colorTokens.grey[50],
-                        dark: colorTokens.grey[50],
+                        dark: colorTokens.grey[700],
                         main: colorTokens.grey[200],
                         mediumMain: colorTokens.grey[300],
                         medium: colorTokens.grey[400],
                         light: colorTokens.grey[600],
+                        mediumLight: colorTokens.grey[700],
                         fontSm: colorTokens.grey[500],
                         purple: colorTokens.purple[300],
                         mediumpurple: colorTokens.purple[600],
@@ -74,12 +75,13 @@ export const themeSettings = (mode) => {
                     // palette values for light mode
                     neutral: {
                         white: colorTokens.grey[50],
-                        dark: colorTokens.grey[500],
+                        dark: colorTokens.grey[100],  
                         main: colorTokens.grey[800],
                         mediumMain: colorTokens.grey[1000],
                         medium: colorTokens.grey[500],
                         light: colorTokens.grey[200],
-                        fontSm: colorTokens.grey[500],
+                        mediumLight: colorTokens.grey[700],
+                        fontSm: colorTokens.grey[400],
                         purple: colorTokens.purple[500],
                         mediumpurple: colorTokens.purple[600],
                         darkpurple: colorTokens.purple[400],

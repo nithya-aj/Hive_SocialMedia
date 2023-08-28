@@ -10,12 +10,11 @@ function RightBar() {
     const theme = useTheme()
     const main = theme.palette.background.main
     const alt = theme.palette.background.alt
-    const dark = theme.palette.neutral.dark
     const mediumMain = theme.palette.neutral.mediumMain
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
-    const fontSm = theme.palette.neutral.fontSm
+    const fontSm = theme.palette.neutral.fontSm 
 
     return (
         <Box sx={{ display: 'flex', gap: '0.8rem', flexDirection: 'column', height: '100%', pb: '0.5rem', px: '0.8rem', p: '1rem 0.8rem 0.5rem 0.8rem' }}>
@@ -47,7 +46,7 @@ function RightBar() {
                             textOverflow: 'ellipsis',
                             color: medium
                         }}>
-                            <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
+                            <Typography sx={{ fontSize: '0.75rem', color: medium }}>Alex</Typography>
                             <Typography variant="caption" noWrap sx={{ color: medium }} >
                                 Can you please share your latest work on react, I want to check something...
                             </Typography>
@@ -67,7 +66,7 @@ function RightBar() {
                             textOverflow: 'ellipsis',
                             color: medium
                         }}>
-                            <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
+                            <Typography sx={{ fontSize: '0.75rem', color: medium }}>Alex</Typography>
                             <Typography variant="caption" noWrap sx={{ color: medium }} >
                                 Can you please share your latest work on react, I want to check something...
                             </Typography>
@@ -87,7 +86,7 @@ function RightBar() {
                             textOverflow: 'ellipsis',
                             color: medium
                         }}>
-                            <Typography sx={{ fontSize: '0.75rem', color: dark }}>Alex</Typography>
+                            <Typography sx={{ fontSize: '0.75rem', color: medium }}>Alex</Typography>
                             <Typography variant="caption" noWrap sx={{ color: medium }} >
                                 Can you please share your latest work on react, I want to check something...
                             </Typography>

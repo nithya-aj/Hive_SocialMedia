@@ -47,7 +47,6 @@ export default function Post() {
     const theme = useTheme()
     const darkbg = theme.palette.background.darkbg
     const alt = theme.palette.background.alt
-    const dark = theme.palette.neutral.dark
     const main = theme.palette.neutral.main
     const medium = theme.palette.neutral.medium
     const fontSm = theme.palette.neutral.fontSm
@@ -61,7 +60,11 @@ export default function Post() {
                         marginRight: '0px'
                     },
                     ".css-1ba4o25-MuiTypography-root": {
-                        color: dark
+                        color: medium
+                    },
+                    ".css-1jrvqvi-MuiTypography-root": {
+                        color: fontSm,
+                        fontSize: '10px'
                     }
                 }}
                 avatar={
@@ -80,7 +83,7 @@ export default function Post() {
                 image="https://source.unsplash.com/featured/"
                 alt="Paella dish"
                 sx={{ p: '1rem', borderRadius: '1.5rem', objectFit: 'contain' }}
-                style={{ width: '100%', height: 'auto',maxHeight:'30rem', objectFit: 'cover' }}
+                style={{ width: '100%', height: 'auto', maxHeight: '30rem', objectFit: 'cover' }}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
@@ -148,7 +151,7 @@ export default function Post() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: dark }}>
+                                        <Typography sx={{ color: medium }}>
                                             Ali Connors
                                         </Typography>
                                         <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
@@ -172,7 +175,7 @@ export default function Post() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: dark }}>
+                                        <Typography sx={{ color: medium }}>
                                             Ali Connors
                                         </Typography>
                                         <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
@@ -196,7 +199,7 @@ export default function Post() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: dark }}>
+                                        <Typography sx={{ color: medium }}>
                                             Ali Connors
                                         </Typography>
                                         <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
@@ -220,7 +223,7 @@ export default function Post() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: dark }}>
+                                        <Typography sx={{ color: medium }}>
                                             Ali Connors
                                         </Typography>
                                         <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
@@ -244,7 +247,7 @@ export default function Post() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: dark }}>
+                                        <Typography sx={{ color: medium }}>
                                             Ali Connors
                                         </Typography>
                                         <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
@@ -268,7 +271,7 @@ export default function Post() {
                             <Grid item xs={10} lg={10.7} md={10.5}>
                                 <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: dark }}>
+                                        <Typography sx={{ color: medium }}>
                                             Ali Connors
                                         </Typography>
                                         <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
