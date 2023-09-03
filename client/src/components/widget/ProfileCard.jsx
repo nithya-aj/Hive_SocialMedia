@@ -28,7 +28,7 @@ const ProfileCard = () => {
                     <span> <Typography variant='caption'>24</Typography> <br /> <Typography variant='body2'>Posts</Typography> </span>
                 </Box>
             </FlexCenter>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, p: '1rem', color: main, position: 'relative' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: '1rem', color: main, position: 'relative' }}>
                 <Box sx={{
                     height: "2.1rem", width: '2.1rem', backgroundColor: light, position: 'absolute', top: '-1rem', right: '1rem',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', border: `2px solid ${darkbg}`
@@ -37,23 +37,23 @@ const ProfileCard = () => {
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <HiAtSymbol />
-                    <Typography >rose_53</Typography>
+                    <Typography style={{ lineHeight: 1 }} >rose_53</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <FaUserTag />
-                    <Typography >UI/UX designer </Typography>
+                    <FaUserTag /> 
+                    <Typography style={{ lineHeight: 1 }} >UI/UX designer </Typography> 
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <MdEmail />
-                    <Typography >rose@gmail.com</Typography>
+                    <Typography style={{ lineHeight: 1 }} >rose@gmail.com</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <HiBuildingOffice />
-                    <Typography >Ernakulam</Typography>
+                    <Typography style={{ lineHeight: 1 }} >Ernakulam</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                     <MdCake />
-                    <Typography >Feb 21 2002</Typography>
+                    <Typography style={{ lineHeight: 1 }} >Feb 21 2002</Typography>
                 </Box>
 
             </Box>
