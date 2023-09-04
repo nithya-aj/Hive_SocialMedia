@@ -19,12 +19,7 @@ const Following = () => {
         { name: 'Following 12' },
         { name: 'Following 13' },
         { name: 'Following 14' },
-        { name: 'Following 15' },
-        { name: 'Following 16' },
-        { name: 'Following 17' },
-        { name: 'Following 18' },
-        { name: 'Following 19' },
-        { name: 'Following 20' },
+        { name: 'Following 15' }
     ];
     const [page, setPage] = React.useState(1);
     const handleChange = (event, value) => {
@@ -40,7 +35,6 @@ const Following = () => {
 
     return (
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', marginBottom: 'auto' }}>
-
             <Grid container spacing={spacing}>
                 {displayedFollowing.map((follower, index) => (
                     <Grid item key={index} xs={4}>
