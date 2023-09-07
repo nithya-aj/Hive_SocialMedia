@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import authRouter from './routes/auth.js'
+import postRouter from './routes/post.js'
 
 const app = express()
 dotenv.config()
@@ -17,5 +18,6 @@ app.use(express.urlencoded({extended: true}))
 app.use(cors())
 
 app.use("/auth", authRouter)
+app.use("/post", postRouter)
 
 app.listen(process.env.PORT, () => console.log(`Server connected succesfully🚀`))
