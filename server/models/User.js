@@ -50,7 +50,7 @@ const UserSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    following: {
+    followings: {
         type: [String],
         default: []
     }
