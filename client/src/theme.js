@@ -40,6 +40,9 @@ export const colorTokens = {
         800: "#3348EB",
         900: "#2038E9",
         1000: "#162DDF",
+    },
+    red: {
+        500: '#EF2726'
     }
 };
 
@@ -63,7 +66,8 @@ export const themeSettings = (mode) => {
                         purple: colorTokens.purple[300],
                         mediumpurple: colorTokens.purple[600],
                         darkpurple: colorTokens.purple[400],
-                        orange: colorTokens.orange[400]
+                        orange: colorTokens.orange[400],
+                        red: colorTokens.red[500]
                     },
                     background: {
                         main: colorTokens.grey[900],
@@ -75,7 +79,7 @@ export const themeSettings = (mode) => {
                     // palette values for light mode
                     neutral: {
                         white: colorTokens.grey[50],
-                        dark: colorTokens.grey[100],  
+                        dark: colorTokens.grey[100],
                         main: colorTokens.grey[800],
                         mediumMain: colorTokens.grey[1000],
                         medium: colorTokens.grey[500],
@@ -85,7 +89,8 @@ export const themeSettings = (mode) => {
                         purple: colorTokens.purple[500],
                         mediumpurple: colorTokens.purple[600],
                         darkpurple: colorTokens.purple[400],
-                        orange: colorTokens.orange[900]
+                        orange: colorTokens.orange[900],
+                        red: colorTokens.red[500]
                     },
                     background: {
                         main: colorTokens.grey[10],

@@ -14,7 +14,7 @@ const FriendsReq = () => {
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
     const purple = theme.palette.neutral.purple
-    const orange = theme.palette.neutral.orange
+    const red = theme.palette.neutral.red
 
     return (
         <Card sx={{ width: '100%', borderRadius: '10px', backgroundColor: darkbg, p: '1rem' }}>
@@ -31,7 +31,7 @@ const FriendsReq = () => {
             </FlexCenter>
             <Box sx={{ overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
                 <Box sx={{ display: 'flex', px: '0.5rem', py: '0.8rem', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '70%' }}>
                         <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                             R
                         </Avatar>
@@ -52,13 +52,13 @@ const FriendsReq = () => {
                             <BsPersonCheckFill style={{ color: purple }} />
                         </IconButton>
                         <IconButton aria-label="decline">
-                            <AiFillCloseCircle style={{ color: '#FF3333' }} />
+                            <AiFillCloseCircle style={{ color: red }} />
                         </IconButton>
                     </Box>
                 </Box>
 
                 <Box sx={{ display: 'flex', px: '0.5rem', py: '0.8rem', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '70%' }}>
                         <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                             R
                         </Avatar>
@@ -79,13 +79,13 @@ const FriendsReq = () => {
                             <BsPersonCheckFill style={{ color: purple }} />
                         </IconButton>
                         <IconButton aria-label="decline">
-                            <AiFillCloseCircle style={{ color: '#FF3333' }} />
+                            <AiFillCloseCircle style={{ color: red }} />
                         </IconButton>
-                    </Box>
+                    </Box> 
                 </Box>
 
                 <Box sx={{ display: 'flex', px: '0.5rem', py: '0.8rem', ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '70%' }}>
                         <Avatar aria-label="avatar" sx={{ height: '2.3rem', width: '2.3rem', backgroundColor: light, color: textMain, }}>
                             R
                         </Avatar>
@@ -106,7 +106,7 @@ const FriendsReq = () => {
                             <BsPersonCheckFill style={{ color: purple }} />
                         </IconButton>
                         <IconButton aria-label="decline">
-                            <AiFillCloseCircle style={{ color: '#FF3333' }} />
+                            <AiFillCloseCircle style={{ color: red }} />
                         </IconButton>
                     </Box>
                 </Box>
