@@ -15,6 +15,7 @@ import { MdOutlineInsertComment, MdTurnedInNot, MdOutlineFavoriteBorder, MdDelet
 import { BiHide, BiSend } from "react-icons/bi";
 import { useTheme } from '@mui/material/styles';
 import { HiOutlinePencilSquare } from 'react-icons/hi2';
+import { PiShareFat } from 'react-icons/pi';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -104,6 +105,12 @@ export default function Post() {
                                 <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
                                     <HiOutlinePencilSquare style={{ fontSize: '15px' }} />
                                     Update
+                                </Box>
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                    <PiShareFat style={{ fontSize: '15px' }} />
+                                    Share
                                 </Box>
                             </MenuItem>
                             <MenuItem onClick={handleClose}>

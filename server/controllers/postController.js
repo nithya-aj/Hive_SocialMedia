@@ -147,3 +147,22 @@ export const hidePost = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
+
+export const unhidePost = async (req, res) => {
+    const postId = req.params.postId
+    const userId = req.user.id
+    try {
+        const post = await Post.findById(postId)
+        if (!post) {
+            throw new Error("No such post!")
+        }
+        if (post.userId !== userId) {
+            throw new Error('Not authorized')
+        }
+        await Post.findByIdAndUpdate(postId, { hidden: false })
+        return res.status(200).json({ msg: "Post unhidden!" })
+
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
+}

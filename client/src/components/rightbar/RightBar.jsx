@@ -11,11 +11,12 @@ function RightBar() {
     const main = theme.palette.background.main
     const alt = theme.palette.background.alt
     const mediumMain = theme.palette.neutral.mediumMain
-    const medium = theme.palette.neutral.medium
+    const medium = theme.palette.neutral.medium 
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
     const fontSm = theme.palette.neutral.fontSm
     const red = theme.palette.neutral.red
+    const white = theme.palette.neutral.white
 
     return (
         <Box sx={{ display: 'flex', gap: '0.8rem', flexDirection: 'column', height: '100%', pb: '0.5rem', px: '0.8rem', p: '1rem 0.8rem 0.5rem 0.8rem' }}>
@@ -62,6 +63,7 @@ function RightBar() {
                                     padding: '0 4px',
                                     height: '12px',
                                     bgcolor: red,
+                                    color: white,
                                     fontSize: '8px'
                                 }
                             }}
@@ -115,7 +117,7 @@ function RightBar() {
                     </Box>
                 </Box>
             </Box>
-        </Box> 
+        </Box>
     )
 }
 
