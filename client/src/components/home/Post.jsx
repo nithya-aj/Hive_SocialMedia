@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import UserAvatar from '../widget/UserAvatar';
-import { Avatar, Box, FormControl, Grid, Input, InputAdornment, List, ListItemText } from '@mui/material';
+import { Avatar, Box, FormControl, Grid, Input, InputAdornment, List, ListItemText, Menu, MenuItem } from '@mui/material';
 import { MdOutlineInsertComment, MdTurnedInNot, MdOutlineFavoriteBorder } from "react-icons/md";
 import { BiSend } from "react-icons/bi";
 import { useTheme } from '@mui/material/styles';
@@ -51,6 +51,15 @@ export default function Post() {
     const medium = theme.palette.neutral.medium
     const fontSm = theme.palette.neutral.fontSm
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <Card sx={{ pb: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
             <CardHeader
@@ -71,9 +80,30 @@ export default function Post() {
                     <UserAvatar />
                 }
                 action={
-                    <IconButton aria-label="settings" sx={{ color: main }}>
-                        <MoreVertIcon sx={{ color: fontSm }} />
-                    </IconButton>
+                    <>
+                        <IconButton aria-label="settings" sx={{ color: main }}>
+                            <MoreVertIcon sx={{ color: fontSm }}
+                                id="options"
+                                aria-controls={open ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                                onClick={handleClick}
+                            />
+                        </IconButton>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={handleClose}>My account</MenuItem>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        </Menu>
+                    </>
                 }
                 title="Lora Eve"
                 subheader="Seoul, Just now"

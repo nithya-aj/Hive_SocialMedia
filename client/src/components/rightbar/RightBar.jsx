@@ -1,9 +1,9 @@
-import { Avatar, Box, Divider, Typography } from '@mui/material'
+import { Avatar, Badge, Box, Divider, Typography } from '@mui/material'
 import React from 'react'
 import FlexCenter from 'components/widget/FlexCenter';
 import SearchBar from 'components/widget/SearchBar';
 import { useTheme } from '@emotion/react';
-
+import { TbChecks } from "react-icons/tb";
 
 function RightBar() {
 
@@ -14,7 +14,8 @@ function RightBar() {
     const medium = theme.palette.neutral.medium
     const light = theme.palette.neutral.light
     const textMain = theme.palette.neutral.main
-    const fontSm = theme.palette.neutral.fontSm 
+    const fontSm = theme.palette.neutral.fontSm
+    const red = theme.palette.neutral.red
 
     return (
         <Box sx={{ display: 'flex', gap: '0.8rem', flexDirection: 'column', height: '100%', pb: '0.5rem', px: '0.8rem', p: '1rem 0.8rem 0.5rem 0.8rem' }}>
@@ -52,7 +53,20 @@ function RightBar() {
                             </Typography>
                         </Box>
                     </Box>
-                    <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                        <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
+                        <Badge badgeContent={34} size="small"
+                            sx={{
+                                ".css-1c5f416-MuiBadge-badge": {
+                                    minWidth: '20px',
+                                    padding: '0 4px',
+                                    height: '12px',
+                                    bgcolor: red,
+                                    fontSize: '8px'
+                                }
+                            }}
+                        />
+                    </Box>
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
@@ -72,7 +86,10 @@ function RightBar() {
                             </Typography>
                         </Box>
                     </Box>
-                    <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                        <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
+                        <TbChecks style={{ color: fontSm }} />
+                    </Box>
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ":hover": { backgroundColor: alt, borderRadius: '10px' } }}>
@@ -92,10 +109,13 @@ function RightBar() {
                             </Typography>
                         </Box>
                     </Box>
-                    <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                        <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
+                        <TbChecks style={{ color: fontSm }} />
+                    </Box>
                 </Box>
             </Box>
-        </Box>
+        </Box> 
     )
 }
 
