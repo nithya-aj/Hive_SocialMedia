@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import authRouter from './routes/auth.js'
 import postRouter from './routes/post.js'
+import userRouter from './routes/user.js'
 
 const app = express()
 dotenv.config()
@@ -19,5 +20,6 @@ app.use(cors())
 
 app.use("/auth", authRouter)
 app.use("/post", postRouter)
+app.use("/user", userRouter)
 
 app.listen(process.env.PORT, () => console.log(`Server connected succesfully🚀`))
