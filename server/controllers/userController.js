@@ -37,6 +37,7 @@ export const updateUser = async (req, res) => {
                 { $set: req.body },
                 { new: true }
             )
+            return res.status(200).json(user)
         } catch (error) {
             return res.status(500).json(error.message)
         }
@@ -64,24 +65,77 @@ export const deleteUser = async (req, res) => {
 
 export const getUserFriends = async (req, res) => {
     try {
-
+        const user = await User.findById(req.params.id)
+        if (!user) {
+            throw new Error("User does not exist!")
+        }
+        const userFriends = await Promise.all(
+            user.followings.map((friendId) => {
+                return User.findById(friendId).select("-password")
+            })
+        )
+        return res.status(200).json(userFriends)
     } catch (error) {
         return res.status(500).json(error.message)
     }
 }
 
 export const followUser = async (req, res) => {
-    try {
+    if (req.params.id !== req.user.id) {
+        try {
+            const friend = await User.findById(req.params.id)
+            if (!friend) {
+                throw new Error("User not found with the provided ID")
+            }
 
-    } catch (error) {
-        return res.status(500).json(error.message)
+            if (friend.followers.includes(req.user.id)) {
+                throw new Error("Duplicate User Follow: You are attempting to follow a user you have already followed.")
+            }
+
+            await User.findByIdAndUpdate(
+                req.params.id,
+                { $push: { followers: req.user.id } }
+            )
+
+            await User.findByIdAndUpdate(
+                req.user.id,
+                { $push: { followings: req.params.id } }
+            )
+            return res.status(200).json({ msg: "User followed!" })
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    } else {
+        return res.status(500).json({ msg: "You cannot follow yourself." })
     }
 }
 
 export const unfollowUser = async (req, res) => {
-    try {
+    if (req.params.id !== req.user.id) {
+        try {
+            const friend = await User.findById(req.params.id)
+            if (!friend) {
+                throw new Error("User not found with the provided ID")
+            }
 
-    } catch (error) {
-        return res.status(500).json(error.message)
+            if (!friend.followers.includes(req.user.id)) {
+                throw new Error("You cannot unfollow a user you are not currently following")
+            }
+
+            await User.findByIdAndUpdate(
+                req.params.id,
+                { $pull: { followers: req.user.id } }
+            )
+
+            await User.findByIdAndUpdate(
+                req.user.id,
+                { $pull: { followings: req.params.id } }
+            )
+            return res.status(200).json({ msg: "User unfollowed!" })
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    } else {
+        return res.status(500).json({ msg: "You cannot follow or unfollow yourself." })
     }
 }
