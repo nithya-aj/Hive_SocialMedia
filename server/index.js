@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(cors())
 
 app.use("/auth", authRouter)
-app.use("/post", postRouter)
 app.use("/user", userRouter)
+app.use("/post", postRouter)
 
 app.listen(process.env.PORT, () => console.log(`Server connected succesfully🚀`))
