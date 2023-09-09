@@ -12,7 +12,7 @@ export const getPost = async (req, res) => {
 
 export const getUserPosts = async (req, res) => {
     try {
-        const userPosts = await Post.find({ userId: req.params.id })
+        const userPosts = await Post.find({ userId: req.params.id, hidden: false })
         return res.status(200).json(userPosts)
     } catch (error) {
         return res.status(500).json(error.message)
@@ -124,6 +124,25 @@ export const getTimelinePosts = async (req, res) => {
         )
         const allPosts = userPosts.concat(...friendPosts).sort((a, b) => b.createdAt - a.createdAt)
         return res.json(allPosts)
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
+}
+
+export const hidePost = async (req, res) => {
+    const postId = req.params.postId
+    const userId = req.user.id
+    try {
+        const post = await Post.findById(postId)
+        if (!post) {
+            throw new Error("No such post!")
+        }
+        if (post.userId !== userId) {
+            throw new Error('Not authorized')
+        }
+        await Post.findByIdAndUpdate(postId, { hidden: true })
+        return res.status(200).json({ msg: "Post hidden!" })
+
     } catch (error) {
         return res.status(500).json(error.message)
     }

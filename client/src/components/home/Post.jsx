@@ -11,9 +11,10 @@ import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import UserAvatar from '../widget/UserAvatar';
 import { Avatar, Box, FormControl, Grid, Input, InputAdornment, List, ListItemText, Menu, MenuItem } from '@mui/material';
-import { MdOutlineInsertComment, MdTurnedInNot, MdOutlineFavoriteBorder } from "react-icons/md";
-import { BiSend } from "react-icons/bi";
+import { MdOutlineInsertComment, MdTurnedInNot, MdOutlineFavoriteBorder, MdDeleteOutline } from "react-icons/md";
+import { BiHide, BiSend } from "react-icons/bi";
 import { useTheme } from '@mui/material/styles';
+import { HiOutlinePencilSquare } from 'react-icons/hi2';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -99,9 +100,24 @@ export default function Post() {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>My account</MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem onClick={handleClose}>
+                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                    <HiOutlinePencilSquare style={{ fontSize: '15px' }} />
+                                    Update
+                                </Box>
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                    <BiHide style={{ fontSize: '15px' }} />
+                                    Hide
+                                </Box>
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>
+                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                    <MdDeleteOutline style={{ fontSize: '15px' }} />
+                                    Delete
+                                </Box>
+                            </MenuItem>
                         </Menu>
                     </>
                 }

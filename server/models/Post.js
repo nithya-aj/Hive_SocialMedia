@@ -18,6 +18,10 @@ const PostSchema = new mongoose.Schema({
     likes: {
         type: [String],
         default: []
+    },
+    hidden: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true })
 
