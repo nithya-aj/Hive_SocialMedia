@@ -37,6 +37,9 @@ function SharePost() {
     const handleCloseImage = () => {
         setSelectedImage(null);
         setPreviewImage('');
+        if (fileInputRef.current) {
+            fileInputRef.current.value = ''
+        }
     };
 
     return (
@@ -47,7 +50,7 @@ function SharePost() {
                         display: 'flex',
                         alignItems: 'center',
                         height: 'auto',
-                        maxHeight:'35rem',
+                        maxHeight: '35rem',
                         marginBottom: '1rem',
                         borderRadius: '10px',
                         backgroundSize: 'cover',
@@ -72,7 +75,7 @@ function SharePost() {
                         }}
                         onClick={handleCloseImage}
                     >
-                        <img src={close} alt="" /> 
+                        <img src={close} alt="" />
                     </IconButton>
                 </Box>
             )}
