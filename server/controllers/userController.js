@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 
 export const getAll = async (req, res) => {
     try {
-        const users = User.find({}).select("-password")
+        const users = await User.find({}).select("-password")
         return res.status(200).json(users)
     } catch (error) {
         return res.status(500).json(error.message)
@@ -47,6 +47,7 @@ export const updateUser = async (req, res) => {
 }
 
 export const deleteUser = async (req, res) => {
+    console.log("this is deleteUser function");
     if (req.params.id === req.user.id) {
         try {
             const user = await User.findById(req.params.id)

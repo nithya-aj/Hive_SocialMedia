@@ -1,7 +1,7 @@
 import User from '../models/User.js'
 import Post from '../models/Post.js'
-import mongoose from 'mongoose';
 
+// to fetch posts of a particular user
 export const getPost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
@@ -11,6 +11,7 @@ export const getPost = async (req, res) => {
     }
 }
 
+// to fetch all the posts which is not hidden
 export const getUserPosts = async (req, res) => {
     try {
         const userPosts = await Post.find({ userId: req.params.id, hidden: false })
@@ -20,6 +21,7 @@ export const getUserPosts = async (req, res) => {
     }
 }
 
+// to create a post
 export const createPost = async (req, res) => {
     try {
         const isEmpty = Object.values(req.body).some(v => v === '')
@@ -35,6 +37,7 @@ export const createPost = async (req, res) => {
     }
 }
 
+// to update a post
 export const updatePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
@@ -53,6 +56,7 @@ export const updatePost = async (req, res) => {
     }
 }
 
+// to delete a post
 export const deletePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
@@ -98,6 +102,7 @@ export const likePost = async (req, res) => {
     }
 }
 
+// to fetch timeline posts of user
 export const getTimelinePosts = async (req, res) => {
     try {
         const currentUser = await User.findById(req.user.id);
@@ -114,6 +119,7 @@ export const getTimelinePosts = async (req, res) => {
     }
 }
 
+// to hide a post
 export const hidePost = async (req, res) => {
     const postId = req.params.postId
     const userId = req.user.id
@@ -133,6 +139,7 @@ export const hidePost = async (req, res) => {
     }
 }
 
+// to unhide a post 
 export const unhidePost = async (req, res) => {
     const postId = req.params.postId
     const userId = req.user.id
@@ -175,6 +182,16 @@ export const bookmarkPost = async (req, res) => {
             )
             return res.status(200).json({ msg: "Post bookmarked!" })
         }
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
+}
+
+// to fetch all hidden posts
+export const getAllHiddenPosts = async (req, res) => {
+    try {
+        const hiddenPosts = await Post.find({ userId: req.params.id, hidden: true })
+        return res.json(hiddenPosts)
     } catch (error) {
         return res.status(500).json(error.message)
     }
