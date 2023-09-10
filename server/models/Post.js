@@ -16,9 +16,16 @@ const PostSchema = new mongoose.Schema({
         required: true
     },
     likes: {
-        type: [String],
-        default: []
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }],
+        default: ''
     },
+    bookmarkedBy: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     hidden: {
         type: Boolean,
         default: false

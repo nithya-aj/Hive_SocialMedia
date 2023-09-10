@@ -42,9 +42,9 @@ const Story = () => {
     const white = theme.palette.neutral.white
 
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3, pt: '1.5rem' }} style={{ overflowX: 'auto' }}  >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.3, pt: '1.5rem', pb:'5px' }} style={{ overflowX: 'auto' }}  >
             <Card sx={{ minWidth: { xs: 85, lg: 90 }, height: '8rem', display: 'flex', gap: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', backgroundColor: { sm: darkbg, xs: alt }, boxShadow: 'none' }}>
-                <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', backgroundColor: darkbg, color: textMain }}>
+                <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', backgroundColor: { sm: alt, xs: darkbg }, color: textMain }}>
                     <HiPlus />
                 </Avatar></Box>
                 <Typography variant='caption' sx={{ zIndex: '3', textAlign: 'center' }}>

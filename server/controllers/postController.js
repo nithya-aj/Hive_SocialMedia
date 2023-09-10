@@ -1,5 +1,6 @@
 import User from '../models/User.js'
 import Post from '../models/Post.js'
+import mongoose from 'mongoose';
 
 export const getPost = async (req, res) => {
     try {
@@ -69,29 +70,8 @@ export const deletePost = async (req, res) => {
     }
 }
 
+// to like and unlike a post
 export const likePost = async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.postId)
-        if (!post) {
-            throw new Error("No such post");
-        }
-        const isLikedByCurrUser = post.likes.includes(req.user.id)
-        if (isLikedByCurrUser) {
-            throw new Error("Can't like a post two times 🙂")
-        } else {
-            await Post.findByIdAndUpdate(
-                req.params.postId,
-                { $push: { likes: req.user.id } },
-                { new: true }
-            )
-            return res.status(200).json({ msg: "Post liked 🎉" })
-        }
-    } catch (error) {
-        return res.status(500).json(error.message)
-    }
-}
-
-export const dislikePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.postId)
         if (!post) {
@@ -103,10 +83,15 @@ export const dislikePost = async (req, res) => {
                 req.params.postId,
                 { $pull: { likes: req.user.id } },
                 { new: true }
-            )
-            return res.status(200).json({ msg: "Post unliked!" })
+            );
+            return res.status(200).json({ msg: "Post unliked!" });
         } else {
-            throw new Error("You can only dislike posts you've already liked!")
+            await Post.findByIdAndUpdate(
+                req.params.postId,
+                { $push: { likes: req.user.id } },
+                { new: true }
+            );
+            return res.status(200).json({ msg: "Post liked 🎉" });
         }
     } catch (error) {
         return res.status(500).json(error.message)
@@ -162,6 +147,34 @@ export const unhidePost = async (req, res) => {
         await Post.findByIdAndUpdate(postId, { hidden: false })
         return res.status(200).json({ msg: "Post unhidden!" })
 
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
+}
+
+// to bookmark post and remove bookmark 
+export const bookmarkPost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.postId)
+        if (!post) {
+            throw new Error("No such post!")
+        }
+        const isbookmarkedByCurrUser = post.bookmarkedBy.includes(req.user.id)
+        if (isbookmarkedByCurrUser) {
+            await Post.findByIdAndUpdate(
+                req.params.postId,
+                { $pull: { bookmarkedBy: req.user.id } },
+                { new: true }
+            )
+            return res.status(200).json({ msg: "Removed bookmark!" })
+        } else {
+            await Post.findByIdAndUpdate(
+                req.params.postId,
+                { $push: { bookmarkedBy: req.usre.id } },
+                { new: true }
+            )
+            return res.status(200).json({ msg: "Post bookmarked!" })
+        }
     } catch (error) {
         return res.status(500).json(error.message)
     }

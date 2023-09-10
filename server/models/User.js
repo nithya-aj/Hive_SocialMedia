@@ -53,7 +53,15 @@ const UserSchema = new mongoose.Schema({
     followings: {
         type: [String],
         default: []
-    }
+    },
+    bookmarks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    }],
+    likedPosts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    }]
 }, { timestamps: true })
 
 export default mongoose.model("user", UserSchema)
