@@ -70,7 +70,7 @@ const FriendsReq = () => {
                         }}>
                             <Typography sx={{ fontSize: '0.75rem', color: medium }}>Alex</Typography>
                             <Typography variant="caption" noWrap sx={{ color: medium }} >
-                                0 muthal friends
+                                10 muthal friends
                             </Typography>
                         </Box>
                     </Box>
@@ -95,7 +95,7 @@ const FriendsReq = () => {
                             textOverflow: 'ellipsis',
                             color: medium
                         }}>
-                            <Typography sx={{ fontSize: '0.75rem', color: medium }}>Alex</Typography>
+                            <Typography sx={{ fontSize: '0.75rem', color: medium }}>Sreya</Typography>
                             <Typography variant="caption" noWrap sx={{ color: medium }} >
                                 3 muthal friends
                             </Typography>
