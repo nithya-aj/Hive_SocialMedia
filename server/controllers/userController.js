@@ -1,6 +1,7 @@
 import User from '../models/User.js'
 import bcrypt from 'bcrypt'
 
+// fetching all registered users
 export const getAll = async (req, res) => {
     try {
         const users = await User.find({}).select("-password")
@@ -9,7 +10,7 @@ export const getAll = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
-
+// get a particular user
 export const getUser = async (req, res) => {
     try {
 
@@ -24,7 +25,7 @@ export const getUser = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
-
+// update a user
 export const updateUser = async (req, res) => {
     if (req.params.id === req.user.id) {
         try {
@@ -45,7 +46,7 @@ export const updateUser = async (req, res) => {
         return res.status(403).json({ msg: "Only the owner is allowed to do that" })
     }
 }
-
+// delete user
 export const deleteUser = async (req, res) => {
     if (req.params.id === req.user.id) {
         try {
@@ -62,7 +63,7 @@ export const deleteUser = async (req, res) => {
         res.status(403).send('Only the owner is allowed to do that')
     }
 }
-
+// fetching user following profiles
 export const getUserFriends = async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
@@ -79,7 +80,7 @@ export const getUserFriends = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
-
+// follow user
 export const followUser = async (req, res) => {
     if (req.params.id !== req.user.id) {
         try {
@@ -109,7 +110,7 @@ export const followUser = async (req, res) => {
         return res.status(500).json({ msg: "You cannot follow yourself." })
     }
 }
-
+// unfollow user
 export const unfollowUser = async (req, res) => {
     if (req.params.id !== req.user.id) {
         try {

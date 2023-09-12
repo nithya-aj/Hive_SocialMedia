@@ -1,5 +1,6 @@
 import Comment from '../models/Comment.js'
 
+// fetching comments from particular posts
 export const getCommentsFromPost = async (req, res) => {
     try {
         const comments = await Comment.find({ postId: req.params.postId })
@@ -8,7 +9,7 @@ export const getCommentsFromPost = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
-
+// creating comments
 export const createComment = async (req, res) => {
     try {
         const createdComment = await Comment.create({ ...req.body, userId: req.user.id })
@@ -17,7 +18,7 @@ export const createComment = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
-
+// delete comment
 export const deleteComment = async (req, res) => {
     try {
         const comment = await Comment.findById(req.params.commentId)
@@ -30,7 +31,7 @@ export const deleteComment = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
-
+// like and dislike comment
 export const likeComment = async (req, res) => {
     try {
         const currentUserId = req.user.id

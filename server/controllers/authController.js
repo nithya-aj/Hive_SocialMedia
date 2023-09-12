@@ -2,6 +2,7 @@ import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
+// register new user
 export const register = async (req, res) => {
     try {
         // checking if the fields are empty
@@ -29,6 +30,7 @@ export const register = async (req, res) => {
     }
 }
 
+// login user
 export const login = async (req, res) => {
     try {
 
