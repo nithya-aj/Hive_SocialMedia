@@ -210,10 +210,8 @@ export const getAllHiddenPosts = async (req, res) => {
 
 // fetching all the posts liked by user
 export const getUserLikedPosts = async (req, res) => {
-    console.log('getUserLikedPosts...🚀');
     try {
         const user = await User.findById(req.params.userId).populate('likedPosts').exec()
-        console.log(`user...🚀`, user);
         if (!user) {
             return res.status(404).json({ msg: 'User not found!' })
         }
@@ -221,7 +219,6 @@ export const getUserLikedPosts = async (req, res) => {
         if (!user.likedPosts || user.likedPosts.length === 0) {
             return res.status(404).json({ msg: 'Liked posts not found for this user.' });
         }
-        console.log(`${likedPosts}`, 'likedPosts...🎉');
         return res.status(200).json(likedPosts)
     } catch (error) {
         return res.status(500).json(error.message)
