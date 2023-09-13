@@ -1,4 +1,5 @@
 import User from '../models/User.js'
+import Post from '../models/Post.js'
 import bcrypt from 'bcrypt'
 
 // fetching all registered users
