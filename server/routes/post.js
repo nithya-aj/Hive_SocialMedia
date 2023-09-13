@@ -7,7 +7,7 @@ const postRouter = express.Router()
 postRouter.get("/find/:id", getPost)
 postRouter.get("/find/user-posts/:id", getUserPosts)
 postRouter.get("/timeline", getTimelinePosts)
-postRouter.get("/find/user-liked-posts/:userId", getUserLikedPosts)
+postRouter.get("/users/:userId/liked-posts", getUserLikedPosts)
 
 postRouter.post("/", verifyToken, createPost)
 

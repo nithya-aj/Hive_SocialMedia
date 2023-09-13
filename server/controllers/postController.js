@@ -210,13 +210,7 @@ export const getAllHiddenPosts = async (req, res) => {
 // fetching all the posts liked by user
 export const getUserLikedPosts = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).populate({
-            path: 'likedPosts',
-            populate: {
-                path: 'likes',
-                model: 'User'
-            }
-        })
+        const user = await User.findById(req.params.userId).populate('likedPosts')
         if (!user) {
             return res.status(404).json({ msg: 'User not found!' })
         }
