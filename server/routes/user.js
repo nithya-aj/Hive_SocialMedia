@@ -1,4 +1,4 @@
-import { getUser, getAll, updateUser, deleteUser, getUserFriends, followUser, unfollowUser, getBookmarkedPosts, getLikedPosts } from '../controllers/userController.js'
+import { getUser, getAll, updateUser, deleteUser, getUserFriends, followUser, unfollowUser, getBookmarkedPosts } from '../controllers/userController.js'
 import express from 'express'
 import { verifyToken } from '../middlewares/auth.js'
 const userRouter = express.Router()
@@ -7,7 +7,6 @@ userRouter.get('/find-all', getAll)
 userRouter.get('/find/:id', getUser)
 userRouter.get('/find/friends/:id', getUserFriends)
 userRouter.get('/bookmarks', verifyToken, getBookmarkedPosts)
-userRouter.get('/likes', verifyToken, getLikedPosts)
 
 userRouter.put('/update/:id', verifyToken, updateUser)
 userRouter.put('/follow/:id', verifyToken, followUser)

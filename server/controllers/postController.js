@@ -88,6 +88,11 @@ export const likePost = async (req, res) => {
                 { $pull: { likes: req.user.id } },
                 { new: true }
             );
+            await User.findByIdAndUpdate(
+                req.user.id,
+                { $pull: { likedPosts: post._id } },
+                { new: true }
+            )
             return res.status(200).json({ msg: "Post unliked!" });
         } else {
             await Post.findByIdAndUpdate(
@@ -95,6 +100,11 @@ export const likePost = async (req, res) => {
                 { $push: { likes: req.user.id } },
                 { new: true }
             );
+            await User.findByIdAndUpdate(
+                req.user.id,
+                { $push: { likedPosts: post._id } },
+                { new: true }
+            )
             return res.status(200).json({ msg: "Post liked 🎉" });
         }
     } catch (error) {
@@ -192,6 +202,26 @@ export const getAllHiddenPosts = async (req, res) => {
     try {
         const hiddenPosts = await Post.find({ userId: req.params.id, hidden: true })
         return res.json(hiddenPosts)
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
+}
+
+// fetching all the posts liked by user
+export const getUserLikedPosts = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).populate({
+            path: 'likedPosts',
+            populate: {
+                path: 'likes',
+                model: 'User'
+            }
+        })
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found!' })
+        }
+        const likedPosts = user.likedPosts.filter(postId => mongoose.Types.ObjectId.isValid(postId))
+        return res.status(200).json(likedPosts)
     } catch (error) {
         return res.status(500).json(error.message)
     }

@@ -141,20 +141,6 @@ export const unfollowUser = async (req, res) => {
     }
 }
 
-// fetching all the posts liked by user
-export const getLikedPosts = async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id).populate('likedPosts')
-        if (!user) {
-            return res.status(404).json({ msg: 'User not found!' })
-        }
-        const likedPosts = user.likedPosts.filter(postId => mongoose.Types.ObjectId.isValid(postId))
-        return res.status(200).json(likedPosts)
-    } catch (error) {
-        return res.status(500).json(error.message)
-    }
-}
-
 // fetching all the bookmarked posts
 export const getBookmarkedPosts = async (req, res) => {
     try {
