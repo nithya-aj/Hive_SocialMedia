@@ -188,7 +188,7 @@ export const bookmarkPost = async (req, res) => {
         } else {
             await Post.findByIdAndUpdate(
                 req.params.postId,
-                { $push: { bookmarkedBy: req.usre.id } },
+                { $push: { bookmarkedBy: req.user.id } },
                 { new: true }
             )
             return res.status(200).json({ msg: "Post bookmarked!" })
@@ -227,5 +227,9 @@ export const getUserLikedPosts = async (req, res) => {
 
 // fetching all bookmarked posts
 export const getAllBookmarkedPosts = async (req, res) => {
-    
+    try {
+
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
 }

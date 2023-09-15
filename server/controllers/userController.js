@@ -141,18 +141,3 @@ export const unfollowUser = async (req, res) => {
         return res.status(500).json({ msg: "You cannot follow or unfollow yourself." })
     }
 }
-
-// fetching all the bookmarked posts
-export const getBookmarkedPosts = async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id).populate('bookmarks');
-        if (!user) {
-            return res.status(404).json({ msg: 'User not found' });
-        }
-        const bookmarkedPosts = user.bookmarksfilter(postId => mongoose.Types.ObjectId.isValid(postId));
-        return res.status(200).json(bookmarkedPosts);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json(error.message)
-    }
-}
