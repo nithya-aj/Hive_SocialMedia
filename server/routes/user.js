@@ -6,7 +6,6 @@ const userRouter = express.Router()
 userRouter.get('/find-all', getAll)
 userRouter.get('/find/:id', getUser)
 userRouter.get('/find/friends/:id', getUserFriends)
-userRouter.get('/bookmarks', verifyToken, getBookmarkedPosts)
 
 userRouter.put('/update/:id', verifyToken, updateUser)
 userRouter.put('/follow/:id', verifyToken, followUser)
