@@ -8,7 +8,7 @@ postRouter.get("/find/:id", getPost)
 postRouter.get("/find/user-posts/:id", getUserPosts)
 postRouter.get("/timeline", getTimelinePosts)
 postRouter.get("/users/:userId/liked-posts", getUserLikedPosts)
-postRouter.get("/users/:id/bookmarked-posts", getAllBookmarkedPosts)
+postRouter.get("/users/:userId/bookmarked-posts", getAllBookmarkedPosts)
 
 postRouter.post("/", verifyToken, createPost)
 

@@ -184,11 +184,21 @@ export const bookmarkPost = async (req, res) => {
                 { $pull: { bookmarkedBy: req.user.id } },
                 { new: true }
             )
+            await User.findByIdAndUpdate(
+                req.user.id,
+                { $pull: { bookmarks: post._id } },
+                { new: true }
+            )
             return res.status(200).json({ msg: "Removed bookmark!" })
         } else {
             await Post.findByIdAndUpdate(
                 req.params.postId,
                 { $push: { bookmarkedBy: req.user.id } },
+                { new: true }
+            )
+            await User.findByIdAndUpdate(
+                req.user.id,
+                { $push: { bookmarks: post._id } },
                 { new: true }
             )
             return res.status(200).json({ msg: "Post bookmarked!" })
@@ -217,7 +227,7 @@ export const getUserLikedPosts = async (req, res) => {
         }
         const likedPosts = user.likedPosts.filter(postId => mongoose.Types.ObjectId.isValid(postId))
         if (!user.likedPosts || user.likedPosts.length === 0) {
-            return res.status(404).json({ msg: 'Liked posts not found for this user.' });
+            return res.status(404).json({ msg: 'You liked no posts!' });
         }
         return res.status(200).json(likedPosts)
     } catch (error) {
@@ -228,7 +238,15 @@ export const getUserLikedPosts = async (req, res) => {
 // fetching all bookmarked posts
 export const getAllBookmarkedPosts = async (req, res) => {
     try {
-
+        const user = await User.findById(req.params.userId).populate('bookmarks').exec()
+        if (!user) {
+            return res.status(404).json({ msg: "User not found!" })
+        }
+        const bookmarkedPosts = user.bookmarks.filter(postId => mongoose.Types.ObjectId.isValid(postId))
+        if (!user.bookmarks || user.bookmarks.length === 0) {
+            return res.status(404).json({ msg: "There are no bookmarks yet!" })
+        }
+        return res.status(200).json(bookmarkedPosts)
     } catch (error) {
         return res.status(500).json(error.message)
     }

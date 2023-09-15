@@ -22,8 +22,10 @@ const PostSchema = new mongoose.Schema({
         }]
     },
     bookmarkedBy: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     }],
     hidden: {
         type: Boolean,
