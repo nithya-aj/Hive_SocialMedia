@@ -126,7 +126,8 @@ export const getTimelinePosts = async (req, res) => {
         const allPosts = userPosts.concat(...friendPosts).sort((a, b) => b.createdAt - a.createdAt)
         return res.json(allPosts)
     } catch (error) {
-        return res.status(500).json(error.message)
+        console.error('Error fetching timeline posts:', error)
+        return res.status(500).json({ error: 'Error fetching timeline posts' })
     }
 }
 
