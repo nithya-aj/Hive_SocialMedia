@@ -9,6 +9,7 @@ export const getCommentsFromPost = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
+
 // creating comments
 export const createComment = async (req, res) => {
     try {
@@ -18,12 +19,14 @@ export const createComment = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
+
 // delete comment
 export const deleteComment = async (req, res) => {
     try {
         const comment = await Comment.findById(req.params.commentId)
         if (comment.userId === req.user.id) {
             await comment.deleteOne()
+            return res.status(200).json({ msg: "Comment deleted!" })
         } else {
             return res.send('You are not authorized to perform this action')
         }
@@ -31,6 +34,7 @@ export const deleteComment = async (req, res) => {
         return res.status(500).json(error.message)
     }
 }
+
 // like and dislike comment
 export const likeComment = async (req, res) => {
     try {
