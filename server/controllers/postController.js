@@ -209,13 +209,22 @@ export const bookmarkPost = async (req, res) => {
     }
 }
 
-// to fetch all hidden posts
+// fetching all hidden posts
 export const getAllHiddenPosts = async (req, res) => {
     try {
+        // check for valid input
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({ message: 'Invalid user ID.' });
+        }
+        const userExists = await User.exists({ _id: req.params.id });
+        if (!userExists) {
+            return res.status(404).json({ message: 'User not found.' });
+        }
         const hiddenPosts = await Post.find({ userId: req.params.id, hidden: true })
         return res.json(hiddenPosts)
     } catch (error) {
-        return res.status(500).json(error.message)
+        console.error(error.message);
+        return res.status(500).json({ message: 'An error occurred while fetching hidden posts.' })
     }
 }
 
