@@ -58,7 +58,7 @@ function RightBar() {
                         <Typography variant='subtitle2' sx={{ fontSize: '8px', color: fontSm }}>2 min</Typography>
                         <Badge badgeContent={34} size="small"
                             sx={{
-                                ".css-1c5f416-MuiBadge-badge": {
+                                ".css-1eiit96-MuiBadge-badge": {
                                     minWidth: '20px',
                                     padding: '0 4px',
                                     height: '12px',
