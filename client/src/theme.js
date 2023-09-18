@@ -29,17 +29,12 @@ export const colorTokens = {
         1000: "#EF7706",
     },
     purple: {
-        50: "#C6CCFA",
-        100: "#B4BCF8",
-        200: "#A2ACF6",
-        300: "#909BF4",
-        400: "#7D8BF2",
-        500: "#6A7AF0",
-        600: "#5869EE",
-        700: "#4559ED",
-        800: "#3348EB",
-        900: "#2038E9",
-        1000: "#162DDF",
+        100: "#AC70FF",
+        200: "#A05CFF",
+        300: "#9951ff",
+        400: "#9447FF",
+        500: "#8833FF",
+        600: "#7C1FFF"
     },
     red: {
         500: '#EF2726'
@@ -86,7 +81,7 @@ export const themeSettings = (mode) => {
                         light: colorTokens.grey[200],
                         mediumLight: colorTokens.grey[700],
                         fontSm: colorTokens.grey[400],
-                        purple: colorTokens.purple[500],
+                        purple: colorTokens.purple[200],
                         mediumpurple: colorTokens.purple[600],
                         darkpurple: colorTokens.purple[400],
                         orange: colorTokens.orange[900],
