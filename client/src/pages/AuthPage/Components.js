@@ -37,6 +37,7 @@ ${props => (props.signinIn !== true ? `transform: translateX(100%); opacity:0;` 
 
 export const Form = styled.form`
 display: flex;
+gap:1rem;
 align-items: center;
 justify-content: center;
 flex-direction: column;
@@ -56,11 +57,11 @@ export const Input = styled.input`
     color: #fff;
   }
 outline: none;
+border-radius: 8px;
       border: none;
       border: 1px solid rgba(255, 255, 255, 0.2);
       background: rgba(255, 255, 255, 0.2);
 padding: 12px 15px;
-margin: 8px 0;
 width: 100%;
 color: #fff;
 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -68,9 +69,61 @@ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 
 
 export const Button = styled.button`
-   border-radius: 20px;
-   border: 1px solid #ff4b2b;
-   background-color: #ff4b2b;
+--color: #f98115;
+background: #fff;
+font-family: inherit;
+display: inline-block;
+font-size: 12px;
+   font-weight: bold;
+   padding: 12px 39px;
+   letter-spacing: 1px;
+   text-transform: uppercase;
+   transition: transform 80ms ease-in;
+position: relative;
+overflow: hidden;
+border: 2px solid var(--color);
+transition: color .5s;
+z-index: 1;
+border-radius: 8px;
+color: var(--color);
+cursor:pointer;
+:before{
+    content: "";
+ position: absolute;
+ z-index: -1;
+ background: var(--color);
+ height: 150px;
+ width: 200px;
+ border-radius: 50%;
+}
+:hover{
+    color: #fff;
+}
+:before{
+    top: 100%;
+ left: 100%;
+ transition: all .7s;
+}
+:hover:before{
+    top: -30px;
+ left: -30px;
+}
+:active:before{
+    background: #f98110;
+    transition: background 0s; 
+}
+&:active{
+    transform: scale(0.95);
+}
+&:focus {
+    outline: none;
+}
+`;
+export const GhostButton = styled.button`
+cursor:pointer;
+background-color: transparent;
+border-color: #ffffff;
+border-radius: 8px;
    color: #ffffff;
    font-size: 12px;
    font-weight: bold;
@@ -84,10 +137,6 @@ export const Button = styled.button`
    &:focus {
        outline: none;
    }
-`;
-export const GhostButton = styled(Button)`
-background-color: transparent;
-border-color: #ffffff;
 `;
 
 export const Anchor = styled.a`

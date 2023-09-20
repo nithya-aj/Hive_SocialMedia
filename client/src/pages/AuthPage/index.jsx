@@ -1,9 +1,7 @@
-import { useTheme } from '@emotion/react';
-import React, { useState } from 'react'
-import register from 'assets/register.png'
+import React from 'react'
 import logo from 'assets/logo3.png'
 import './style.css'
-import { Box, Button, Input, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import * as Components from './Components'
 
 const AuthPage = () => {
