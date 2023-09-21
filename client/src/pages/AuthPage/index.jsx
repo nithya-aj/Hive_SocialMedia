@@ -1,11 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from 'assets/logo3.png'
 import './style.css'
 import { Box } from '@mui/material';
 import * as Components from './Components'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { request } from 'util/request';
 
 const AuthPage = () => {
-    const [signIn, toggle] = React.useState(true)
+    const [signIn, toggle] = React.useState(false)
+    const [isRegister, setIsRegister] = useState("")
+    const [name, setName] = useState("")
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState(false)
+    // const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            if (signIn === false) {
+                if (username === '' || name === '' || email === '' || password === '') {
+                    setError("Fill all fields!")
+                    setTimeout(() => {
+                        setError(false)
+                    }, 2500)
+                }
+                const headers = {
+                    'Content-Type': 'application/json'
+                }
+                const body = {
+                    username, name, email, password
+                }
+                const data = await request('/auth/login', 'POST', headers, body)
+            }else{
+                
+            }
+        } catch (error) {
+            console.error(error)
+        }
+        console.log('yeah, got it...');
+    }
+
     return (
         <Box sx={{
             background: 'linear-gradient(0deg, #2b2f77 0%, #141852 50%, #070b34 100%)',
@@ -18,8 +56,8 @@ const AuthPage = () => {
             position: 'relative',
             color: 'white'
         }} >
-            <div class="area" >
-                <ul class="circles">
+            <div className="area" >
+                <ul className="circles">
                     <img src={logo} alt="" />
                     <img src={logo} alt="" />
                     <img src={logo} alt="" />
@@ -49,11 +87,15 @@ const AuthPage = () => {
             }} >
                 <Components.Container>
                     <Components.SignUpContainer signinIn={signIn}>
-                        <Components.Form>
+                        <Components.Form component="form" onSubmit={handleSubmit} >
                             <Components.Title>Create Account</Components.Title>
-                            <Components.Input type='text' placeholder='Name' />
-                            <Components.Input type='email' placeholder='Email' />
-                            <Components.Input type='password' placeholder='Password' />
+                            <Components.Input type='text' placeholder='Name' onChange={(e) => setUsername(e.target.value)} />
+                            <Components.Input type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)} />
+                            <Components.Input type='email' placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
+                            <Components.Input type='password' placeholder='Password' onChange={(e) => setUsername(e.target.value)} />
+                            {error &&
+                                <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>
+                            }
                             <Components.Button>Sign Up</Components.Button>
                         </Components.Form>
                     </Components.SignUpContainer>
@@ -64,7 +106,7 @@ const AuthPage = () => {
                             <Components.Input type='email' placeholder='Email' />
                             <Components.Input type='password' placeholder='Password' />
                             <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                            <Components.Button>Sigin In</Components.Button>
+                            <Components.Button>Sign In</Components.Button>
                         </Components.Form>
                     </Components.SignInContainer>
 
@@ -72,9 +114,9 @@ const AuthPage = () => {
                         <Components.Overlay signinIn={signIn}>
 
                             <Components.LeftOverlayPanel signinIn={signIn}>
-                                <Components.Title>Welcome Back!</Components.Title>
+                                <Components.Title>Hello, Friend!</Components.Title>
                                 <Components.Paragraph>
-                                    To keep connected with us please login with your personal info
+                                    Enter Your personal details and start journey with us
                                 </Components.Paragraph>
                                 <Components.GhostButton onClick={() => toggle(true)}>
                                     Sign In
@@ -82,12 +124,12 @@ const AuthPage = () => {
                             </Components.LeftOverlayPanel>
 
                             <Components.RightOverlayPanel signinIn={signIn}>
-                                <Components.Title>Hello, Friend!</Components.Title>
+                                <Components.Title>Welcome Back!</Components.Title>
                                 <Components.Paragraph>
-                                    Enter Your personal details and start journey with us
+                                    To keep connected with us please login with your personal info
                                 </Components.Paragraph>
                                 <Components.GhostButton onClick={() => toggle(false)}>
-                                    Sigin Up
+                                    Sign Up
                                 </Components.GhostButton>
                             </Components.RightOverlayPanel>
 
@@ -95,15 +137,6 @@ const AuthPage = () => {
                     </Components.OverlayContainer>
 
                 </Components.Container>
-
-
-
-
-
-
-
-
-
             </Box>
         </Box >
     )
