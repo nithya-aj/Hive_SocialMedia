@@ -9,7 +9,6 @@ import { request } from 'util/request';
 
 const AuthPage = () => {
     const [signIn, toggle] = React.useState(false)
-    const [isRegister, setIsRegister] = useState("")
     const [name, setName] = useState("")
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -27,6 +26,7 @@ const AuthPage = () => {
                     setTimeout(() => {
                         setError(false)
                     }, 2500)
+                    return
                 }
                 const headers = {
                     'Content-Type': 'application/json'
@@ -34,9 +34,25 @@ const AuthPage = () => {
                 const body = {
                     username, name, email, password
                 }
+                const data = await request('/auth/register', 'POST', headers, body)
+                console.log(data, '---------------------vvv-----------------------');
+                navigate('/')
+            } else {
+                if (email === '' || password === '') {
+                    setError("Fill all fields!")
+                    setTimeout(() => {
+                        setError(false)
+                    }, 2500)
+                    return
+                }
+                const headers = {
+                    'Content-Type': 'application/json'
+                }
+                const body = {
+                    email, password
+                }
                 const data = await request('/auth/login', 'POST', headers, body)
-            }else{
-                
+                navigate('/')
             }
         } catch (error) {
             console.error(error)
@@ -89,24 +105,24 @@ const AuthPage = () => {
                     <Components.SignUpContainer signinIn={signIn}>
                         <Components.Form component="form" onSubmit={handleSubmit} >
                             <Components.Title>Create Account</Components.Title>
-                            <Components.Input type='text' placeholder='Name' onChange={(e) => setUsername(e.target.value)} />
+                            <Components.Input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} />
                             <Components.Input type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)} />
-                            <Components.Input type='email' placeholder='Email' onChange={(e) => setUsername(e.target.value)} />
-                            <Components.Input type='password' placeholder='Password' onChange={(e) => setUsername(e.target.value)} />
+                            <Components.Input type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
+                            <Components.Input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
                             {error &&
                                 <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>
                             }
-                            <Components.Button>Sign Up</Components.Button>
+                            <Components.Button component='button' type='submit' >Sign Up</Components.Button>
                         </Components.Form>
                     </Components.SignUpContainer>
 
                     <Components.SignInContainer signinIn={signIn}>
-                        <Components.Form>
+                        <Components.Form component="form" onSubmit={handleSubmit}>
                             <Components.Title>Sign in</Components.Title>
-                            <Components.Input type='email' placeholder='Email' />
-                            <Components.Input type='password' placeholder='Password' />
+                            <Components.Input type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
+                            <Components.Input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
                             <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                            <Components.Button>Sign In</Components.Button>
+                            <Components.Button component='button' type='submit'>Sign In</Components.Button>
                         </Components.Form>
                     </Components.SignInContainer>
 
