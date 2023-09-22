@@ -5,8 +5,8 @@ import { Box } from '@mui/material';
 import * as Components from './Components'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { request } from 'util/request';
 import { setLogin, setRegister } from 'state';
+import api from 'api';
 
 const AuthPage = () => {
     const [signIn, toggle] = React.useState(false)
@@ -29,14 +29,11 @@ const AuthPage = () => {
                     }, 2500)
                     return
                 }
-                const headers = {
-                    'Content-Type': 'application/json'
-                }
                 const body = {
                     username, name, email, password
                 }
-                const data = await request('/auth/register', 'POST', headers, body)
-                dispatch(setRegister(data))
+                const response = await api.post("/auth/register", body)
+                dispatch(setRegister(response))
                 navigate('/')
             } else {
                 if (email === '' || password === '') {
@@ -46,20 +43,16 @@ const AuthPage = () => {
                     }, 2500)
                     return
                 }
-                const headers = {
-                    'Content-Type': 'application/json'
-                }
                 const body = {
                     email, password
                 }
-                const data = await request('/auth/login', 'POST', headers, body)
-                dispatch(setLogin(data))
+                const response = await api.post('/auth/login', body)
+                dispatch(setLogin(response))
                 navigate('/')
             }
         } catch (error) {
             console.error(error)
         }
-        console.log('yeah, got it...');
     }
 
     return (
@@ -105,7 +98,7 @@ const AuthPage = () => {
             }} >
                 <Components.Container>
                     <Components.SignUpContainer signinIn={signIn}>
-                        <Components.Form component="form" onSubmit={handleSubmit} >
+                        <Components.Form onSubmit={handleSubmit}>
                             <Components.Title>Create Account</Components.Title>
                             <Components.Input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} />
                             <Components.Input type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)} />
@@ -114,17 +107,17 @@ const AuthPage = () => {
                             {error &&
                                 <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>
                             }
-                            <Components.Button component='button' type='submit' >Sign Up</Components.Button>
+                            <Components.Button type='submit' >Sign Up</Components.Button>
                         </Components.Form>
                     </Components.SignUpContainer>
 
                     <Components.SignInContainer signinIn={signIn}>
-                        <Components.Form component="form" onSubmit={handleSubmit}>
+                        <Components.Form onSubmit={handleSubmit}>
                             <Components.Title>Sign in</Components.Title>
                             <Components.Input type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
                             <Components.Input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
                             <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-                            <Components.Button component='button' type='submit'>Sign In</Components.Button>
+                            <Components.Button type='submit'>Sign In</Components.Button>
                         </Components.Form>
                     </Components.SignInContainer>
 
