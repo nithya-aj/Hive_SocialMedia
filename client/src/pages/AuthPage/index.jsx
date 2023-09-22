@@ -6,6 +6,7 @@ import * as Components from './Components'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { request } from 'util/request';
+import { setLogin, setRegister } from 'state';
 
 const AuthPage = () => {
     const [signIn, toggle] = React.useState(false)
@@ -14,7 +15,7 @@ const AuthPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -35,6 +36,7 @@ const AuthPage = () => {
                     username, name, email, password
                 }
                 const data = await request('/auth/register', 'POST', headers, body)
+                dispatch(setRegister(data))
                 navigate('/')
             } else {
                 if (email === '' || password === '') {
@@ -51,6 +53,7 @@ const AuthPage = () => {
                     email, password
                 }
                 const data = await request('/auth/login', 'POST', headers, body)
+                dispatch(setLogin(data))
                 navigate('/')
             }
         } catch (error) {
