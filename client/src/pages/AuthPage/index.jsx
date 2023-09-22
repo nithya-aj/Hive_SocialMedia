@@ -35,7 +35,6 @@ const AuthPage = () => {
                     username, name, email, password
                 }
                 const data = await request('/auth/register', 'POST', headers, body)
-                console.log(data, '---------------------vvv-----------------------');
                 navigate('/')
             } else {
                 if (email === '' || password === '') {
