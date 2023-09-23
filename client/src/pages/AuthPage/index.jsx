@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setLogin, setRegister } from 'state';
 import api from 'api';
-import { IoLogoGoogleplus } from 'react-icons/io';
+import SocialsIcons from 'components/auth/SocialsIcons';
 
 const AuthPage = () => {
     const [signIn, toggle] = React.useState(false)
@@ -101,16 +101,7 @@ const AuthPage = () => {
                     <Components.SignUpContainer signinIn={signIn}>
                         <Components.Form onSubmit={handleSubmit}>
                             <Components.Title>Create Account</Components.Title>
-                            <div style={{display:'flex', alignItems:'center', justifyContent:'space-around', width:'100%'}}>
-                                <div className="share google" >
-                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }} >
-                                        <IoLogoGoogleplus style={{
-                                            fontSize: '1.5rem',
-                                        }} />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='divider'><span></span><span>Or</span><span></span></div>
+                            <SocialsIcons />
                             <Components.Input type='text' placeholder='Name' onChange={(e) => setName(e.target.value)} />
                             <Components.Input type='text' placeholder='Username' onChange={(e) => setUsername(e.target.value)} />
                             <Components.Input type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
@@ -125,6 +116,7 @@ const AuthPage = () => {
                     <Components.SignInContainer signinIn={signIn}>
                         <Components.Form onSubmit={handleSubmit}>
                             <Components.Title>Sign in</Components.Title>
+                            <SocialsIcons />
                             <Components.Input type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
                             <Components.Input type='password' placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
                             <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
@@ -134,7 +126,6 @@ const AuthPage = () => {
 
                     <Components.OverlayContainer signinIn={signIn}>
                         <Components.Overlay signinIn={signIn}>
-
                             <Components.LeftOverlayPanel signinIn={signIn}>
                                 <Components.Title>Welcome Back!</Components.Title>
                                 <Components.Paragraph>
@@ -154,7 +145,6 @@ const AuthPage = () => {
                                     Sign Up
                                 </Components.GhostButton>
                             </Components.RightOverlayPanel>
-
                         </Components.Overlay>
                     </Components.OverlayContainer>
 

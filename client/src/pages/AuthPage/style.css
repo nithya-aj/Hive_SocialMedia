@@ -176,7 +176,25 @@
 
     &:hover,
     &:focus {
-        color: #dd4b39;
-        box-shadow: 0 0 24px 0 #dd4b39;
+        color: #ff3e25;
+        box-shadow: 0 0 24px 0 #ff3e25;
+    }
+}
+
+.apple {
+
+    &:hover,
+    &:focus {
+        color: #EAC117;
+        box-shadow: 0 0 24px 0 #EAC117;
+    }
+}
+
+.facebook {
+
+    &:hover,
+    &:focus {
+        color: #00aced;
+        box-shadow: 0 0 24px 0 #00aced;
     }
 }
