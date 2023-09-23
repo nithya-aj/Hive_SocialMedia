@@ -70,19 +70,12 @@ const AuthPage = () => {
         }} >
             <div className="area" >
                 <ul className="circles">
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
-                    <img src={logo} alt="" />
+                    {Array(10).fill().map(() => (
+                        <img src={logo} alt="" />
+                    ))}
                 </ul>
             </div >
-            {/* register/signup styles */}
+            {/* register and signup styles */}
             <Box sx={{
                 width: '60%',
                 height: '80%',

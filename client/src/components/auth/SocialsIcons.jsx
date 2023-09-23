@@ -1,8 +1,8 @@
 import React from 'react'
 import { BsApple } from 'react-icons/bs'
 import { GrFacebookOption } from 'react-icons/gr'
-import { IoLogoGoogleplus } from 'react-icons/io'
 import '../../pages/AuthPage/style.css'
+import { AiOutlineGoogle } from 'react-icons/ai'
 
 const SocialsIcons = () => {
     return (
@@ -10,7 +10,7 @@ const SocialsIcons = () => {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly', width: '100%' }}>
                 <div className="share google" >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }} >
-                        <IoLogoGoogleplus style={{
+                        <AiOutlineGoogle style={{
                             fontSize: '1.5rem',
                         }} />
                     </div>

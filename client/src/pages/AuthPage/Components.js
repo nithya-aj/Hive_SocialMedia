@@ -57,7 +57,7 @@ export const Input = styled.input`
     color: #fff;
   }
 outline: none;
-border-radius: 8px;
+border-radius: 4px;
       border: none;
       border: 1px solid rgba(255, 255, 255, 0.2);
       background: rgba(255, 255, 255, 0.2);
@@ -84,7 +84,7 @@ overflow: hidden;
 border: 2px solid var(--color);
 transition: color .5s;
 z-index: 1;
-border-radius: 8px;
+border-radius: 4px;
 color: var(--color);
 cursor:pointer;
 :before{
@@ -123,7 +123,7 @@ export const GhostButton = styled.button`
 cursor:pointer;
 background-color: transparent;
 border-color: #ffffff;
-border-radius: 8px;
+border-radius: 4px;
    color: #ffffff;
    font-size: 12px;
    font-weight: bold;
