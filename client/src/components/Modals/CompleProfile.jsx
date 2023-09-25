@@ -14,6 +14,7 @@ const CompleProfile = ({ open, handleClose }) => {
     const orange = theme.palette.neutral.orange
     const purple = theme.palette.neutral.purple
     const mediumpurple = theme.palette.neutral.mediumpurple
+    const medium = theme.palette.neutral.medium
 
     const style = {
         position: 'absolute',
@@ -44,8 +45,8 @@ const CompleProfile = ({ open, handleClose }) => {
                     </IconButton>
                 </FlexBetween>
                 <Divider sx={{ color: fontSm }} />
-                <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 1, height: '100%' }}>
-                    <Box sx={{ borderRadius: '10px 10px 0px 0px', height: '20%', bgcolor: alt, display: 'flex', justifyContent: 'flex-end', p: 1 }}>
+                <Box component={'form'} sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 1, height: '100%' }}>
+                    <Box sx={{ borderRadius: '10px 10px 0px 0px', height: '20%', bgcolor: alt, display: 'flex', justifyContent: 'flex-end', p: 1, mb: '2rem' }}>
                         <Box sx={{ height: "5.5rem", width: '5.5rem', position: 'absolute', top: '7rem', left: '2rem', }}>
                             <Avatar sx={{ border: `3px solid ${alt}`, height: "100%", width: '100%' }} src='https://source.unsplash.com/featured/300x118' />
                             <Box sx={{
@@ -63,10 +64,82 @@ const CompleProfile = ({ open, handleClose }) => {
                             Add Cover Photo
                         </Button>
                     </Box>
-                    <Box>
+                    <Box sx={{ display: 'flex', gap: 2, flexDirection: 'column' }}>
                         <Box sx={{ width: "100%", display: 'flex', gap: 2, alignItems: 'center' }}>
-                            <TextField placeholder='Your name' sx={{ width: '100%' }} />
-                            <TextField placeholder='Username' sx={{ width: '100%' }} />
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
+                                <label htmlFor="" style={{ color: medium }} >Your name</label>
+                                <TextField placeholder='Eg: Elena' sx={{
+                                    ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    },
+                                    ".css-p51h6s-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    }
+                                }} />
+                            </Box>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
+                                <label htmlFor="" style={{ color: medium }} >Your username</label>
+                                <TextField placeholder='Eg: elena_34' sx={{
+                                    ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    },
+                                    ".css-p51h6s-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    }
+                                }} />
+                            </Box>
+                        </Box>
+                        <Box sx={{ width: "100%", display: 'flex', gap: 2, alignItems: 'center' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
+                                <label htmlFor="" style={{ color: medium }} >What do you do?</label>
+                                <TextField placeholder='Eg: Cartoonist ' sx={{
+                                    ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    },
+                                    ".css-p51h6s-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    }
+                                }} />
+                            </Box>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
+                                <label htmlFor="" style={{ color: medium }} >Your email</label>
+                                <TextField placeholder='Eg: elena@gmail.com' sx={{
+                                    ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    },
+                                    ".css-p51h6s-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    }
+                                }} />
+                            </Box>
+                        </Box>
+                        <Box sx={{ width: "100%", display: 'flex', gap: 2, alignItems: 'center' }}>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
+                                <label htmlFor="" style={{ color: medium }} >Place</label>
+                                <TextField placeholder='Eg: Trivandrum' sx={{
+                                    ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    },
+                                    ".css-p51h6s-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    }
+                                }} />
+                            </Box>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
+                                <label htmlFor="" style={{ color: medium }} >Date of birth</label>
+                                <TextField placeholder='Eg: 18 June 2001' sx={{
+                                    ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    },
+                                    ".css-p51h6s-MuiInputBase-input-MuiOutlinedInput-input": {
+                                        padding: "8.5px 14px"
+                                    }
+                                }} />
+                            </Box>
+                        </Box>
+                        <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-end', justifyContent: 'flex-end', pt: '3.5rem' }}>
+                            <Button type='submit' variant='outlined' color="secondary" sx={{ px: '1.5rem', borderRadius: '2px' }} >Save</Button>
+                            <Button type='reset' variant='outlined' color="warning" sx={{ px: '1rem', borderRadius: '2px' }}>Cancel</Button>
                         </Box>
                     </Box>
                 </Box>
