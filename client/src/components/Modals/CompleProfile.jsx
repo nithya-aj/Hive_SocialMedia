@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Box, Button, Divider, IconButton, Modal, Typography } from '@mui/material';
+import { Avatar, Box, Button, Divider, IconButton, Modal, TextField, Typography } from '@mui/material';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { useTheme } from '@emotion/react';
 import FlexBetween from 'components/widget/FlexBetween';
@@ -62,6 +62,12 @@ const CompleProfile = ({ open, handleClose }) => {
                             <IoMdCloudUpload size={'1.1rem'} />
                             Add Cover Photo
                         </Button>
+                    </Box>
+                    <Box>
+                        <Box sx={{ width: "100%", display: 'flex', gap: 2, alignItems: 'center' }}>
+                            <TextField placeholder='Your name' sx={{ width: '100%' }} />
+                            <TextField placeholder='Username' sx={{ width: '100%' }} />
+                        </Box>
                     </Box>
                 </Box>
             </Box>

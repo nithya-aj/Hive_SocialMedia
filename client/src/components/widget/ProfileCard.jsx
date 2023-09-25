@@ -5,7 +5,7 @@ import { MdEmail } from "react-icons/md";
 import { HiAtSymbol } from "react-icons/hi";
 import { HiBuildingOffice } from "react-icons/hi2";
 import { MdCake, MdEdit } from "react-icons/md";
-import { FaUserTag } from "react-icons/fa";
+import { FaUserAlt, FaUserTag } from "react-icons/fa";
 import { GiCheckMark } from "react-icons/gi";
 import FlexCenter from './FlexCenter';
 
@@ -48,16 +48,41 @@ const ProfileCard = () => {
                                         padding: '0',
                                         height: '0.79em'
                                     },
+                                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+                                        padding: '0',
+                                        height: '0.79em'
+                                    },
                                     ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
                                         borderBottom: `1px solid ${purple}`
                                     }
                                 }} id="standard-basic" variant="standard" placeholder='rose_53' />
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                                <FaUserAlt style={{fontSize:'0.65rem'}} />
+                                <TextField sx={{
+                                    width: '100%',
+                                    ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
+                                        padding: '0',
+                                        height: '0.79em'
+                                    },
+                                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+                                        padding: '0',
+                                        height: '0.79em'
+                                    },
+                                    ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
+                                        borderBottom: `1px solid ${purple}`
+                                    }
+                                }} id="standard-basic" variant="standard" placeholder='Irin Rose' />
+                            </Box>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                                 <FaUserTag />
                                 <TextField sx={{
                                     width: '100%',
                                     ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
+                                        padding: '0',
+                                        height: '0.79em'
+                                    },
+                                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
                                         padding: '0',
                                         height: '0.79em'
                                     },
@@ -74,6 +99,10 @@ const ProfileCard = () => {
                                         padding: '0',
                                         height: '0.79em'
                                     },
+                                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+                                        padding: '0',
+                                        height: '0.79em'
+                                    },
                                     ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
                                         borderBottom: `1px solid ${purple}`
                                     }
@@ -87,6 +116,10 @@ const ProfileCard = () => {
                                         padding: '0',
                                         height: '0.79em'
                                     },
+                                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+                                        padding: '0',
+                                        height: '0.79em'
+                                    },
                                     ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
                                         borderBottom: `1px solid ${purple}`
                                     }
@@ -97,6 +130,10 @@ const ProfileCard = () => {
                                 <TextField sx={{
                                     width: '100%',
                                     ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
+                                        padding: '0',
+                                        height: '0.79em'
+                                    },
+                                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
                                         padding: '0',
                                         height: '0.79em'
                                     },
@@ -123,6 +160,10 @@ const ProfileCard = () => {
                         <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                             <HiAtSymbol />
                             <Typography style={{ lineHeight: 1 }} >rose_53</Typography>
+                        </Box> 
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                            <FaUserAlt style={{fontSize:'0.65rem'}} />
+                            <Typography style={{ lineHeight: 1 }} >Irin Rose</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
                             <FaUserTag />
