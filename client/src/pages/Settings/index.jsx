@@ -22,7 +22,7 @@ function Settings() {
 
   return (
     <Box sx={{ p: { sm: '1rem 1rem 0rem', xs: '0rem' }, height: '100%', display: 'flex', alignItems: 'center', gap: 2 }}>
-      <Box sx={{ height: '100%', width: '20%' }}>
+      <Box sx={{ height: '100%', width: '20%', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
         <Link style={{ textDecoration: 'none' }} to="edit-profile"> <Box sx={{ p: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/edit-profile') ? darkbg : 'transparent' }} >Edit Profile</Box></Link>
         <Link style={{ textDecoration: 'none' }} to="blocked-users"> <Box sx={{ p: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/blocked-users') ? darkbg : 'transparent' }} >Block Users</Box></Link>
         <Link style={{ textDecoration: 'none' }} to="password-security"> <Box sx={{ p: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/password-security') ? darkbg : 'transparent' }} >Password and Security</Box></Link>
@@ -31,10 +31,11 @@ function Settings() {
           {open ? <ExpandLess /> : <ExpandMore />}
         </Box>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <Link style={{ textDecoration: 'none' }} to="manage-posts/hidden"> <Box sx={{ p: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/manage-posts/hidden') ? darkbg : 'transparent' }} >Hidden Posts</Box></Link>
-          <Link style={{ textDecoration: 'none' }} to="manage-posts/liked"> <Box sx={{ p: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/manage-posts/liked') ? darkbg : 'transparent' }} >Liked Posts</Box></Link>
-          <Link style={{ textDecoration: 'none' }} to="manage-posts/bookmarked"> <Box sx={{ p: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/manage-posts/bookmarked') ? darkbg : 'transparent' }} >Bookmarked Posts</Box></Link>
+          <Link style={{ textDecoration: 'none' }} to="manage-posts/hidden"> <Box sx={{ p: '1rem', mt: '2px', ml: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/manage-posts/hidden') ? darkbg : 'transparent' }} >Hidden Posts</Box></Link>
+          <Link style={{ textDecoration: 'none' }} to="manage-posts/liked"> <Box sx={{ p: '1rem', mt: '2px', ml: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/manage-posts/liked') ? darkbg : 'transparent' }} >Liked Posts</Box></Link>
+          <Link style={{ textDecoration: 'none' }} to="manage-posts/bookmarked"> <Box sx={{ p: '1rem', mt: '2px', ml: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/manage-posts/bookmarked') ? darkbg : 'transparent' }} >Bookmarked Posts</Box></Link>
         </Collapse>
+        <Link style={{ textDecoration: 'none' }} to="manage-account"> <Box sx={{ p: '1rem', borderRadius: '5px', ":hover": { bgcolor: darkbg }, color: medium, cursor: 'pointer', bgcolor: isActive('/settings/manage-account') ? darkbg : 'transparent' }} >Manage Account</Box></Link>
       </Box>
       <Divider orientation="vertical" variant="middle" flexItem />
       <Box sx={{ width: '80%', height: '100%' }}>

@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react';
-import { Button, Card, CardActions, CardMedia, Typography } from '@mui/material'
+import { Backdrop, Button, Card, CardActions, CardMedia, Typography } from '@mui/material'
 import CompleProfile from 'components/Modals/CompleProfile';
 import UserAvatar from 'components/widget/UserAvatar'
 import React, { useState } from 'react'
@@ -31,7 +31,13 @@ const UpdateProfile = () => {
                 </Button>
                 {
                     open &&
-                    <CompleProfile open={open} handleOpen={handleOpen} handleClose={handleClose} />
+                    <Backdrop
+                        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                        open={open}
+                        onClick={handleClose}
+                    >
+                        <CompleProfile open={open} handleOpen={handleOpen} handleClose={handleClose} />
+                    </Backdrop>
                 }
             </CardActions>
         </Card>

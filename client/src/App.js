@@ -20,6 +20,7 @@ import PassWordAndSecurity from 'components/Settings/PassWordAndSecurity'
 import HiddenPosts from 'components/Settings/HiddenPosts'
 import LikedPosts from 'components/Settings/LikedPosts'
 import BookmarkedPosts from 'components/Settings/BookmarkedPosts'
+import ManageAccount from 'components/Settings/ManageAccount'
 
 const App = () => {
 
@@ -51,7 +52,8 @@ const App = () => {
                                 <Route path='password-security' element={<PassWordAndSecurity />} />
                                 <Route path='manage-posts/hidden' element={<HiddenPosts />} />
                                 <Route path='manage-posts/liked' element={<LikedPosts />} />
-                                <Route path='manage-posts/bookmarked' element={<BookmarkedPosts/>} />
+                                <Route path='manage-posts/bookmarked' element={<BookmarkedPosts />} />
+                                <Route path='manage-account' element={<ManageAccount />} />
                             </Route>
                         </Route>
                     </Routes>
