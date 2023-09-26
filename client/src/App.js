@@ -48,7 +48,7 @@ const App = () => {
                                 <Route path='' element={<Navigate to='edit-profile' />} />
                                 <Route path='edit-profile' element={<EditProfile />} />
                                 <Route path='blocked-users' element={<BlockUsers />} />
-                                <Route path='edit-profile' element={<PassWordAndSecurity />} />
+                                <Route path='password-security' element={<PassWordAndSecurity />} />
                                 <Route path='manage-posts/hidden' element={<HiddenPosts />} />
                                 <Route path='manage-posts/liked' element={<LikedPosts />} />
                                 <Route path='manage-posts/bookmarked' element={<BookmarkedPosts/>} />
