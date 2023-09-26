@@ -3,9 +3,9 @@ import { Box } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Outlet, useLocation } from 'react-router-dom'; // Import useLocation
 import { useTheme } from '@emotion/react';
-import Navbar from 'components/navbar/Navbar';
-import Sidebar from 'components/sidebar/Sidebar';
-import RightBar from 'components/rightbar/RightBar';
+import Navbar from 'components/Navbar/Navbar';
+import Sidebar from 'components/Sidebar/Sidebar';
+import RightBar from 'components/Rightbar/RightBar';
 import NavItems from 'components/MobileSidebar/NavItems';
 
 const MainHome = () => {

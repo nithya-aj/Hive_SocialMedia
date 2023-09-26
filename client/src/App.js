@@ -14,6 +14,12 @@ import Followers from 'components/Followers'
 import Following from 'components/Following'
 import Suggestions from 'components/Suggestions'
 import AuthPage from 'pages/AuthPage'
+import EditProfile from 'components/Settings/EditProfile'
+import BlockUsers from 'components/Settings/BlockUsers'
+import PassWordAndSecurity from 'components/Settings/PassWordAndSecurity'
+import HiddenPosts from 'components/Settings/HiddenPosts'
+import LikedPosts from 'components/Settings/LikedPosts'
+import BookmarkedPosts from 'components/Settings/BookmarkedPosts'
 
 const App = () => {
 
@@ -38,7 +44,15 @@ const App = () => {
                             <Route path='/messages' element={<MessagesPage />} />
                             <Route path='/notifications' element={<Notifications />} />
                             <Route path='/profile/:id' element={<ProfilePage />} />
-                            <Route path='/settings' element={<Settings />} />
+                            <Route path='/settings' element={<Settings />} >
+                                <Route path='' element={<Navigate to='edit-profile' />} />
+                                <Route path='edit-profile' element={<EditProfile />} />
+                                <Route path='blocked-users' element={<BlockUsers />} />
+                                <Route path='edit-profile' element={<PassWordAndSecurity />} />
+                                <Route path='manage-posts/hidden' element={<HiddenPosts />} />
+                                <Route path='manage-posts/liked' element={<LikedPosts />} />
+                                <Route path='manage-posts/bookmarked' element={<BookmarkedPosts/>} />
+                            </Route>
                         </Route>
                     </Routes>
                 </Router>
