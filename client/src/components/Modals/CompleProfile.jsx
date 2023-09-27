@@ -68,7 +68,7 @@ const CompleProfile = ({ open, handleClose }) => {
                         <Box sx={{ width: "100%", display: 'flex', gap: 2, alignItems: 'center' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                                 <label htmlFor="" style={{ color: medium }} >Your name</label>
-                                <TextField placeholder='Eg: Elena' sx={{
+                                <TextField  sx={{
                                     ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
                                         padding: "8.5px 14px"
                                     },
@@ -79,7 +79,7 @@ const CompleProfile = ({ open, handleClose }) => {
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                                 <label htmlFor="" style={{ color: medium }} >Your username</label>
-                                <TextField placeholder='Eg: elena_34' sx={{
+                                <TextField  sx={{
                                     ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
                                         padding: "8.5px 14px"
                                     },
@@ -92,7 +92,7 @@ const CompleProfile = ({ open, handleClose }) => {
                         <Box sx={{ width: "100%", display: 'flex', gap: 2, alignItems: 'center' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                                 <label htmlFor="" style={{ color: medium }} >What do you do?</label>
-                                <TextField placeholder='Eg: Cartoonist ' sx={{
+                                <TextField  sx={{
                                     ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
                                         padding: "8.5px 14px"
                                     },
@@ -103,7 +103,7 @@ const CompleProfile = ({ open, handleClose }) => {
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                                 <label htmlFor="" style={{ color: medium }} >Your email</label>
-                                <TextField placeholder='Eg: elena@gmail.com' sx={{
+                                <TextField  sx={{
                                     ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
                                         padding: "8.5px 14px"
                                     },
@@ -116,7 +116,7 @@ const CompleProfile = ({ open, handleClose }) => {
                         <Box sx={{ width: "100%", display: 'flex', gap: 2, alignItems: 'center' }}>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                                 <label htmlFor="" style={{ color: medium }} >Place</label>
-                                <TextField placeholder='Eg: Trivandrum' sx={{
+                                <TextField  sx={{
                                     ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
                                         padding: "8.5px 14px"
                                     },
@@ -127,7 +127,7 @@ const CompleProfile = ({ open, handleClose }) => {
                             </Box>
                             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                                 <label htmlFor="" style={{ color: medium }} >Date of birth</label>
-                                <TextField placeholder='Eg: 18 June 2001' sx={{
+                                <TextField sx={{
                                     ".css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input": {
                                         padding: "8.5px 14px"
                                     },
