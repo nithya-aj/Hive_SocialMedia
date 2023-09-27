@@ -1,20 +1,34 @@
 import { useTheme } from '@emotion/react'
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
-import { Box } from '@mui/material';
+import { Box, Menu, MenuItem } from '@mui/material';
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
 import { setMode } from 'state';
 import { motion } from 'framer-motion';
+import Fade from '@mui/material/Fade';
+import { useNavigate } from 'react-router-dom';
 
 const NavRight = () => {
 
     const theme = useTheme()
     const main = theme.palette.neutral.main
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const handleLogout = () => {
+        localStorage.clear()
+        navigate("/auth")
+    }
 
     return (
         <Box component={motion.div} initial={{ opacity: 0 }}
@@ -29,7 +43,26 @@ const NavRight = () => {
             )}
             <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }}><BiSolidMessageSquareDetail style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} /></Box>
             <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: { sm: 'flex', xs: 'none' }, alignItems: 'center' }}><IoNotifications style={{ fontSize: '1.5rem', color: main, cursor: 'pointer' }} /></Box>
-            <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.1 }} sx={{ display: { sm: 'flex', xs: 'none' }, alignItems: 'center' }}> <Avatar sx={{ height: '2rem', width: '2rem', cursor: 'pointer', background: "linear-gradient(90deg, rgba(156,165,247,1) 29%, rgba(249,129,16,1) 100%)" }}>H</Avatar></Box>
+            <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.1 }} sx={{ display: { sm: 'flex', xs: 'none' }, alignItems: 'center' }} aria-controls={open ? 'fade-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}>
+                <Avatar sx={{ height: '2rem', width: '2rem', cursor: 'pointer', background: "linear-gradient(90deg, rgba(156,165,247,1) 29%, rgba(249,129,16,1) 100%)" }}>H</Avatar>
+            </Box>
+            <Menu
+                id="fade-menu"
+                MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+            >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
         </Box>
     )
 }
