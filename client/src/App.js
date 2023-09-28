@@ -9,7 +9,6 @@ import MainHome from 'pages/MainHome'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import ProfilePage from 'pages/ProfilePage'
 import MessagesPage from 'pages/MessagesPage'
-import { useSelector } from 'react-redux'
 import Followers from 'components/Followers'
 import Following from 'components/Following'
 import Suggestions from 'components/Suggestions'
@@ -21,12 +20,12 @@ import HiddenPosts from 'components/Settings/HiddenPosts'
 import LikedPosts from 'components/Settings/LikedPosts'
 import BookmarkedPosts from 'components/Settings/BookmarkedPosts'
 import ManageAccount from 'components/Settings/ManageAccount'
+import { useSelector } from 'react-redux'
 
 const App = () => {
 
-    const mode = useSelector((state) => state.mode);
+    const mode = useSelector((state) => state.theme.mode);
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-
     return (
         <>
             <ThemeProvider theme={theme}>

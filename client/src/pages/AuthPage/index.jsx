@@ -5,9 +5,9 @@ import { Box } from '@mui/material';
 import * as Components from './Components'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setLogin, setRegister } from 'state';
 import api from 'api';
 import SocialsIcons from 'components/auth/SocialsIcons';
+import { setLogin, setRegister } from 'redux/authSlice';
 
 const AuthPage = () => {
     const [signIn, toggle] = React.useState(false)

@@ -8,6 +8,7 @@ import { FaPhotoVideo } from "react-icons/fa";
 import IconButton from '@mui/material/IconButton';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import close from 'assets/close.png'
+import { useSelector } from 'react-redux'
 
 function SharePost() {
     const theme = useTheme()
@@ -18,6 +19,10 @@ function SharePost() {
     const mediumpurple = theme.palette.neutral.mediumpurple
     const orange = theme.palette.neutral.orange
 
+    const [desc, setDesc] = useState("")
+    const [photo, setPhoto] = useState("")
+    const data = useSelector(state => state.data)
+console.log(data,'token------------------fdf---------------------------fdf----------------------')
     const fileInputRef = useRef(null)
     const [selectedImage, setSelectedImage] = useState(null)
     const [previewImage, setPreviewImage] = useState('')
@@ -43,7 +48,7 @@ function SharePost() {
     };
 
     return (
-        <Box sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <Box component={'form'} sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {previewImage && (
                 <Box
                     sx={{
@@ -102,7 +107,7 @@ function SharePost() {
                     </Box>
                 </Box>
                 <Box>
-                    <Button sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem', ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<SendRoundedIcon />}>
+                    <Button type='submit' sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem', ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<SendRoundedIcon />}>
                         Post
                     </Button>
                     <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">

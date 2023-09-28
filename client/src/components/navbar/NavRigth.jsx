@@ -5,23 +5,25 @@ import { Box, Menu, MenuItem } from '@mui/material';
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
-import { useDispatch } from 'react-redux';
-import { setMode } from 'state';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import Fade from '@mui/material/Fade';
 import { useNavigate } from 'react-router-dom';
+import { setMode } from 'redux/themeSlice';
 
 const NavRight = () => {
 
     const theme = useTheme()
     const main = theme.palette.neutral.main
     const dispatch = useDispatch()
+    const mode = useSelector((state) => state.theme.mode)
     const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -36,7 +38,7 @@ const NavRight = () => {
             exit={{ opacity: 0 }}
             sx={{ width: '100%', p: '0rem 0.5rem 0rem 1rem', display: 'flex', gap: '1rem', alignItems: 'center', justifyContent: 'flex-end' }}
         >
-            {theme.palette.mode === 'dark' ? (
+            {mode === 'dark' ? (
                 <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }} onClick={() => dispatch(setMode())}> <HiSun style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} /> </Box>
             ) : (
                 <Box component={motion.div} whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} sx={{ display: 'flex', alignItems: 'center' }} onClick={() => dispatch(setMode())}> <HiMoon style={{ fontSize: '1.5rem', cursor: 'pointer', color: main }} /> </Box>
@@ -68,6 +70,3 @@ const NavRight = () => {
 }
 
 export default NavRight
-
-
-
