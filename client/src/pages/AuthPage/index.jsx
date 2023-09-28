@@ -33,8 +33,9 @@ const AuthPage = () => {
                 const body = {
                     username, name, email, password
                 }
-                const response = await api.post("/auth/register", body)
-                dispatch(setRegister(response))
+                const response = await api.post("/auth/register", body);
+                dispatch(setRegister({ user: response.data.user, token: response.data.token }));
+
                 navigate('/')
             } else {
                 if (email === '' || password === '') {
@@ -47,9 +48,10 @@ const AuthPage = () => {
                 const body = {
                     email, password
                 }
-                const response = await api.post('/auth/login', body)
+                const response = await api.post('/auth/login', body);
                 console.log('response: ', response);
-                dispatch(setLogin(response))
+                dispatch(setLogin({ user: response.data.user, token: response.data.token }));
+
                 navigate('/')
             }
         } catch (error) {

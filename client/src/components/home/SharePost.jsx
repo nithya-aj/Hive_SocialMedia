@@ -1,14 +1,14 @@
-import { Box, Button, Typography } from '@mui/material'
-import React, { useRef, useState } from 'react'
+import { Box, Button, InputBase, Paper, Typography } from '@mui/material'
+import React, { useState } from 'react'
 import UserAvatar from '../widget/UserAvatar'
 import { useTheme } from '@emotion/react'
-import InputBar from '../widget/InputBar'
 import { IoImage } from "react-icons/io5";
 import { FaPhotoVideo } from "react-icons/fa";
 import IconButton from '@mui/material/IconButton';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import close from 'assets/close.png'
 import { useSelector } from 'react-redux'
+import api from 'api';
 
 function SharePost() {
     const theme = useTheme()
@@ -18,38 +18,44 @@ function SharePost() {
     const purple = theme.palette.neutral.purple
     const mediumpurple = theme.palette.neutral.mediumpurple
     const orange = theme.palette.neutral.orange
+    const darkbg = theme.palette.background.darkbg
 
     const [desc, setDesc] = useState("")
     const [photo, setPhoto] = useState("")
-    const data = useSelector(state => state.data)
-console.log(data,'token------------------fdf---------------------------fdf----------------------')
-    const fileInputRef = useRef(null)
-    const [selectedImage, setSelectedImage] = useState(null)
-    const [previewImage, setPreviewImage] = useState('')
-    console.log(selectedImage);
-    const handleFileSelected = (e) => {
-        const file = e.target.files[0]
-        if (file) {
-            setSelectedImage(file)
-            const reader = new FileReader()
-            reader.onload = () => {
-                setPreviewImage(reader.result)
+    const token = useSelector((state) => state.auth.token)
+    console.log(token, 'token....');
+
+    const handleCreatePost = async (e) => {
+        e.preventDefault()
+        try {
+            let fileName = null
+            if (photo) {
+                const formData = new FormData()
+                fileName = crypto.randomUUID() + photo.name
+                formData.append("imageUrl", fileName)
+                formData.append("photo", photo)
+                console.log(formData, 'formData-----------')
+                await api.post("/upload", formData)
+            } else {
+                return
             }
-            reader.readAsDataURL(file)
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+            const body = {
+                desc,
+                imageUrl: fileName
+            }
+            await api.post("/post", headers, body)
+        } catch (error) {
+            console.error(error)
         }
     }
 
-    const handleCloseImage = () => {
-        setSelectedImage(null);
-        setPreviewImage('');
-        if (fileInputRef.current) {
-            fileInputRef.current.value = ''
-        }
-    };
-
     return (
         <Box component={'form'} sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {previewImage && (
+            {photo && (
                 <Box
                     sx={{
                         display: 'flex',
@@ -66,7 +72,7 @@ console.log(data,'token------------------fdf---------------------------fdf------
                     }}
                 >
                     <img
-                        src={previewImage}
+                        src={URL.createObjectURL(photo)}
                         alt=""
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
@@ -78,7 +84,7 @@ console.log(data,'token------------------fdf---------------------------fdf------
                             right: '0.1rem',
                             color: main
                         }}
-                        onClick={handleCloseImage}
+                        onClick={() => setPhoto("")}
                     >
                         <img src={close} alt="" />
                     </IconButton>
@@ -88,13 +94,25 @@ console.log(data,'token------------------fdf---------------------------fdf------
                 <Box>
                     <UserAvatar />
                 </Box>
-                <InputBar />
+                <Box sx={{ width: '100%' }}>
+                    <Paper
+                        component="form"
+                        sx={{ display: 'flex', alignItems: 'center', height: "2.5rem", backgroundColor: { xs: darkbg, sm: alt }, boxShadow: 'none', borderRadius: { sm: '10px', xs: '44px' } }}
+                    >
+                        <InputBase
+                            sx={{ ml: { sm: 1, xs: 2 }, flex: 1, color: textMain }}
+                            placeholder='What do you want to share today?'
+                            inputProps={{ 'aria-label': 'search google maps' }}
+                            onChange={(e) => setDesc(e.target.value)}
+                        />
+                    </Paper>
+                </Box>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '0.5rem', lg: '3rem', md: '2rem' } }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton aria-label="upload picture" component="label" sx={{ color: orange }}>
-                            <input hidden accept="image/*" type="file" ref={fileInputRef} onChange={handleFileSelected} />
+                            <input hidden accept="image/*" type="file" onChange={(e) => setPhoto(e.target.files[0])} />
                             <IoImage />
                         </IconButton>
                         <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' }, color: textMain }}>Photo</Typography>
@@ -107,7 +125,7 @@ console.log(data,'token------------------fdf---------------------------fdf------
                     </Box>
                 </Box>
                 <Box>
-                    <Button type='submit' sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem', ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<SendRoundedIcon />}>
+                    <Button type='submit' onClick={handleCreatePost} sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem', ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<SendRoundedIcon />}>
                         Post
                     </Button>
                     <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
