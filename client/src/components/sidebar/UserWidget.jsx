@@ -3,16 +3,18 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import UserAvatar from 'components/widget/UserAvatar';
 import { useTheme } from '@emotion/react';
+import { useSelector } from 'react-redux';
 
 const UserWidget = () => {
 
     const theme = useTheme()
     const alt = theme.palette.background.alt
     const light = theme.palette.neutral.light
-    const main = theme.palette.neutral.main 
+    const main = theme.palette.neutral.main
     const medium = theme.palette.neutral.medium
     const purple = theme.palette.neutral.purple
-
+    const name = useSelector((state) => state.auth.user?.name)
+    const userName = useSelector((state) => state.auth.user?.username)
     return (
         <Box sx={{
             border: `1px solid ${light}`,
@@ -40,10 +42,10 @@ const UserWidget = () => {
                     color: main
                 }}>
                     <Typography noWrap sx={{ fontSize: '1rem', marginBottom: '0', color: main }}>
-                        Irin Roseeeeeedfffffffffgggggggggggggggggg
+                        {name}
                     </Typography>
                     <Typography noWrap variant="subtitle2" sx={{ fontWeight: '300', marginBottom: '0', color: medium }}>
-                        @Irin_Rose
+                        @{userName}
                     </Typography>
                 </Box>
             </Box>

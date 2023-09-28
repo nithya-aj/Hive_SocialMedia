@@ -14,7 +14,7 @@ import authSlice from "./authSlice";
 import themeSlice from "./themeSlice";
 
 const persistConfig = {
-    key: "root",
+    key: "auth",
     version: 1,
     storage,
 };
