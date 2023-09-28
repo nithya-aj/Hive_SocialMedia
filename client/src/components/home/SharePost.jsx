@@ -23,7 +23,6 @@ function SharePost() {
     const [desc, setDesc] = useState("")
     const [photo, setPhoto] = useState("")
     const token = useSelector((state) => state.auth.token)
-    console.log(token, 'token....');
 
     const handleCreatePost = async (e) => {
         e.preventDefault()
@@ -32,7 +31,6 @@ function SharePost() {
             if (photo) {
                 const formData = new FormData()
                 fileName = crypto.randomUUID() + photo.name
-                formData.append("imageUrl", fileName)
                 formData.append("photo", photo)
                 console.log(formData, 'formData-----------')
                 await api.post("/upload", formData)
@@ -47,14 +45,14 @@ function SharePost() {
                 desc,
                 imageUrl: fileName
             }
-            await api.post("/post", headers, body)
+            await api.post("/post", body, { headers })
         } catch (error) {
             console.error(error)
         }
     }
 
     return (
-        <Box component={'form'} sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <Box component={'form'} sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }} enctype="multipart/form-data">
             {photo && (
                 <Box
                     sx={{
