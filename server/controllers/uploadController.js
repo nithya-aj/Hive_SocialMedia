@@ -17,7 +17,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 uploadRouter.post('/', upload.single('photo'), (req, res) => {
-    console.log(req.file, 'req.file----------'); // Use req.file to access the uploaded file
     try {
         return res.status(201).json({ msg: 'Image uploaded!' });
     } catch (error) {

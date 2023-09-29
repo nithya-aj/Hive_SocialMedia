@@ -31,9 +31,12 @@ function SharePost() {
             if (photo) {
                 const formData = new FormData()
                 fileName = crypto.randomUUID() + photo.name
-                formData.append("photo", photo)
-                console.log(formData, 'formData-----------')
-                await api.post("/upload", formData)
+                formData.append('photo', photo)
+                const headers = {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
+                };
+                await api.post("/upload", formData, { headers })
             } else {
                 return
             }
@@ -110,7 +113,7 @@ function SharePost() {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: '0.5rem', lg: '3rem', md: '2rem' } }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <IconButton aria-label="upload picture" component="label" sx={{ color: orange }}>
-                            <input hidden accept="image/*" type="file" onChange={(e) => setPhoto(e.target.files[0])} />
+                            <input hidden accept="image/*" type="file" name='photo' onChange={(e) => setPhoto(e.target.files[0])} />
                             <IoImage />
                         </IconButton>
                         <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' }, color: textMain }}>Photo</Typography>
