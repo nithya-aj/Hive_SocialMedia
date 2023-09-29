@@ -49,13 +49,21 @@ function SharePost() {
                 imageUrl: fileName
             }
             await api.post("/post", body, { headers })
+            setDesc("");
+            setPhoto(null)
         } catch (error) {
             console.error(error)
         }
     }
 
+    const handleClearData = () => {
+        setDesc("");
+        setPhoto(null);
+    }
+
     return (
-        <Box component={'form'} sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }} enctype="multipart/form-data">
+        <Box component={'form'} sx={{ backgroundColor: { sm: main, xs: alt }, p: '1rem', borderRadius: { sm: '10px', xs: '0px' }, display: 'flex', flexDirection: 'column', gap: '1rem' }}
+            encType="multipart/form-data">
             {photo && (
                 <Box
                     sx={{
@@ -85,7 +93,7 @@ function SharePost() {
                             right: '0.1rem',
                             color: main
                         }}
-                        onClick={() => setPhoto("")}
+                        onClick={handleClearData}
                     >
                         <img src={close} alt="" />
                     </IconButton>
@@ -103,7 +111,8 @@ function SharePost() {
                         <InputBase
                             sx={{ ml: { sm: 1, xs: 2 }, flex: 1, color: textMain }}
                             placeholder='What do you want to share today?'
-                            inputProps={{ 'aria-label': 'search google maps' }}
+                            value={desc}
+                            name='desc'
                             onChange={(e) => setDesc(e.target.value)}
                         />
                     </Paper>
@@ -125,14 +134,12 @@ function SharePost() {
                         <Typography sx={{ display: { xs: 'none', md: 'block', lg: 'block' }, color: textMain }}>Video</Typography>
                     </Box>
                 </Box>
-                <Box>
-                    <Button type='submit' onClick={handleCreatePost} sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem', ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<SendRoundedIcon />}>
-                        Post
-                    </Button>
-                    <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
-                        <SendRoundedIcon />
-                    </IconButton>
-                </Box>
+                <Button type='submit' onClick={handleCreatePost} sx={{ display: { xs: 'none', sm: 'flex' }, backgroundColor: purple, textTransform: 'none', fontSize: '15px', color: main, height: '2rem', ":hover": { backgroundColor: mediumpurple } }} variant="contained" endIcon={<SendRoundedIcon />}>
+                    Post
+                </Button>
+                <IconButton sx={{ display: { xs: 'flex', sm: 'none' } }} aria-label="send">
+                    <SendRoundedIcon />
+                </IconButton>
             </Box>
         </Box>
     )
