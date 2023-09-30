@@ -16,6 +16,12 @@ import { BiHide, BiSend } from "react-icons/bi";
 import { useTheme } from '@mui/material/styles';
 import { HiOutlinePencilSquare } from 'react-icons/hi2';
 import { PiShareFat } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
+import { format } from 'timeago.js'
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import api from 'api';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -39,8 +45,39 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
     },
 }));
 
-export default function Post() {
-    const [expanded, setExpanded] = React.useState(false);
+export default function Post({ post }) {
+
+    const { user, token } = useSelector((state) => state.auth)
+    const [authorDetails, setAuthorDetails] = useState('')
+    const [expanded, setExpanded] = useState(false);
+    const [comments, setComments] = useState([])
+    const [commentData, setCommentData] = useState("")
+    const [isLiked, setIsLiked] = useState(false)
+
+    useEffect(() => {
+        const fetchDetails = async () => {
+            try {
+                const data = await api.get(`/user/find/${post.userId}`)
+                setAuthorDetails(data)
+                console.log(setAuthorDetails, 'data-------------------')
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchDetails()
+    }, [post._id])
+
+    useEffect(() => {
+        const fetchCommants = async () => {
+            try {
+                const data = await api.get(`/comment/${post._id}`)
+                setComments(data)
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        fetchCommants()
+    }, [])
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -53,7 +90,7 @@ export default function Post() {
     const medium = theme.palette.neutral.medium
     const fontSm = theme.palette.neutral.fontSm
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -128,21 +165,19 @@ export default function Post() {
                         </Menu>
                     </>
                 }
-                title="Lora Eve"
-                subheader="Seoul, Just now"
+                title={<Link to={`/profile/${authorDetails?._id}`} style={{ margin: 0, padding: 0, cursor: 'pointer', textDecoration: 'none', color: main }}>{authorDetails?.username}</Link>}
+                subheader={<p style={{ display: 'flex', gap: 8, margin: 0, padding: 0 }}>Seoul <span>{format(post?.createdAt)}</span> </p>}
             />
             <CardMedia
                 component="img"
-                image="https://source.unsplash.com/featured/"
-                alt="Paella dish"
+                image={`http://localhost:8080/images/${post.imageUrl}`}
+                alt="post image"
                 sx={{ p: '1rem', borderRadius: '1.5rem', objectFit: 'contain' }}
                 style={{ width: '100%', height: 'auto', maxHeight: '30rem', objectFit: 'cover' }}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    This impressive paella is a perfect party dish and a fun meal to cook
-                    together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like.
+                    {post.desc}
                 </Typography>
             </CardContent>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1rem' }}>

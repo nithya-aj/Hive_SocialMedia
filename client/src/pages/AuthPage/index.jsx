@@ -50,7 +50,6 @@ const AuthPage = () => {
                 }
                 const response = await api.post('/auth/login', body);
                 console.log('Response Data:', response.data);
-                // dispatch(setLogin({ user: response.data.user, token: response.data.token }));
                 dispatch(setLogin(response.data))
 
                 navigate('/')
