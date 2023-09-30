@@ -57,15 +57,17 @@ export default function Post({ post }) {
     useEffect(() => {
         const fetchDetails = async () => {
             try {
-                const data = await api.get(`/user/find/${post.userId}`)
+                const response = await api.get(`/user/find/${post.userId}`)
+                const data = response.data
+                console.log(data, 'data')
+                console.log(post, 'post')
                 setAuthorDetails(data)
-                console.log(setAuthorDetails, 'data-------------------')
             } catch (error) {
                 console.error(error)
             }
         }
         fetchDetails()
-    }, [post._id])
+    }, [post?._id, post])
 
     useEffect(() => {
         const fetchCommants = async () => {
@@ -77,7 +79,7 @@ export default function Post({ post }) {
             }
         }
         fetchCommants()
-    }, [])
+    }, [post._id])
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -98,6 +100,34 @@ export default function Post({ post }) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const userDropDownOptions = [
+        {
+            icon: <PiShareFat style={{ fontSize: '15px' }} />,
+            name: 'Share',
+        },
+        {
+            icon: <BiHide style={{ fontSize: '15px' }} />,
+            name: 'Hide',
+        }
+    ];
+    const ownerDropdownOptions = [
+        {
+            icon: <HiOutlinePencilSquare style={{ fontSize: '15px' }} />,
+            name: 'Update',
+        },
+        {
+            icon: <PiShareFat style={{ fontSize: '15px' }} />,
+            name: 'Share',
+        },
+        {
+            icon: <BiHide style={{ fontSize: '15px' }} />,
+            name: 'Hide',
+        },
+        {
+            icon: <MdDeleteOutline style={{ fontSize: '15px' }} />,
+            name: 'Delete',
+        },
+    ];
 
     return (
         <Card sx={{ pb: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
@@ -138,46 +168,43 @@ export default function Post({ post }) {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <MenuItem onClick={handleClose}>
-                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                                    <HiOutlinePencilSquare style={{ fontSize: '15px' }} />
-                                    Update
-                                </Box>
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                                    <PiShareFat style={{ fontSize: '15px' }} />
-                                    Share
-                                </Box>
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                                    <BiHide style={{ fontSize: '15px' }} />
-                                    Hide
-                                </Box>
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>
-                                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                                    <MdDeleteOutline style={{ fontSize: '15px' }} />
-                                    Delete
-                                </Box>
-                            </MenuItem>
+                            {post.userId === user._id ?
+                                (ownerDropdownOptions.map((option, index) => (
+                                    <MenuItem key={index} onClick={handleClose}>
+                                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                            {option.icon}
+                                            {option.name}
+                                        </Box>
+                                    </MenuItem>
+                                ))
+                                ) :
+                                (
+                                    userDropDownOptions.map((option, index) => (
+                                        <MenuItem key={index} onClick={handleClose}>
+                                            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                                                {option.icon}
+                                                {option.name}
+                                            </Box>
+                                        </MenuItem>
+                                    ))
+                                )
+                            }
                         </Menu>
                     </>
                 }
-                title={<Link to={`/profile/${authorDetails?._id}`} style={{ margin: 0, padding: 0, cursor: 'pointer', textDecoration: 'none', color: main }}>{authorDetails?.username}</Link>}
-                subheader={<p style={{ display: 'flex', gap: 8, margin: 0, padding: 0 }}>Seoul <span>{format(post?.createdAt)}</span> </p>}
+                title={<Link to={`/profile/${user._id}`} style={{ margin: 0, padding: 0, cursor: 'pointer', textDecoration: 'none', color: main, fontSize: '0.9rem' }}>{authorDetails?.username}</Link>}
+                subheader={<p style={{ display: 'flex', gap: 8, margin: 0, padding: 0 }}>{authorDetails.place} <span>{format(post?.createdAt)}</span> </p>}
             />
             <CardMedia
                 component="img"
-                image={`http://localhost:8080/images/${post.imageUrl}`}
+                image={`http://localhost:8080/images/${post?.imageUrl}`}
                 alt="post image"
                 sx={{ p: '1rem', borderRadius: '1.5rem', objectFit: 'contain' }}
                 style={{ width: '100%', height: 'auto', maxHeight: '30rem', objectFit: 'cover' }}
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                    {post.desc}
+                    {post?.desc}
                 </Typography>
             </CardContent>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1rem' }}>

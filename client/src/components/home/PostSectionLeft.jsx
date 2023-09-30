@@ -25,7 +25,7 @@ function PostSectionLeft() {
       }
     }
     fetchTimeLinePosts()
-  }, [])
+  }, [token])
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Box sx={{ px: { xs: '0.5rem', sm: '0rem' } }}>
