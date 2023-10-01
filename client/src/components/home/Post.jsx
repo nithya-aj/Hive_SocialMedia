@@ -131,9 +131,11 @@ export default function Post({ post }) {
     ];
 
     return (
-        <Card sx={{ pb: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
+        <Card sx={{ pb: '1rem', px: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
             <CardHeader
                 sx={{
+                    px: 0,
+                    py: '0.7rem',
                     ".css-sgoict-MuiCardHeader-action": {
                         marginTop: '4px',
                         marginRight: '0px'
@@ -200,16 +202,16 @@ export default function Post({ post }) {
                 component="img"
                 image={`http://localhost:8080/images/${post?.imageUrl}`}
                 alt="post image"
-                sx={{ p: '1rem', borderRadius: '1.5rem', objectFit: 'contain' }}
+                sx={{ objectFit: 'contain', borderRadius: '10px' }}
                 style={{ width: '100%', height: 'auto', maxHeight: '30rem', objectFit: 'cover' }}
 
             />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
+            <CardContent sx={{ py: '8px', px: '5px' }}>
+                <Typography variant="body1" color="text.secondary">
                     {post?.desc}
                 </Typography>
             </CardContent>
-            <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: '1rem' }}>
+            <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <IconButton sx={{ color: main }} aria-label="add to favorites">
                         <MdOutlineFavoriteBorder />
@@ -229,7 +231,7 @@ export default function Post({ post }) {
                 </IconButton>
             </CardActions>
             <FormControlStyled variant="standard" sx={{
-                px: '1rem', width: '-webkit-fill-available',
+                px: 0, width: '-webkit-fill-available',
             }}>
                 <Input
                     placeholder='Enter your comment...'
