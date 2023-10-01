@@ -25,17 +25,20 @@ function SharePost() {
     const token = useSelector((state) => state.auth.token)
 
     const handleCreatePost = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             let fileName = null
             if (photo) {
                 const formData = new FormData()
                 fileName = crypto.randomUUID() + photo.name
-                formData.append('photo', photo)
+                formData.append("imageUrl", fileName)
+                formData.append("photo", photo)
+
                 const headers = {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`
                 };
+
                 await api.post("/upload", formData, { headers })
             } else {
                 return
@@ -69,8 +72,7 @@ function SharePost() {
                     sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        height: 'auto',
-                        maxHeight: '35rem',
+                        height: '25rem',
                         marginBottom: '1rem',
                         borderRadius: '10px',
                         backgroundSize: 'cover',

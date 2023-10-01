@@ -53,7 +53,8 @@ export default function Post({ post }) {
     const [comments, setComments] = useState([])
     const [commentData, setCommentData] = useState("")
     const [isLiked, setIsLiked] = useState(false)
-
+    console.log(post, 'post-------------------------')
+    console.log(post.imageUrl, 'post.imageUrl-------------------------')
     useEffect(() => {
         const fetchDetails = async () => {
             try {
@@ -201,6 +202,7 @@ export default function Post({ post }) {
                 alt="post image"
                 sx={{ p: '1rem', borderRadius: '1.5rem', objectFit: 'contain' }}
                 style={{ width: '100%', height: 'auto', maxHeight: '30rem', objectFit: 'cover' }}
+
             />
             <CardContent>
                 <Typography variant="body2" color="text.secondary">

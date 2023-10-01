@@ -25,6 +25,7 @@
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "timeago.js": "^4.0.2",
+    "uuid": "^9.0.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
