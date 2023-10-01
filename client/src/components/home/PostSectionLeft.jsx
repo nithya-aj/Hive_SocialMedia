@@ -3,14 +3,17 @@ import Stories from './Stories'
 import SharePost from './SharePost'
 import Posts from './Post'
 import { Box } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import api from 'api';
+import { setPosts } from 'redux/postSlice';
 
 function PostSectionLeft() {
 
-  const [posts, setPosts] = React.useState([])
+  const dispatch = useDispatch()
   const token = useSelector((state) => state.auth.token)
+  const posts = useSelector((state) => [...state.posts.posts].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
+  console.log(posts, 'posts------------------------------0000000000000000');
 
   useEffect(() => {
     const fetchTimeLinePosts = async () => {
@@ -19,13 +22,18 @@ function PostSectionLeft() {
           'Authorization': `Bearer ${token}`
         }
         const data = await api.get('/post/timeline', { headers })
-        setPosts(data.data)
+        dispatch(setPosts(data.data))
       } catch (error) {
         console.log(error)
       }
     }
     fetchTimeLinePosts()
-  }, [token])
+  }, [dispatch, token])
+
+  useEffect(() => {
+
+  }, [posts])
+  
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Box sx={{ px: { xs: '0.5rem', sm: '0rem' } }}>
