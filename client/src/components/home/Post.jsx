@@ -50,8 +50,10 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
 export default function Post({ post }) {
 
     const dispatch = useDispatch()
-    const comments = useSelector((state) => state.comments.comments[post._id] || [])
-    console.log(comments, 'comments getting from redux in post.jsx file');
+    const comments = useSelector((state) => {
+        const postComments = state.comments.comments[post._id] || [];
+        return [...postComments].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    });
     const { user, token } = useSelector((state) => state.auth)
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
@@ -70,7 +72,7 @@ export default function Post({ post }) {
             }
         }
         fetchDetails()
-    }, [post?._id, post])
+    }, [post?._id])
 
     // fetching comments 
     useEffect(() => {
