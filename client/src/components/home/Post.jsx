@@ -50,7 +50,7 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
 export default function Post({ post }) {
 
     const dispatch = useDispatch()
-    const comments = useSelector((state) => state.comments.comments)
+    const comments = useSelector((state) => state.comments.comments[post._id] || [])
     console.log(comments, 'comments getting from redux in post.jsx file');
     const { user, token } = useSelector((state) => state.auth)
     const [authorDetails, setAuthorDetails] = useState('')
@@ -77,7 +77,7 @@ export default function Post({ post }) {
         const fetchCommants = async () => {
             try {
                 const data = await api.get(`/comment/${post._id}`)
-                dispatch(getComments(data.data))
+                dispatch(getComments({ postId: post._id, comments: data.data }))
             } catch (error) {
                 console.error(error)
             }
@@ -92,9 +92,9 @@ export default function Post({ post }) {
             const headers = {
                 Authorization: `Bearer ${token}`
             }
-            const data = await api.post('/comment/', { headers }, { text: commentData, postId: post._id })
-            console.log(data, 'handleComment posting comment function data in post.jsx file')
-            dispatch(addComment(data.data))
+            const data = await api.post('/comment/', { text: commentData, postId: post._id }, { headers })
+            const newComment = data.data
+            dispatch(addComment({ postId: post._id, comment: newComment }))
             setCommentData("")
         } catch (error) {
             console.error(error)
@@ -249,16 +249,20 @@ export default function Post({ post }) {
                     <MdTurnedInNot />
                 </IconButton>
             </CardActions>
-            <FormControlStyled variant="standard" sx={{
+            <FormControlStyled component='form' onSubmit={handleComment} variant="standard" sx={{
                 px: 0, width: '-webkit-fill-available',
             }}>
                 <Input
+                    value={commentData}
+                    type='text'
+                    onChange={(e) => setCommentData(e.target.value)}
                     placeholder='Enter your comment...'
                     id="standard-adornment-weight"
                     aria-describedby="standard-weight-helper-text"
                     endAdornment={
                         <InputAdornment position="end">
                             <IconButton
+                                type='submit'
                                 sx={{ color: main }}
                                 aria-label="toggle password visibility"
                             >

@@ -1,10 +1,28 @@
 import { Avatar, Box, Grid, ListItemText, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
+import api from 'api';
+import { format } from 'timeago.js';
 
 const Comment = ({ comment }) => {
   const theme = useTheme()
   const medium = theme.palette.neutral.medium
+  const { user, token } = useSelector((state) => state.auth)
+  const [commentAuthor, setCommentAuthor] = useState("")
+  const [isLiked, setIsLiked] = useState(false)
+
+  useEffect(() => {
+    const fetchCommentAuthor = async () => {
+      try {
+        const data = await api.get(`/user/find/${comment.userId}`)
+        setCommentAuthor(data.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchCommentAuthor()
+  }, [comment.userId])
 
   return (
     <Grid container >
@@ -17,10 +35,10 @@ const Comment = ({ comment }) => {
         <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Typography sx={{ color: medium }}>
-              Ali Connors
+              {commentAuthor?.username}
             </Typography>
             <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
-              3 days ago
+              {format(comment.createdAt)}
             </Typography>
           </Box>
           <Box sx={{ mt: '2px' }}>

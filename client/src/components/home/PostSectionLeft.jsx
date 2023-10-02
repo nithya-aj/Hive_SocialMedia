@@ -12,7 +12,6 @@ function PostSectionLeft() {
 
   const dispatch = useDispatch()
   const token = useSelector((state) => state.auth.token)
-  console.log(token, '---------------')
   const posts = useSelector((state) => [...state.posts.posts].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
 
   useEffect(() => {
