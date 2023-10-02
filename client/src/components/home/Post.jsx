@@ -18,10 +18,11 @@ import { HiOutlinePencilSquare } from 'react-icons/hi2';
 import { PiShareFat } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import { format } from 'timeago.js'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import api from 'api';
+import { addComment, getComments } from 'redux/commentSlice';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -47,21 +48,21 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
 
 export default function Post({ post }) {
 
+    const dispatch = useDispatch()
+    const comments = useSelector((state) => state.comments.comments)
+    console.log(comments, 'comments getting from redux in post.jsx file');
     const { user, token } = useSelector((state) => state.auth)
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
-    const [comments, setComments] = useState([])
     const [commentData, setCommentData] = useState("")
     const [isLiked, setIsLiked] = useState(false)
-    console.log(post, 'post-------------------------')
-    console.log(post.imageUrl, 'post.imageUrl-------------------------')
+
+    // fetching user details
     useEffect(() => {
         const fetchDetails = async () => {
             try {
                 const response = await api.get(`/user/find/${post.userId}`)
                 const data = response.data
-                console.log(data, 'data')
-                console.log(post, 'post')
                 setAuthorDetails(data)
             } catch (error) {
                 console.error(error)
@@ -70,17 +71,34 @@ export default function Post({ post }) {
         fetchDetails()
     }, [post?._id, post])
 
+    // fetching comments 
     useEffect(() => {
         const fetchCommants = async () => {
             try {
                 const data = await api.get(`/comment/${post._id}`)
-                setComments(data)
+                dispatch(getComments(data.data))
             } catch (error) {
                 console.error(error)
             }
         }
         fetchCommants()
-    }, [post._id])
+    }, [post?._id, dispatch])
+
+    // posting comments
+    const handleComment = async (e) => {
+        e.preventDefault()
+        try {
+            const headers = {
+                Authorization: `Bearer ${token}`
+            }
+            const data = await api.post('/comment/', { headers }, { text: commentData, postId: post._id })
+            console.log(data, 'handleComment posting comment function data in post.jsx file')
+            dispatch(addComment(data.data))
+            setCommentData("")
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -131,7 +149,7 @@ export default function Post({ post }) {
     ];
 
     return (
-        <Card sx={{ pb: '1rem', px: '1rem', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
+        <Card sx={{ pb: '1rem', px: '1rem', boxShadow: 'none', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
             <CardHeader
                 sx={{
                     px: 0,
@@ -261,152 +279,35 @@ export default function Post({ post }) {
                             '& ul': { padding: 0 },
                             padding: '0rem'
                         }}>
-                        <Grid container>
-                            <Grid item xs={2} lg={1.3} md={1.5} >
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x198" sx={{ height: '2.3rem', width: '2.3rem' }} />
-                                </Box>
-                            </Grid>
-                            <Grid item xs={10} lg={10.7} md={10.5}>
-                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: medium }}>
-                                            Ali Connors
-                                        </Typography>
-                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
-                                            3 days ago
-                                        </Typography>
+                        {comments?.length > 0 ? comments.map((comment, id) => (
+                            <Grid container key={comment._id}>
+                                <Grid item xs={2} lg={1.3} md={1.5} >
+                                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
+                                        <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x198" sx={{ height: '2.3rem', width: '2.3rem' }} />
                                     </Box>
-                                    <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
-                                        </Typography>
-                                    </Box>
-                                </ListItemText>
+                                </Grid>
+                                <Grid item xs={10} lg={10.7} md={10.5}>
+                                    <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                            <Typography sx={{ color: medium }}>
+                                                Ali Connors
+                                            </Typography>
+                                            <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
+                                                3 days ago
+                                            </Typography>
+                                        </Box>
+                                        <Box sx={{ mt: '2px' }}>
+                                            <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
+                                                {comment.text}
+                                            </Typography>
+                                        </Box>
+                                    </ListItemText>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <Grid container >
-                            <Grid item xs={2} lg={1.3} md={1.5} >
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x199" sx={{ height: '2.3rem', width: '2.3rem' }} />
-                                </Box>
-                            </Grid>
-                            <Grid item xs={10} lg={10.7} md={10.5}>
-                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: medium }}>
-                                            Ali Connors
-                                        </Typography>
-                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
-                                            3 days ago
-                                        </Typography>
-                                    </Box>
-                                    <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
-                                        </Typography>
-                                    </Box>
-                                </ListItemText>
-                            </Grid>
-                        </Grid>
-                        <Grid container >
-                            <Grid item xs={2} lg={1.3} md={1.5} >
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x200" sx={{ height: '2.3rem', width: '2.3rem' }} />
-                                </Box>
-                            </Grid>
-                            <Grid item xs={10} lg={10.7} md={10.5}>
-                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: medium }}>
-                                            Ali Connors
-                                        </Typography>
-                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
-                                            3 days ago
-                                        </Typography>
-                                    </Box>
-                                    <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
-                                        </Typography>
-                                    </Box>
-                                </ListItemText>
-                            </Grid>
-                        </Grid>
-                        <Grid container >
-                            <Grid item xs={2} lg={1.3} md={1.5} >
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x201" sx={{ height: '2.3rem', width: '2.3rem' }} />
-                                </Box>
-                            </Grid>
-                            <Grid item xs={10} lg={10.7} md={10.5}>
-                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: medium }}>
-                                            Ali Connors
-                                        </Typography>
-                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
-                                            3 days ago
-                                        </Typography>
-                                    </Box>
-                                    <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
-                                        </Typography>
-                                    </Box>
-                                </ListItemText>
-                            </Grid>
-                        </Grid>
-                        <Grid container >
-                            <Grid item xs={2} lg={1.3} md={1.5} >
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x202" sx={{ height: '2.3rem', width: '2.3rem' }} />
-                                </Box>
-                            </Grid>
-                            <Grid item xs={10} lg={10.7} md={10.5}>
-                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: medium }}>
-                                            Ali Connors
-                                        </Typography>
-                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
-                                            3 days ago
-                                        </Typography>
-                                    </Box>
-                                    <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
-                                        </Typography>
-                                    </Box>
-                                </ListItemText>
-                            </Grid>
-                        </Grid>
-                        <Grid container >
-                            <Grid item xs={2} lg={1.3} md={1.5} >
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '5px' }}>
-                                    <Avatar alt="Remy Sharp" src="https://source.unsplash.com/featured/300x203" sx={{ height: '2.3rem', width: '2.3rem' }} />
-                                </Box>
-                            </Grid>
-                            <Grid item xs={10} lg={10.7} md={10.5}>
-                                <ListItemText sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography sx={{ color: medium }}>
-                                            Ali Connors
-                                        </Typography>
-                                        <Typography sx={{ color: medium, fontSize: '9px' }} variant='caption'>
-                                            3 days ago
-                                        </Typography>
-                                    </Box>
-                                    <Box sx={{ mt: '2px' }}>
-                                        <Typography variant='body2' sx={{ color: medium, fontSize: '12px' }}>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, veniam? In officiis ipsam nemo! Voluptates repellendus quod necessitatibus ad earum, sapiente eaque vitae.
-                                        </Typography>
-                                    </Box>
-                                </ListItemText>
-                            </Grid>
-                        </Grid>
+                        )) : (
+                            <Typography>No comments yet!</Typography>
+                        )}
                     </List>
-
                 </CardContent>
             </Collapse>
         </Card>

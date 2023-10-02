@@ -12,8 +12,8 @@ function PostSectionLeft() {
 
   const dispatch = useDispatch()
   const token = useSelector((state) => state.auth.token)
+  console.log(token, '---------------')
   const posts = useSelector((state) => [...state.posts.posts].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
-  console.log(posts, 'posts------------------------------0000000000000000');
 
   useEffect(() => {
     const fetchTimeLinePosts = async () => {
@@ -33,7 +33,7 @@ function PostSectionLeft() {
   useEffect(() => {
 
   }, [posts])
-  
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Box sx={{ px: { xs: '0.5rem', sm: '0rem' } }}>
