@@ -98,6 +98,7 @@ export default function Post({ post }) {
             const newComment = data.data
             dispatch(addComment({ postId: post._id, comment: newComment }))
             setCommentData("")
+            setExpanded(true)
         } catch (error) {
             console.error(error)
         }
