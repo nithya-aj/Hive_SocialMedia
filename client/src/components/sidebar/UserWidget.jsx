@@ -41,10 +41,10 @@ const UserWidget = () => {
                     textOverflow: 'ellipsis',
                     color: main
                 }}>
-                    <Typography noWrap sx={{ fontSize: '1rem', marginBottom: '0', color: main }}>
+                    <Typography noWrap variant='body1' sx={{ fontSize: '1rem', marginBottom: '0', color: main }}>
                         {name}
                     </Typography>
-                    <Typography noWrap variant="subtitle2" sx={{ fontWeight: '300', marginBottom: '0', color: medium }}>
+                    <Typography noWrap variant="body2" sx={{ fontWeight: '300', marginBottom: '0', color: medium }}>
                         @{userName}
                     </Typography>
                 </Box>
