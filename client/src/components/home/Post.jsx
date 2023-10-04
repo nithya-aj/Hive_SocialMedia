@@ -11,8 +11,9 @@ import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import UserAvatar from '../widget/UserAvatar';
 import { Box, FormControl, Input, InputAdornment, List, Menu, MenuItem } from '@mui/material';
-import { MdOutlineInsertComment, MdTurnedInNot, MdOutlineFavoriteBorder, MdDeleteOutline } from "react-icons/md";
+import { MdOutlineInsertComment, MdTurnedInNot, MdDeleteOutline } from "react-icons/md";
 import { BiHide, BiSend } from "react-icons/bi";
+import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { useTheme } from '@mui/material/styles';
 import { HiOutlinePencilSquare } from 'react-icons/hi2';
 import { PiShareFat } from 'react-icons/pi';
@@ -55,10 +56,11 @@ export default function Post({ post }) {
         return [...postComments].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     });
     const { user, token } = useSelector((state) => state.auth)
+    console.log(token, 'token..........................')
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
     const [commentData, setCommentData] = useState("")
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLiked, setIsLiked] = useState(post?.likes?.includes(user._id))
 
     // fetching user details
     useEffect(() => {
@@ -72,7 +74,7 @@ export default function Post({ post }) {
             }
         }
         fetchDetails()
-    }, [post?._id])
+    }, [post?._id, post.userId])
 
     // fetching comments 
     useEffect(() => {
@@ -99,6 +101,21 @@ export default function Post({ post }) {
             dispatch(addComment({ postId: post._id, comment: newComment }))
             setCommentData("")
             setExpanded(true)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    // like functionality
+    const handleLike = async () => {
+        try {
+            const headers = {
+                Authorization: `Bearer ${token}`
+            }
+            const response = await api.put(`/post/like/${post._id}`, {}, { headers });
+            setIsLiked(prev => !prev)
+            console.log(response, 'this is response of handleLiek function in post.jsx------------------');
+            console.log(response.data, 'this is response of handleLiek function in post.jsx------------------');
         } catch (error) {
             console.error(error)
         }
@@ -235,9 +252,15 @@ export default function Post({ post }) {
             </CardContent>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <IconButton sx={{ color: main }} aria-label="add to favorites">
-                        <MdOutlineFavoriteBorder />
-                    </IconButton>
+                    {isLiked &&
+                        <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={handleLike} >
+                            <FcLike />
+                        </IconButton>}
+                    {!isLiked &&
+                        <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={handleLike}>
+                            <FcLikePlaceholder />
+                        </IconButton>
+                    }
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
