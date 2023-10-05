@@ -25,6 +25,7 @@ import { useEffect } from 'react';
 import api from 'api';
 import { addComment, getComments } from 'redux/commentSlice';
 import Comment from 'components/Comments/Comment';
+import { toggleLike } from 'redux/postSlice';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -49,18 +50,15 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
 }));
 
 export default function Post({ post }) {
-
     const dispatch = useDispatch()
     const comments = useSelector((state) => {
         const postComments = state.comments.comments[post._id] || [];
         return [...postComments].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     });
     const { user, token } = useSelector((state) => state.auth)
-    console.log(token, 'token..........................')
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
     const [commentData, setCommentData] = useState("")
-    const [isLiked, setIsLiked] = useState(post?.likes?.includes(user._id))
 
     // fetching user details
     useEffect(() => {
@@ -112,10 +110,8 @@ export default function Post({ post }) {
             const headers = {
                 Authorization: `Bearer ${token}`
             }
-            const response = await api.put(`/post/like/${post._id}`, {}, { headers });
-            setIsLiked(prev => !prev)
-            console.log(response, 'this is response of handleLiek function in post.jsx------------------');
-            console.log(response.data, 'this is response of handleLiek function in post.jsx------------------');
+            await api.put(`/post/like/${post._id}`, {}, { headers });
+            dispatch(toggleLike({ postId: post._id }))
         } catch (error) {
             console.error(error)
         }
@@ -252,15 +248,15 @@ export default function Post({ post }) {
             </CardContent>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    {isLiked &&
-                        <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={handleLike} >
+                    {post.likes.includes(user._id) ? (
+                        <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={handleLike}>
                             <FcLike />
-                        </IconButton>}
-                    {!isLiked &&
+                        </IconButton>
+                    ) : (
                         <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={handleLike}>
                             <FcLikePlaceholder />
                         </IconButton>
-                    }
+                    )}
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}
