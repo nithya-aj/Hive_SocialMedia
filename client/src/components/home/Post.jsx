@@ -25,7 +25,7 @@ import { useEffect } from 'react';
 import api from 'api';
 import { addComment, getComments } from 'redux/commentSlice';
 import Comment from 'components/Comments/Comment';
-import { toggleLike } from 'redux/postSlice';
+import { editPost } from 'redux/postSlice';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -105,13 +105,13 @@ export default function Post({ post }) {
     }
 
     // like functionality
-    const handleLike = async () => {
+    const handleLike = async (postId) => {
         try {
             const headers = {
                 Authorization: `Bearer ${token}`
             }
-            await api.put(`/post/like/${post._id}`, {}, { headers });
-            dispatch(toggleLike({ postId: post._id }))
+            const updatedPost = await api.put(`/post/like/${postId}`, {}, { headers });
+            dispatch(editPost({ post: updatedPost }))
         } catch (error) {
             console.error(error)
         }
@@ -248,15 +248,9 @@ export default function Post({ post }) {
             </CardContent>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    {post.likes.includes(user._id) ? (
-                        <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={handleLike}>
-                            <FcLike />
-                        </IconButton>
-                    ) : (
-                        <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={handleLike}>
-                            <FcLikePlaceholder />
-                        </IconButton>
-                    )}
+                    <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={() => handleLike(post._id)}>
+                        {<FcLike />} <FcLikePlaceholder />
+                    </IconButton>
                     <ExpandMore
                         expand={expanded}
                         onClick={handleExpandClick}

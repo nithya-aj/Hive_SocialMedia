@@ -14,23 +14,16 @@ const postSlice = createSlice({
         setPosts: (state, action) => {
             state.posts = action.payload
         },
-        toggleLike: (state, action) => {
-            const { postId } = action.payload;
-            const postIndex = state.posts.findIndex(post => post.id === postId);
+        editPost: (state, action) => {
+            const updatedPost = action.payload.post;
+            const postIndex = state.posts.findIndex((post) => post._id === updatedPost._id);
             if (postIndex !== -1) {
-                const post = { ...state.posts[postIndex] };
-                const likedIndex = post.likes.indexOf(postId);
-                if (likedIndex !== -1) {
-                    post.likes.splice(likedIndex, 1);
-                } else {
-                    post.likes.push(postId);
-                }
-                state.posts[postIndex] = post;
+                state.posts[postIndex] = updatedPost;
             }
         }
     }
 })
 
-export const { addPost, setPosts, toggleLike } = postSlice.actions
+export const { addPost, setPosts, editPost } = postSlice.actions
 export const selectPosts = (state) => state.posts.posts
 export default postSlice.reducer
