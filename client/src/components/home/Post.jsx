@@ -56,6 +56,7 @@ export default function Post({ post }) {
         return [...postComments].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     });
     const { user, token } = useSelector((state) => state.auth)
+    const isLiked = post.likes.includes(user._id)
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
     const [commentData, setCommentData] = useState("")
@@ -110,8 +111,9 @@ export default function Post({ post }) {
             const headers = {
                 Authorization: `Bearer ${token}`
             }
-            const updatedPost = await api.put(`/post/like/${postId}`, {}, { headers });
-            dispatch(editPost({ post: updatedPost }))
+            await api.put(`/post/like/${postId}`, {}, { headers });
+            const updatedPost = await api.get(`/post/find/${postId}`)
+            dispatch(editPost({ post: updatedPost.data }))
         } catch (error) {
             console.error(error)
         }
@@ -249,7 +251,7 @@ export default function Post({ post }) {
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={() => handleLike(post._id)}>
-                        {<FcLike />} <FcLikePlaceholder />
+                        {isLiked ? <FcLike /> : <FcLikePlaceholder />}
                     </IconButton>
                     <ExpandMore
                         expand={expanded}
