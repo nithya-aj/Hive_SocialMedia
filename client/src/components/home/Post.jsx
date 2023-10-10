@@ -11,12 +11,12 @@ import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import UserAvatar from '../widget/UserAvatar';
 import { Box, FormControl, Input, InputAdornment, List, Menu, MenuItem } from '@mui/material';
-import { MdOutlineInsertComment, MdTurnedInNot, MdDeleteOutline } from "react-icons/md";
-import { BiHide, BiSend } from "react-icons/bi";
+import { MdDeleteOutline } from "react-icons/md";
+import { BiHide, BiSend, BiSolidMessageDetail } from "react-icons/bi";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { useTheme } from '@mui/material/styles';
 import { HiOutlinePencilSquare } from 'react-icons/hi2';
-import { PiShareFat } from 'react-icons/pi';
+import { PiNavigationArrowFill, PiShareFat } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import { format } from 'timeago.js'
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +26,7 @@ import api from 'api';
 import { addComment, getComments } from 'redux/commentSlice';
 import Comment from 'components/Comments/Comment';
 import { editPost } from 'redux/postSlice';
+import { BsFillBookmarkCheckFill, BsFillBookmarkFill } from 'react-icons/bs';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -260,11 +261,11 @@ export default function Post({ post }) {
                         aria-label="comments"
                         sx={{ color: main }}
                     >
-                        <MdOutlineInsertComment />
+                        <BiSolidMessageDetail />
                     </ExpandMore>
                 </Box>
-                <IconButton sx={{ color: main }} aria-label="share">
-                    <MdTurnedInNot />
+                <IconButton sx={{ color: main, fontSize: '1rem' }} aria-label="share">
+                    <BsFillBookmarkFill /><BsFillBookmarkCheckFill />
                 </IconButton>
             </CardActions>
             <FormControlStyled component='form' onSubmit={handleComment} variant="standard" sx={{
@@ -284,7 +285,7 @@ export default function Post({ post }) {
                                 sx={{ color: main }}
                                 aria-label="toggle password visibility"
                             >
-                                <BiSend />
+                                <PiNavigationArrowFill style={{ transform: 'rotate(130deg)', fontSize:'1.2rem' }} />
                             </IconButton>
                         </InputAdornment>
                     }
