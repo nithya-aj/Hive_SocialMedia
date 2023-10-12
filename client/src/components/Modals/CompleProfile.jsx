@@ -139,7 +139,7 @@ const CompleProfile = ({ open, handleClose }) => {
                         </Box>
                         <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-end', justifyContent: 'flex-end', pt: '3.5rem' }}>
                             <Button type='submit' variant='outlined' color="secondary" sx={{ px: '1.5rem', borderRadius: '2px' }} >Save</Button>
-                            <Button type='reset' variant='outlined' color="warning" sx={{ px: '1rem', borderRadius: '2px' }}>Cancel</Button>
+                            <Button type='reset' variant='outlined' color="warning" sx={{ px: '1rem', borderRadius: '2px' }} >Clear</Button>
                         </Box>
                     </Box>
                 </Box>

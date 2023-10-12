@@ -12,7 +12,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import UserAvatar from '../widget/UserAvatar';
 import { Box, FormControl, Input, InputAdornment, List, Menu, MenuItem } from '@mui/material';
 import { MdDeleteOutline } from "react-icons/md";
-import { BiHide, BiSend, BiSolidMessageDetail } from "react-icons/bi";
+import { BiHide, BiSolidMessageDetail } from "react-icons/bi";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { useTheme } from '@mui/material/styles';
 import { HiOutlinePencilSquare } from 'react-icons/hi2';
@@ -26,7 +26,7 @@ import api from 'api';
 import { addComment, getComments } from 'redux/commentSlice';
 import Comment from 'components/Comments/Comment';
 import { editPost } from 'redux/postSlice';
-import { BsFillBookmarkCheckFill, BsFillBookmarkFill } from 'react-icons/bs';
+import { GoBookmarkFill, GoBookmark } from 'react-icons/go';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -56,8 +56,10 @@ export default function Post({ post }) {
         const postComments = state.comments.comments[post._id] || [];
         return [...postComments].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     });
+    const postCommentCount = comments.length
     const { user, token } = useSelector((state) => state.auth)
     const isLiked = post.likes.includes(user._id)
+    const likeCount = post.likes.length
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
     const [commentData, setCommentData] = useState("")
@@ -119,6 +121,9 @@ export default function Post({ post }) {
             console.error(error)
         }
     }
+
+    // bookmark functionality
+
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -234,7 +239,7 @@ export default function Post({ post }) {
                     </>
                 }
                 title={<Link to={`/profile/${user._id}`} style={{ margin: 0, padding: 0, cursor: 'pointer', textDecoration: 'none', color: main, fontSize: '0.9rem' }}>{authorDetails?.username}</Link>}
-                subheader={<p style={{ display: 'flex', gap: 8, margin: 0, padding: 0 }}>{authorDetails.place} <span>{format(post?.createdAt)}</span> </p>}
+                subheader={<p style={{ display: 'flex', gap: 8, margin: 0, padding: 0 }}>{authorDetails?.place} <span>{format(post?.createdAt)}</span> </p>}
             />
             <CardMedia
                 component="img"
@@ -251,21 +256,27 @@ export default function Post({ post }) {
             </CardContent>
             <CardActions sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={() => handleLike(post._id)}>
-                        {isLiked ? <FcLike /> : <FcLikePlaceholder />}
-                    </IconButton>
-                    <ExpandMore
-                        expand={expanded}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="comments"
-                        sx={{ color: main }}
-                    >
-                        <BiSolidMessageDetail />
-                    </ExpandMore>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={() => handleLike(post._id)}>
+                            {isLiked ? <FcLike /> : <FcLikePlaceholder />}
+                        </IconButton>
+                        {likeCount > 0 && <Typography>{likeCount}</Typography>}
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <ExpandMore
+                            expand={expanded}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="comments"
+                            sx={{ color: main }}
+                        >
+                            <BiSolidMessageDetail />
+                        </ExpandMore>
+                        {postCommentCount > 0 && <Typography>{postCommentCount}</Typography>}
+                    </Box>
                 </Box>
-                <IconButton sx={{ color: main, fontSize: '1rem' }} aria-label="share">
-                    <BsFillBookmarkFill /><BsFillBookmarkCheckFill />
+                <IconButton sx={{ color: main }} aria-label="share">
+                    <GoBookmark /><GoBookmarkFill />
                 </IconButton>
             </CardActions>
             <FormControlStyled component='form' onSubmit={handleComment} variant="standard" sx={{
@@ -285,7 +296,7 @@ export default function Post({ post }) {
                                 sx={{ color: main }}
                                 aria-label="toggle password visibility"
                             >
-                                <PiNavigationArrowFill style={{ transform: 'rotate(130deg)', fontSize:'1.2rem' }} />
+                                <PiNavigationArrowFill style={{ transform: 'rotate(130deg)', fontSize: '1.2rem' }} />
                             </IconButton>
                         </InputAdornment>
                     }
