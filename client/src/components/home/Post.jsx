@@ -60,6 +60,7 @@ export default function Post({ post }) {
     const { user, token } = useSelector((state) => state.auth)
     const isLiked = post.likes.includes(user._id)
     const likeCount = post.likes.length
+    const isBookmarked = post.bookmarkedBy.includes((user._id))
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
     const [commentData, setCommentData] = useState("")
@@ -123,6 +124,18 @@ export default function Post({ post }) {
     }
 
     // bookmark functionality
+    const handleBookmark = async (postId) => {
+        try {
+            const headers = {
+                Authorization: `Bearer ${token}`
+            }
+            await api.put(`/post/bookmark/${postId}`, {}, { headers })
+            const updatedPost = await api.get(`/post/find/${postId}`)
+            dispatch(editPost({ post: updatedPost.data }))
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
 
     const handleExpandClick = () => {
@@ -275,8 +288,8 @@ export default function Post({ post }) {
                         {postCommentCount > 0 && <Typography>{postCommentCount}</Typography>}
                     </Box>
                 </Box>
-                <IconButton sx={{ color: main }} aria-label="share">
-                    <GoBookmark /><GoBookmarkFill />
+                <IconButton sx={{ color: main }} aria-label="share" onClick={() => handleBookmark(post._id)} >
+                    {isBookmarked ? <GoBookmarkFill /> : <GoBookmark />}
                 </IconButton>
             </CardActions>
             <FormControlStyled component='form' onSubmit={handleComment} variant="standard" sx={{
