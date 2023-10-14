@@ -3,6 +3,8 @@ import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles'
 import { useTheme } from '@emotion/react';
+import { useSelector } from 'react-redux';
+import profile from 'assets/profile.png'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -36,6 +38,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const UserAvatar = ({ sidebar }) => {
     const theme = useTheme()
     const orange = theme.palette.neutral.orange
+    const user = useSelector((state) => state.auth)
     return (
         <Box>
             {sidebar ? (
@@ -44,13 +47,13 @@ const UserAvatar = ({ sidebar }) => {
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                     variant="dot"
                 >
-                    <Avatar sx={{ width: "2.5rem", height: '2.5rem', border: `2px solid ${orange}` }} alt="Remy Sharp" src="https://source.unsplash.com/featured/300x198" />
+                    <Avatar sx={{ width: "2.5rem", height: '2.5rem', border: `2px solid ${orange}`, padding: '6px' }} alt="Remy Sharp" src={user?.profilePic === undefined ? profile : `http://localhost:8080/images/${user?.profilePic}`} />
                 </StyledBadge>) : (
                 <StyledBadge
                     overlap="circular"
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 >
-                    <Avatar sx={{ width: "2.5rem", height: '2.5rem', border: `2px solid ${orange}` }} alt="Remy Sharp" src="https://source.unsplash.com/featured/300x198" />
+                    <Avatar sx={{ width: "2.5rem", height: '2.5rem', border: `2px solid ${orange}`, padding: '6px' }} alt="Remy Sharp" src={user?.profilePic === undefined ? profile : `http://localhost:8080/images/${user?.profilePic}`} />
                 </StyledBadge>)
             }
         </Box>

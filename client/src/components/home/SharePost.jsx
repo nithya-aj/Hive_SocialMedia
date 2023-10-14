@@ -24,7 +24,7 @@ function SharePost() {
 
     const [desc, setDesc] = useState("")
     const [photo, setPhoto] = useState("")
-    const token = useSelector((state) => state.auth.token)
+    const { token } = useSelector((state) => state.auth)
 
     const handleCreatePost = async (e) => {
         e.preventDefault();

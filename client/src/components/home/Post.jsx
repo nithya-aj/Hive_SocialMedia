@@ -13,13 +13,12 @@ import UserAvatar from '../widget/UserAvatar';
 import { Box, FormControl, Input, InputAdornment, List, Menu, MenuItem } from '@mui/material';
 import { MdDeleteOutline } from "react-icons/md";
 import { BiHide, BiSolidMessageDetail } from "react-icons/bi";
-import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import { useTheme } from '@mui/material/styles';
-import { HiOutlinePencilSquare } from 'react-icons/hi2';
+import { HiHeart, HiOutlineHeart, HiOutlinePencilSquare } from 'react-icons/hi2';
 import { PiNavigationArrowFill, PiShareFat } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import { format } from 'timeago.js'
 import { useDispatch, useSelector } from 'react-redux';
+import { useTheme } from '@emotion/react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import api from 'api';
@@ -52,6 +51,14 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
 
 export default function Post({ post }) {
     const dispatch = useDispatch()
+    const theme = useTheme()
+    const darkbg = theme.palette.background.darkbg
+    const alt = theme.palette.background.alt
+    const main = theme.palette.neutral.main
+    const medium = theme.palette.neutral.medium
+    const fontSm = theme.palette.neutral.fontSm
+    const red = theme.palette.neutral.red
+
     const comments = useSelector((state) => {
         const postComments = state.comments.comments[post._id] || [];
         return [...postComments].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
@@ -64,6 +71,47 @@ export default function Post({ post }) {
     const [authorDetails, setAuthorDetails] = useState('')
     const [expanded, setExpanded] = useState(false);
     const [commentData, setCommentData] = useState("")
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const userDropDownOptions = [
+        {
+            icon: <PiShareFat style={{ fontSize: '15px' }} />,
+            name: 'Share',
+        },
+        {
+            icon: <BiHide style={{ fontSize: '15px' }} />,
+            name: 'Hide',
+        }
+    ];
+    const ownerDropdownOptions = [
+        {
+            icon: <HiOutlinePencilSquare style={{ fontSize: '15px' }} />,
+            name: 'Update',
+        },
+        {
+            icon: <PiShareFat style={{ fontSize: '15px' }} />,
+            name: 'Share',
+        },
+        {
+            icon: <BiHide style={{ fontSize: '15px' }} />,
+            name: 'Hide',
+        },
+        {
+            icon: <MdDeleteOutline style={{ fontSize: '15px' }} />,
+            name: 'Delete',
+        },
+    ];
+
 
     // fetching user details
     useEffect(() => {
@@ -136,55 +184,6 @@ export default function Post({ post }) {
             console.error(error)
         }
     }
-
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
-
-    const theme = useTheme()
-    const darkbg = theme.palette.background.darkbg
-    const alt = theme.palette.background.alt
-    const main = theme.palette.neutral.main
-    const medium = theme.palette.neutral.medium
-    const fontSm = theme.palette.neutral.fontSm
-
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    const userDropDownOptions = [
-        {
-            icon: <PiShareFat style={{ fontSize: '15px' }} />,
-            name: 'Share',
-        },
-        {
-            icon: <BiHide style={{ fontSize: '15px' }} />,
-            name: 'Hide',
-        }
-    ];
-    const ownerDropdownOptions = [
-        {
-            icon: <HiOutlinePencilSquare style={{ fontSize: '15px' }} />,
-            name: 'Update',
-        },
-        {
-            icon: <PiShareFat style={{ fontSize: '15px' }} />,
-            name: 'Share',
-        },
-        {
-            icon: <BiHide style={{ fontSize: '15px' }} />,
-            name: 'Hide',
-        },
-        {
-            icon: <MdDeleteOutline style={{ fontSize: '15px' }} />,
-            name: 'Delete',
-        },
-    ];
 
     return (
         <Card sx={{ pb: '1rem', px: '1rem', boxShadow: 'none', borderRadius: { sm: '10px', xs: '0px' }, backgroundColor: { sm: darkbg, xs: alt } }}>
@@ -271,7 +270,7 @@ export default function Post({ post }) {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <IconButton sx={{ color: main }} aria-label="add to favorites" onClick={() => handleLike(post._id)}>
-                            {isLiked ? <FcLike /> : <FcLikePlaceholder />}
+                            {isLiked ? <HiHeart style={{ color: red }} /> : <HiOutlineHeart style={{ color: main }} />}
                         </IconButton>
                         {likeCount > 0 && <Typography>{likeCount}</Typography>}
                     </Box>
@@ -289,7 +288,7 @@ export default function Post({ post }) {
                     </Box>
                 </Box>
                 <IconButton sx={{ color: main }} aria-label="share" onClick={() => handleBookmark(post._id)} >
-                    {isBookmarked ? <GoBookmarkFill /> : <GoBookmark />}
+                    {isBookmarked ? <GoBookmarkFill style={{ color: red }} /> : <GoBookmark />}
                 </IconButton>
             </CardActions>
             <FormControlStyled component='form' onSubmit={handleComment} variant="standard" sx={{
