@@ -17,7 +17,8 @@ const commentSlice = createSlice({
         },
         getComments: (state, action) => {
             const { postId, comments } = action.payload;
-            state.comments[postId] = comments;
+            const sortedComments = comments.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+            state.comments[postId] = sortedComments;
         },
     },
 });

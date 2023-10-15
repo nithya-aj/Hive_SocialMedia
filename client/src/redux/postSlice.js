@@ -12,7 +12,8 @@ const postSlice = createSlice({
             state.posts.push(action.payload)
         },
         setPosts: (state, action) => {
-            state.posts = action.payload
+            const sortedPosts = action.payload.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+            state.posts = sortedPosts
         },
         editPost: (state, action) => {
             const updatedPost = action.payload.post;

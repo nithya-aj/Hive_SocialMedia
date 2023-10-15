@@ -74,10 +74,7 @@ export default function Post({ post }) {
   const red = theme.palette.neutral.red;
 
   const comments = useSelector((state) => {
-    const postComments = state.comments.comments[post._id] || [];
-    return [...postComments].sort((a, b) =>
-      b.createdAt.localeCompare(a.createdAt)
-    );
+    return state.comments.comments[post._id] || [];
   });
   const postCommentCount = comments.length;
   const { user, token } = useSelector((state) => state.auth);

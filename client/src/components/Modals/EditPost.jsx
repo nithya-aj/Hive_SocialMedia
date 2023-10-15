@@ -11,6 +11,7 @@ import UserAvatar from "components/widget/UserAvatar";
 import React from "react";
 import { FaPhotoVideo } from "react-icons/fa";
 import { IoImage } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const EditPost = () => {
   const theme = useTheme();
@@ -19,6 +20,10 @@ const EditPost = () => {
   const orange = theme.palette.neutral.orange;
   const textMain = theme.palette.neutral.main;
   const darkbg = theme.palette.background.darkbg;
+
+  const user = useSelector((state) => state.auth);
+  console.log(user, "user");
+
   return (
     <Box
       component={"form"}
