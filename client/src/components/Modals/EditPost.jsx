@@ -11,18 +11,14 @@ import UserAvatar from "components/widget/UserAvatar";
 import React from "react";
 import { FaPhotoVideo } from "react-icons/fa";
 import { IoImage } from "react-icons/io5";
-import { useSelector } from "react-redux";
 
-const EditPost = () => {
+const EditPost = ({ editedPost, handleEditPost, handleInputChange }) => {
   const theme = useTheme();
   const main = theme.palette.background.main;
   const alt = theme.palette.background.alt;
   const orange = theme.palette.neutral.orange;
   const textMain = theme.palette.neutral.main;
   const darkbg = theme.palette.background.darkbg;
-
-  const user = useSelector((state) => state.auth);
-  console.log(user, "user");
 
   return (
     <Box
@@ -51,7 +47,7 @@ const EditPost = () => {
         }}
       >
         <img
-          src="https://source.unsplash.com/featured/300x2011"
+          src={`http://localhost:8080/images/${editedPost.imageUrl}`}
           alt=""
           style={{
             width: "100%",
@@ -89,8 +85,10 @@ const EditPost = () => {
           >
             <InputBase
               sx={{ ml: { sm: 1, xs: 2 }, flex: 1, color: textMain }}
-              placeholder="What do you want to share today?"
+              value={editedPost.desc}
+              id="desc"
               name="desc"
+              onChange={handleInputChange}
             />
           </Paper>
         </Box>
@@ -153,6 +151,7 @@ const EditPost = () => {
             variant="outlined"
             color="secondary"
             sx={{ px: "1.5rem", borderRadius: "2px" }}
+            onClick={handleEditPost}
           >
             Save
           </Button>

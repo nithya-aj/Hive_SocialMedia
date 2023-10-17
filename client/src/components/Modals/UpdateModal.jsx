@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Backdrop,
   Box,
@@ -12,11 +12,55 @@ import { useTheme } from "@emotion/react";
 import FlexBetween from "components/widget/FlexBetween";
 import EditProfile from "./EditProfile";
 import EditPost from "./EditPost";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearEditPostData,
+  editPost,
+  selectEditPostData,
+} from "redux/postSlice";
+import api from "api";
 
 const UpdateModal = ({ page, modal, setModal }) => {
   const theme = useTheme();
   const fontSm = theme.palette.neutral.fontSm;
   const main = theme.palette.background.main;
+
+  // updating post
+  const editPostData = useSelector(selectEditPostData);
+  const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  console.log(token, "token");
+  const [editedPost, setEditedPost] = useState(editPostData);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedPost({ ...editedPost, [name]: value });
+  };
+
+  const handleEditPost = async (e) => {
+    e.preventDefault();
+    try {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await api.put(
+        `/post/update/${editedPost._id}`,
+        editedPost,
+        {
+          headers,
+        }
+      );
+      const updatedPostData = response.data;
+      dispatch(editPost({ post: updatedPostData }));
+      dispatch(clearEditPostData());
+      setModal(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // updating user
 
   const style = {
     position: "absolute",
@@ -51,7 +95,15 @@ const UpdateModal = ({ page, modal, setModal }) => {
             </IconButton>
           </FlexBetween>
           <Divider sx={{ color: fontSm }} />
-          {page === "profile" ? <EditProfile /> : <EditPost />}
+          {page === "profile" ? (
+            <EditProfile />
+          ) : (
+            <EditPost
+              editedPost={editedPost}
+              handleInputChange={handleInputChange}
+              handleEditPost={handleEditPost}
+            />
+          )}
         </Box>
       </Modal>
     </Backdrop>

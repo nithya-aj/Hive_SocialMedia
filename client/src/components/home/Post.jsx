@@ -36,7 +36,7 @@ import { useEffect } from "react";
 import api from "api";
 import { addComment, getComments } from "redux/commentSlice";
 import Comment from "components/Comments/Comment";
-import { editPost } from "redux/postSlice";
+import { editPost, setEditPostData } from "redux/postSlice";
 import { GoBookmarkFill, GoBookmark } from "react-icons/go";
 import UpdateModal from "components/Modals/UpdateModal";
 
@@ -205,6 +205,7 @@ export default function Post({ post }) {
   const handleOptionClick = (option) => {
     switch (option.name) {
       case "Update":
+        dispatch(setEditPostData(post));
         setModal(true);
         console.log("Update option clicked");
         break;
