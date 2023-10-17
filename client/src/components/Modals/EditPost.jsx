@@ -11,8 +11,15 @@ import UserAvatar from "components/widget/UserAvatar";
 import React from "react";
 import { FaPhotoVideo } from "react-icons/fa";
 import { IoImage } from "react-icons/io5";
+import close from "assets/close.png";
 
-const EditPost = ({ editedPost, handleEditPost, handleInputChange }) => {
+const EditPost = ({
+  editedPost,
+  handleEditPost,
+  handleInputChange,
+  selectedImage,
+  setSelectedImage,
+}) => {
   const theme = useTheme();
   const main = theme.palette.background.main;
   const alt = theme.palette.background.alt;
@@ -32,41 +39,48 @@ const EditPost = ({ editedPost, handleEditPost, handleInputChange }) => {
       }}
       encType="multipart/form-data"
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          height: "25rem",
-          marginBottom: "1rem",
-          borderRadius: "10px",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          overflow: "hidden",
-          justifyContent: "center",
-          position: "relative",
-        }}
-      >
-        <img
-          src={`http://localhost:8080/images/${editedPost.imageUrl}`}
-          alt=""
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-        <IconButton
-          aria-label="delete picture"
+      {editedPost.imageUrl && (
+        <Box
           sx={{
-            position: "absolute",
-            top: "0.1rem",
-            right: "0.1rem",
-            color: main,
+            display: "flex",
+            alignItems: "center",
+            height: "25rem",
+            marginBottom: "1rem",
+            borderRadius: "10px",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            overflow: "hidden",
+            justifyContent: "center",
+            position: "relative",
           }}
         >
-          <img src={"close"} alt="" />
-        </IconButton>
-      </Box>
+          <img
+            src={
+              editedPost.imageUrl
+                ? `http://localhost:8080/images/${editedPost.imageUrl}`
+                : URL.createObjectURL(selectedImage)
+            }
+            alt=""
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+          <IconButton
+            aria-label="delete picture"
+            onClick={() => setSelectedImage(null)}
+            sx={{
+              position: "absolute",
+              top: "0.1rem",
+              right: "0.1rem",
+              color: main,
+            }}
+          >
+            <img src={close} alt="" />
+          </IconButton>
+        </Box>
+      )}
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Box>
           <UserAvatar />
@@ -113,6 +127,8 @@ const EditPost = ({ editedPost, handleEditPost, handleInputChange }) => {
               aria-label="upload picture"
               component="label"
               sx={{ color: orange }}
+              name="imageUrl"
+              onChange={(e) => setSelectedImage(e.target.files[0])}
             >
               <input hidden accept="image/*" type="file" name="photo" />
               <IoImage />

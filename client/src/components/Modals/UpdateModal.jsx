@@ -29,8 +29,8 @@ const UpdateModal = ({ page, modal, setModal }) => {
   const editPostData = useSelector(selectEditPostData);
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log(token, "token");
   const [editedPost, setEditedPost] = useState(editPostData);
+  const [selectedImage, setSelectedImage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -68,7 +68,7 @@ const UpdateModal = ({ page, modal, setModal }) => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "40%",
-    height: "80%",
+    height: page === "profile" ? "80%" : "auto",
     bgcolor: main,
     boxShadow: 24,
     borderRadius: "10px",
@@ -102,6 +102,8 @@ const UpdateModal = ({ page, modal, setModal }) => {
               editedPost={editedPost}
               handleInputChange={handleInputChange}
               handleEditPost={handleEditPost}
+              selectedImage={selectedImage}
+              setSelectedImage={setSelectedImage}
             />
           )}
         </Box>
