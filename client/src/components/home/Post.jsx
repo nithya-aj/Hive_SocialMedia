@@ -28,7 +28,6 @@ import {
 } from "react-icons/hi2";
 import { PiNavigationArrowFill, PiShareFat } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { format } from "timeago.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import { useState } from "react";
@@ -39,6 +38,7 @@ import Comment from "components/Comments/Comment";
 import { editPost, setEditPostData } from "redux/postSlice";
 import { GoBookmarkFill, GoBookmark } from "react-icons/go";
 import UpdateModal from "components/Modals/UpdateModal";
+import ReactTimeago from "react-timeago";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -325,7 +325,10 @@ export default function Post({ post }) {
           }
           subheader={
             <p style={{ display: "flex", gap: 8, margin: 0, padding: 0 }}>
-              {authorDetails?.place} <span>{format(post?.createdAt)}</span>{" "}
+              {authorDetails?.place}{" "}
+              <span>
+                <ReactTimeago date={post?.createdAt} />
+              </span>{" "}
             </p>
           }
         />
