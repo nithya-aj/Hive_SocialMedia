@@ -78,9 +78,9 @@ export default function Post({ post }) {
   });
   const postCommentCount = comments.length;
   const { user, token } = useSelector((state) => state.auth);
-  const isLiked = post.likes.includes(user._id);
-  const likeCount = post.likes.length;
-  const isBookmarked = post.bookmarkedBy.includes(user._id);
+  const isLiked = post.likes?.includes(user._id);
+  const likeCount = post.likes?.length;
+  const isBookmarked = post.bookmarkedBy?.includes(user._id);
   const [authorDetails, setAuthorDetails] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [commentData, setCommentData] = useState("");

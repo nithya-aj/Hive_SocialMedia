@@ -5,7 +5,7 @@ import Post from '../models/Post.js'
 // to fetch posts of a particular user
 export const getPost = async (req, res) => {
     try {
-        const post = await Post.findById(req.params.id);
+        const post = await Post.findById(req.params.id).sort({ createdAt: -1 })
         return res.status(200).json(post);
     } catch (error) {
         return res.status(500).json(error.message)
@@ -15,7 +15,7 @@ export const getPost = async (req, res) => {
 // to fetch all the posts which is not hidden
 export const getUserPosts = async (req, res) => {
     try {
-        const userPosts = await Post.find({ userId: req.params.id, hidden: false })
+        const userPosts = await Post.find({ userId: req.params.id, hidden: false }).sort({ createdAt: -1 })
         return res.status(200).json(userPosts)
     } catch (error) {
         return res.status(500).json(error.message)

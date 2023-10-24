@@ -13,12 +13,11 @@ const commentSlice = createSlice({
             if (!state.comments[postId]) {
                 state.comments[postId] = [];
             }
-            state.comments[postId].push(comment);
+            state.comments[postId].unshift(comment);
         },
         getComments: (state, action) => {
             const { postId, comments } = action.payload;
-            const sortedComments = comments.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-            state.comments[postId] = sortedComments;
+            state.comments[postId] = comments;
         },
     },
 });

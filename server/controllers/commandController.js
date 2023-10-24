@@ -3,7 +3,7 @@ import Comment from '../models/Comment.js'
 // fetching comments from particular posts
 export const getCommentsFromPost = async (req, res) => {
     try {
-        const comments = await Comment.find({ postId: req.params.postId })
+        const comments = await Comment.find({ postId: req.params.postId }).sort({ createdAt: -1 })
         return res.status(200).json(comments)
     } catch (error) {
         return res.status(500).json(error.message)
