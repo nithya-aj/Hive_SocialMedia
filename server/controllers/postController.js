@@ -50,7 +50,7 @@ export const updatePost = async (req, res) => {
             )
             return res.status(200).json(updatePost)
         } else {
-            throw new Error("Only the owner of this post is allowed to do that")
+            throw new Error("You are not authorized to update this post")
         }
     } catch (error) {
         return res.status(500).json(error.message)

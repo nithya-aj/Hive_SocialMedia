@@ -30,7 +30,6 @@ const UpdateModal = ({ page, modal, setModal }) => {
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [editedPost, setEditedPost] = useState(editPostData);
-  const [selectedImage, setSelectedImage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,8 +58,6 @@ const UpdateModal = ({ page, modal, setModal }) => {
       console.error(error);
     }
   };
-
-  // updating user
 
   const style = {
     position: "absolute",
@@ -99,11 +96,10 @@ const UpdateModal = ({ page, modal, setModal }) => {
             <EditProfile />
           ) : (
             <EditPost
+              postData={editedPost}
               editedPost={editedPost}
               handleInputChange={handleInputChange}
               handleEditPost={handleEditPost}
-              selectedImage={selectedImage}
-              setSelectedImage={setSelectedImage}
             />
           )}
         </Box>
