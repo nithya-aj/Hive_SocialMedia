@@ -15,7 +15,7 @@ postRouter.post("/", verifyToken, createPost)
 
 postRouter.put("/update/:id", verifyToken, updatePost)
 postRouter.put("/like/:postId", verifyToken, likePost)
-postRouter.put("/:postId/hide", verifyToken, hidePost)
+postRouter.put("/hide/:postId", verifyToken, hidePost)
 postRouter.put("/:postId/unhide", verifyToken, unhidePost)
 postRouter.put("/bookmark/:postId", verifyToken, bookmarkPost)
 

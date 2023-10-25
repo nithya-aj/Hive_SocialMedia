@@ -202,6 +202,19 @@ export default function Post({ post }) {
     }
   };
 
+  // hide post
+  const handleHidePost = async (postId) => {
+    try {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await api.put(`/post/hide/${postId}`, {}, { headers });
+      console.log(response, "response..............");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleOptionClick = (option) => {
     switch (option.name) {
       case "Update":
@@ -213,6 +226,7 @@ export default function Post({ post }) {
         console.log("Share option clicked");
         break;
       case "Hide":
+        handleHidePost(post._id);
         console.log("Hide option clicked");
         break;
       case "Delete":

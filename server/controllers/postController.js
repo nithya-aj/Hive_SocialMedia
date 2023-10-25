@@ -5,7 +5,7 @@ import Post from '../models/Post.js'
 // to fetch posts of a particular user
 export const getPost = async (req, res) => {
     try {
-        const post = await Post.findById(req.params.id).sort({ createdAt: -1 })
+        const post = await Post.findById({ userId: req.params.id, hidden: false }).sort({ createdAt: -1 })
         return res.status(200).json(post);
     } catch (error) {
         return res.status(500).json(error.message)
@@ -117,7 +117,7 @@ export const likePost = async (req, res) => {
 export const getTimelinePosts = async (req, res) => {
     try {
         const currentUser = await User.findById(req.user.id);
-        const userPosts = await Post.find({ userId: currentUser._id });
+        const userPosts = await Post.find({ userId: currentUser._id, hidden: false });
         const friendPosts = await Promise.all(
             currentUser.followings.map((friendId) => {
                 return Post.find({ userId: friendId })
