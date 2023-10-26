@@ -1,9 +1,10 @@
 import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
+import { compareString, createJWT, hashString } from '../utils/index.js'
 
 // register new user
 export const register = async (req, res) => {
+    const { email } = req.body
     try {
         // checking if the fields are empty
         const isEmpty = Object.values(req.body).some((v) => !v)
@@ -11,17 +12,17 @@ export const register = async (req, res) => {
             throw new Error("Fill all fields!")
         }
         // checking if user is exist or not
-        const isExisting = await User.findOne({ username: req.body.username })
+        const isExisting = await User.findOne({ email })
         if (isExisting) {
             throw new Error("Username has been already used")
         }
         // hashing password
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        const hashedPassword = await hashString(req.body.password)
         const newUser = await User.create({ ...req.body, password: hashedPassword })
 
         const payload = { id: newUser._id, username: newUser.username }
         const { password, ...others } = newUser._doc
-        const token = jwt.sign(payload, process.env.JWT_SECRET)
+        const token = createJWT(payload)
 
         return res.status(201).json({ token, others })
 
@@ -44,14 +45,14 @@ export const login = async (req, res) => {
             throw new Error('Invalid credentials!')
         }
 
-        const comparePass = await bcrypt.compare(req.body.password, user.password)
+        const comparePass = await compareString(req.body.password, user.password)
         if (!comparePass) {
             throw new Error('Invalid Credentials');
         }
 
         const payload = { id: user._id, username: user.username }
         const { password, ...others } = user._doc
-        const token = jwt.sign(payload, process.env.JWT_SECRET)
+        const token = createJWT(payload)
 
         return res.status(200).json({ token, others })
 
