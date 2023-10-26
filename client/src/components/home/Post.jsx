@@ -35,7 +35,7 @@ import { useEffect } from "react";
 import api from "api";
 import { addComment, getComments } from "redux/commentSlice";
 import Comment from "components/Comments/Comment";
-import { editPost, setEditPostData } from "redux/postSlice";
+import { editPost, hidePost, setEditPostData } from "redux/postSlice";
 import { GoBookmarkFill, GoBookmark } from "react-icons/go";
 import UpdateModal from "components/Modals/UpdateModal";
 import ReactTimeago from "react-timeago";
@@ -208,8 +208,8 @@ export default function Post({ post }) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await api.put(`/post/hide/${postId}`, {}, { headers });
-      console.log(response, "response..............");
+      await api.put(`/post/hide/${postId}`, {}, { headers });
+      dispatch(hidePost({ postId, hidden: true }));
     } catch (error) {
       console.error(error);
     }

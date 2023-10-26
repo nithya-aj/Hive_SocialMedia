@@ -56,9 +56,9 @@ const UserAvatar = ({ sidebar }) => {
             }}
             alt="Remy Sharp"
             src={
-              user?.profilePic === undefined
-                ? profile
-                : `http://localhost:8080/images/${user?.profilePic}`
+              user?.profilePic
+                ? `http://localhost:8080/images/${user?.profilePic}`
+                : profile
             }
           />
         </StyledBadge>
@@ -76,9 +76,9 @@ const UserAvatar = ({ sidebar }) => {
             }}
             alt="Remy Sharp"
             src={
-              user?.profilePic === undefined
-                ? profile
-                : `http://localhost:8080/images/${user?.profilePic}`
+              user?.profilePic
+                ? `http://localhost:8080/images/${user?.profilePic}`
+                : profile
             }
           />
         </StyledBadge>

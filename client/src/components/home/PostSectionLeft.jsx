@@ -11,7 +11,7 @@ import { setPosts } from "redux/postSlice";
 function PostSectionLeft() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  const posts = useSelector((state) => state.posts.posts); 
+  const posts = useSelector((state) => state.posts.posts);
 
   useEffect(() => {
     const fetchTimeLinePosts = async () => {
@@ -36,9 +36,9 @@ function PostSectionLeft() {
         <Stories />
       </Box>
       <SharePost />
-      {posts?.map((post) => (
-        <Posts post={post} key={post._id} />
-      ))}
+      {posts?.map(
+        (post) => !post.hidden && <Posts post={post} key={post._id}/>
+      )}
     </Box>
   );
 }

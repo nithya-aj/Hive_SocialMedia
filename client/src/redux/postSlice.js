@@ -22,6 +22,13 @@ const postSlice = createSlice({
                 state.posts[postIndex] = updatedPost;
             }
         },
+        hidePost: (state, action) => {
+            const { postId, hidden } = action.payload;
+            const postIndex = state.posts.findIndex((post) => post._id === postId);
+            if (postIndex !== -1) {
+                state.posts[postIndex].hidden = hidden;
+            }
+        },
         setEditPostData: (state, action) => {
             state.editPostData = action.payload
         },
@@ -32,7 +39,7 @@ const postSlice = createSlice({
 })
 
 export const { addPost, setPosts, editPost, setEditPostData,
-    clearEditPostData } = postSlice.actions
+    clearEditPostData, hidePost } = postSlice.actions
 export const selectPosts = (state) => state.posts.posts
 export const selectEditPostData = (state) => state.posts.editPostData;
 export default postSlice.reducer
