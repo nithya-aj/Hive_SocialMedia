@@ -194,9 +194,13 @@ export default function Post({ post }) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      await api.put(`/post/bookmark/${postId}`, {}, { headers });
-      const updatedPost = await api.get(`/post/find/${postId}`);
-      dispatch(editPost({ post: updatedPost.data }));
+      const response = await api.put(
+        `/post/bookmark/${postId}`,
+        {},
+        { headers }
+      );
+      const updatedPost = await response.data;
+      dispatch(setPost({ post: updatedPost.post }));
     } catch (error) {
       console.error(error);
     }

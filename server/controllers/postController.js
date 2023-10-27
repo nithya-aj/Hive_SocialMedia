@@ -94,7 +94,6 @@ export const likePost = async (req, res) => {
         const isLikedByCurrUser = post.likes.includes(userId);
         let updatedPost;
         if (isLikedByCurrUser) {
-            console.log('first')
             updatedPost = await Post.findByIdAndUpdate(
                 postId,
                 { $pull: { likes: userId } },
@@ -102,7 +101,6 @@ export const likePost = async (req, res) => {
             );
             await User.findByIdAndUpdate(userId, { $pull: { likedPosts: postId } });
         } else {
-            console.log('second')
             updatedPost = await Post.findByIdAndUpdate(
                 postId,
                 { $push: { likes: userId } },
@@ -110,14 +108,12 @@ export const likePost = async (req, res) => {
             );
             await User.findByIdAndUpdate(userId, { $push: { likedPosts: postId } });
         }
-        return res
-            .status(200)
-            .json({
-                msg: isLikedByCurrUser ? "Post unliked!" : "Post liked🎉",
-                post: updatedPost,
-            });
-        } catch (error) {
-            return res.status(500).json(error.message);
+        return res.status(200).json({
+            msg: isLikedByCurrUser ? "Post unliked!" : "Post liked🎉",
+            post: updatedPost,
+        });
+    } catch (error) {
+        return res.status(500).json(error.message);
     }
 };
 
@@ -185,36 +181,35 @@ export const unhidePost = async (req, res) => {
 // to bookmark post and remove bookmark
 export const bookmarkPost = async (req, res) => {
     try {
-        const post = await Post.findById(req.params.postId);
+        const postId = req.params.postId;
+        const userId = req.user.id;
+        const post = await Post.findById(postId);
         if (!post) {
             throw new Error("No such post!");
         }
-        const isbookmarkedByCurrUser = post.bookmarkedBy.includes(req.user.id);
+        const isbookmarkedByCurrUser = post.bookmarkedBy.includes(userId);
+        let updatedPost;
         if (isbookmarkedByCurrUser) {
-            await Post.findByIdAndUpdate(
-                req.params.postId,
-                { $pull: { bookmarkedBy: req.user.id } },
+            updatedPost = await Post.findByIdAndUpdate(
+                postId,
+                { $pull: { bookmarkedBy: userId } },
                 { new: true }
             );
-            await User.findByIdAndUpdate(
-                req.user.id,
-                { $pull: { bookmarks: post._id } },
-                { new: true }
-            );
-            return res.status(200).json({ msg: "Removed bookmark!" });
+            await User.findByIdAndUpdate(userId, { $pull: { bookmarks: postId } });
         } else {
-            await Post.findByIdAndUpdate(
-                req.params.postId,
-                { $push: { bookmarkedBy: req.user.id } },
+            updatedPost = await Post.findByIdAndUpdate(
+                postId,
+                { $push: { bookmarkedBy: userId } },
                 { new: true }
             );
-            await User.findByIdAndUpdate(
-                req.user.id,
-                { $push: { bookmarks: post._id } },
-                { new: true }
-            );
-            return res.status(200).json({ msg: "Post bookmarked!" });
+            await User.findByIdAndUpdate(userId, { $push: { bookmarks: postId } });
         }
+        return res
+            .status(200)
+            .json({
+                msg: isbookmarkedByCurrUser ? "Removed bookmark!" : "Post bookmarked!",
+                post: updatedPost,
+            });
     } catch (error) {
         return res.status(500).json(error.message);
     }
