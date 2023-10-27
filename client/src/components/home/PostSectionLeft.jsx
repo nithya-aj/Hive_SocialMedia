@@ -37,7 +37,7 @@ function PostSectionLeft() {
       </Box>
       <SharePost />
       {posts?.map(
-        (post) => !post.hidden && <Posts post={post} key={post._id}/>
+        (post) => !post.hidden && <Posts post={post} key={post._id} />
       )}
     </Box>
   );

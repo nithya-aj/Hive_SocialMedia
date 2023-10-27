@@ -3,12 +3,7 @@ import { Box, Button, InputBase, Paper } from "@mui/material";
 import UserAvatar from "components/widget/UserAvatar";
 import React from "react";
 
-const EditPost = ({
-  postData,
-  handleEditPost,
-  handleInputChange,
-  editedPost,
-}) => {
+const EditPost = ({ postData, handleEditPost, handleInputChange }) => {
   const theme = useTheme();
   const main = theme.palette.background.main;
   const alt = theme.palette.background.alt;
@@ -26,7 +21,7 @@ const EditPost = ({
       }}
       encType="multipart/form-data"
     >
-      {editedPost.imageUrl && (
+      {postData.imageUrl && (
         <Box
           sx={{
             display: "flex",
@@ -42,7 +37,7 @@ const EditPost = ({
           }}
         >
           <img
-            src={`http://localhost:8080/images/${editedPost?.imageUrl}`}
+            src={`http://localhost:8080/images/${postData?.imageUrl}`}
             alt=""
             style={{
               width: "100%",

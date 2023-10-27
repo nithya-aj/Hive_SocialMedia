@@ -13,11 +13,7 @@ import FlexBetween from "components/widget/FlexBetween";
 import EditProfile from "./EditProfile";
 import EditPost from "./EditPost";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  clearEditPostData,
-  editPost,
-  selectEditPostData,
-} from "redux/postSlice";
+import { clearEditData, selectEditData, setPost } from "redux/postSlice";
 import api from "utils";
 
 const UpdateModal = ({ page, modal, setModal }) => {
@@ -26,7 +22,7 @@ const UpdateModal = ({ page, modal, setModal }) => {
   const main = theme.palette.background.main;
 
   // updating post
-  const editPostData = useSelector(selectEditPostData);
+  const editPostData = useSelector(selectEditData);
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [editedPost, setEditedPost] = useState(editPostData);
@@ -51,8 +47,8 @@ const UpdateModal = ({ page, modal, setModal }) => {
         }
       );
       const updatedPostData = response.data;
-      dispatch(editPost({ post: updatedPostData }));
-      dispatch(clearEditPostData());
+      dispatch(setPost({ post: updatedPostData }));
+      dispatch(clearEditData());
       setModal(false);
     } catch (error) {
       console.error(error);

@@ -35,7 +35,7 @@ import { useEffect } from "react";
 import api from "utils";
 import { addComment, getComments } from "redux/commentSlice";
 import Comment from "components/Comments/Comment";
-import { editPost, hidePost, setEditPostData, setPost } from "redux/postSlice";
+import { setEditData, setPost } from "redux/postSlice";
 import { GoBookmarkFill, GoBookmark } from "react-icons/go";
 import UpdateModal from "components/Modals/UpdateModal";
 import ReactTimeago from "react-timeago";
@@ -213,7 +213,11 @@ export default function Post({ post }) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await api.put(`/post/hide-unhide/${postId}`, {}, { headers });
+      const response = await api.put(
+        `/post/hide-unhide/${postId}`,
+        {},
+        { headers }
+      );
       const updatedPost = response.data;
       dispatch(setPost({ post: updatedPost.post }));
     } catch (error) {
@@ -224,7 +228,7 @@ export default function Post({ post }) {
   const handleOptionClick = (option) => {
     switch (option.name) {
       case "Update":
-        dispatch(setEditPostData(post));
+        dispatch(setEditData(post));
         setModal(true);
         console.log("Update option clicked");
         break;
