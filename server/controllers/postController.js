@@ -48,12 +48,13 @@ export const updatePost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (post.userId === req.user.id) {
-            const updatePost = await Post.findByIdAndUpdate(
+            const updatedPost = await Post.findByIdAndUpdate(
                 req.params.id,
                 { $set: req.body },
                 { new: true }
             );
-            return res.status(200).json(updatePost);
+            console.log(updatedPost, 'updatedPost')
+            return res.status(200).json(updatedPost);
         } else {
             throw new Error("You are not authorized to update this post");
         }

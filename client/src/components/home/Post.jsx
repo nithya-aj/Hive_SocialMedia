@@ -191,16 +191,17 @@ export default function Post({ post }) {
   // bookmark functionality
   const handleBookmark = async (postId) => {
     try {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
       const response = await api.put(
         `/post/bookmark/${postId}`,
         {},
-        { headers }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      const updatedPost = await response.data;
-      dispatch(setPost({ post: updatedPost.post }));
+      const updatedPost = response.data.post;
+      dispatch(setPost({ post: updatedPost }));
     } catch (error) {
       console.error(error);
     }
@@ -212,8 +213,9 @@ export default function Post({ post }) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      await api.put(`/post/hide/${postId}`, {}, { headers });
-      dispatch(hidePost({ postId, hidden: true }));
+      const response = await api.put(`/post/hide-unhide/${postId}`, {}, { headers });
+      const updatedPost = response.data;
+      dispatch(setPost({ post: updatedPost.post }));
     } catch (error) {
       console.error(error);
     }
