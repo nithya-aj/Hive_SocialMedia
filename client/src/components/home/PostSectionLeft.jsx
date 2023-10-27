@@ -5,7 +5,7 @@ import Posts from "./Post";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import api from "api";
+import api from "utils";
 import { setPosts } from "redux/postSlice";
 
 function PostSectionLeft() {

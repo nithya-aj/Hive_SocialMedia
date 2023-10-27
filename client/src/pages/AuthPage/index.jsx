@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import * as Components from "./Components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import api from "api";
+import api from "utils";
 import SocialsIcons from "components/auth/SocialsIcons";
 import { setLogin, setRegister } from "redux/authSlice";
 

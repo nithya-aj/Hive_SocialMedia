@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import close from "assets/close.png";
 import { useDispatch, useSelector } from "react-redux";
-import api from "api";
+import api from "utils";
 import { addPost } from "redux/postSlice";
 
 function SharePost() {

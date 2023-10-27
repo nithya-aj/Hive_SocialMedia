@@ -2,7 +2,7 @@ import { Avatar, Box, Grid, ListItemText, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { useSelector } from "react-redux";
-import api from "api";
+import api from "utils";
 import ReactTimeago from "react-timeago";
 
 const Comment = ({ comment }) => {

@@ -18,7 +18,7 @@ import {
   editPost,
   selectEditPostData,
 } from "redux/postSlice";
-import api from "api";
+import api from "utils";
 
 const UpdateModal = ({ page, modal, setModal }) => {
   const theme = useTheme();

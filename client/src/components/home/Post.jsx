@@ -32,10 +32,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import { useState } from "react";
 import { useEffect } from "react";
-import api from "api";
+import api from "utils";
 import { addComment, getComments } from "redux/commentSlice";
 import Comment from "components/Comments/Comment";
-import { editPost, hidePost, setEditPostData } from "redux/postSlice";
+import { editPost, hidePost, setEditPostData, setPost } from "redux/postSlice";
 import { GoBookmarkFill, GoBookmark } from "react-icons/go";
 import UpdateModal from "components/Modals/UpdateModal";
 import ReactTimeago from "react-timeago";
@@ -180,9 +180,9 @@ export default function Post({ post }) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      await api.put(`/post/like/${postId}`, {}, { headers });
-      const updatedPost = await api.get(`/post/find/${postId}`);
-      dispatch(editPost({ post: updatedPost.data }));
+      const response = await api.put(`/post/like/${postId}`, {}, { headers });
+      const updatedPost = await response.data;
+      dispatch(setPost({ post: updatedPost.post }));
     } catch (error) {
       console.error(error);
     }
