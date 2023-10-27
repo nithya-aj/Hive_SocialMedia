@@ -140,43 +140,30 @@ export const getTimelinePosts = async (req, res) => {
     }
 };
 
-// to hide a post
-export const hidePost = async (req, res) => {
-    const postId = req.params.postId;
-    const userId = req.user.id;
+// to hide and unhide the post
+export const togglePostHiddenStatus = async (req, res) => {
+    const postId = req.params.postId
+    const userId = req.user.id
     try {
-        const post = await Post.findById(postId);
+        const post = await Post.findById(postId)
         if (!post) {
-            throw new Error("No such post!");
+            throw new Error("No such post!")
         }
         if (post.userId !== userId) {
-            throw new Error("Not authorized");
+            throw new Error("You are not authorized to do this!")
         }
-        await Post.findByIdAndUpdate(postId, { hidden: true });
-        return res.status(200).json({ msg: "Post hidden!" });
+        const newHiddenStatus = !post.hidden
+        const updatedPost = await Post.findByIdAndUpdate(
+            postId,
+            { hidden: newHiddenStatus },
+            { new: true }
+        )
+        const message = newHiddenStatus ? "Post hidden!" : "Post unhidden!"
+        return res.status(200).json({ msg: message, post: updatedPost })
     } catch (error) {
-        return res.status(500).json(error.message);
+        return res.status(500).json(error.message)
     }
-};
-
-// to unhide a post
-export const unhidePost = async (req, res) => {
-    const postId = req.params.postId;
-    const userId = req.user.id;
-    try {
-        const post = await Post.findById(postId);
-        if (!post) {
-            throw new Error("No such post!");
-        }
-        if (post.userId !== userId) {
-            throw new Error("Not authorized");
-        }
-        await Post.findByIdAndUpdate(postId, { hidden: false });
-        return res.status(200).json({ msg: "Post unhidden!" });
-    } catch (error) {
-        return res.status(500).json(error.message);
-    }
-};
+}
 
 // to bookmark post and remove bookmark
 export const bookmarkPost = async (req, res) => {
