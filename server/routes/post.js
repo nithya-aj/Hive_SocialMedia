@@ -20,4 +20,4 @@ postRouter.put("/bookmark/:postId", verifyToken, bookmarkPost)
 
 postRouter.delete("/delete/:id", verifyToken, deletePost)
 
-export default postRouteridd
+export default postRouter
