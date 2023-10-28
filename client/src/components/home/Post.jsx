@@ -151,6 +151,7 @@ export default function Post({ post }) {
       console.error(error);
     }
   };
+
   useEffect(() => {
     fetchComments();
   }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -162,11 +163,8 @@ export default function Post({ post }) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      await api.post(
-        "/comment/create",
-        { text: commentData, postId: post._id },
-        { headers }
-      );
+      const data = { text: commentData, postId: post._id };
+      await api.post("/comment/create", data, { headers });
       fetchComments();
       setCommentData("");
       setExpanded(true);

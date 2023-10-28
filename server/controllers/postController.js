@@ -54,7 +54,6 @@ export const updatePost = async (req, res) => {
                 { $set: req.body },
                 { new: true }
             );
-            console.log(updatedPost, 'updatedPost')
             return res.status(200).json(updatedPost);
         } else {
             throw new Error("You are not authorized to update this post");
