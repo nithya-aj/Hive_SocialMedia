@@ -84,7 +84,7 @@ export default function Post({ post }) {
   const isBookmarked = post.bookmarkedBy?.includes(user._id);
   const [authorDetails, setAuthorDetails] = useState("");
   const [expanded, setExpanded] = useState(false);
-  const [comment, setComment] = useState("");
+  const [commentData, setCommentData] = useState("");
   const [modal, setModal] = useState(false);
 
   const handleExpandClick = () => {
@@ -142,18 +142,18 @@ export default function Post({ post }) {
   }, [post?._id, post.userId]);
 
   // fetching comments
+  const fetchComments = async () => {
+    try {
+      const res = await api.get(`/comment/${post._id}`);
+      console.log(res, "response of comments");
+      dispatch(setComments({ postId: post._id, comments: res.data }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const res = await api.get(`/comment/${post._id}`);
-        console.log(res, "response of comments");
-        dispatch(setComments({ postId: post._id, comments: res.data }));
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchComments();
-  }, [post?._id, dispatch]);
+  }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // posting comments
   const createComment = async (e) => {
@@ -162,13 +162,13 @@ export default function Post({ post }) {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const res = await api.post(
+      await api.post(
         "/comment/create",
-        { text: comment, postId: post._id },
+        { text: commentData, postId: post._id },
         { headers }
       );
-      dispatch(setComments({ postId: post._id, comments: res.data }));
-      setComment("");
+      fetchComments();
+      setCommentData("");
       setExpanded(true);
     } catch (error) {
       console.error(error);
@@ -434,9 +434,9 @@ export default function Post({ post }) {
           }}
         >
           <Input
-            value={comment}
+            value={commentData}
             type="text"
-            onChange={(e) => setComment(e.target.value)}
+            onChange={(e) => setCommentData(e.target.value)}
             placeholder="Enter your comment..."
             id="standard-adornment-weight"
             aria-describedby="standard-weight-helper-text"
