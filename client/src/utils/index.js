@@ -11,7 +11,7 @@ export default api;
 
 
 // import axios from "axios";
-// import { SetPosts } from "redux/postSlice";
+// import { setPosts } from "redux/postSlice";
 
 // const API_URL = "http://localhost:8080";
 
@@ -53,24 +53,44 @@ export default api;
 //     }
 // };
 
-// export const fetchPosts = async (token, dispatch, uri, data) => {
+// export const fetchTimeLinePost = async (token, dispatch, uri, data) => {
 //     try {
 //         const res = await apiRequest({
-//             url: uri || `/posts`,
+//             url: uri,
 //             token: token,
-//             method: "POST",
-//             data: data || {}
+//             data: data || {},
+//             method: "GET"
 //         })
-//         dispatch(SetPosts(res?.data))
-//         return
+//         dispatch(setPosts(res.data))
+//         return;
 //     } catch (error) {
 //         console.log(error)
 //     }
 // }
 
-// export const likePost = async ({ uri, token }) => {
+// export const createPost = async (token, dispatch, uri, data) => {
 //     try {
-        
+//         const res = await apiRequest({
+//             url: uri,
+//             token: token,
+//             data: data || {},
+//             method: "POST"
+//         })
+//         dispatch(setPosts(res.data));
+//         return;
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+// export const createComment = async (token, dispatch, uri, data) => {
+//     try {
+//         const res = await apiRequest({
+//             url: uri,
+//             token: token,
+//             data: data || {},
+//             method: "POST"
+//         });
 //     } catch (error) {
 //         console.log(error)
 //     }

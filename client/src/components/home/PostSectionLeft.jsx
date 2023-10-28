@@ -19,8 +19,9 @@ function PostSectionLeft() {
         const headers = {
           Authorization: `Bearer ${token}`,
         };
-        const data = await api.get("/post/timeline", { headers });
-        dispatch(setPosts(data.data));
+        const res = await api.get("/post/timeline", { headers });
+        console.log(res.data, "response from post");
+        dispatch(setPosts(res.data));
       } catch (error) {
         console.log(error);
       }
@@ -28,17 +29,17 @@ function PostSectionLeft() {
     fetchTimeLinePosts();
   }, [dispatch, token]);
 
-  useEffect(() => {}, [posts]);
-
+  console.log(posts, "posts");
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Box sx={{ px: { xs: "0.5rem", sm: "0rem" } }}>
         <Stories />
       </Box>
       <SharePost />
-      {posts?.map(
-        (post) => !post.hidden && <Posts post={post} key={post._id} />
-      )}
+      {Array.isArray(posts) &&
+        posts.map(
+          (post) => !post.hidden && <Posts post={post} key={post._id} />
+        )}
     </Box>
   );
 }

@@ -30,7 +30,7 @@ const postSlice = createSlice({
     }
 })
 
-export const { addPost, setPosts, setEditData,
+export const { setPosts, setEditData,
     clearEditData, setPost } = postSlice.actions
 export const selectEditData = (state) => state.posts.editPostData;
 export default postSlice.reducer

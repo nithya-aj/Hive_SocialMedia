@@ -36,7 +36,8 @@ export const createPost = async (req, res) => {
             throw new Error("All fields are required!");
         }
 
-        const post = await Post.create({ ...req.body, userId: req.user.id });
+        await Post.create({ ...req.body, userId: req.user.id });
+        const post = await Post.find({ userId: req.user.id }).sort({ createdAt: -1 });
         return res.status(201).json(post);
     } catch (error) {
         return res.status(500).json(error.message);

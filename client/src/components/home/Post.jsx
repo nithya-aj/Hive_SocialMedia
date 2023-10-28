@@ -33,7 +33,7 @@ import { useTheme } from "@emotion/react";
 import { useState } from "react";
 import { useEffect } from "react";
 import api from "utils";
-import { addComment, getComments } from "redux/commentSlice";
+import { setComments } from "redux/commentSlice";
 import Comment from "components/Comments/Comment";
 import { setEditData, setPost } from "redux/postSlice";
 import { GoBookmarkFill, GoBookmark } from "react-icons/go";
@@ -73,17 +73,18 @@ export default function Post({ post }) {
   const fontSm = theme.palette.neutral.fontSm;
   const red = theme.palette.neutral.red;
 
-  const comments = useSelector((state) => {
-    return state.comments.comments[post._id] || [];
-  });
-  const postCommentCount = comments.length;
+  const comments = useSelector(
+    (state) => state.comments.comments[post._id] || []
+  );
+  console.log(comments, "comments");
+  const postCommentCount = comments?.length;
   const { user, token } = useSelector((state) => state.auth);
   const isLiked = post.likes?.includes(user._id);
   const likeCount = post.likes?.length;
   const isBookmarked = post.bookmarkedBy?.includes(user._id);
   const [authorDetails, setAuthorDetails] = useState("");
   const [expanded, setExpanded] = useState(false);
-  const [commentData, setCommentData] = useState("");
+  const [comment, setComment] = useState("");
   const [modal, setModal] = useState(false);
 
   const handleExpandClick = () => {
@@ -142,32 +143,32 @@ export default function Post({ post }) {
 
   // fetching comments
   useEffect(() => {
-    const fetchCommants = async () => {
+    const fetchComments = async () => {
       try {
-        const data = await api.get(`/comment/${post._id}`);
-        dispatch(getComments({ postId: post._id, comments: data.data }));
+        const res = await api.get(`/comment/${post._id}`);
+        console.log(res, "response of comments");
+        dispatch(setComments({ postId: post._id, comments: res.data }));
       } catch (error) {
         console.error(error);
       }
     };
-    fetchCommants();
+    fetchComments();
   }, [post?._id, dispatch]);
 
   // posting comments
-  const handleComment = async (e) => {
+  const createComment = async (e) => {
     e.preventDefault();
     try {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const data = await api.post(
-        "/comment/",
-        { text: commentData, postId: post._id },
+      const res = await api.post(
+        "/comment/create",
+        { text: comment, postId: post._id },
         { headers }
       );
-      const newComment = data.data;
-      dispatch(addComment({ postId: post._id, comment: newComment }));
-      setCommentData("");
+      dispatch(setComments({ postId: post._id, comments: res.data }));
+      setComment("");
       setExpanded(true);
     } catch (error) {
       console.error(error);
@@ -425,7 +426,7 @@ export default function Post({ post }) {
         </CardActions>
         <FormControlStyled
           component="form"
-          onSubmit={handleComment}
+          onSubmit={createComment}
           variant="standard"
           sx={{
             px: 0,
@@ -433,9 +434,9 @@ export default function Post({ post }) {
           }}
         >
           <Input
-            value={commentData}
+            value={comment}
             type="text"
-            onChange={(e) => setCommentData(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
             placeholder="Enter your comment..."
             id="standard-adornment-weight"
             aria-describedby="standard-weight-helper-text"

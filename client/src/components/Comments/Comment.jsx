@@ -1,16 +1,13 @@
 import { Avatar, Box, Grid, ListItemText, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { useSelector } from "react-redux";
 import api from "utils";
 import ReactTimeago from "react-timeago";
 
 const Comment = ({ comment }) => {
   const theme = useTheme();
   const medium = theme.palette.neutral.medium;
-  const { user, token } = useSelector((state) => state.auth);
   const [commentAuthor, setCommentAuthor] = useState("");
-  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const fetchCommentAuthor = async () => {

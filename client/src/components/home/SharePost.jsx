@@ -9,7 +9,7 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import close from "assets/close.png";
 import { useDispatch, useSelector } from "react-redux";
 import api from "utils";
-import { addPost } from "redux/postSlice";
+import { setPosts } from "redux/postSlice";
 
 function SharePost() {
   const theme = useTheme();
@@ -49,12 +49,13 @@ function SharePost() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-      const body = {
+      const data = {
         desc,
         imageUrl: fileName,
       };
-      const data = await api.post("/post", body, { headers });
-      dispatch(addPost(data.data));
+      const res = await api.post("/post/create", data, { headers });
+      console.log(res.data, "response from post creation");
+      dispatch(setPosts(res.data));
       setDesc("");
       setPhoto(null);
     } catch (error) {

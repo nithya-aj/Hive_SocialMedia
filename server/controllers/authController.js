@@ -42,7 +42,7 @@ export const login = async (req, res) => {
 
         const user = await User.findOne({ email: req.body.email })
         if (!user) {
-            throw new Error('Invalid credentials!')
+            throw new Error('No user linked to this email.Register to get started.')
         }
 
         const comparePass = await compareString(req.body.password, user.password)

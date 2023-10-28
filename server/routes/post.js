@@ -11,7 +11,7 @@ postRouter.get("/users/:userId/liked-posts", getUserLikedPosts)
 postRouter.get("/users/:userId/bookmarked-posts", getAllBookmarkedPosts)
 postRouter.get("/find/hidden-posts/:id", getAllHiddenPosts)
 
-postRouter.post("/", verifyToken, createPost)
+postRouter.post("/create", verifyToken, createPost)
 
 postRouter.put("/update/:id", verifyToken, updatePost)
 postRouter.put("/like/:postId", verifyToken, likePost)

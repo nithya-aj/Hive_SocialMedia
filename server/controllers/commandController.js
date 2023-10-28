@@ -14,6 +14,7 @@ export const getCommentsFromPost = async (req, res) => {
 export const createComment = async (req, res) => {
     try {
         const createdComment = await Comment.create({ ...req.body, userId: req.user.id })
+        console.log(createdComment, 'createdComment')
         res.status(201).json(createdComment)
     } catch (error) {
         return res.status(500).json(error.message)

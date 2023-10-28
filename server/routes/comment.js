@@ -6,7 +6,7 @@ const commentRouter = express.Router()
 
 commentRouter.get('/:postId', getCommentsFromPost)
 
-commentRouter.post('/', verifyToken, createComment)
+commentRouter.post('/create', verifyToken, createComment)
 
 commentRouter.delete('/:commentId', verifyToken, deleteComment)
 
