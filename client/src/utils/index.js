@@ -191,3 +191,16 @@ export const editPost = async (token, dispatch, uri, data) => {
         console.log(error)
     }
 }
+
+export const getUserDetails = async(uri, data) =>{
+    try {
+        const res = await apiRequest({
+            url: uri,
+            method:'GET' ,
+            data: data,
+        })
+        return res
+    } catch (error) {
+        console.log(error)
+    }
+}
