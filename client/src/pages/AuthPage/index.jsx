@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { apiRequest } from "utils";
 import SocialsIcons from "components/auth/SocialsIcons";
+import { setLogin, setRegister } from "redux/authSlice";
 
 const AuthPage = () => {
   const [signIn, toggle] = React.useState(false);
@@ -29,12 +30,12 @@ const AuthPage = () => {
           }, 2500);
           return;
         }
-        const res = await apiRequest({
+        const response = await apiRequest({
           method: "POST",
           url: "/auth/register",
           data: { username, name, email, password },
         });
-        console.log(res);
+        dispatch(setRegister(response));
         navigate("/");
       } else {
         if (email === "" || password === "") {
@@ -44,12 +45,12 @@ const AuthPage = () => {
           }, 2500);
           return;
         }
-        const res = await apiRequest({
+        const response = await apiRequest({
           method: "POST",
           url: "/auth/login",
           data: { email, password },
         });
-        console.log(res);
+        dispatch(setLogin(response));
         navigate("/");
       }
     } catch (error) {
@@ -76,8 +77,8 @@ const AuthPage = () => {
         <ul className="circles">
           {Array(10)
             .fill()
-            .map(() => (
-              <img src={logo} alt="" />
+            .map((id) => (
+              <img key={id} src={logo} alt="" />
             ))}
         </ul>
       </div>

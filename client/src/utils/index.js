@@ -24,15 +24,15 @@ export const API = axios.create({
 
 export const apiRequest = async ({ url, token, data, method }) => {
     try {
-        const result = await API(url, {
-            method: method || "GET",
+        const response = await API(url, {
+            method: method,
             data: data,
             headers: {
                 "Content-Type": "application/json",
                 Authorization: token ? `Bearer ${token}` : "",
             },
         });
-        return result?.data;
+        return response?.data;
     } catch (error) {
         const err = error.response.data;
         console.log(err);
@@ -55,27 +55,27 @@ export const handleFileUpload = async (uploadFile) => {
     }
 };
 
-export const register = async (dispatch, uri, data) => {
+export const register = async (uri, data) => {
     try {
         const res = await apiRequest({
             url: uri,
             method: 'POST',
             data: data || {}
         })
-        dispatch(setRegister(res.data))
+        return res
     } catch (error) {
         console.log(error)
     }
 }
 
-export const login = async (dispatch, uri, data) => {
+export const login = async (uri, data) => {
     try {
         const res = await apiRequest({
             url: uri,
             method: 'POST',
             data: data || {}
         })
-        dispatch(setLogin(res.data))
+        return res
     } catch (error) {
         console.log(error)
     }
@@ -192,11 +192,11 @@ export const editPost = async (token, dispatch, uri, data) => {
     }
 }
 
-export const getUserDetails = async(uri, data) =>{
+export const getUserDetails = async (uri, data) => {
     try {
         const res = await apiRequest({
             url: uri,
-            method:'GET' ,
+            method: 'GET',
             data: data,
         })
         return res
