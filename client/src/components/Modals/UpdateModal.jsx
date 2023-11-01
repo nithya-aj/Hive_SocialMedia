@@ -33,26 +33,26 @@ const UpdateModal = ({ page, modal, setModal }) => {
   };
 
   const handleEditPost = async (e) => {
-    e.preventDefault();
-    try {
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-      const response = await api.put(
-        `/post/update/${editedPost._id}`,
-        editedPost,
-        {
-          headers,
-        }
-      );
-      const updatedPostData = response.data;
-      dispatch(setPost({ post: updatedPostData }));
-      dispatch(clearEditData());
-      setModal(false);
-    } catch (error) {
-      console.error(error);
-    }
+    // e.preventDefault();
+    // try {
+    //   const headers = {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${token}`,
+    //   };
+    //   const response = await api.put(
+    //     `/post/update/${editedPost._id}`,
+    //     editedPost,
+    //     {
+    //       headers,
+    //     }
+    //   );
+    //   const updatedPostData = response.data;
+    //   dispatch(setPost({ post: updatedPostData }));
+    //   dispatch(clearEditData());
+    //   setModal(false);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const style = {

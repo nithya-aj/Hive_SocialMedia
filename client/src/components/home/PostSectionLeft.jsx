@@ -14,19 +14,19 @@ function PostSectionLeft() {
   const posts = useSelector((state) => state.posts.posts);
 
   useEffect(() => {
-    const fetchTimeLinePosts = async () => {
-      try {
-        const headers = {
-          Authorization: `Bearer ${token}`,
-        };
-        const res = await api.get("/post/timeline", { headers });
-        console.log(res.data, "response from post");
-        dispatch(setPosts(res.data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchTimeLinePosts();
+    // const fetchTimeLinePosts = async () => {
+    //   try {
+    //     const headers = {
+    //       Authorization: `Bearer ${token}`,
+    //     };
+    //     const res = await api.get("/post/timeline", { headers });
+    //     console.log(res.data, "response from post");
+    //     dispatch(setPosts(res.data));
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // fetchTimeLinePosts();
   }, [dispatch, token]);
 
   console.log(posts, "posts");

@@ -5,9 +5,8 @@ import { Box } from "@mui/material";
 import * as Components from "./Components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import api from "utils";
+import { apiRequest } from "utils";
 import SocialsIcons from "components/auth/SocialsIcons";
-import { setLogin, setRegister } from "redux/authSlice";
 
 const AuthPage = () => {
   const [signIn, toggle] = React.useState(false);
@@ -30,14 +29,12 @@ const AuthPage = () => {
           }, 2500);
           return;
         }
-        const body = {
-          username,
-          name,
-          email,
-          password,
-        };
-        const response = await api.post("/auth/register", body);
-        dispatch(setRegister(response.data));
+        const res = await apiRequest({
+          method: "POST",
+          url: "/auth/register",
+          data: { username, name, email, password },
+        });
+        console.log(res);
         navigate("/");
       } else {
         if (email === "" || password === "") {
@@ -47,12 +44,12 @@ const AuthPage = () => {
           }, 2500);
           return;
         }
-        const body = {
-          email,
-          password,
-        };
-        const response = await api.post("/auth/login", body);
-        dispatch(setLogin(response.data));
+        const res = await apiRequest({
+          method: "POST",
+          url: "/auth/login",
+          data: { email, password },
+        });
+        console.log(res);
         navigate("/");
       }
     } catch (error) {

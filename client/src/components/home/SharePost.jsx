@@ -27,40 +27,40 @@ function SharePost() {
   const { token } = useSelector((state) => state.auth);
 
   const handleCreatePost = async (e) => {
-    e.preventDefault();
-    try {
-      let fileName = null;
-      if (photo) {
-        const formData = new FormData();
-        fileName = crypto.randomUUID() + photo.name;
-        formData.append("imageUrl", fileName);
-        formData.append("photo", photo);
+    // e.preventDefault();
+    // try {
+    //   let fileName = null;
+    //   if (photo) {
+    //     const formData = new FormData();
+    //     fileName = crypto.randomUUID() + photo.name;
+    //     formData.append("imageUrl", fileName);
+    //     formData.append("photo", photo);
 
-        const headers = {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        };
+    //     const headers = {
+    //       "Content-Type": "multipart/form-data",
+    //       Authorization: `Bearer ${token}`,
+    //     };
 
-        await api.post("/upload", formData, { headers });
-      } else {
-        return;
-      }
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-      const data = {
-        desc,
-        imageUrl: fileName,
-      };
-      const res = await api.post("/post/create", data, { headers });
-      console.log(res.data, "response from post creation");
-      dispatch(setPosts(res.data));
-      setDesc("");
-      setPhoto(null);
-    } catch (error) {
-      console.error(error);
-    }
+    //     await api.post("/upload", formData, { headers });
+    //   } else {
+    //     return;
+    //   }
+    //   const headers = {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${token}`,
+    //   };
+    //   const data = {
+    //     desc,
+    //     imageUrl: fileName,
+    //   };
+    //   const res = await api.post("/post/create", data, { headers });
+    //   console.log(res.data, "response from post creation");
+    //   dispatch(setPosts(res.data));
+    //   setDesc("");
+    //   setPhoto(null);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   const handleClearData = () => {

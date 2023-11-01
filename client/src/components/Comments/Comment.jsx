@@ -10,15 +10,15 @@ const Comment = ({ comment }) => {
   const [commentAuthor, setCommentAuthor] = useState("");
 
   useEffect(() => {
-    const fetchCommentAuthor = async () => {
-      try {
-        const data = await api.get(`/user/find/${comment.userId}`);
-        setCommentAuthor(data.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchCommentAuthor();
+    // const fetchCommentAuthor = async () => {
+    //   try {
+    //     const data = await api.get(`/user/find/${comment.userId}`);
+    //     setCommentAuthor(data.data);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+    // fetchCommentAuthor();
   }, [comment.userId]);
 
   return (
