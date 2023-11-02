@@ -5,7 +5,7 @@ import Posts from "./Post";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import api from "utils";
+import { apiRequest } from "utils";
 import { setPosts } from "redux/postSlice";
 
 function PostSectionLeft() {
@@ -14,19 +14,20 @@ function PostSectionLeft() {
   const posts = useSelector((state) => state.posts.posts);
 
   useEffect(() => {
-    // const fetchTimeLinePosts = async () => {
-    //   try {
-    //     const headers = {
-    //       Authorization: `Bearer ${token}`,
-    //     };
-    //     const res = await api.get("/post/timeline", { headers });
-    //     console.log(res.data, "response from post");
-    //     dispatch(setPosts(res.data));
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // fetchTimeLinePosts();
+    const fetchTimeLinePosts = async () => {
+      try {
+        const response = await apiRequest({
+          method: "GET",
+          url: "/post/timeline",
+          token: token,
+        });
+        console.log(response, "response from post");
+        dispatch(setPosts(response));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTimeLinePosts();
   }, [dispatch, token]);
 
   console.log(posts, "posts");

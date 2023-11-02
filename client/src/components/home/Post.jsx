@@ -32,7 +32,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@emotion/react";
 import { useState } from "react";
 import { useEffect } from "react";
-import api from "utils";
+import { apiRequest } from "utils";
 import { setComments } from "redux/commentSlice";
 import Comment from "components/Comments/Comment";
 import { setEditData, setPost } from "redux/postSlice";
@@ -76,7 +76,6 @@ export default function Post({ post }) {
   const comments = useSelector(
     (state) => state.comments.comments[post._id] || []
   );
-  console.log(comments, "comments");
   const postCommentCount = comments?.length;
   const { user, token } = useSelector((state) => state.auth);
   const isLiked = post.likes?.includes(user._id);
@@ -130,26 +129,30 @@ export default function Post({ post }) {
   // fetching user details
   useEffect(() => {
     const fetchDetails = async () => {
-      // try {
-      //   const response = await api.get(`/user/find/${post.userId}`);
-      //   const data = response.data;
-      //   setAuthorDetails(data);
-      // } catch (error) {
-      //   console.error(error);
-      // }
+      try {
+        const response = await apiRequest({
+          method: "GET",
+          url: `/user/find/${post.userId}`,
+        });
+        setAuthorDetails(response);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchDetails();
   }, [post?._id, post.userId]);
 
   // fetching comments
   const fetchComments = async () => {
-    // try {
-    //   const res = await api.get(`/comment/${post._id}`);
-    //   console.log(res, "response of comments");
-    //   dispatch(setComments({ postId: post._id, comments: res.data }));
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await apiRequest({
+        method: "GET",
+        url: `/comment/${post._id}`,
+      });
+      dispatch(setComments({ postId: post._id, comments: response }));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -158,70 +161,62 @@ export default function Post({ post }) {
 
   // posting comments
   const createComment = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   const headers = {
-    //     Authorization: `Bearer ${token}`,
-    //   };
-    //   const data = { text: commentData, postId: post._id };
-    //   await api.post("/comment/create", data, { headers });
-    //   fetchComments();
-    //   setCommentData("");
-    //   setExpanded(true);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    e.preventDefault();
+    try {
+      await apiRequest({
+        method: "POST",
+        data: { text: commentData, postId: post._id },
+        url: "/comment/create",
+        token: token,
+      });
+      fetchComments();
+      setCommentData("");
+      setExpanded(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // like functionality
   const handleLike = async (postId) => {
-    // try {
-    //   const headers = {
-    //     Authorization: `Bearer ${token}`,
-    //   };
-    //   const response = await api.put(`/post/like/${postId}`, {}, { headers });
-    //   const updatedPost = await response.data;
-    //   dispatch(setPost({ post: updatedPost.post }));
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await apiRequest({
+        method: "PUT",
+        url: `/post/like/${postId}`,
+        token: token,
+      });
+      dispatch(setPost({ post: response.post }));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // bookmark functionality
   const handleBookmark = async (postId) => {
-    // try {
-    //   const response = await api.put(
-    //     `/post/bookmark/${postId}`,
-    //     {},
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   );
-    //   const updatedPost = response.data.post;
-    //   dispatch(setPost({ post: updatedPost }));
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await apiRequest({
+        method: "PUT",
+        url: `/post/bookmark/${postId}`,
+        token: token,
+      });
+      dispatch(setPost({ post: response.post }));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // hide post
   const handleHidePost = async (postId) => {
-    // try {
-    //   const headers = {
-    //     Authorization: `Bearer ${token}`,
-    //   };
-    //   const response = await api.put(
-    //     `/post/hide-unhide/${postId}`,
-    //     {},
-    //     { headers }
-    //   );
-    //   const updatedPost = response.data;
-    //   dispatch(setPost({ post: updatedPost.post }));
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    try {
+      const response = await apiRequest({
+        method: "PUT",
+        url: `/post/hide-unhide/${postId}`,
+        token: token,
+      });
+      dispatch(setPost({ post: response.post }));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleOptionClick = (option) => {
@@ -236,7 +231,6 @@ export default function Post({ post }) {
         break;
       case "Hide":
         handleHidePost(post._id);
-        console.log("Hide option clicked");
         break;
       case "Delete":
         console.log("Delete option clicked");
@@ -416,7 +410,7 @@ export default function Post({ post }) {
             onClick={() => handleBookmark(post._id)}
           >
             {isBookmarked ? (
-              <GoBookmarkFill style={{ color: red }} />
+              <GoBookmarkFill style={{ color: main }} />
             ) : (
               <GoBookmark />
             )}
