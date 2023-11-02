@@ -14,7 +14,7 @@ import EditProfile from "./EditProfile";
 import EditPost from "./EditPost";
 import { useDispatch, useSelector } from "react-redux";
 import { clearEditData, selectEditData, setPost } from "redux/postSlice";
-import api from "utils";
+import { apiRequest } from "utils";
 
 const UpdateModal = ({ page, modal, setModal }) => {
   const theme = useTheme();
@@ -33,26 +33,20 @@ const UpdateModal = ({ page, modal, setModal }) => {
   };
 
   const handleEditPost = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   const headers = {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${token}`,
-    //   };
-    //   const response = await api.put(
-    //     `/post/update/${editedPost._id}`,
-    //     editedPost,
-    //     {
-    //       headers,
-    //     }
-    //   );
-    //   const updatedPostData = response.data;
-    //   dispatch(setPost({ post: updatedPostData }));
-    //   dispatch(clearEditData());
-    //   setModal(false);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    e.preventDefault();
+    try {
+      const response = await apiRequest({
+        method: "PUT",
+        url: `/post/update/${editedPost._id}`,
+        data: editedPost,
+        token: token,
+      });
+      dispatch(setPost({ post: response }));
+      dispatch(clearEditData());
+      setModal(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const style = {

@@ -1,7 +1,7 @@
 import { Avatar, Box, Grid, ListItemText, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import api from "utils";
+import { apiRequest } from "utils";
 import ReactTimeago from "react-timeago";
 
 const Comment = ({ comment }) => {
@@ -10,15 +10,18 @@ const Comment = ({ comment }) => {
   const [commentAuthor, setCommentAuthor] = useState("");
 
   useEffect(() => {
-    // const fetchCommentAuthor = async () => {
-    //   try {
-    //     const data = await api.get(`/user/find/${comment.userId}`);
-    //     setCommentAuthor(data.data);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // fetchCommentAuthor();
+    const fetchCommentAuthor = async () => {
+      try {
+        const response = await apiRequest({
+          method: "GET",
+          url: `/user/find/${comment.userId}`,
+        });
+        setCommentAuthor(response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCommentAuthor();
   }, [comment.userId]);
 
   return (

@@ -108,6 +108,20 @@ export const createPost = async (token, dispatch, uri, data) => {
     }
 }
 
+export const updatePost = async (token, uri, data) => {
+    try {
+        const res = await apiRequest({
+            url: uri,
+            token: token,
+            data: data || {},
+            method: "PUT",
+        })
+        return res
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createComment = async (token, uri, data) => {
     try {
         const res = await apiRequest({
