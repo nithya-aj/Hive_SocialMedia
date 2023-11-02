@@ -22,7 +22,7 @@ export const getUserPosts = async (req, res) => {
             userId: req.params.id,
             hidden: false,
         }).sort({ createdAt: -1 });
-        return res.status(200).json(userPosts);
+        return res.status(200).json(userPosts); 
     } catch (error) {
         return res.status(500).json(error.message);
     }

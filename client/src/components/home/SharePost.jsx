@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import close from "assets/close.png";
 import { useDispatch, useSelector } from "react-redux";
-import api from "utils";
+import { apiRequest, handleFileUpload } from "utils";
 import { setPosts } from "redux/postSlice";
 
 function SharePost() {
@@ -27,40 +27,36 @@ function SharePost() {
   const { token } = useSelector((state) => state.auth);
 
   const handleCreatePost = async (e) => {
-    // e.preventDefault();
-    // try {
-    //   let fileName = null;
-    //   if (photo) {
-    //     const formData = new FormData();
-    //     fileName = crypto.randomUUID() + photo.name;
-    //     formData.append("imageUrl", fileName);
-    //     formData.append("photo", photo);
-
-    //     const headers = {
-    //       "Content-Type": "multipart/form-data",
-    //       Authorization: `Bearer ${token}`,
-    //     };
-
-    //     await api.post("/upload", formData, { headers });
-    //   } else {
-    //     return;
-    //   }
-    //   const headers = {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${token}`,
-    //   };
-    //   const data = {
-    //     desc,
-    //     imageUrl: fileName,
-    //   };
-    //   const res = await api.post("/post/create", data, { headers });
-    //   console.log(res.data, "response from post creation");
-    //   dispatch(setPosts(res.data));
-    //   setDesc("");
-    //   setPhoto(null);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    e.preventDefault();
+    try {
+      let fileName = null;
+      if (photo) {
+        const formData = new FormData();
+        fileName = crypto.randomUUID() + photo.name;
+        formData.append("imageUrl", fileName);
+        formData.append("photo", photo);
+        await handleFileUpload({
+          method: "POST",
+          url: "/upload",
+          data: formData,
+          token: token,
+        });
+      } else {
+        return;
+      }
+      const response = await apiRequest({
+        method: "POST",
+        url: `/post/create`,
+        token: token,
+        data: { desc, imageUrl: fileName },
+      });
+      console.log(response, "response from post creation");
+      dispatch(setPosts(response));
+      setDesc("");
+      setPhoto(null);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleClearData = () => {
