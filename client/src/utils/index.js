@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const API_URL = "http://localhost:8080";
 
@@ -7,7 +8,7 @@ export const API = axios.create({
   responseType: "json",
 });
 
-export const apiRequest = async ({ url, token, data, method }) => {
+export const apiRequest = async ({ url, token, data, method, mode }) => {
   try {
     const response = await API(url, {
       method: method,
@@ -20,7 +21,17 @@ export const apiRequest = async ({ url, token, data, method }) => {
     return response?.data;
   } catch (error) {
     const err = error.response.data;
-    console.log(err);
+    console.log(err.msg);
+    toast(`${err.msg}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: mode === "light" ? "light" : "dark",
+    });
     return { status: err.success, message: err.message };
   }
 };
