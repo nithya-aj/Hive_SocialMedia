@@ -39,6 +39,7 @@ import { setEditData, setPost } from "redux/postSlice";
 import { GoBookmarkFill, GoBookmark } from "react-icons/go";
 import UpdateModal from "components/Modals/UpdateModal";
 import ReactTimeago from "react-timeago";
+import { toast } from "react-toastify";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -78,6 +79,7 @@ export default function Post({ post }) {
   );
   const postCommentCount = comments?.length;
   const { user, token } = useSelector((state) => state.auth);
+  const mode = useSelector((state) => state.theme.mode);
   const isLiked = post.likes?.includes(user._id);
   const likeCount = post.likes?.length;
   const isBookmarked = post.bookmarkedBy?.includes(user._id);
@@ -213,9 +215,29 @@ export default function Post({ post }) {
         url: `/post/hide-unhide/${postId}`,
         token: token,
       });
+      console.log(mode);
+      toast.success("Post hidden!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: mode === "light" ? "light" : "dark",
+      });
       dispatch(setPost({ post: response.post }));
     } catch (error) {
-      console.error(error);
+      toast.error("Something went wrong", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: mode === "light" ? "light" : "dark",
+      });
     }
   };
 

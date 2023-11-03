@@ -1,5 +1,4 @@
 import axios from "axios";
-import { toast } from "react-toastify";
 
 const API_URL = "http://localhost:8080";
 
@@ -20,18 +19,8 @@ export const apiRequest = async ({ url, token, data, method, mode }) => {
     });
     return response?.data;
   } catch (error) {
-    const err = error.response.data;
+    const err = error.response;
     console.log(err.msg);
-    toast(`${err.msg}`, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: mode === "light" ? "light" : "dark",
-    });
     return { status: err.success, message: err.message };
   }
 };
@@ -178,7 +167,7 @@ export const hidePost = async (token, uri) => {
       token: token,
       method: "PUT",
     });
-    return res;
+    return res.data;
   } catch (error) {
     console.log(error);
   }
