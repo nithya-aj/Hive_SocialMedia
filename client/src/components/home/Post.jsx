@@ -64,7 +64,7 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
     },
 }));
 
-export default function Post({ post }) {
+export default function Post({ post, page }) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
@@ -75,14 +75,14 @@ export default function Post({ post }) {
   const red = theme.palette.neutral.red;
 
   const comments = useSelector(
-    (state) => state.comments.comments[post._id] || []
+    (state) => state.comments.comments[post?._id] || []
   );
   const postCommentCount = comments?.length;
   const { user, token } = useSelector((state) => state.auth);
   const mode = useSelector((state) => state.theme.mode);
-  const isLiked = post.likes?.includes(user._id);
-  const likeCount = post.likes?.length;
-  const isBookmarked = post.bookmarkedBy?.includes(user._id);
+  const isLiked = post?.likes?.includes(user._id);
+  const likeCount = post?.likes?.length;
+  const isBookmarked = post?.bookmarkedBy?.includes(user._id);
   const [authorDetails, setAuthorDetails] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [commentData, setCommentData] = useState("");
@@ -142,7 +142,7 @@ export default function Post({ post }) {
       }
     };
     fetchDetails();
-  }, [post?._id, post.userId]);
+  }, [post?._id, post?.userId]);
 
   // fetching comments
   const fetchComments = async () => {
@@ -311,7 +311,7 @@ export default function Post({ post }) {
                   "aria-labelledby": "basic-button",
                 }}
               >
-                {post.userId === user._id
+                {post?.userId === user._id
                   ? ownerDropdownOptions.map((option, index) => (
                       <MenuItem
                         key={index}

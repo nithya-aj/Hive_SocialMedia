@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { apiRequest } from "utils";
 import { setPosts } from "redux/postSlice";
 
-function PostSectionLeft() {
+function PostSectionLeft({ page }) {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
   const posts = useSelector((state) => state.posts.posts);
@@ -33,9 +33,11 @@ function PostSectionLeft() {
   console.log(posts, "posts");
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <Box sx={{ px: { xs: "0.5rem", sm: "0rem" } }}>
-        <Stories />
-      </Box>
+      {page !== "profile" && (
+        <Box sx={{ px: { xs: "0.5rem", sm: "0rem" } }}>
+          <Stories />
+        </Box>
+      )}
       <SharePost />
       {Array.isArray(posts) &&
         posts.map(

@@ -31,6 +31,7 @@ const AuthPage = lazy(() => import("pages/AuthPage"));
 
 const App = () => {
   const { user } = useSelector((state) => state.auth);
+  console.log(user._id, "user");
   const mode = useSelector((state) => state.theme.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
@@ -56,7 +57,10 @@ const App = () => {
                 </Route>
                 <Route path="/messages" element={<MessagesPage />} />
                 <Route path="/notifications" element={<Notifications />} />
-                <Route path="/profile/:id" element={<ProfilePage />} />
+                <Route
+                  path={`/profile/:id`}
+                  element={<ProfilePage />}
+                />
                 <Route path="/settings" element={<Settings />}>
                   <Route path="" element={<Navigate to="edit-profile" />} />
                   <Route path="edit-profile" element={<EditProfile />} />
