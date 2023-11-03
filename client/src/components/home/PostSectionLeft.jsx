@@ -6,12 +6,14 @@ import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { apiRequest } from "utils";
-import { setPosts } from "redux/postSlice";
+import { setHiddenPosts, setPosts } from "redux/postSlice";
 
 function PostSectionLeft({ page }) {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
+  const { token, user } = useSelector((state) => state.auth);
   const posts = useSelector((state) => state.posts.posts);
+  const hiddenPosts = useSelector((state) => state.posts.hiddenPosts);
+  console.log(hiddenPosts);
 
   useEffect(() => {
     const fetchTimeLinePosts = async () => {
@@ -27,22 +29,40 @@ function PostSectionLeft({ page }) {
         console.log(error);
       }
     };
+    const fetchHiddenPosts = async () => {
+      try {
+        const response = await apiRequest({
+          method: "GET",
+          url: `/post/find/hidden-posts/${user._id}`,
+          token: token,
+        });
+        console.log(response, "response from fetchHiddenPosts");
+        dispatch(setHiddenPosts(response));
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchTimeLinePosts();
-  }, [dispatch, token]);
+    fetchHiddenPosts();
+  }, [dispatch, token, user._id]);
 
-  console.log(posts, "posts");
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      {page !== "profile" && (
-        <Box sx={{ px: { xs: "0.5rem", sm: "0rem" } }}>
-          <Stories />
-        </Box>
-      )}
-      <SharePost />
+      {page !== "profile" ||
+        ("hiddenPost" && (
+          <Box sx={{ px: { xs: "0.5rem", sm: "0rem" } }}>
+            <Stories />
+          </Box>
+        ))}
+      {page !== "hiddenPosts" && <SharePost />}
       {Array.isArray(posts) &&
         posts.map(
           (post) => !post.hidden && <Posts post={post} key={post._id} />
         )}
+
+      {page === "hiddenPost" &&
+        Array.isArray(hiddenPosts) &&
+        hiddenPosts.map((post) => <Posts post={post} key={post._id} />)}
     </Box>
   );
 }

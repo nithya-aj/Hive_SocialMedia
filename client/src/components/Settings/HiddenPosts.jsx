@@ -1,9 +1,8 @@
-import React from 'react'
+import PostSectionLeft from "components/home/PostSectionLeft";
+import React from "react";
 
 const HiddenPosts = () => {
-  return (
-    <div>HiddenPosts</div>
-  )
-}
+  return <PostSectionLeft page={"hiddenPosts"} />;
+};
 
-export default HiddenPosts
+export default HiddenPosts;

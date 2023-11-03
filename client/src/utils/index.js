@@ -199,3 +199,16 @@ export const getUserDetails = async (uri, data) => {
     console.log(error);
   }
 };
+
+export const getHiddenPosts = async (uri, token) => {
+  try {
+    const res = await apiRequest({
+      url: uri,
+      token: token,
+      method: "GET",
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

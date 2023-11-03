@@ -216,8 +216,9 @@ export const getAllHiddenPosts = async (req, res) => {
     const hiddenPosts = await Post.find({
       userId: req.params.id,
       hidden: true,
-    });
-    return res.json(hiddenPosts);
+    }).sort({ createdAt: -1 });
+    console.log(hiddenPosts);
+    return res.status(200).json(hiddenPosts);
   } catch (error) {
     console.error(error.message);
     return res

@@ -11,6 +11,8 @@ import {
 import PostSectionLeft from "components/home/PostSectionLeft";
 import React from "react";
 import { IoMdCloudUpload } from "react-icons/io";
+import { useSelector } from "react-redux";
+import profile from "assets/profile.png";
 
 const ProfileSectionLeft = () => {
   const theme = useTheme();
@@ -22,6 +24,8 @@ const ProfileSectionLeft = () => {
   const isExtraSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const textMain = theme.palette.neutral.main;
   const fontSm = theme.palette.neutral.fontSm;
+  const user = useSelector((state) => state.auth);
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <Box
@@ -52,9 +56,16 @@ const ProfileSectionLeft = () => {
               position: "absolute",
               top: "3.1rem",
               left: "2rem",
-              border: `3px solid ${alt}`,
+              border: `3px solid ${main}`,
+              padding: user ? "0.6rem" : "0rem",
+              backgroundColor: user ? main : "",
             }}
-            src="https://source.unsplash.com/featured/300x118"
+            src={
+              user?.profilePic
+                ? `http://localhost:8080/images/${user?.profilePic}`
+                : profile
+            }
+            // src="https://source.unsplash.com/featured/300x118"
           />
           <Box
             sx={{

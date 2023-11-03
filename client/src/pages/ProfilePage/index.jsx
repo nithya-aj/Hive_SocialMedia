@@ -20,7 +20,8 @@ const ProfilePage = () => {
       <Grid
         item
         xs={3.5}
-        sx={{ flexShrink: 0, display: { lg: "block", xs: "none" } }}
+        sx={{ flexShrink: 0, display: { lg: "block", xs: "none" }
+     }}
       >
         <ProfileSectionRight />
       </Grid>
