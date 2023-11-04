@@ -99,20 +99,20 @@ export default function Post({ post, page }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const userDropDownOptions = [
+  const userOptions = [
     {
       icon: <PiShareFat style={{ fontSize: "15px" }} />,
       name: "Share",
     },
     {
       icon: <BiHide style={{ fontSize: "15px" }} />,
-      name: "Hide",
+      name: post.hidden ? "Unhide" : "Hide",
     },
   ];
-  const ownerDropdownOptions = [
+  const ownerOptions = [
     {
       icon: <HiOutlinePencilSquare style={{ fontSize: "15px" }} />,
-      name: "Update",
+      name: "Edit",
     },
     {
       icon: <PiShareFat style={{ fontSize: "15px" }} />,
@@ -120,7 +120,7 @@ export default function Post({ post, page }) {
     },
     {
       icon: <BiHide style={{ fontSize: "15px" }} />,
-      name: "Hide",
+      name: post.hidden ? "Unhide" : "Hide",
     },
     {
       icon: <MdDeleteOutline style={{ fontSize: "15px" }} />,
@@ -181,6 +181,19 @@ export default function Post({ post, page }) {
 
   // like functionality
   const handleLike = async (postId) => {
+    if (page === "hiddenPosts") {
+      toast.info("Please unhide to do that!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: mode === "light" ? "light" : "dark",
+      });
+      return;
+    }
     try {
       const response = await apiRequest({
         method: "PUT",
@@ -195,6 +208,19 @@ export default function Post({ post, page }) {
 
   // bookmark functionality
   const handleBookmark = async (postId) => {
+    if (page === "hiddenPosts") {
+      toast.info("Please unhide to do that!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: mode === "light" ? "light" : "dark",
+      });
+      return;
+    }
     try {
       const response = await apiRequest({
         method: "PUT",
@@ -246,7 +272,6 @@ export default function Post({ post, page }) {
       case "Update":
         dispatch(setEditData(post));
         setModal(true);
-        console.log("Update option clicked");
         break;
       case "Share":
         console.log("Share option clicked");
@@ -261,7 +286,6 @@ export default function Post({ post, page }) {
         break;
     }
   };
-
   return (
     <>
       <Card
@@ -312,7 +336,10 @@ export default function Post({ post, page }) {
                 }}
               >
                 {post?.userId === user._id
-                  ? ownerDropdownOptions.map((option, index) => (
+                  ? (page === "hiddenPosts"
+                      ? ownerOptions.slice(2, 3)
+                      : ownerOptions
+                    ).map((option, index) => (
                       <MenuItem
                         key={index}
                         onClick={() => {
@@ -328,7 +355,10 @@ export default function Post({ post, page }) {
                         </Box>
                       </MenuItem>
                     ))
-                  : userDropDownOptions.map((option, index) => (
+                  : (page === "hiddenPosts"
+                      ? userOptions.slice(1)
+                      : userOptions
+                    ).map((option, index) => (
                       <MenuItem
                         key={index}
                         onClick={() => {
@@ -397,20 +427,23 @@ export default function Post({ post, page }) {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <IconButton
-                sx={{ color: main }}
-                aria-label="add to favorites"
-                onClick={() => handleLike(post._id)}
-              >
-                {isLiked ? (
-                  <HiHeart style={{ color: red }} />
-                ) : (
-                  <HiOutlineHeart style={{ color: main }} />
-                )}
-              </IconButton>
-              {likeCount > 0 && <Typography>{likeCount}</Typography>}
-            </Box>
+            {
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <IconButton
+                  // disabled={page === "hiddenPosts"}
+                  sx={{ color: main }}
+                  aria-label="add to favorites"
+                  onClick={() => handleLike(post._id)}
+                >
+                  {isLiked ? (
+                    <HiHeart style={{ color: red }} />
+                  ) : (
+                    <HiOutlineHeart style={{ color: main }} />
+                  )}
+                </IconButton>
+                {likeCount > 0 && <Typography>{likeCount}</Typography>}
+              </Box>
+            }
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <ExpandMore
                 expand={expanded}
@@ -438,37 +471,42 @@ export default function Post({ post, page }) {
             )}
           </IconButton>
         </CardActions>
-        <FormControlStyled
-          component="form"
-          onSubmit={createComment}
-          variant="standard"
-          sx={{
-            px: 0,
-            width: "-webkit-fill-available",
-          }}
-        >
-          <Input
-            value={commentData}
-            type="text"
-            onChange={(e) => setCommentData(e.target.value)}
-            placeholder="Enter your comment..."
-            id="standard-adornment-weight"
-            aria-describedby="standard-weight-helper-text"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  type="submit"
-                  sx={{ color: main }}
-                  aria-label="toggle password visibility"
-                >
-                  <PiNavigationArrowFill
-                    style={{ transform: "rotate(130deg)", fontSize: "1.2rem" }}
-                  />
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControlStyled>
+        {page !== "hiddenPosts" && (
+          <FormControlStyled
+            component="form"
+            onSubmit={createComment}
+            variant="standard"
+            sx={{
+              px: 0,
+              width: "-webkit-fill-available",
+            }}
+          >
+            <Input
+              value={commentData}
+              type="text"
+              onChange={(e) => setCommentData(e.target.value)}
+              placeholder="Enter your comment..."
+              id="standard-adornment-weight"
+              aria-describedby="standard-weight-helper-text"
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    type="submit"
+                    sx={{ color: main }}
+                    aria-label="toggle password visibility"
+                  >
+                    <PiNavigationArrowFill
+                      style={{
+                        transform: "rotate(130deg)",
+                        fontSize: "1.2rem",
+                      }}
+                    />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControlStyled>
+        )}
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent
             sx={{ padding: "0rem", mt: "0.5rem" }}

@@ -46,23 +46,22 @@ function PostSectionLeft({ page }) {
     fetchHiddenPosts();
   }, [dispatch, token, user._id]);
 
+  console.log(hiddenPosts, "hiddenPost");
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      {page !== "profile" ||
-        ("hiddenPost" && (
-          <Box sx={{ px: { xs: "0.5rem", sm: "0rem" } }}>
-            <Stories />
-          </Box>
-        ))}
+      {page === "post" && (
+        <Box sx={{ px: { xs: "0.5rem", sm: "0rem" } }}>
+          <Stories />
+        </Box>
+      )}
       {page !== "hiddenPosts" && <SharePost />}
-      {Array.isArray(posts) &&
-        posts.map(
-          (post) => !post.hidden && <Posts post={post} key={post._id} />
-        )}
 
-      {page === "hiddenPost" &&
-        Array.isArray(hiddenPosts) &&
-        hiddenPosts.map((post) => <Posts post={post} key={post._id} />)}
+      {page === "hiddenPosts"
+        ? Array.isArray(hiddenPosts) &&
+          hiddenPosts.map((post) => (
+            <Posts page={"hiddenPosts"} post={post} key={post._id} />
+          ))
+        : posts.map((post) => <Posts post={post} key={post._id} />)}
     </Box>
   );
 }
