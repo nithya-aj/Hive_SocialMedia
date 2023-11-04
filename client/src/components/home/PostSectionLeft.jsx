@@ -61,7 +61,13 @@ function PostSectionLeft({ page }) {
           hiddenPosts.map((post) => (
             <Posts page={"hiddenPosts"} post={post} key={post._id} />
           ))
-        : posts.map((post) => <Posts post={post} key={post._id} />)}
+        : Array.isArray(posts) &&
+          posts.map(
+            (post) =>
+              post.hidden !== true && (
+                <Posts page={"hiddenPosts"} post={post} key={post._id} />
+              )
+          )}
     </Box>
   );
 }

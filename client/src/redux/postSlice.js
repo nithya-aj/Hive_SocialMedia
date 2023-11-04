@@ -25,6 +25,15 @@ const postSlice = createSlice({
       });
       state.posts = updatedPosts;
     },
+    setHiddenPost: (state, action) => {
+      const updatedPosts = state.hiddenPosts.map((post) => {
+        if (post._id === action.payload.post._id) {
+          return action.payload.post;
+        }
+        return post;
+      });
+      state.hiddenPosts = updatedPosts;
+    },
     setEditData: (state, action) => {
       state.editPostData = action.payload;
     },
@@ -34,7 +43,7 @@ const postSlice = createSlice({
   },
 });
 
-export const { setPosts, setEditData, clearEditData, setPost, setHiddenPosts } =
+export const { setPosts, setEditData, clearEditData, setPost, setHiddenPosts, setHiddenPost } =
   postSlice.actions;
 export const selectEditData = (state) => state.posts.editPostData;
 export default postSlice.reducer;

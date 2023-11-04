@@ -241,8 +241,9 @@ export default function Post({ post, page }) {
         url: `/post/hide-unhide/${postId}`,
         token: token,
       });
-      console.log(mode);
-      toast.success("Post hidden!", {
+      dispatch(setPost({ post: response.post }));
+      console.log(response, "respones from handleHidePost");
+      toast.success(`${response.msg}`, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -252,7 +253,6 @@ export default function Post({ post, page }) {
         progress: undefined,
         theme: mode === "light" ? "light" : "dark",
       });
-      dispatch(setPost({ post: response.post }));
     } catch (error) {
       toast.error("Something went wrong", {
         position: "top-right",
@@ -277,6 +277,7 @@ export default function Post({ post, page }) {
         console.log("Share option clicked");
         break;
       case "Hide":
+        console.log("hide option!");
         handleHidePost(post._id);
         break;
       case "Delete":
@@ -335,11 +336,8 @@ export default function Post({ post, page }) {
                   "aria-labelledby": "basic-button",
                 }}
               >
-                {post?.userId === user._id
-                  ? (page === "hiddenPosts"
-                      ? ownerOptions.slice(2, 3)
-                      : ownerOptions
-                    ).map((option, index) => (
+                {post.userId === user._id
+                  ? ownerOptions.map((option, index) => (
                       <MenuItem
                         key={index}
                         onClick={() => {
@@ -355,10 +353,7 @@ export default function Post({ post, page }) {
                         </Box>
                       </MenuItem>
                     ))
-                  : (page === "hiddenPosts"
-                      ? userOptions.slice(1)
-                      : userOptions
-                    ).map((option, index) => (
+                  : userOptions.map((option, index) => (
                       <MenuItem
                         key={index}
                         onClick={() => {
