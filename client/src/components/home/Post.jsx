@@ -293,14 +293,19 @@ export default function Post({ post, page }) {
           avatar={<UserAvatar />}
           action={
             <>
-              <IconButton
-                aria-label="settings"
-                sx={{ color: main }}
-                onClick={() => handleHidePost(post._id)}
-              >
-                {page === "hiddenPosts" ? (
+              {page === "hiddenPosts" ? (
+                <IconButton
+                  aria-label="settings"
+                  sx={{ color: main }}
+                  onClick={() => handleHidePost(post._id)}
+                >
                   <BsFillEyeSlashFill sx={{ color: fontSm }} />
-                ) : (
+                </IconButton>
+              ) : (
+                <IconButton
+                  aria-label="settings"
+                  sx={{ color: main }}
+                >
                   <MoreVertIcon
                     sx={{ color: fontSm }}
                     id="options"
@@ -309,8 +314,8 @@ export default function Post({ post, page }) {
                     aria-expanded={open ? "true" : undefined}
                     onClick={handleClick}
                   />
-                )}
-              </IconButton>
+                </IconButton>
+              )}
               {page !== "hiddenPosts" && (
                 <Menu
                   id="basic-menu"
