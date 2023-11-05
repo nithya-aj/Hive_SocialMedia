@@ -40,6 +40,7 @@ import { GoBookmarkFill, GoBookmark } from "react-icons/go";
 import UpdateModal from "components/Modals/UpdateModal";
 import ReactTimeago from "react-timeago";
 import { toast } from "react-toastify";
+import { BsFillEyeSlashFill } from "react-icons/bs";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -181,19 +182,6 @@ export default function Post({ post, page }) {
 
   // like functionality
   const handleLike = async (postId) => {
-    if (page === "hiddenPosts") {
-      toast.info("Please unhide to do that!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: mode === "light" ? "light" : "dark",
-      });
-      return;
-    }
     try {
       const response = await apiRequest({
         method: "PUT",
@@ -208,19 +196,6 @@ export default function Post({ post, page }) {
 
   // bookmark functionality
   const handleBookmark = async (postId) => {
-    if (page === "hiddenPosts") {
-      toast.info("Please unhide to do that!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: mode === "light" ? "light" : "dark",
-      });
-      return;
-    }
     try {
       const response = await apiRequest({
         method: "PUT",
@@ -287,6 +262,7 @@ export default function Post({ post, page }) {
         break;
     }
   };
+
   return (
     <>
       <Card
@@ -317,59 +293,77 @@ export default function Post({ post, page }) {
           avatar={<UserAvatar />}
           action={
             <>
-              <IconButton aria-label="settings" sx={{ color: main }}>
-                <MoreVertIcon
-                  sx={{ color: fontSm }}
-                  id="options"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                />
-              </IconButton>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button",
-                }}
+              <IconButton
+                aria-label="settings"
+                sx={{ color: main }}
+                onClick={() => handleHidePost(post._id)}
               >
-                {post.userId === user._id
-                  ? ownerOptions.map((option, index) => (
-                      <MenuItem
-                        key={index}
-                        onClick={() => {
-                          handleClose();
-                          handleOptionClick(option);
-                        }}
-                      >
-                        <Box
-                          sx={{ display: "flex", gap: 1, alignItems: "center" }}
+                {page === "hiddenPosts" ? (
+                  <BsFillEyeSlashFill sx={{ color: fontSm }} />
+                ) : (
+                  <MoreVertIcon
+                    sx={{ color: fontSm }}
+                    id="options"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  />
+                )}
+              </IconButton>
+              {page !== "hiddenPosts" && (
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  {post.userId === user._id
+                    ? ownerOptions.map((option, index) => (
+                        <MenuItem
+                          key={index}
+                          onClick={() => {
+                            handleClose();
+                            handleOptionClick(option);
+                          }}
                         >
-                          {option.icon}
-                          {option.name}
-                        </Box>
-                      </MenuItem>
-                    ))
-                  : userOptions.map((option, index) => (
-                      <MenuItem
-                        key={index}
-                        onClick={() => {
-                          handleClose();
-                          handleOptionClick(option);
-                        }}
-                      >
-                        <Box
-                          sx={{ display: "flex", gap: 1, alignItems: "center" }}
+                          <Box
+                            sx={{
+                              display: "flex",
+                              gap: 1,
+                              alignItems: "center",
+                            }}
+                          >
+                            {option.icon}
+                            {option.name}
+                          </Box>
+                        </MenuItem>
+                      ))
+                    : userOptions.map((option, index) => (
+                        <MenuItem
+                          key={index}
+                          onClick={() => {
+                            handleClose();
+                            handleOptionClick(option);
+                          }}
                         >
-                          {option.icon}
-                          {option.name}
-                        </Box>
-                      </MenuItem>
-                    ))}
-              </Menu>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              gap: 1,
+                              alignItems: "center",
+                            }}
+                          >
+                            {option.icon}
+                            {option.name}
+                          </Box>
+                        </MenuItem>
+                      ))}
+                </Menu>
+              )}
             </>
           }
           title={

@@ -12,8 +12,8 @@ function PostSectionLeft({ page }) {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
   const posts = useSelector((state) => state.posts.posts);
-  const hiddenPosts = useSelector((state) => state.posts.hiddenPosts);
-  console.log(hiddenPosts);
+  // const hiddenPosts = useSelector((state) => state.posts.hiddenPosts);
+  // console.log(hiddenPosts);
 
   useEffect(() => {
     const fetchTimeLinePosts = async () => {
@@ -29,24 +29,24 @@ function PostSectionLeft({ page }) {
         console.log(error);
       }
     };
-    const fetchHiddenPosts = async () => {
-      try {
-        const response = await apiRequest({
-          method: "GET",
-          url: `/post/find/hidden-posts/${user._id}`,
-          token: token,
-        });
-        console.log(response, "response from fetchHiddenPosts");
-        dispatch(setHiddenPosts(response));
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    // const fetchHiddenPosts = async () => {
+    //   try {
+    //     const response = await apiRequest({
+    //       method: "GET",
+    //       url: `/post/find/hidden-posts/${user._id}`,
+    //       token: token,
+    //     });
+    //     console.log(response, "response from fetchHiddenPosts");
+    //     dispatch(setHiddenPosts(response));
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
     fetchTimeLinePosts();
-    fetchHiddenPosts();
+    // fetchHiddenPosts();
   }, [dispatch, token, user._id]);
 
-  console.log(hiddenPosts, "hiddenPost");
+  console.log(posts, "hiddenPost");
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       {page === "post" && (
@@ -57,16 +57,17 @@ function PostSectionLeft({ page }) {
       {page !== "hiddenPosts" && <SharePost />}
 
       {page === "hiddenPosts"
-        ? Array.isArray(hiddenPosts) &&
-          hiddenPosts.map((post) => (
-            <Posts page={"hiddenPosts"} post={post} key={post._id} />
-          ))
+        ? Array.isArray(posts) &&
+          posts.map(
+            (post) =>
+              post.hidden === true && (
+                <Posts page={"hiddenPosts"} post={post} key={post._id} />
+              )
+          )
         : Array.isArray(posts) &&
           posts.map(
             (post) =>
-              post.hidden !== true && (
-                <Posts page={"hiddenPosts"} post={post} key={post._id} />
-              )
+              post.hidden === false && <Posts post={post} key={post._id} />
           )}
     </Box>
   );

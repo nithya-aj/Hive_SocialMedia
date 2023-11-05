@@ -125,7 +125,7 @@ export const getTimelinePosts = async (req, res) => {
     const currentUser = await User.findById(req.user.id);
     const userPosts = await Post.find({
       userId: currentUser._id,
-      hidden: false,
+      // hidden: false,
     });
     const friendPosts = await Promise.all(
       currentUser.followings.map((friendId) => {
