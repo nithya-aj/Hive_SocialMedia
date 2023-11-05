@@ -27,7 +27,14 @@ const ProfileSectionLeft = () => {
   const user = useSelector((state) => state.auth);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        paddingTop: "1.5rem",
+      }}
+    >
       <Box
         sx={{
           borderRadius: "10px 10px 0px 0px",

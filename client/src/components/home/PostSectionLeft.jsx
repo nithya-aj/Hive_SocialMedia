@@ -50,8 +50,7 @@ function PostSectionLeft({ page }) {
           )
         : Array.isArray(posts) &&
           posts.map(
-            (post) =>
-              !post.hidden && <Posts post={post} key={post._id} />
+            (post) => !post.hidden && <Posts post={post} key={post._id} />
           )}
     </Box>
   );

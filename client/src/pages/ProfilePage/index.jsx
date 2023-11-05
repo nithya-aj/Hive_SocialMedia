@@ -7,7 +7,7 @@ const ProfilePage = () => {
   return (
     <Grid
       container
-      sx={{ p: { sm: "1rem 1rem 0rem", xs: "0rem" }, height: "100%" }}
+      sx={{ p: { sm: "0rem 1rem 0rem", xs: "0rem" } }}
     >
       <Grid
         item
@@ -15,7 +15,7 @@ const ProfilePage = () => {
         xs={12}
         sx={{ flexGrow: 1, paddingRight: { lg: "1rem" } }}
       >
-        <ProfileSectionLeft />
+        <ProfileSectionLeft page={"profile"} />
       </Grid>
       <Grid
         item
