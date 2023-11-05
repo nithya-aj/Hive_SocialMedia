@@ -1,9 +1,9 @@
-import { useTheme } from "@emotion/react";
-import { Box, Collapse, Divider, Typography } from "@mui/material";
 import React from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { Box, Collapse, Divider, Typography } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { useTheme } from "@emotion/react";
 
 function Settings() {
   const theme = useTheme();
@@ -22,167 +22,175 @@ function Settings() {
   return (
     <Box
       sx={{
-        p: { sm: "1rem 1rem 0rem", xs: "0rem" },
         height: "100%",
         display: "flex",
-        alignItems: "center",
-        gap: 2,
       }}
     >
       <Box
         sx={{
-          height: "100%",
-          width: "20%",
           display: "flex",
-          flexDirection: "column",
-          gap: "0.3rem",
+          width: "20%",
+          height: "100%",
         }}
       >
-        <Link style={{ textDecoration: "none" }} to="edit-profile">
-          {" "}
-          <Box
-            sx={{
-              p: "1rem",
-              borderRadius: "5px",
-              ":hover": { bgcolor: darkbg },
-              color: main,
-              cursor: "pointer",
-              bgcolor: isActive("/settings/edit-profile")
-                ? darkbg
-                : "transparent",
-            }}
-          >
-            Edit Profile
-          </Box>
-        </Link>
-        <Link style={{ textDecoration: "none" }} to="blocked-users">
-          {" "}
-          <Box
-            sx={{
-              p: "1rem",
-              borderRadius: "5px",
-              ":hover": { bgcolor: darkbg },
-              color: main,
-              cursor: "pointer",
-              bgcolor: isActive("/settings/blocked-users")
-                ? darkbg
-                : "transparent",
-            }}
-          >
-            Block Users
-          </Box>
-        </Link>
-        <Link style={{ textDecoration: "none" }} to="password-security">
-          {" "}
-          <Box
-            sx={{
-              p: "1rem",
-              borderRadius: "5px",
-              ":hover": { bgcolor: darkbg },
-              color: main,
-              cursor: "pointer",
-              bgcolor: isActive("/settings/password-security")
-                ? darkbg
-                : "transparent",
-            }}
-          >
-            Password and Security
-          </Box>
-        </Link>
         <Box
-          onClick={handleClick}
           sx={{
-            p: "1rem",
-            borderRadius: "5px",
-            ":hover": { bgcolor: darkbg },
-            color: main,
-            cursor: "pointer",
+            width: "100%",
             display: "flex",
-            alignItems: "center",
-            gap: 2,
+            flexDirection: "column",
+            gap: "0.3rem",
+            p: { sm: "1rem 1rem 0rem", xs: "0rem" },
           }}
         >
-          <Typography>Posts</Typography>
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </Box>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <Link style={{ textDecoration: "none" }} to="manage-posts/hidden">
+          <Link style={{ textDecoration: "none" }} to="edit-profile">
             {" "}
             <Box
               sx={{
                 p: "1rem",
-                mt: "2px",
-                ml: "1rem",
                 borderRadius: "5px",
                 ":hover": { bgcolor: darkbg },
                 color: main,
                 cursor: "pointer",
-                bgcolor: isActive("/settings/manage-posts/hidden")
+                bgcolor: isActive("/settings/edit-profile")
                   ? darkbg
                   : "transparent",
               }}
             >
-              Hidden Posts
+              Edit Profile
             </Box>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="manage-posts/liked">
+          <Link style={{ textDecoration: "none" }} to="blocked-users">
             {" "}
             <Box
               sx={{
                 p: "1rem",
-                mt: "2px",
-                ml: "1rem",
                 borderRadius: "5px",
                 ":hover": { bgcolor: darkbg },
                 color: main,
                 cursor: "pointer",
-                bgcolor: isActive("/settings/manage-posts/liked")
+                bgcolor: isActive("/settings/blocked-users")
                   ? darkbg
                   : "transparent",
               }}
             >
-              Liked Posts
+              Block Users
             </Box>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="manage-posts/bookmarked">
+          <Link style={{ textDecoration: "none" }} to="password-security">
             {" "}
             <Box
               sx={{
                 p: "1rem",
-                mt: "2px",
-                ml: "1rem",
                 borderRadius: "5px",
                 ":hover": { bgcolor: darkbg },
                 color: main,
                 cursor: "pointer",
-                bgcolor: isActive("/settings/manage-posts/bookmarked")
+                bgcolor: isActive("/settings/password-security")
                   ? darkbg
                   : "transparent",
               }}
             >
-              Bookmarked Posts
+              Password and Security
             </Box>
           </Link>
-        </Collapse>
-        <Link style={{ textDecoration: "none" }} to="manage-account">
-          {" "}
           <Box
+            onClick={handleClick}
             sx={{
               p: "1rem",
               borderRadius: "5px",
               ":hover": { bgcolor: darkbg },
               color: main,
               cursor: "pointer",
-              bgcolor: isActive("/settings/manage-account")
-                ? darkbg
-                : "transparent",
+              display: "flex",
+              alignItems: "center",
+              gap: 2,
             }}
           >
-            Manage Account
+            <Typography>Posts</Typography>
+            {open ? <ExpandLess /> : <ExpandMore />}
           </Box>
-        </Link>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Link style={{ textDecoration: "none" }} to="manage-posts/hidden">
+              {" "}
+              <Box
+                sx={{
+                  p: "1rem",
+                  mt: "2px",
+                  ml: "1rem",
+                  borderRadius: "5px",
+                  ":hover": { bgcolor: darkbg },
+                  color: main,
+                  cursor: "pointer",
+                  bgcolor: isActive("/settings/manage-posts/hidden")
+                    ? darkbg
+                    : "transparent",
+                }}
+              >
+                Hidden Posts
+              </Box>
+            </Link>
+            <Link style={{ textDecoration: "none" }} to="manage-posts/liked">
+              {" "}
+              <Box
+                sx={{
+                  p: "1rem",
+                  mt: "2px",
+                  ml: "1rem",
+                  borderRadius: "5px",
+                  ":hover": { bgcolor: darkbg },
+                  color: main,
+                  cursor: "pointer",
+                  bgcolor: isActive("/settings/manage-posts/liked")
+                    ? darkbg
+                    : "transparent",
+                }}
+              >
+                Liked Posts
+              </Box>
+            </Link>
+            <Link
+              style={{ textDecoration: "none" }}
+              to="manage-posts/bookmarked"
+            >
+              {" "}
+              <Box
+                sx={{
+                  p: "1rem",
+                  mt: "2px",
+                  ml: "1rem",
+                  borderRadius: "5px",
+                  ":hover": { bgcolor: darkbg },
+                  color: main,
+                  cursor: "pointer",
+                  bgcolor: isActive("/settings/manage-posts/bookmarked")
+                    ? darkbg
+                    : "transparent",
+                }}
+              >
+                Bookmarked Posts
+              </Box>
+            </Link>
+          </Collapse>
+          <Link style={{ textDecoration: "none" }} to="manage-account">
+            {" "}
+            <Box
+              sx={{
+                p: "1rem",
+                borderRadius: "5px",
+                ":hover": { bgcolor: darkbg },
+                color: main,
+                cursor: "pointer",
+                bgcolor: isActive("/settings/manage-account")
+                  ? darkbg
+                  : "transparent",
+              }}
+            >
+              Manage Account
+            </Box>
+          </Link>
+        </Box>
+        <Divider orientation="vertical" variant="middle" flexItem />
       </Box>
-      <Divider orientation="vertical" variant="middle" flexItem />
       <Box sx={{ width: "80%", height: "100%" }}>
         <Outlet />
       </Box>

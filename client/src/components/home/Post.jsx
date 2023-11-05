@@ -69,6 +69,7 @@ export default function Post({ post, page }) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
+  const mainbg = theme.palette.background.main;
   const alt = theme.palette.background.alt;
   const main = theme.palette.neutral.main;
   const medium = theme.palette.neutral.medium;
@@ -271,7 +272,10 @@ export default function Post({ post, page }) {
           px: "1rem",
           boxShadow: "none",
           borderRadius: { sm: "10px", xs: "0px" },
-          backgroundColor: { sm: darkbg, xs: alt },
+          backgroundColor:
+            page === "hiddenPosts"
+              ? { sm: mainbg, xs: darkbg }
+              : { sm: darkbg, xs: alt },
         }}
       >
         <CardHeader
