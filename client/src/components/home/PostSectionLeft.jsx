@@ -12,6 +12,7 @@ function PostSectionLeft({ page }) {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
   const posts = useSelector((state) => state.posts.posts);
+  const [hiddenPostCount, setHiddenPostCount] = React.useState(0);
 
   useEffect(() => {
     const fetchTimeLinePosts = async () => {
@@ -23,6 +24,8 @@ function PostSectionLeft({ page }) {
         });
         console.log(response, "response from post");
         dispatch(setPosts(response));
+        const count = response.filter((post) => post.hidden).length;
+        setHiddenPostCount(count);
       } catch (error) {
         console.log(error);
       }
@@ -40,18 +43,24 @@ function PostSectionLeft({ page }) {
       )}
       {page !== "hiddenPosts" && <SharePost />}
 
-      {page === "hiddenPosts"
-        ? Array.isArray(posts) &&
+      {page === "hiddenPosts" ? (
+        hiddenPostCount === 0 ? (
+          <p>No hidden posts found.</p> // Display a message when there are no hidden posts
+        ) : (
+          Array.isArray(posts) &&
           posts.map(
             (post) =>
               post.hidden && (
                 <Posts page={"hiddenPosts"} post={post} key={post._id} />
               )
           )
-        : Array.isArray(posts) &&
-          posts.map(
-            (post) => !post.hidden && <Posts post={post} key={post._id} />
-          )}
+        )
+      ) : (
+        Array.isArray(posts) &&
+        posts.map(
+          (post) => !post.hidden && <Posts post={post} key={post._id} />
+        )
+      )}
     </Box>
   );
 }
