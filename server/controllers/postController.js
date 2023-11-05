@@ -125,7 +125,6 @@ export const getTimelinePosts = async (req, res) => {
     const currentUser = await User.findById(req.user.id);
     const userPosts = await Post.find({
       userId: currentUser._id,
-      // hidden: false,
     });
     const friendPosts = await Promise.all(
       currentUser.followings.map((friendId) => {
@@ -134,7 +133,19 @@ export const getTimelinePosts = async (req, res) => {
     );
     const allPosts = userPosts
       .concat(...friendPosts)
-      .sort((a, b) => b.createdAt - a.createdAt);
+      // .sort((a, b) => b.createdAt - a.createdAt);
+      .sort((a, b) => {
+        if (a.hidden && b.hidden) {
+          return b.hiddenAt.getTime() - a.hiddenAt.getTime();
+        } else if (a.hidden) {
+          return 1;
+        } else if (b.hidden) {
+          return -1;
+        } else {
+          return b.createdAt.getTime() - a.createdAt.getTime();
+        }
+      });
+    return res.json(allPosts);
     return res.json(allPosts);
   } catch (error) {
     console.error("Error fetching timeline posts:", error);
@@ -157,7 +168,7 @@ export const togglePostHiddenStatus = async (req, res) => {
     const newHiddenStatus = !post.hidden;
     const updatedPost = await Post.findByIdAndUpdate(
       postId,
-      { hidden: newHiddenStatus },
+      { hidden: newHiddenStatus, hiddenAt: new Date() },
       { new: true }
     );
     const message = newHiddenStatus ? "Post hidden!" : "Post unhidden!";

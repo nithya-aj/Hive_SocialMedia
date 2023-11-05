@@ -302,10 +302,7 @@ export default function Post({ post, page }) {
                   <BsFillEyeSlashFill sx={{ color: fontSm }} />
                 </IconButton>
               ) : (
-                <IconButton
-                  aria-label="settings"
-                  sx={{ color: main }}
-                >
+                <IconButton aria-label="settings" sx={{ color: main }}>
                   <MoreVertIcon
                     sx={{ color: fontSm }}
                     id="options"
