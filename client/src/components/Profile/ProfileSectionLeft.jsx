@@ -32,18 +32,23 @@ const ProfileSectionLeft = () => {
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
-        paddingTop: "1.5rem",
       }}
     >
       <Box
         sx={{
-          borderRadius: "10px 10px 0px 0px",
+          borderRadius: "0px",
           overflow: "hidden",
           pb: { lg: "2rem", xs: "0rem" },
+          position: "sticky",
+          top: "0",
+          zIndex: 999,
+          bgcolor: alt,
+          pt: "1.5rem",
         }}
       >
         <Box
           sx={{
+            borderRadius: "10px 10px 0px 0px",
             position: "relative",
             height: "8rem",
             backgroundImage:
