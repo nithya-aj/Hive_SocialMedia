@@ -45,7 +45,15 @@ function PostSectionLeft({ page }) {
 
       {page === "hiddenPosts" ? (
         hiddenPostCount === 0 ? (
-          <p>No hidden posts found.</p> // Display a message when there are no hidden posts
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            No hidden posts!
+          </Box> // Display a message when there are no hidden posts
         ) : (
           Array.isArray(posts) &&
           posts.map(
