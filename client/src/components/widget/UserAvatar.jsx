@@ -1,10 +1,9 @@
 import { Badge, Box } from "@mui/material";
-import React from "react";
 import Avatar from "@mui/material/Avatar";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@emotion/react";
 import { useSelector } from "react-redux";
-import profile from "assets/profile.png";
+import profile from "../../assets/profile.png";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {

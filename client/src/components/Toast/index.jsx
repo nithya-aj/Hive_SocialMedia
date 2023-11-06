@@ -1,13 +1,12 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const Toast = React.memo(({ err, type }) => {
+const Toast = ({ err, type }) => {
   const mode = useSelector((state) => state.theme.mode);
   switch (type) {
     case "error":
       toast.error(`${err}`, {
-        toastId: 'errorToast',
+        toastId: "errorToast",
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -20,7 +19,7 @@ const Toast = React.memo(({ err, type }) => {
       break;
     case "warn":
       toast.warn(`${err}`, {
-        toastId: 'warntoast',
+        toastId: "warntoast",
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -33,7 +32,7 @@ const Toast = React.memo(({ err, type }) => {
       break;
     case "success":
       toast.success(`${err}`, {
-        toastId: 'succestoast',
+        toastId: "succestoast",
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -46,7 +45,7 @@ const Toast = React.memo(({ err, type }) => {
       break;
     case "info":
       toast.info(`${err}`, {
-        toastId: 'infotoast',
+        toastId: "infotoast",
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -61,6 +60,6 @@ const Toast = React.memo(({ err, type }) => {
       break;
   }
   return null;
-});
+};
 
 export default Toast;

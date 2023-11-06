@@ -9,7 +9,6 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
 import { IoMdCloudUpload } from "react-icons/io";
 
 const EditProfile = () => {

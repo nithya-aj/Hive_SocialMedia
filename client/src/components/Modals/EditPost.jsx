@@ -1,7 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { Box, Button, InputBase, Paper } from "@mui/material";
-import UserAvatar from "components/widget/UserAvatar";
-import React from "react";
+import UserAvatar from "../widget/UserAvatar";
 
 const EditPost = ({ postData, handleEditPost, handleInputChange }) => {
   const theme = useTheme();
@@ -66,7 +65,7 @@ const EditPost = ({ postData, handleEditPost, handleInputChange }) => {
           >
             <InputBase
               sx={{ ml: { sm: 1, xs: 2 }, flex: 1, color: textMain }}
-              value={postData.desc}
+              value={postData?.desc}
               id="desc"
               name="desc"
               onChange={handleInputChange}

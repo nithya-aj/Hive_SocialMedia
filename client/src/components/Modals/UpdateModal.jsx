@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Backdrop,
   Box,
@@ -9,12 +9,12 @@ import {
 } from "@mui/material";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { useTheme } from "@emotion/react";
-import FlexBetween from "components/widget/FlexBetween";
+import { useDispatch, useSelector } from "react-redux";
+import FlexBetween from "../widget/FlexBetween";
+import { apiRequest } from "../../utils";
+import { clearEditData, selectEditData, setPost } from "../../redux/postSlice";
 import EditProfile from "./EditProfile";
 import EditPost from "./EditPost";
-import { useDispatch, useSelector } from "react-redux";
-import { clearEditData, selectEditData, setPost } from "redux/postSlice";
-import { apiRequest } from "utils";
 
 const UpdateModal = ({ page, modal, setModal }) => {
   const theme = useTheme();

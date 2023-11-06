@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
-import PostSectionLeft from "components/home/PostSectionLeft";
-import PostSectionRight from "components/home/PostSectionRight";
-import React from "react";
+import PostLeft from "../../components/HomePage/PostLeft";
+import PostRight from "../../components/HomePage/PostRight";
 
 const FeedsPage = () => {
   return (
@@ -17,14 +16,14 @@ const FeedsPage = () => {
         xs={12}
         sx={{ flexGrow: 1, paddingRight: { lg: "1rem" } }}
       >
-        <PostSectionLeft page={"post"} />
+        <PostLeft page={"post"} />
       </Grid>
       <Grid
         item
         xs={3.5}
         sx={{ flexShrink: 0, display: { lg: "block", xs: "none" } }}
       >
-        <PostSectionRight />
+        <PostRight />
       </Grid>
     </Grid>
   );

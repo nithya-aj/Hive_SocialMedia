@@ -1,9 +1,5 @@
-import React from 'react'
-
 const PassWordAndSecurity = () => {
-  return (
-    <div>PassWordAndSecurity</div>
-  )
-}
+  return <div>PassWordAndSecurity</div>;
+};
 
-export default PassWordAndSecurity
+export default PassWordAndSecurity;

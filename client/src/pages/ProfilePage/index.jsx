@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
-import ProfileSectionLeft from "components/Profile/ProfileSectionLeft";
-import ProfileSectionRight from "components/Profile/ProfileSectionRight";
-import React from "react";
+import ProfileRight from "../../components/Profile/ProfileRight";
+import ProfileLeft from "../../components/Profile/ProfileLeft";
 
 const ProfilePage = () => {
   return (
@@ -12,14 +11,14 @@ const ProfilePage = () => {
         xs={12}
         sx={{ flexGrow: 1, paddingRight: { lg: "1rem" } }}
       >
-        <ProfileSectionLeft page={"profile"} />
+        <ProfileLeft page={"profile"} />
       </Grid>
       <Grid
         item
         xs={3.5}
         sx={{ flexShrink: 0, display: { lg: "block", xs: "none" } }}
       >
-        <ProfileSectionRight />
+        <ProfileRight />
       </Grid>
     </Grid>
   );

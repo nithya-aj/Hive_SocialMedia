@@ -1,6 +1,5 @@
 import { useTheme } from "@emotion/react";
 import { Avatar, Box, Button, IconButton, TextField } from "@mui/material";
-import React from "react";
 import { IoMdCloudUpload } from "react-icons/io";
 
 const EditProfile = () => {

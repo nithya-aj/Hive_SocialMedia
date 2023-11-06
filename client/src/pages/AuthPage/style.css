@@ -1,200 +1,203 @@
 .circles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    margin: 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0px;
 }
 
 .circles img {
-    position: absolute;
-    display: block;
-    list-style: none;
-    width: 20px;
-    height: 20px;
-    animation: animate 25s linear infinite;
-    bottom: -150px;
-
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  animation: animate 25s linear infinite;
+  bottom: -150px;
 }
 
 .circles img:nth-child(1) {
-    left: 25%;
-    width: 80px;
-    height: 80px;
-    animation-delay: 0s;
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
 }
 
-
 .circles img:nth-child(2) {
-    left: 10%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 2s;
-    animation-duration: 12s;
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
 }
 
 .circles img:nth-child(3) {
-    left: 70%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 4s;
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
 }
 
 .circles img:nth-child(4) {
-    left: 40%;
-    width: 60px;
-    height: 60px;
-    animation-delay: 0s;
-    animation-duration: 18s;
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
 }
 
 .circles img:nth-child(5) {
-    left: 65%;
-    width: 20px;
-    height: 20px;
-    animation-delay: 0s;
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
 }
 
 .circles img:nth-child(6) {
-    left: 75%;
-    width: 110px;
-    height: 110px;
-    animation-delay: 3s;
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
 }
 
 .circles img:nth-child(7) {
-    left: 35%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 7s;
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
 }
 
 .circles img:nth-child(8) {
-    left: 50%;
-    width: 25px;
-    height: 25px;
-    animation-delay: 15s;
-    animation-duration: 45s;
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
 }
 
 .circles img:nth-child(9) {
-    left: 20%;
-    width: 15px;
-    height: 15px;
-    animation-delay: 2s;
-    animation-duration: 35s;
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
 }
 
 .circles img:nth-child(10) {
-    left: 85%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 0s;
-    animation-duration: 11s;
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
 }
 
-
-
 @keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
 
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-        border-radius: 0;
-    }
-
-    100% {
-        transform: translateY(-1000px) rotate(720deg);
-        opacity: 0;
-        border-radius: 50%;
-    }
-
+  100% {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
 }
 
 .divider {
-    display: table;
-    font-size: 18px;
-    text-align: center;
-    width: 100%;
+  display: table;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
 }
 
 .divider span {
-    display: table-cell;
-    position: relative;
+  display: table-cell;
+  position: relative;
 }
 
 .divider span:first-child,
 .divider span:last-child {
-    width: 50%;
-    top: 13px;
-    -moz-background-size: 100% 2px;
-    background-size: 100% 2px;
-    background-position: 0 0, 0 100%;
-    background-repeat: no-repeat;
+  width: 50%;
+  top: 13px;
+  -moz-background-size: 100% 2px;
+  background-size: 100% 2px;
+  background-position: 0 0, 0 100%;
+  background-repeat: no-repeat;
 }
 
 .divider span:first-child {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#f3e5e5));
-    background-image: -webkit-linear-gradient(180deg, transparent, #f3e5e5);
-    background-image: -moz-linear-gradient(180deg, transparent, #f3e5e5);
-    background-image: -o-linear-gradient(180deg, transparent, #f3e5e5);
-    background-image: linear-gradient(90deg, transparent, #f3e5e5);
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from(transparent),
+    to(#f3e5e5)
+  );
+  background-image: -webkit-linear-gradient(180deg, transparent, #f3e5e5);
+  background-image: -moz-linear-gradient(180deg, transparent, #f3e5e5);
+  background-image: -o-linear-gradient(180deg, transparent, #f3e5e5);
+  background-image: linear-gradient(90deg, transparent, #f3e5e5);
 }
 
 .divider span:nth-child(2) {
-    color: #d1cbcb;
-    padding: 0px 5px;
-    width: auto;
-    white-space: nowrap;
+  color: #d1cbcb;
+  padding: 0px 5px;
+  width: auto;
+  white-space: nowrap;
 }
 
 .divider span:last-child {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f3e5e5), to(transparent));
-    background-image: -webkit-linear-gradient(180deg, #f3e5e5, transparent);
-    background-image: -moz-linear-gradient(180deg, #f3e5e5, transparent);
-    background-image: -o-linear-gradient(180deg, #f3e5e5, transparent);
-    background-image: linear-gradient(90deg, #f3e5e5, transparent);
+  background-image: -webkit-gradient(
+    linear,
+    0 0,
+    0 100%,
+    from(#f3e5e5),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(180deg, #f3e5e5, transparent);
+  background-image: -moz-linear-gradient(180deg, #f3e5e5, transparent);
+  background-image: -o-linear-gradient(180deg, #f3e5e5, transparent);
+  background-image: linear-gradient(90deg, #f3e5e5, transparent);
 }
 
 .share {
-    width: 2.5rem;
-    height: 2.5rem;
-    float: left;
-    margin: 0.5rem 1rem 0.5rem 0;
-    color: #353c4a;
-    border: 0.125rem solid #f3f3f3;
-    border-radius: 50%;
-    transition: 250ms;
-    background: #f1f1f1;
-    box-shadow: 0 0 8px 0 #f5f2f1;
-    cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  float: left;
+  margin: 0.5rem 1rem 0.5rem 0;
+  color: #353c4a;
+  border: 0.125rem solid #f3f3f3;
+  border-radius: 50%;
+  transition: 250ms;
+  background: #f1f1f1;
+  box-shadow: 0 0 8px 0 #f5f2f1;
+  cursor: pointer;
 }
 
 .google {
-
-    &:hover,
-    &:focus {
-        color: #ff3e25;
-        box-shadow: 0 0 24px 0 #ff3e25;
-    }
+  &:hover,
+  &:focus {
+    color: #ff3e25;
+    box-shadow: 0 0 24px 0 #ff3e25;
+  }
 }
 
 .apple {
-
-    &:hover,
-    &:focus {
-        color: #EAC117;
-        box-shadow: 0 0 24px 0 #EAC117;
-    }
+  &:hover,
+  &:focus {
+    color: #eac117;
+    box-shadow: 0 0 24px 0 #eac117;
+  }
 }
 
 .facebook {
-
-    &:hover,
-    &:focus {
-        color: #00aced;
-        box-shadow: 0 0 24px 0 #00aced;
-    }
+  &:hover,
+  &:focus {
+    color: #00aced;
+    box-shadow: 0 0 24px 0 #00aced;
+  }
 }

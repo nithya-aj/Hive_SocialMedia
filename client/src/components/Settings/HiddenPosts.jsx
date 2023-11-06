@@ -1,8 +1,7 @@
 import { useTheme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
-import PostSectionLeft from "components/home/PostSectionLeft";
-import React from "react";
 import { IoMdSettings } from "react-icons/io";
+import PostLeft from "../HomePage/PostLeft";
 
 const HiddenPosts = () => {
   const theme = useTheme();
@@ -60,7 +59,7 @@ const HiddenPosts = () => {
           bgcolor: main,
         }}
       >
-        <PostSectionLeft page={"hiddenPosts"} />
+        <PostLeft page={"hiddenPosts"} />
       </Box>
     </Box>
   );

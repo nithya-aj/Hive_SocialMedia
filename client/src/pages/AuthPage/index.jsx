@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import logo from "assets/logo3.png";
+import logo from "../../assets/logo3.png";
 import "./style.css";
 import { Box } from "@mui/material";
 import * as Components from "./Components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { apiRequest } from "utils";
-import SocialsIcons from "components/auth/SocialsIcons";
-import { setLogin, setRegister } from "redux/authSlice";
+import { apiRequest } from "../../utils";
+import { setLogin, setRegister } from "../../redux/authSlice";
+import SocialsIcons from "../../components/Auth/SocialsIcons";
 
 const AuthPage = () => {
   const [signIn, toggle] = React.useState(false);
