@@ -146,7 +146,6 @@ export const getTimelinePosts = async (req, res) => {
         }
       });
     return res.json(allPosts);
-    return res.json(allPosts);
   } catch (error) {
     console.error("Error fetching timeline posts:", error);
     return res.status(500).json({ error: "Error fetching timeline posts" });
