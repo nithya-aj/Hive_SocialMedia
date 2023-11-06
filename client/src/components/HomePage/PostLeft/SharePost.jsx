@@ -5,12 +5,13 @@ import { IoImage } from "react-icons/io5";
 import { FaPhotoVideo } from "react-icons/fa";
 import IconButton from "@mui/material/IconButton";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-import close from "../../../assets/close.png";
+import close from "@/assets/close.png";
 import { useDispatch, useSelector } from "react-redux";
-import { apiRequest, handleFileUpload } from "../../../utils";
-import { setPosts } from "../../../redux/postSlice";
-import UserAvatar from "../../widget/UserAvatar";
-import Toast from "../../Toast";
+import Toast from "@/components/Toast";
+import { apiRequest, handleFileUpload } from "@/utils";
+import { setPosts } from "@/redux/postSlice";
+import UserAvatar from "@/components/widget/UserAvatar";
+// import Toast from "../../Toast";
 
 function SharePost() {
   const theme = useTheme();

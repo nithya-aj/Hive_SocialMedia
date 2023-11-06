@@ -35,16 +35,16 @@ import ReactTimeago from "react-timeago";
 import { toast } from "react-toastify";
 import { BsFillEyeSlashFill } from "react-icons/bs";
 import UserAvatar from "../../widget/UserAvatar";
-import { apiRequest } from "../../../utils";
-import { setComments } from "../../../redux/commentSlice";
-import { setEditData, setPost } from "../../../redux/postSlice";
+import { apiRequest } from "@/utils";
+import { setComments } from "@/redux/commentSlice";
+import { setEditData, setPost } from "@/redux/postSlice";
 import Comment from "../../Comment";
-import UpdateModal from "../../Modals/UpdateModal";
+import UpdateModal from "@/components/Modals/UpdateModal";
 
 const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
+  const { ...other } = props;
   return <IconButton {...other} />;
-})(({ theme, expand }) => ({
+})(({ theme, }) => ({
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,

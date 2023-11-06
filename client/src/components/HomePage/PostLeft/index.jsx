@@ -4,8 +4,8 @@ import Posts from "./Post";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { apiRequest } from "../../../utils";
-import { setPosts } from "../../../redux/postSlice";
+import { apiRequest } from "@/utils";
+import { setPosts } from "@/redux/postSlice";
 
 function PostLeft({ page }) {
   const dispatch = useDispatch();
