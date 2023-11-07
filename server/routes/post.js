@@ -18,6 +18,6 @@ postRouter.put("/like/:postId", verifyToken, likePost)
 postRouter.put("/hide-unhide/:postId", verifyToken, togglePostHiddenStatus)
 postRouter.put("/bookmark/:postId", verifyToken, bookmarkPost)
 
-postRouter.delete("/delete/:id", verifyToken, deletePost)
+postRouter.delete("/:id/delete", verifyToken, deletePost)
 
 export default postRouter

@@ -1,13 +1,3 @@
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Box,
   FormControl,
@@ -17,29 +7,44 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import { MdDeleteOutline } from "react-icons/md";
-import { BiHide, BiSolidMessageDetail } from "react-icons/bi";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { setComments } from "@/redux/commentSlice";
+import { setEditData, setPost } from "@/redux/postSlice";
+import ReactTimeago from "react-timeago";
+import { useTheme } from "@emotion/react";
+
+// components import
+import { apiRequest } from "@/utils";
+import UpdateModal from "@/components/Modals/UpdateModal";
+import Comment from "@/components/Comment";
+import UserAvatar from "@/components/widget/UserAvatar";
+
+// icons imports
 import {
   HiHeart,
   HiOutlineHeart,
   HiOutlinePencilSquare,
 } from "react-icons/hi2";
+import { MdDeleteOutline } from "react-icons/md";
+import { BiHide, BiSolidMessageDetail } from "react-icons/bi";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { PiNavigationArrowFill, PiShareFat } from "react-icons/pi";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useTheme } from "@emotion/react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { GoBookmarkFill, GoBookmark } from "react-icons/go";
-import ReactTimeago from "react-timeago";
-import { toast } from "react-toastify";
 import { BsFillEyeSlashFill } from "react-icons/bs";
-import UserAvatar from "../../widget/UserAvatar";
-import { apiRequest } from "@/utils";
-import { setComments } from "@/redux/commentSlice";
-import { setEditData, setPost } from "@/redux/postSlice";
-import Comment from "../../Comment";
-import UpdateModal from "@/components/Modals/UpdateModal";
+import { GoBookmarkFill, GoBookmark } from "react-icons/go";
+import ConfirmModal from "@/components/Modals/ConfirmModal";
 
 const ExpandMore = styled((props) => {
   const { ...other } = props;
@@ -88,7 +93,10 @@ export default function Post({ data, page }) {
   const [expanded, setExpanded] = useState(false);
   const [commentData, setCommentData] = useState("");
   const [modal, setModal] = useState(false);
-  console.log(modal, "modal-----------------");
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [postToDelete, setPostToDelete] = useState(null);
+
+  // for comment expant part
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -100,6 +108,8 @@ export default function Post({ data, page }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // post options
   const userOptions = [
     {
       icon: <PiShareFat style={{ fontSize: "15px" }} />,
@@ -129,21 +139,23 @@ export default function Post({ data, page }) {
     },
   ];
 
-  // fetching user details
   useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const response = await apiRequest({
-          method: "GET",
-          url: `/user/find/${data.userId}`,
-        });
-        setAuthorDetails(response);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchDetails();
-  }, [data?._id, data?.userId]);
+    fetchComments();
+  }, [dispatch, data?._id, data?.userId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // fetching user details
+  const fetchDetails = async () => {
+    try {
+      const response = await apiRequest({
+        method: "GET",
+        url: `/user/find/${data.userId}`,
+      });
+      setAuthorDetails(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // fetching comments
   const fetchComments = async () => {
@@ -157,10 +169,6 @@ export default function Post({ data, page }) {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    fetchComments();
-  }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // posting comments
   const createComment = async (e) => {
@@ -259,6 +267,8 @@ export default function Post({ data, page }) {
         break;
       case "Delete":
         console.log("Delete option clicked");
+        setPostToDelete(data._id);
+        setConfirmModal(true);
         break;
       default:
         break;
@@ -529,6 +539,12 @@ export default function Post({ data, page }) {
           </CardContent>
         </Collapse>
       </Card>
+      {confirmModal && (
+        <ConfirmModal
+          setConfirmModal={setConfirmModal}
+          postToDelete={postToDelete}
+        />
+      )}
       {modal && <UpdateModal page={"post"} modal={modal} setModal={setModal} />}
     </>
   );

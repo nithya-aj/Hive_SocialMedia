@@ -82,7 +82,7 @@ export const getUserPosts = async (token, uri) => {
   try {
     const res = await apiRequest({
       url: uri,
-      token: token, 
+      token: token,
       method: "GET",
     });
     return res;
@@ -114,6 +114,18 @@ export const updatePost = async (token, uri, data) => {
       method: "PUT",
     });
     return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deletePost = async (token, uri) => {
+  try {
+    await apiRequest({
+      url: uri,
+      token: token,
+      method: "DELETE",
+    });
   } catch (error) {
     console.log(error);
   }

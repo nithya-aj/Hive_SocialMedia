@@ -74,6 +74,7 @@ export const deletePost = async (req, res) => {
     if (post.userId === req.user.id) {
       await post.deleteOne();
       return res.status(200).json({ msg: "Post deleted!" });
+      console.log("Post deleted!");
     } else {
       throw new Error("Only the owner of this post is allowed to do that");
     }
