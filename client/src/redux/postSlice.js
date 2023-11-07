@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   posts: [],
-  hiddenPosts: [],
+  timeLinePosts: [],
   editPostData: null,
 };
 
@@ -12,6 +12,9 @@ const postSlice = createSlice({
   reducers: {
     setPosts: (state, action) => {
       state.posts = action.payload;
+    },
+    setTimeLinePosts: (state, action) => {
+      state.timeLinePosts = action.payload;
     },
     setPost: (state, action) => {
       const updatedPosts = state.posts.map((post) => {
@@ -31,7 +34,7 @@ const postSlice = createSlice({
   },
 });
 
-export const { setPosts, setEditData, clearEditData, setPost } =
+export const { setPosts, setEditData, clearEditData, setPost, setTimeLinePosts } =
   postSlice.actions;
 export const selectEditData = (state) => state.posts.editPostData;
 export default postSlice.reducer;

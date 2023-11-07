@@ -27,7 +27,7 @@ function PostLeft() {
   };
   useEffect(() => {
     fetchTimeLinePosts();
-  }, [dispatch, token, user._id]);
+  }, [dispatch, token, user._id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

@@ -78,6 +78,19 @@ export const fetchTimeLinePost = async (token, uri, data) => {
   }
 };
 
+export const getUserPosts = async (token, uri) => {
+  try {
+    const res = await apiRequest({
+      url: uri,
+      token: token, 
+      method: "GET",
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createPost = async (token, uri, data) => {
   try {
     const res = await apiRequest({
