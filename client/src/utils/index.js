@@ -121,11 +121,12 @@ export const updatePost = async (token, uri, data) => {
 
 export const deletePost = async (token, uri) => {
   try {
-    await apiRequest({
+    const res = await apiRequest({
       url: uri,
       token: token,
       method: "DELETE",
     });
+    return res.data
   } catch (error) {
     console.log(error);
   }

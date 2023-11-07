@@ -3,13 +3,15 @@ import { Box, Button, Divider, Modal, Typography } from "@mui/material";
 import { GoAlertFill } from "react-icons/go";
 import FlexCenter from "../widget/FlexCenter";
 import { apiRequest } from "@/utils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { setPosts } from "@/redux/postSlice";
 
 const ConfirmModal = ({ setConfirmModal, postToDelete }) => {
   const { token } = useSelector((state) => state.auth);
   const mode = useSelector((state) => state.theme.mode);
   const theme = useTheme();
+  const dispatch = useDispatch();
   const darkbg = theme.palette.background.darkbg;
   const light = theme.palette.neutral.light;
   const main = theme.palette.neutral.main;
@@ -28,11 +30,12 @@ const ConfirmModal = ({ setConfirmModal, postToDelete }) => {
 
   const deletePost = async (postId) => {
     try {
-      await apiRequest({
+      const response = await apiRequest({
         method: "DELETE",
         url: `/post/${postId}/delete`,
         token: token,
       });
+      dispatch(setPosts(response.posts));
       setConfirmModal(false);
       toast.success(`Post deleted!`, {
         position: "top-right",
@@ -48,8 +51,6 @@ const ConfirmModal = ({ setConfirmModal, postToDelete }) => {
       console.log(error);
     }
   };
-  console.log(postToDelete, "postId");
-  console.log(token, "token");
 
   return (
     <div>
