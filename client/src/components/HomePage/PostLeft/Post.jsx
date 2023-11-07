@@ -44,7 +44,7 @@ import UpdateModal from "@/components/Modals/UpdateModal";
 const ExpandMore = styled((props) => {
   const { ...other } = props;
   return <IconButton {...other} />;
-})(({ theme, }) => ({
+})(({ theme }) => ({
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
@@ -64,7 +64,7 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
     },
 }));
 
-export default function Post({ post, page }) {
+export default function Post({ data, page }) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
@@ -76,19 +76,19 @@ export default function Post({ post, page }) {
   const red = theme.palette.neutral.red;
 
   const comments = useSelector(
-    (state) => state.comments.comments[post?._id] || []
+    (state) => state.comments.comments[data?._id] || []
   );
   const postCommentCount = comments?.length;
   const { user, token } = useSelector((state) => state.auth);
   const mode = useSelector((state) => state.theme.mode);
-  const isLiked = post?.likes?.includes(user._id);
-  const likeCount = post?.likes?.length;
-  const isBookmarked = post?.bookmarkedBy?.includes(user._id);
+  const isLiked = data?.likes?.includes(user._id);
+  const likeCount = data?.likes?.length;
+  const isBookmarked = data?.bookmarkedBy?.includes(user._id);
   const [authorDetails, setAuthorDetails] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [commentData, setCommentData] = useState("");
   const [modal, setModal] = useState(false);
-
+  console.log(modal, "modal-----------------");
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -107,7 +107,7 @@ export default function Post({ post, page }) {
     },
     {
       icon: <BiHide style={{ fontSize: "15px" }} />,
-      name: post.hidden ? "Unhide" : "Hide",
+      name: data?.hidden ? "Unhide" : "Hide",
     },
   ];
   const ownerOptions = [
@@ -121,7 +121,7 @@ export default function Post({ post, page }) {
     },
     {
       icon: <BiHide style={{ fontSize: "15px" }} />,
-      name: post.hidden ? "Unhide" : "Hide",
+      name: data?.hidden ? "Unhide" : "Hide",
     },
     {
       icon: <MdDeleteOutline style={{ fontSize: "15px" }} />,
@@ -135,7 +135,7 @@ export default function Post({ post, page }) {
       try {
         const response = await apiRequest({
           method: "GET",
-          url: `/user/find/${post.userId}`,
+          url: `/user/find/${data.userId}`,
         });
         setAuthorDetails(response);
       } catch (error) {
@@ -143,16 +143,16 @@ export default function Post({ post, page }) {
       }
     };
     fetchDetails();
-  }, [post?._id, post?.userId]);
+  }, [data?._id, data?.userId]);
 
   // fetching comments
   const fetchComments = async () => {
     try {
       const response = await apiRequest({
         method: "GET",
-        url: `/comment/${post._id}`,
+        url: `/comment/${data._id}`,
       });
-      dispatch(setComments({ postId: post._id, comments: response }));
+      dispatch(setComments({ postId: data._id, comments: response }));
     } catch (error) {
       console.error(error);
     }
@@ -168,7 +168,7 @@ export default function Post({ post, page }) {
     try {
       await apiRequest({
         method: "POST",
-        data: { text: commentData, postId: post._id },
+        data: { text: commentData, postId: data._id },
         url: "/comment/create",
         token: token,
       });
@@ -244,16 +244,18 @@ export default function Post({ post, page }) {
 
   const handleOptionClick = (option) => {
     switch (option.name) {
-      case "Update":
-        dispatch(setEditData(post));
+      case "Edit":
+        console.log("edit option clicked!?");
+        dispatch(setEditData(data));
         setModal(true);
+        console.log("edit option last");
         break;
       case "Share":
         console.log("Share option clicked");
         break;
       case "Hide":
         console.log("hide option!");
-        handleHidePost(post._id);
+        handleHidePost(data._id);
         break;
       case "Delete":
         console.log("Delete option clicked");
@@ -300,7 +302,7 @@ export default function Post({ post, page }) {
                 <IconButton
                   aria-label="settings"
                   sx={{ color: main }}
-                  onClick={() => handleHidePost(post._id)}
+                  onClick={() => handleHidePost(data._id)}
                 >
                   <BsFillEyeSlashFill sx={{ color: fontSm }} />
                 </IconButton>
@@ -326,7 +328,7 @@ export default function Post({ post, page }) {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  {post.userId === user._id
+                  {data?.userId === user._id
                     ? ownerOptions.map((option, index) => (
                         <MenuItem
                           key={index}
@@ -390,14 +392,14 @@ export default function Post({ post, page }) {
             <p style={{ display: "flex", gap: 8, margin: 0, padding: 0 }}>
               {authorDetails?.place}{" "}
               <span>
-                <ReactTimeago date={post?.createdAt} />
+                <ReactTimeago date={data?.createdAt} />
               </span>{" "}
             </p>
           }
         />
         <CardMedia
           component="img"
-          image={`http://localhost:8080/images/${post?.imageUrl}`}
+          image={`http://localhost:8080/images/${data?.imageUrl}`}
           alt="post image"
           sx={{ objectFit: "contain", borderRadius: "10px" }}
           style={{
@@ -409,7 +411,7 @@ export default function Post({ post, page }) {
         />
         <CardContent sx={{ py: "8px", px: "5px" }}>
           <Typography variant="body1" color="text.secondary">
-            {post?.desc}
+            {data?.desc}
           </Typography>
         </CardContent>
         <CardActions
@@ -427,7 +429,7 @@ export default function Post({ post, page }) {
                   // disabled={page === "hiddenPosts"}
                   sx={{ color: main }}
                   aria-label="add to favorites"
-                  onClick={() => handleLike(post._id)}
+                  onClick={() => handleLike(data._id)}
                 >
                   {isLiked ? (
                     <HiHeart style={{ color: red }} />
@@ -456,7 +458,7 @@ export default function Post({ post, page }) {
           <IconButton
             sx={{ color: main }}
             aria-label="share"
-            onClick={() => handleBookmark(post._id)}
+            onClick={() => handleBookmark(data._id)}
           >
             {isBookmarked ? (
               <GoBookmarkFill style={{ color: main }} />

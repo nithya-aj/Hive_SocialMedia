@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const API_URL = "http://localhost:8080";
 
 export const API = axios.create({
@@ -20,7 +19,7 @@ export const apiRequest = async ({ url, token, data, method }) => {
     return response?.data;
   } catch (error) {
     const err = error.response;
-    console.log(err.msg);
+    console.log(err.data.msg);
     return { status: err.success, message: err.message };
   }
 };

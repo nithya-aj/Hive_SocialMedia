@@ -11,7 +11,8 @@ import {
 import { IoMdCloudUpload } from "react-icons/io";
 import { useSelector } from "react-redux";
 import profile from "../../assets/profile.png";
-import PostLeft from "../HomePage/PostLeft";
+import Post from "../HomePage/PostLeft/Post";
+import SharePost from "../HomePage/PostLeft/SharePost";
 
 const ProfileLeft = () => {
   const theme = useTheme();
@@ -219,7 +220,8 @@ const ProfileLeft = () => {
           </Box>
         </Box>
       </Box>
-      <PostLeft page={"profile"} />
+      <SharePost />
+      <Post page={"profile"} />
     </Box>
   );
 };

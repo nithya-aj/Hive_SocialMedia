@@ -26,29 +26,11 @@ import MessagesPage from "./pages/MessagesPage";
 import Suggestions from "./components/Suggestions";
 import Following from "./components/Following";
 import Followers from "./components/Followers";
-// import HomePage from "./pages/HomePage";
-// import FeedsPage from "./pages/FeedsPage";
-// import FriendsPage from "./pages/FriendsPage";
-// import Followers from "./components/Followers";
-// import Following from "./components/Following";
-// import Suggestions from "./components/Suggestions";
-// import MessagesPage from "./pages/MessagesPage";
-// import NotificationsPage from "./pages/NotificationsPage";
-// import ProfilePage from "./pages/ProfilePage";
-// import SettingsPage from "./pages/SettingsPage";
-// import EditProfile from "./components/Settings/EditProfile";
-// import BlockUsers from "./components/Settings/BlockUsers";
-// import PassWordAndSecurity from "./components/Settings/PassWordAndSecurity";
-// import HiddenPosts from "./components/Settings/HiddenPosts";
-// import LikedPosts from "./components/Settings/LikedPosts";
-// import BookmarkedPosts from "./components/Settings/BookmarkedPosts";
-// import ManageAccount from "./components/Settings/ManageAccount";
 
 const AuthPage = lazy(() => import("./pages/AuthPage"));
 
 const App = () => {
   const { user } = useSelector((state) => state.auth);
-  console.log(user._id, "user");
   const mode = useSelector((state) => state.theme.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
