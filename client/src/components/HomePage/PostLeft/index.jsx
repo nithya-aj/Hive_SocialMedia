@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { apiRequest } from "@/utils";
 import { setPosts } from "@/redux/postSlice";
+import noData from "@/assets/noData.png";
 
 function PostLeft({ page }) {
   const dispatch = useDispatch();
@@ -47,10 +48,13 @@ function PostLeft({ page }) {
           <Box
             sx={{
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              py:'22.5%'
             }}
           >
+            <img src={noData} alt="" />
             No hidden posts!
           </Box> // Display a message when there are no hidden posts
         ) : (
