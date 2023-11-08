@@ -51,16 +51,20 @@ function SharePost() {
       } else {
         return;
       }
-      const response = await apiRequest({
-        method: "POST",
-        url: `/post/create`,
-        token: token,
-        data: { desc, imageUrl: fileName },
-      });
-      console.log(response, "response from post creation");
-      dispatch(setPosts(response));
-      setDesc("");
-      setPhoto(null);
+      if (photo !== "" || desc !== "") {
+        const response = await apiRequest({
+          method: "POST",
+          url: `/post/create`,
+          token: token,
+          data: { desc, imageUrl: fileName },
+        });
+        console.log(response, "response from post creation");
+        dispatch(setPosts(response));
+        setDesc("");
+        setPhoto(null);
+      } else {
+        setAlert(true);
+      }
     } catch (error) {
       console.error(error.response.message);
     }

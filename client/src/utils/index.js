@@ -64,7 +64,7 @@ export const login = async (uri, data) => {
   }
 };
 
-export const fetchTimeLinePost = async (token, uri, data) => {
+export const getPosts = async (token, uri, data) => {
   try {
     const res = await apiRequest({
       url: uri,

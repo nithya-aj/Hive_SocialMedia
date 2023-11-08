@@ -9,13 +9,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { IoMdCloudUpload } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import profile from "../../assets/profile.png";
-import Post from "../HomePage/PostLeft/Post";
-import SharePost from "../HomePage/PostLeft/SharePost";
-import { apiRequest } from "@/utils";
-import { setTimeLinePosts } from "@/redux/postSlice";
-import { useEffect } from "react";
+import PostLeft from "../HomePage/PostLeft";
 
 const ProfileLeft = () => {
   const theme = useTheme();
@@ -28,25 +24,6 @@ const ProfileLeft = () => {
   const textMain = theme.palette.neutral.main;
   const fontSm = theme.palette.neutral.fontSm;
   const user = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts.posts);
-
-  const userPosts = async () => {
-    try {
-      const response = await apiRequest({
-        method: "get",
-        url: `/post/find/${user._id}/posts`,
-      });
-      console.log(response, "response from profile");
-      dispatch(setTimeLinePosts(response));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    userPosts();
-  }, [dispatch, user._id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box
@@ -242,11 +219,7 @@ const ProfileLeft = () => {
           </Box>
         </Box>
       </Box>
-      <SharePost />
-      {Array.isArray(posts) &&
-        posts.map(
-          (post) => !post.hidden && <Post data={post} key={post._id} />
-        )}
+      <PostLeft page={"profile"} />
     </Box>
   );
 };

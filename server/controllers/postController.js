@@ -127,7 +127,7 @@ export const likePost = async (req, res) => {
 };
 
 // to fetch timeline posts of user
-export const getTimelinePosts = async (req, res) => {
+export const getPosts = async (req, res) => {
   try {
     const currentUser = await User.findById(req.user.id);
     const userPosts = await Post.find({
