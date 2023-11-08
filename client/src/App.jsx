@@ -12,7 +12,6 @@ import { ToastContainer } from "react-toastify";
 import HomePage from "./pages/HomePage";
 import FeedsPage from "./pages/FeedsPage";
 import FriendsPage from "./pages/FriendsPage";
-import EditProfile from "./components/Modals/EditProfile";
 import BlockUsers from "./components/Settings/BlockUsers";
 import HiddenPosts from "./components/Settings/HiddenPosts";
 import LikedPosts from "./components/Settings/LikedPosts";
@@ -26,6 +25,7 @@ import MessagesPage from "./pages/MessagesPage";
 import Suggestions from "./components/Suggestions";
 import Following from "./components/Following";
 import Followers from "./components/Followers";
+import EditProfile from "./components/Settings/EditProfile";
 
 const AuthPage = lazy(() => import("./pages/AuthPage"));
 
