@@ -7,12 +7,10 @@ import IconButton from "@mui/material/IconButton";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import close from "@/assets/close.png";
 import { useDispatch, useSelector } from "react-redux";
-import Toast from "@/components/Toast";
 import { apiRequest, handleFileUpload } from "@/utils";
 import { setPosts } from "@/redux/postSlice";
 import UserAvatar from "@/components/widget/UserAvatar";
-// import Toast from "../../Toast";
-
+import ToastCmp from "@/components/ToastCmp";
 function SharePost() {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -77,7 +75,7 @@ function SharePost() {
 
   return (
     <>
-      {alert && <Toast err={"Please fill out the fields"} type={"info"} />}
+      {alert && <ToastCmp err={"Please fill out the fields"} type={"warn"} />}
       <Box
         component={"form"}
         sx={{

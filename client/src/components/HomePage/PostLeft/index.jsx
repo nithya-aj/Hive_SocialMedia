@@ -72,9 +72,8 @@ function PostLeft({ page }) {
               {page === "profile" &&
                 posts.map(
                   (post) =>
-                    post.userId === user._id && (
-                      <Post data={post} key={post._id} />
-                    )
+                    post.userId === user._id &&
+                    !post.hidden && <Post data={post} key={post._id} />
                 )}
             </>
           )}

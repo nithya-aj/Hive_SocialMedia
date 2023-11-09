@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const Toast = ({ err, type }) => {
+const ToastCmp = ({ err, type }) => {
   const mode = useSelector((state) => state.theme.mode);
   switch (type) {
     case "error":
@@ -62,4 +62,4 @@ const Toast = ({ err, type }) => {
   return null;
 };
 
-export default Toast;
+export default ToastCmp;
