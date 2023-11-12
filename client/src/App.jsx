@@ -13,10 +13,8 @@ import HomePage from "./pages/HomePage";
 import FeedsPage from "./pages/FeedsPage";
 import FriendsPage from "./pages/FriendsPage";
 import BlockUsers from "./components/Settings/BlockUsers";
-import HiddenPosts from "./components/Settings/HiddenPosts";
-import LikedPosts from "./components/Settings/LikedPosts";
+import SettingsPosts from "./components/Settings/SettingsPosts";
 import ManageAccount from "./components/Settings/ManageAccount";
-import BookmarkedPosts from "./components/Settings/BookmarkedPosts";
 import PassWordAndSecurity from "./components/Settings/PassWordAndSecurity";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -65,11 +63,17 @@ const App = () => {
                     path="password-security"
                     element={<PassWordAndSecurity />}
                   />
-                  <Route path="manage-posts/hidden" element={<HiddenPosts />} />
-                  <Route path="manage-posts/liked" element={<LikedPosts />} />
+                  <Route
+                    path="manage-posts/hidden"
+                    element={<SettingsPosts />}
+                  />
+                  <Route
+                    path="manage-posts/liked"
+                    element={<SettingsPosts />}
+                  />
                   <Route
                     path="manage-posts/bookmarked"
-                    element={<BookmarkedPosts />}
+                    element={<SettingsPosts />}
                   />
                   <Route path="manage-account" element={<ManageAccount />} />
                 </Route>

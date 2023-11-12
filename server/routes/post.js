@@ -1,6 +1,5 @@
 import {
   getPost,
-  getUserPosts,
   createPost,
   updatePost,
   deletePost,
@@ -10,7 +9,6 @@ import {
   bookmarkPost,
   getUserLikedPosts,
   getAllBookmarkedPosts,
-  getAllHiddenPosts,
 } from "../controllers/postController.js";
 import express from "express";
 import { verifyToken } from "../middlewares/auth.js";
@@ -19,10 +17,8 @@ const postRouter = express.Router();
 
 postRouter.get("/", verifyToken, getPosts);
 postRouter.get("/find/:id", getPost);
-postRouter.get("/find/:id/posts", getUserPosts);
-postRouter.get("/users/:userId/liked-posts", getUserLikedPosts);
-postRouter.get("/users/:userId/bookmarked-posts", getAllBookmarkedPosts);
-postRouter.get("/find/hidden-posts/:id", getAllHiddenPosts);
+postRouter.get("/:userId/liked-posts", verifyToken, getUserLikedPosts);
+postRouter.get("/:userId/bookmarked-posts", verifyToken, getAllBookmarkedPosts);
 
 postRouter.post("/create", verifyToken, createPost);
 

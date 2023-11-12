@@ -3,10 +3,13 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { IoMdSettings } from "react-icons/io";
 import PostLeft from "../HomePage/PostLeft";
 
-const HiddenPosts = () => {
+const SettingsPosts = () => {
   const theme = useTheme();
   const main = theme.palette.background.main;
   const textMain = theme.palette.neutral.main;
+  var url = window.location.href;
+  var param = url.split("/").pop();
+  console.log(param);
 
   return (
     <Box
@@ -42,7 +45,9 @@ const HiddenPosts = () => {
             variant="body1"
             sx={{ fontSize: "1rem", color: textMain }}
           >
-            Hidden Posts
+            {param === "hidden" && "Hidden Posts"}
+            {param === "liked" && "Liked Posts"}
+            {param === "bookmarked" && "Bookmarked Posts"}
           </Typography>
           <IconButton aria-label="settings">
             <IoMdSettings
@@ -60,25 +65,13 @@ const HiddenPosts = () => {
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-          {/* {hiddenPostCount === 0 && (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                py: "22.5%",
-              }}
-            >
-              <img src={noData} alt="" />
-              No hidden posts!
-            </Box>
-          )} */}
-          <PostLeft page={"hiddenPosts"} />
+          {param === "hidden" && <PostLeft page={"hiddenPosts"} />}
+          {param === "liked" && <PostLeft page={"likedPosts"} />}
+          {param === "bookmarked" && <PostLeft page={"bookmarkedPosts"} />}
         </Box>
       </Box>
     </Box>
   );
 };
 
-export default HiddenPosts;
+export default SettingsPosts;

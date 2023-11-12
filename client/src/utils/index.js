@@ -126,7 +126,7 @@ export const deletePost = async (token, uri) => {
       token: token,
       method: "DELETE",
     });
-    return res.data
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -225,7 +225,20 @@ export const getUserDetails = async (uri, data) => {
   }
 };
 
-export const getHiddenPosts = async (uri, token) => {
+export const bookmarkedPosts = async (uri, token) => {
+  try {
+    const res = await apiRequest({
+      url: uri,
+      token: token,
+      method: "GET",
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const likedPosts = async (uri, token) => {
   try {
     const res = await apiRequest({
       url: uri,

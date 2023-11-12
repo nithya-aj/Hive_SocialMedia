@@ -15,19 +15,6 @@ export const getPost = async (req, res) => {
   }
 };
 
-// to fetch all the posts which is not hidden
-export const getUserPosts = async (req, res) => {
-  try {
-    const userPosts = await Post.find({
-      userId: req.params.id,
-      hidden: false,
-    }).sort({ createdAt: -1 });
-    return res.status(200).json(userPosts);
-  } catch (error) {
-    return res.status(500).json(error.message);
-  }
-};
-
 // to create a post
 export const createPost = async (req, res) => {
   try {
@@ -135,29 +122,6 @@ export const getPosts = async (req, res) => {
     const timeLinePosts = await Post.find({ userId: { $in: userIdsToQuery } })
       .sort({ createdAt: -1 })
       .exec();
-
-    // const userPosts = await Post.find({
-    //   userId: currentUser._id,
-    // });
-    // const friendPosts = await Promise.all(
-    //   currentUser.followings.map((friendId) => {
-    //     return Post.find({ userId: friendId });
-    //   })
-    // );
-    // const allPosts = userPosts
-    //   .concat(...friendPosts)
-    //   // .sort((a, b) => b.createdAt - a.createdAt);
-    //   .sort((a, b) => {
-    //     if (a.hidden && b.hidden) {
-    //       return b.hiddenAt.getTime() - a.hiddenAt.getTime();
-    //     } else if (a.hidden) {
-    //       return 1;
-    //     } else if (b.hidden) {
-    //       return -1;
-    //     } else {
-    //       return b.createdAt.getTime() - a.createdAt.getTime();
-    //     }
-    //   });
     return res.json(timeLinePosts);
   } catch (error) {
     console.error("Error fetching timeline posts:", error);
@@ -222,31 +186,6 @@ export const bookmarkPost = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json(error.message);
-  }
-};
-
-// fetching all hidden posts
-export const getAllHiddenPosts = async (req, res) => {
-  try {
-    // check for valid input
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).json({ message: "Invalid user ID." });
-    }
-    const userExists = await User.exists({ _id: req.params.id });
-    if (!userExists) {
-      return res.status(404).json({ message: "User not found." });
-    }
-    const hiddenPosts = await Post.find({
-      userId: req.params.id,
-      hidden: true,
-    }).sort({ createdAt: -1 });
-    console.log(hiddenPosts);
-    return res.status(200).json(hiddenPosts);
-  } catch (error) {
-    console.error(error.message);
-    return res
-      .status(500)
-      .json({ message: "An error occurred while fetching hidden posts." });
   }
 };
 
