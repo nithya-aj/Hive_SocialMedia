@@ -24,7 +24,40 @@ const ProfileLeft = () => {
   const textMain = theme.palette.neutral.main;
   const fontSm = theme.palette.neutral.fontSm;
   const user = useSelector((state) => state.auth.user);
-  console.log(user, "user");
+  const posts = useSelector((state) => state.posts.posts);
+  const followers = user.followers.length;
+  const followings = user.followings.length;
+  const postCount = posts.length;
+
+  const data = [
+    {
+      name: user.username,
+    },
+    {
+      name: user.email,
+    },
+    {
+      name: user.desc,
+    },
+    {
+      name: user.place,
+    },
+    {
+      name: user.dob,
+    },
+    {
+      name: "Followers",
+      value: followers,
+    },
+    {
+      name: "Following",
+      value: followings,
+    },
+    {
+      name: "Posts",
+      value: postCount,
+    },
+  ];
 
   return (
     <Box
@@ -143,6 +176,7 @@ const ProfileLeft = () => {
             pt: "2rem",
             pb: "0.5rem",
             gap: 1,
+            pl: "2rem",
             p: "2rem 0rem 1rem 1rem",
             color: textMain,
             display: { xs: "block", lg: "none" },
@@ -154,70 +188,68 @@ const ProfileLeft = () => {
           >
             Irin Rose
           </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography
-              variant={isExtraSmall ? "subtitle2" : "subtitle1"}
-              sx={{ pl: "2rem", color: fontSm }}
-            >
-              @irin__32
-            </Typography>{" "}
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              sx={{ color: fontSm, height: "1rem" }}
-            />
-            <Typography
-              variant={isExtraSmall ? "subtitle2" : "subtitle1"}
-              sx={{ color: fontSm }}
-            >
-              UI/UX designer
-            </Typography>{" "}
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              sx={{ color: fontSm, height: "1rem" }}
-            />
-            <Typography
-              variant={isExtraSmall ? "subtitle2" : "subtitle1"}
-              sx={{ color: fontSm }}
-            >
-              Ernakulam
-            </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              pl: 3,
+              overflowWrap: "break-word",
+              flexWrap: "wrap",
+              color: fontSm,
+            }}
+          >
+            {data.map(
+              (item, id, array) =>
+                item.name && (
+                  <Box
+                    key={id}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        px: 1,
+                      }}
+                    >
+                      {item.value && (
+                        <Typography
+                          variant={isExtraSmall ? "subtitle2" : "subtitle1"}
+                          sx={{
+                            color: fontSm,
+                          }}
+                        >
+                          {item.value}
+                        </Typography>
+                      )}
+                      <Typography
+                        variant={isExtraSmall ? "subtitle2" : "subtitle1"}
+                        sx={{
+                          color: fontSm,
+                        }}
+                      >
+                        {item.name}
+                      </Typography>
+                    </Box>
+                    {id !== array.length - 1 && (
+                      <Divider
+                        orientation="vertical"
+                        variant="middle"
+                        flexItem
+                        sx={{ color: fontSm, height: "1rem" }}
+                      />
+                    )}
+                  </Box>
+                )
+            )}
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography
-              variant={isExtraSmall ? "subtitle2" : "subtitle1"}
-              sx={{ pl: "2rem", color: fontSm }}
-            >
-              123 Followers
-            </Typography>{" "}
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              sx={{ color: fontSm, height: "1rem" }}
-            />
-            <Typography
-              variant={isExtraSmall ? "subtitle2" : "subtitle1"}
-              sx={{ color: fontSm }}
-            >
-              421 Following
-            </Typography>{" "}
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              sx={{ color: fontSm, height: "1rem" }}
-            />
-            <Typography
-              variant={isExtraSmall ? "subtitle2" : "subtitle1"}
-              sx={{ color: fontSm }}
-            >
-              23 Posts
-            </Typography>
-          </Box>
+          {/* <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          </Box> */}
         </Box>
       </Box>
       <PostLeft page={"profile"} />

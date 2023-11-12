@@ -20,7 +20,6 @@ import { useSelector } from "react-redux";
 const ProfileCard = () => {
   const user = useSelector((state) => state.auth.user);
   const posts = useSelector((state) => state.posts.posts);
-  console.log(posts, "posts");
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
   const main = theme.palette.neutral.main;
