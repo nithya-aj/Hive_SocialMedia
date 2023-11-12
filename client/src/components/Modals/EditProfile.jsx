@@ -1,5 +1,11 @@
 import { useTheme } from "@emotion/react";
-import { Avatar, Box, Button, IconButton, TextField } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import { IoMdCloudUpload } from "react-icons/io";
 
 const EditProfile = () => {
@@ -11,83 +17,91 @@ const EditProfile = () => {
   const mediumpurple = theme.palette.neutral.mediumpurple;
   const medium = theme.palette.neutral.medium;
   return (
-    <Box
-      component={"form"}
-      sx={{
-        p: 2,
-        display: "flex",
-        flexDirection: "column",
-        gap: 1,
-        height: "100%",
-      }}
-    >
+    <>
       <Box
+        component={"form"}
         sx={{
-          borderRadius: "10px 10px 0px 0px",
-          height: "20%",
-          bgcolor: alt,
-          display: "flex",
-          justifyContent: "flex-end",
-          p: 1,
-          mb: "2rem",
+          p: 2,
+          height: "23%",
         }}
       >
         <Box
           sx={{
-            height: "5.5rem",
-            width: "5.5rem",
-            position: "absolute",
-            top: "7rem",
-            left: "2rem",
+            borderRadius: "10px 10px 0px 0px",
+            height: "100%",
+            bgcolor: alt,
+            display: "flex",
+            justifyContent: "flex-end",
+            p: 2,
           }}
         >
-          <Avatar
-            sx={{
-              border: `3px solid ${alt}`,
-              height: "100%",
-              width: "100%",
-            }}
-            src="https://source.unsplash.com/featured/300x118"
-          />
           <Box
             sx={{
-              height: "1.6rem",
-              width: "1.6rem",
-              backgroundColor: main,
-              position: "relative",
-              left: "4.5rem",
-              bottom: "2rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "50%",
-              border: `1px solid ${orange}`,
+              height: "5.5rem",
+              width: "5.5rem",
+              position: "absolute",
+              top: "16%",
+              left: "5%",
             }}
           >
-            <IconButton>
-              <IoMdCloudUpload size={"1rem"} />
-            </IconButton>
+            <Avatar
+              sx={{
+                border: `3px solid ${alt}`,
+                height: "100%",
+                width: "100%",
+              }}
+              src="https://source.unsplash.com/featured/300x118"
+            />
+            <Box
+              sx={{
+                height: "1.6rem",
+                width: "1.6rem",
+                backgroundColor: main,
+                position: "relative",
+                left: "4.5rem",
+                bottom: "2rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "50%",
+                border: `1px solid ${orange}`,
+              }}
+            >
+              <IconButton>
+                <IoMdCloudUpload size={"1rem"} />
+              </IconButton>
+            </Box>
           </Box>
+          <Button
+            variant="contained"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.3rem",
+              textTransform: "none",
+              alignSelf: "flex-end",
+              p: "4px 8px",
+              backgroundColor: purple,
+              color: main,
+              ":hover": { backgroundColor: mediumpurple },
+            }}
+          >
+            <IoMdCloudUpload size={"1.1rem"} />
+            Add Cover Photo
+          </Button>
         </Box>
-        <Button
-          variant="contained"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.3rem",
-            textTransform: "none",
-            alignSelf: "flex-end",
-            p: "4px 8px",
-            backgroundColor: purple,
-            color: main,
-            ":hover": { backgroundColor: mediumpurple },
-          }}
-        >
-          <IoMdCloudUpload size={"1.1rem"} />
-          Add Cover Photo
-        </Button>
       </Box>
-      <Box sx={{ display: "flex", gap: 2, flexDirection: "column" }}>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 3,
+          p: 3,
+          py:6,
+          flexDirection: "column",
+          justifyContent: "space-between",
+          height:'69%'
+        }}
+      >
         <Box
           sx={{
             width: "100%",
@@ -250,10 +264,8 @@ const EditProfile = () => {
         <Box
           sx={{
             display: "flex",
-            gap: 2,
             alignItems: "flex-end",
             justifyContent: "flex-end",
-            pt: "3.5rem",
           }}
         >
           <Button
@@ -264,17 +276,9 @@ const EditProfile = () => {
           >
             Save
           </Button>
-          <Button
-            type="reset"
-            variant="outlined"
-            color="warning"
-            sx={{ px: "1rem", borderRadius: "2px" }}
-          >
-            Clear
-          </Button>
         </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

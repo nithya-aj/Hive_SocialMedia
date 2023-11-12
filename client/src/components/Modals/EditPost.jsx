@@ -81,30 +81,15 @@ const EditPost = ({ postData, handleEditPost, handleInputChange }) => {
           pt: "0.5rem",
         }}
       >
-        <Box
-          sx={{
-            gap: 2,
-            display: "flex",
-          }}
+        <Button
+          type="submit"
+          variant="outlined"
+          color="secondary"
+          sx={{ px: "1.5rem", borderRadius: "2px" }}
+          onClick={handleEditPost}
         >
-          <Button
-            type="submit"
-            variant="outlined"
-            color="secondary"
-            sx={{ px: "1.5rem", borderRadius: "2px" }}
-            onClick={handleEditPost}
-          >
-            Save
-          </Button>
-          <Button
-            type="reset"
-            variant="outlined"
-            color="warning"
-            sx={{ px: "1rem", borderRadius: "2px" }}
-          >
-            Clear
-          </Button>
-        </Box>
+          Save
+        </Button>
       </Box>
     </Box>
   );
