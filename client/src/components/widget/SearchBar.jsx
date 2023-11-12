@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
 
-const SearchBar = ({ placeholder, width, sharePost }) => {
+const SearchBar = ({ placeholder, width }) => {
   const theme = useTheme();
   const main = theme.palette.neutral.main;
   const alt = theme.palette.background.alt;
@@ -30,7 +30,6 @@ const SearchBar = ({ placeholder, width, sharePost }) => {
         <InputBase
           sx={{ ml: 1, flex: 1, color: main }}
           placeholder={placeholder}
-          inputProps={{ "aria-label": "search google maps" }}
         />
         <>
           <Divider

@@ -14,19 +14,70 @@ import { MdCake, MdEdit } from "react-icons/md";
 import { FaUserAlt, FaUserTag } from "react-icons/fa";
 import { GiCheckMark } from "react-icons/gi";
 import FlexCenter from "./FlexCenter";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ProfileCard = () => {
+  const user = useSelector((state) => state.auth.user);
+  const posts = useSelector((state) => state.posts.posts);
+  console.log(posts, "posts");
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
   const main = theme.palette.neutral.main;
   const light = theme.palette.neutral.light;
   const purple = theme.palette.neutral.purple;
   const [edit, setEdit] = useState(false);
+
+  const followers = user.followers.length;
+  const followings = user.followings.length;
+  const postCount = posts.length;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("edited!");
   };
+
+  const data = [
+    {
+      icon: <HiAtSymbol />,
+      name: user.username,
+    },
+    {
+      icon: <FaUserAlt style={{ fontSize: "0.8rem" }} />,
+      name: user.name,
+    },
+    {
+      icon: <MdEmail />,
+      name: user.email,
+    },
+    {
+      icon: <FaUserTag />,
+      name: user.desc,
+    },
+    {
+      icon: <HiBuildingOffice />,
+      name: user.place,
+    },
+    {
+      icon: <MdCake />,
+      name: user.dob,
+    },
+  ];
+
+  const userData = [
+    {
+      title: "Followers",
+      value: followers,
+    },
+    {
+      title: "Following",
+      value: followings,
+    },
+    {
+      title: "Posts",
+      value: postCount,
+    },
+  ];
 
   return (
     <Card
@@ -39,7 +90,7 @@ const ProfileCard = () => {
           p: "1rem 1rem 1.5rem 1rem",
         }}
       >
-        <Typography variant="h5">Irin Rose</Typography>
+        <Typography variant="h5">{user.name}</Typography>
         <Box
           sx={{
             display: "flex",
@@ -50,23 +101,17 @@ const ProfileCard = () => {
             pt: "0.5rem",
           }}
         >
-          <span>
-            {" "}
-            <Typography variant="caption">43</Typography> <br />{" "}
-            <Typography variant="body2">Following</Typography>
-          </span>
-          <Divider orientation="vertical" variant="middle" flexItem />
-          <span>
-            {" "}
-            <Typography variant="caption">284</Typography> <br />{" "}
-            <Typography variant="body2">Followers</Typography>{" "}
-          </span>
-          <Divider orientation="vertical" variant="middle" flexItem />
-          <span>
-            {" "}
-            <Typography variant="caption">24</Typography> <br />{" "}
-            <Typography variant="body2">Posts</Typography>{" "}
-          </span>
+          {userData.map((item, id, array) => (
+            <React.Fragment key={id}>
+              <span>
+                <Typography variant="caption">{item.value}</Typography> <br />
+                <Typography variant="body2">{item.title}</Typography>
+              </span>
+              {id !== array.length - 1 && (
+                <Divider orientation="vertical" variant="middle" flexItem />
+              )}
+            </React.Fragment>
+          ))}
         </Box>
       </FlexCenter>
       <Box
@@ -86,138 +131,36 @@ const ProfileCard = () => {
               onClick={handleSubmit}
               sx={{ display: "flex", flexDirection: "column", gap: 2 }}
             >
-              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-                <HiAtSymbol />
-                <TextField
-                  sx={{
-                    width: "100%",
-                    ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
-                      borderBottom: `1px solid ${purple}`,
-                    },
-                  }}
-                  id="standard-basic"
-                  variant="standard"
-                  placeholder="rose_53"
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-                <FaUserAlt style={{ fontSize: "0.65rem" }} />
-                <TextField
-                  sx={{
-                    width: "100%",
-                    ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
-                      borderBottom: `1px solid ${purple}`,
-                    },
-                  }}
-                  id="standard-basic"
-                  variant="standard"
-                  placeholder="Irin Rose"
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-                <FaUserTag />
-                <TextField
-                  sx={{
-                    width: "100%",
-                    ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
-                      borderBottom: `1px solid ${purple}`,
-                    },
-                  }}
-                  id="standard-basic"
-                  variant="standard"
-                  placeholder="UI/UX designer"
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-                <MdEmail />
-                <TextField
-                  sx={{
-                    width: "100%",
-                    ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
-                      borderBottom: `1px solid ${purple}`,
-                    },
-                  }}
-                  id="standard-basic"
-                  variant="standard"
-                  placeholder="rose@gmail.com"
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-                <HiBuildingOffice />
-                <TextField
-                  sx={{
-                    width: "100%",
-                    ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
-                      borderBottom: `1px solid ${purple}`,
-                    },
-                  }}
-                  id="standard-basic"
-                  variant="standard"
-                  placeholder="Ernakulam"
-                />
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-                <MdCake />
-                <TextField
-                  sx={{
-                    width: "100%",
-                    ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-                      padding: "0",
-                      height: "0.79em",
-                    },
-                    ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
-                      borderBottom: `1px solid ${purple}`,
-                    },
-                  }}
-                  id="standard-basic"
-                  variant="standard"
-                  placeholder="Feb 21 2002"
-                />
-              </Box>
+              {data.map(
+                (item, id) =>
+                  item.name && (
+                    <Box
+                      key={id}
+                      sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}
+                    >
+                      {item.icon}
+                      <TextField
+                        sx={{
+                          width: "100%",
+                          ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
+                            padding: "0",
+                            height: "1em",
+                          },
+                          ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+                            padding: "0",
+                            height: "1em",
+                          },
+                          ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
+                            borderBottom: `1px solid ${purple}`,
+                          },
+                        }}
+                        id="standard-basic"
+                        variant="standard"
+                        placeholder={item.name}
+                      />
+                    </Box>
+                  )
+              )}
               <Box
                 component="button"
                 sx={{
@@ -263,30 +206,20 @@ const ProfileCard = () => {
                 <MdEdit size={"1rem"} style={{ color: darkbg }} />
               </IconButton>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-              <HiAtSymbol />
-              <Typography style={{ lineHeight: 1 }}>rose_53</Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-              <FaUserAlt style={{ fontSize: "0.65rem" }} />
-              <Typography style={{ lineHeight: 1 }}>Irin Rose</Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-              <FaUserTag />
-              <Typography style={{ lineHeight: 1 }}>UI/UX designer </Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-              <MdEmail />
-              <Typography style={{ lineHeight: 1 }}>rose@gmail.com</Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-              <HiBuildingOffice />
-              <Typography style={{ lineHeight: 1 }}>Ernakulam</Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
-              <MdCake />
-              <Typography style={{ lineHeight: 1 }}>Feb 21 2002</Typography>
-            </Box>
+            {data.map(
+              (item, id) =>
+                item.name && (
+                  <Box
+                    key={id}
+                    sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}
+                  >
+                    {item.icon}
+                    <Typography style={{ lineHeight: 1 }}>
+                      {item.name}
+                    </Typography>
+                  </Box>
+                )
+            )}
           </>
         )}
       </Box>

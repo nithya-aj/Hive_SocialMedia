@@ -24,6 +24,7 @@ const ProfileLeft = () => {
   const textMain = theme.palette.neutral.main;
   const fontSm = theme.palette.neutral.fontSm;
   const user = useSelector((state) => state.auth.user);
+  console.log(user, "user");
 
   return (
     <Box
