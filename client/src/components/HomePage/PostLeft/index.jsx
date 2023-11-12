@@ -58,23 +58,28 @@ function PostLeft({ page }) {
             </Box>
           ) : (
             <>
-              {page === "hiddenPosts"
-                ? posts.map(
-                    (post) =>
-                      post.hidden && (
+              {(() => {
+                switch (page) {
+                  case "hiddenPosts":
+                    return posts.map((post) =>
+                      post.hidden ? (
                         <Post page={"hiddenPosts"} data={post} key={post._id} />
-                      )
-                  )
-                : posts.map(
-                    (post) =>
-                      !post.hidden && <Post data={post} key={post._id} />
-                  )}
-              {page === "profile" &&
-                posts.map(
-                  (post) =>
-                    post.userId === user._id &&
-                    !post.hidden && <Post data={post} key={post._id} />
-                )}
+                      ) : null
+                    );
+
+                  case "profile":
+                    return posts.map((post) =>
+                      post.userId === user._id && !post.hidden ? (
+                        <Post data={post} key={post._id} />
+                      ) : null
+                    );
+
+                  default:
+                    return posts.map((post) =>
+                      !post.hidden ? <Post data={post} key={post._id} /> : null
+                    );
+                }
+              })()}
             </>
           )}
         </>

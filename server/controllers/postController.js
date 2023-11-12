@@ -129,30 +129,36 @@ export const likePost = async (req, res) => {
 // to fetch timeline posts of user
 export const getPosts = async (req, res) => {
   try {
-    const currentUser = await User.findById(req.user.id);
-    const userPosts = await Post.find({
-      userId: currentUser._id,
-    });
-    const friendPosts = await Promise.all(
-      currentUser.followings.map((friendId) => {
-        return Post.find({ userId: friendId });
-      })
-    );
-    const allPosts = userPosts
-      .concat(...friendPosts)
-      // .sort((a, b) => b.createdAt - a.createdAt);
-      .sort((a, b) => {
-        if (a.hidden && b.hidden) {
-          return b.hiddenAt.getTime() - a.hiddenAt.getTime();
-        } else if (a.hidden) {
-          return 1;
-        } else if (b.hidden) {
-          return -1;
-        } else {
-          return b.createdAt.getTime() - a.createdAt.getTime();
-        }
-      });
-    return res.json(allPosts);
+    const currentUser = await User.findById(req.user.id).exec();
+    const userIdsToQuery = [currentUser._id, ...currentUser.followings];
+
+    const timeLinePosts = await Post.find({ userId: { $in: userIdsToQuery } })
+      .sort({ createdAt: -1 })
+      .exec();
+
+    // const userPosts = await Post.find({
+    //   userId: currentUser._id,
+    // });
+    // const friendPosts = await Promise.all(
+    //   currentUser.followings.map((friendId) => {
+    //     return Post.find({ userId: friendId });
+    //   })
+    // );
+    // const allPosts = userPosts
+    //   .concat(...friendPosts)
+    //   // .sort((a, b) => b.createdAt - a.createdAt);
+    //   .sort((a, b) => {
+    //     if (a.hidden && b.hidden) {
+    //       return b.hiddenAt.getTime() - a.hiddenAt.getTime();
+    //     } else if (a.hidden) {
+    //       return 1;
+    //     } else if (b.hidden) {
+    //       return -1;
+    //     } else {
+    //       return b.createdAt.getTime() - a.createdAt.getTime();
+    //     }
+    //   });
+    return res.json(timeLinePosts);
   } catch (error) {
     console.error("Error fetching timeline posts:", error);
     return res.status(500).json({ error: "Error fetching timeline posts" });
