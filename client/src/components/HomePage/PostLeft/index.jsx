@@ -30,45 +30,10 @@ function PostLeft({ page }) {
     }
   };
 
-  const bookmarkedPosts = async () => {
-    try {
-      const response = await apiRequest({
-        method: "GET",
-        url: `/post/${user._id}/bookmarked-posts`,
-        token: token,
-      });
-      console.log(response, "response");
-      dispatch(setPosts(response));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const likedPosts = async () => {
-    try {
-      const response = await apiRequest({
-        method: "GET",
-        url: `/post/${user._id}/liked-posts`,
-        token: token,
-      });
-      console.log(response, "response");
-      dispatch(setPosts(response));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   console.log(posts, "posts");
 
   useEffect(() => {
     getPosts();
-    if (page === "bookmarkedPosts") {
-      bookmarkedPosts();
-    }else if(page === "likedPosts") {
-      likedPosts()
-    }else{
-      getPosts()
-    }
   }, [dispatch, token, user._id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -106,14 +71,11 @@ function PostLeft({ page }) {
                     );
                   case "bookmarkedPosts":
                     return posts.map((post) => (
-                      <Post
-                        data={post}
-                        key={post._id}
-                      />
+                      <Post data={post} key={post._id} />
                     ));
                   case "likedPosts":
                     return posts.map((post) => (
-                      <Post  data={post} key={post._id} />
+                      <Post data={post} key={post._id} />
                     ));
                   case "profile":
                     return posts.map((post) =>

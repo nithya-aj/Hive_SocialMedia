@@ -114,10 +114,10 @@ export default function Post({ data, page }) {
       icon: <PiShareFat style={{ fontSize: "15px" }} />,
       name: "Share",
     },
-    {
-      icon: <BiHide style={{ fontSize: "15px" }} />,
-      name: data?.hidden ? "Unhide" : "Hide",
-    },
+    // {
+    //   icon: <BiHide style={{ fontSize: "15px" }} />,
+    //   name: data?.hidden ? "Unhide" : "Hide",
+    // },
   ];
   const ownerOptions = [
     {

@@ -11,6 +11,36 @@ const SettingsPosts = () => {
   var param = url.split("/").pop();
   console.log(param);
 
+  const bookmarkedPosts = async () => {
+    try {
+      const response = await apiRequest({
+        method: "GET",
+        url: `/post/${user._id}/bookmarked-posts`,
+        token: token,
+      });
+      console.log(response, "response");
+      dispatch(setPosts(response));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const likedPosts = async () => {
+    try {
+      const response = await apiRequest({
+        method: "GET",
+        url: `/post/${user._id}/liked-posts`,
+        token: token,
+      });
+      console.log(response, "response");
+      dispatch(setPosts(response));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
+
   return (
     <Box
       sx={{
