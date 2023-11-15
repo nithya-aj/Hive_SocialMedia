@@ -36,6 +36,14 @@ function PostLeft({ page }) {
     getPosts();
   }, [dispatch, token, user._id]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const sortedHiddenPosts = Array.isArray(posts)
+    ? posts
+        .slice()
+        .sort((a, b) => new Date(b.likedAt) - new Date(a.likedAt))
+        .reverse()
+    : [];
+  console.log(sortedHiddenPosts);
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       {page === "post" && (
@@ -64,7 +72,7 @@ function PostLeft({ page }) {
               {(() => {
                 switch (page) {
                   case "hiddenPosts":
-                    return posts.map((post) =>
+                    return sortedHiddenPosts.map((post) =>
                       post.hidden ? (
                         <Post page={"hiddenPosts"} data={post} key={post._id} />
                       ) : null

@@ -296,7 +296,7 @@ export default function Post({ data, page }) {
           boxShadow: "none",
           borderRadius: { sm: "10px", xs: "0px" },
           backgroundColor:
-            page === "hiddenPosts"
+          page === "hiddenPosts" || page === "settings"
               ? { sm: alt, xs: darkbg }
               : { sm: darkbg, xs: alt },
         }}

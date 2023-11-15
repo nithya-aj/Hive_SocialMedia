@@ -37,6 +37,23 @@ const SettingsPosts = () => {
   console.log(likedPosts);
   console.log(bookmarkedPosts);
 
+  console.log(Array.isArray(likedPosts));
+
+  const sortedLikedPosts = Array.isArray(likedPosts)
+    ? likedPosts
+        .slice()
+        .sort((a, b) => new Date(b.likedAt) - new Date(a.likedAt))
+        .reverse()
+    : [];
+  const sortedBookmarkedPosts = Array.isArray(bookmarkedPosts)
+    ? bookmarkedPosts
+        .slice()
+        .sort((a, b) => new Date(b.bookmarkedAt) - new Date(a.bookmarkedAt))
+        .reverse()
+    : [];
+
+  console.log(sortedLikedPosts);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -119,8 +136,9 @@ const SettingsPosts = () => {
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {param === "hidden" && <PostLeft page={"hiddenPosts"} />}
           {param === "liked" ? (
-            likedPosts && likedPosts.length > 0 ? (
-              likedPosts.map((post) => (
+            sortedLikedPosts && sortedLikedPosts.length > 0 ? (
+              Array.isArray(sortedLikedPosts) &&
+              sortedLikedPosts.map((post) => (
                 <Post page={"settings"} data={post} key={post._id} />
               ))
             ) : (
@@ -128,8 +146,8 @@ const SettingsPosts = () => {
             )
           ) : null}
           {param === "bookmarked" ? (
-            bookmarkedPosts && bookmarkedPosts.length > 0 ? (
-              bookmarkedPosts.map((post) => (
+            sortedBookmarkedPosts && sortedBookmarkedPosts.length > 0 ? (
+              sortedBookmarkedPosts.map((post) => (
                 <Post page={"settings"} data={post} key={post._id} />
               ))
             ) : (

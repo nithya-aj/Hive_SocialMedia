@@ -204,6 +204,7 @@ export const getUserLikedPosts = async (req, res) => {
     if (!user.likedPosts || user.likedPosts.length === 0) {
       return res.status(404).json({ msg: "You liked no posts!" });
     }
+    console.log(likedPosts);
     return res.status(200).json(likedPosts);
   } catch (error) {
     return res.status(500).json(error.message);

@@ -16,7 +16,7 @@ const postSlice = createSlice({
       state.posts = action.payload;
     },
     setLikedPosts: (state, action) => {
-      state.likedPosts = action.payload;
+      state.likedPosts = action.payload || [];
     },
     updateLikedPosts: (state, action) => {
       const postId = action.payload;

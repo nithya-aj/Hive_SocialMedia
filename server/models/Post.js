@@ -21,6 +21,7 @@ const PostSchema = new mongoose.Schema(
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
+          likedAt: { type: Date },
         },
       ],
     },
@@ -29,14 +30,15 @@ const PostSchema = new mongoose.Schema(
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
+          bookmarkedAt: { type: Date },
         },
       ],
     },
     hidden: {
       type: Boolean,
       default: false,
+      hiddenAt: { type: Date },
     },
-    hiddenAt: { type: Date, default: null },
   },
   { timestamps: true }
 );
