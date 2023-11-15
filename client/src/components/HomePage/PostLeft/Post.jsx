@@ -22,7 +22,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { setComments } from "@/redux/commentSlice";
-import { setEditData, setPost } from "@/redux/postSlice";
+import {
+  setEditData,
+  setPost,
+  updateBookmarkedPosts,
+  updateLikedPosts,
+} from "@/redux/postSlice";
 import ReactTimeago from "react-timeago";
 import { useTheme } from "@emotion/react";
 
@@ -195,7 +200,11 @@ export default function Post({ data, page }) {
         url: `/post/like/${postId}`,
         token: token,
       });
-      dispatch(setPost({ post: response.post }));
+      if (page === "settings") {
+        dispatch(updateLikedPosts(postId));
+      } else {
+        dispatch(setPost({ post: response.post }));
+      }
     } catch (error) {
       console.error(error);
     }
@@ -209,7 +218,11 @@ export default function Post({ data, page }) {
         url: `/post/bookmark/${postId}`,
         token: token,
       });
-      dispatch(setPost({ post: response.post }));
+      if (page === "settings") {
+        dispatch(updateBookmarkedPosts(postId));
+      } else {
+        dispatch(setPost({ post: response.post }));
+      }
     } catch (error) {
       console.error(error);
     }

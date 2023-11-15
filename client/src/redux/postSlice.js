@@ -1,8 +1,10 @@
+// Updated postSlice
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   posts: [],
-  timeLinePosts: [],
+  likedPosts: [],
+  bookmarkedPosts: [],
   editPostData: null,
 };
 
@@ -13,17 +15,25 @@ const postSlice = createSlice({
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
-    setTimeLinePosts: (state, action) => {
-      state.timeLinePosts = action.payload;
+    setLikedPosts: (state, action) => {
+      state.likedPosts = action.payload; // Normalize action.payload if needed
+    },
+    updateLikedPosts: (state, action) => {
+      const postId = action.payload;
+      state.likedPosts = state.likedPosts.filter((post) => post._id !== postId);
+    },
+    setBookmarkedPosts: (state, action) => {
+      state.bookmarkedPosts = action.payload; // Normalize action.payload if needed
+    },
+    updateBookmarkedPosts: (state, action) => {
+      const postId = action.payload;
+      state.bookmarkedPosts = state.bookmarkedPosts.filter(
+        (post) => post._id !== postId
+      );
     },
     setPost: (state, action) => {
-      const updatedPosts = state.posts.map((post) => {
-        if (post._id === action.payload.post._id) {
-          return action.payload.post;
-        }
-        return post;
-      });
-      state.posts = updatedPosts;
+      const { post } = action.payload;
+      state.posts = state.posts.map((p) => (p._id === post._id ? post : p));
     },
     setEditData: (state, action) => {
       state.editPostData = action.payload;
@@ -34,7 +44,15 @@ const postSlice = createSlice({
   },
 });
 
-export const { setPosts, setEditData, clearEditData, setPost, setTimeLinePosts } =
-  postSlice.actions;
+export const {
+  setPosts,
+  setEditData,
+  clearEditData,
+  setPost,
+  setLikedPosts,
+  setBookmarkedPosts,
+  updateLikedPosts,
+  updateBookmarkedPosts,
+} = postSlice.actions;
 export const selectEditData = (state) => state.posts.editPostData;
 export default postSlice.reducer;

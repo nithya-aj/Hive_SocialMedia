@@ -2,44 +2,50 @@ import { useTheme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { IoMdSettings } from "react-icons/io";
 import PostLeft from "../HomePage/PostLeft";
+import { useDispatch, useSelector } from "react-redux";
+import { apiRequest } from "@/utils";
+import { setBookmarkedPosts, setLikedPosts } from "@/redux/postSlice";
+import Post from "../HomePage/PostLeft/Post";
+import { useEffect } from "react";
 
 const SettingsPosts = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
+  const { token, user } = useSelector((state) => state.auth);
+  const likedPosts = useSelector((state) => state.posts.likedPosts);
+  const bookmarkedPosts = useSelector((state) => state.posts.bookmarkedPosts);
   const main = theme.palette.background.main;
   const textMain = theme.palette.neutral.main;
   var url = window.location.href;
   var param = url.split("/").pop();
-  console.log(param);
+  console.log(likedPosts);
+  console.log(bookmarkedPosts);
 
-  const bookmarkedPosts = async () => {
-    try {
-      const response = await apiRequest({
-        method: "GET",
-        url: `/post/${user._id}/bookmarked-posts`,
-        token: token,
-      });
-      console.log(response, "response");
-      dispatch(setPosts(response));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (param === "liked") {
+          const response = await apiRequest({
+            method: "GET",
+            url: `/post/${user._id}/liked-posts`,
+            token: token,
+          });
+          dispatch(setLikedPosts(response));
+        } else if (param === "bookmarked") {
+          const response = await apiRequest({
+            method: "GET",
+            url: `/post/${user._id}/bookmarked-posts`,
+            token: token,
+          });
+          dispatch(setBookmarkedPosts(response));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const likedPosts = async () => {
-    try {
-      const response = await apiRequest({
-        method: "GET",
-        url: `/post/${user._id}/liked-posts`,
-        token: token,
-      });
-      console.log(response, "response");
-      dispatch(setPosts(response));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  
+    fetchData();
+  }, [dispatch, token, user._id, param]);
 
   return (
     <Box
@@ -96,8 +102,20 @@ const SettingsPosts = () => {
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {param === "hidden" && <PostLeft page={"hiddenPosts"} />}
-          {param === "liked" && <PostLeft page={"likedPosts"} />}
-          {param === "bookmarked" && <PostLeft page={"bookmarkedPosts"} />}
+          {param === "liked" &&
+            Array.isArray(likedPosts) &&
+            likedPosts.map((post) =>
+              !post.hidden ? (
+                <Post page={"settings"} data={post} key={post._id} />
+              ) : null
+            )}
+          {param === "bookmarked" &&
+            Array.isArray(bookmarkedPosts) &&
+            bookmarkedPosts.map((post) =>
+              !post.hidden ? (
+                <Post page={"settings"} data={post} key={post._id} />
+              ) : null
+            )}
         </Box>
       </Box>
     </Box>
