@@ -7,6 +7,22 @@ import { apiRequest } from "@/utils";
 import { setBookmarkedPosts, setLikedPosts } from "@/redux/postSlice";
 import Post from "../HomePage/PostLeft/Post";
 import { useEffect } from "react";
+import noData from "@/assets/noData.png";
+
+const NoPostsMessage = ({ type }) => (
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      py: "22.5%",
+    }}
+  >
+    <img src={noData} alt="" />
+    No {type} posts!
+  </Box>
+);
 
 const SettingsPosts = () => {
   const theme = useTheme();
@@ -102,20 +118,24 @@ const SettingsPosts = () => {
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           {param === "hidden" && <PostLeft page={"hiddenPosts"} />}
-          {param === "liked" &&
-            Array.isArray(likedPosts) &&
-            likedPosts.map((post) =>
-              !post.hidden ? (
+          {param === "liked" ? (
+            likedPosts && likedPosts.length > 0 ? (
+              likedPosts.map((post) => (
                 <Post page={"settings"} data={post} key={post._id} />
-              ) : null
-            )}
-          {param === "bookmarked" &&
-            Array.isArray(bookmarkedPosts) &&
-            bookmarkedPosts.map((post) =>
-              !post.hidden ? (
+              ))
+            ) : (
+              <NoPostsMessage type="liked" />
+            )
+          ) : null}
+          {param === "bookmarked" ? (
+            bookmarkedPosts && bookmarkedPosts.length > 0 ? (
+              bookmarkedPosts.map((post) => (
                 <Post page={"settings"} data={post} key={post._id} />
-              ) : null
-            )}
+              ))
+            ) : (
+              <NoPostsMessage type="bookmarked" />
+            )
+          ) : null}
         </Box>
       </Box>
     </Box>

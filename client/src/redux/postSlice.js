@@ -16,14 +16,14 @@ const postSlice = createSlice({
       state.posts = action.payload;
     },
     setLikedPosts: (state, action) => {
-      state.likedPosts = action.payload; // Normalize action.payload if needed
+      state.likedPosts = action.payload;
     },
     updateLikedPosts: (state, action) => {
       const postId = action.payload;
       state.likedPosts = state.likedPosts.filter((post) => post._id !== postId);
     },
     setBookmarkedPosts: (state, action) => {
-      state.bookmarkedPosts = action.payload; // Normalize action.payload if needed
+      state.bookmarkedPosts = action.payload;
     },
     updateBookmarkedPosts: (state, action) => {
       const postId = action.payload;
