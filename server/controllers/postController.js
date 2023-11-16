@@ -26,6 +26,7 @@ export const createPost = async (req, res) => {
     const post = await Post.find({ userId: req.user.id }).sort({
       createdAt: -1,
     });
+    console.log(post);
     return res.status(201).json(post);
   } catch (error) {
     return res.status(500).json(error.message);

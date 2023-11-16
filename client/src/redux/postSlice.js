@@ -16,24 +16,29 @@ const postSlice = createSlice({
       state.posts = action.payload;
     },
     setLikedPosts: (state, action) => {
-      state.likedPosts = action.payload || [];
+      state.likedPosts = action.payload;
     },
     updateLikedPosts: (state, action) => {
-      const postId = action.payload;
-      state.likedPosts = state.likedPosts.filter((post) => post._id !== postId);
+      const updatedPost = action.payload;
+      state.likedPosts = state.likedPosts.map((post) =>
+        post._id === updatedPost._id ? updatedPost : post
+      );
     },
     setBookmarkedPosts: (state, action) => {
       state.bookmarkedPosts = action.payload;
     },
     updateBookmarkedPosts: (state, action) => {
-      const postId = action.payload;
-      state.bookmarkedPosts = state.bookmarkedPosts.filter(
-        (post) => post._id !== postId
+      const updatedPost = action.payload;
+      state.bookmarkedPosts = state.bookmarkedPosts.map((post) =>
+        post._id === updatedPost._id ? updatedPost : post
       );
     },
     setPost: (state, action) => {
-      const { post } = action.payload;
-      state.posts = state.posts.map((p) => (p._id === post._id ? post : p));
+      const updatedPost = action.payload;
+      console.log(updatedPost, "updatedPost from postSlice");
+      state.posts = state.posts.map((post) =>
+        post._id === updatedPost._id ? updatedPost : post
+      );
     },
     setEditData: (state, action) => {
       state.editPostData = action.payload;

@@ -41,7 +41,7 @@ const UpdateModal = ({ page, modal, setModal }) => {
         data: editedPost,
         token: token,
       });
-      dispatch(setPost({ post: response }));
+      dispatch(setPost(response));
       dispatch(clearEditData());
       setModal(false);
     } catch (error) {

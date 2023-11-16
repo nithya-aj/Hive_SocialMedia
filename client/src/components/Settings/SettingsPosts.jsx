@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useTheme } from "@emotion/react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { IoMdSettings } from "react-icons/io";
@@ -6,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { apiRequest } from "@/utils";
 import { setBookmarkedPosts, setLikedPosts } from "@/redux/postSlice";
 import Post from "../HomePage/PostLeft/Post";
-import { useEffect } from "react";
 import noData from "@/assets/noData.png";
 
 const NoPostsMessage = ({ type }) => (

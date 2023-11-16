@@ -9,8 +9,13 @@ const PostSchema = new mongoose.Schema(
     desc: {
       type: String,
       required: true,
-      min: 30,
-      max: 100,
+      validate: {
+        validator: function (v) {
+          return v.length >= 3 && v.length <= 100;
+        },
+        message: (props) =>
+          `${props.value} must be between 30 and 100 characters!`,
+      },
     },
     imageUrl: {
       type: String,
@@ -21,24 +26,26 @@ const PostSchema = new mongoose.Schema(
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
-          likedAt: { type: Date },
         },
       ],
+      default: [],
+      likedAt: { type: Date },
     },
     bookmarkedBy: {
       type: [
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
-          bookmarkedAt: { type: Date },
         },
       ],
+      default: [],
+      bookmarkedAt: { type: Date },
     },
     hidden: {
       type: Boolean,
       default: false,
-      hiddenAt: { type: Date },
     },
+    hiddenAt: { type: Date },
   },
   { timestamps: true }
 );

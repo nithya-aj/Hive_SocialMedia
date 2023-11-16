@@ -201,9 +201,9 @@ export default function Post({ data, page }) {
         token: token,
       });
       if (page === "settings") {
-        dispatch(updateLikedPosts(postId));
+        dispatch(updateLikedPosts(response.post));
       } else {
-        dispatch(setPost({ post: response.post }));
+        dispatch(setPost(response.post));
       }
     } catch (error) {
       console.error(error);
@@ -219,9 +219,9 @@ export default function Post({ data, page }) {
         token: token,
       });
       if (page === "settings") {
-        dispatch(updateBookmarkedPosts(postId));
+        dispatch(updateBookmarkedPosts(response.post));
       } else {
-        dispatch(setPost({ post: response.post }));
+        dispatch(setPost(response.post));
       }
     } catch (error) {
       console.error(error);
@@ -236,7 +236,7 @@ export default function Post({ data, page }) {
         url: `/post/hide-unhide/${postId}`,
         token: token,
       });
-      dispatch(setPost({ post: response.post }));
+      dispatch(setPost(response.post));
       console.log(response, "respones from handleHidePost");
       toast.success(`${response.msg}`, {
         position: "top-right",
@@ -296,7 +296,7 @@ export default function Post({ data, page }) {
           boxShadow: "none",
           borderRadius: { sm: "10px", xs: "0px" },
           backgroundColor:
-          page === "hiddenPosts" || page === "settings"
+            page === "hiddenPosts" || page === "settings"
               ? { sm: alt, xs: darkbg }
               : { sm: darkbg, xs: alt },
         }}
