@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 const API_URL = "http://localhost:8080";
 
 export const API = axios.create({
@@ -19,7 +20,8 @@ export const apiRequest = async ({ url, token, data, method }) => {
     return response?.data;
   } catch (error) {
     const err = error.response;
-    console.log(err.data.msg);
+    console.log(err)
+    toast.warn(err.data.message)
     return { status: err.success, message: err.message };
   }
 };
@@ -99,6 +101,7 @@ export const createPost = async (token, uri, data) => {
       data: data || {},
       method: "POST",
     });
+    console.log(res)
     return res;
   } catch (error) {
     console.log(error);

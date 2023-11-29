@@ -27,8 +27,9 @@ export const createPost = async (req, res) => {
       createdAt: -1,
     });
     console.log(post);
-    return res.status(201).json(post);
+    return res.status(201).json({msg:"Post created!"});
   } catch (error) {
+    console.log(error.message)
     return res.status(500).json(error.message);
   }
 };
