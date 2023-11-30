@@ -142,13 +142,13 @@ export const togglePostHiddenStatus = async (req, res) => {
       throw new Error("You are not authorized to do this!");
     }
     const newHiddenStatus = !post.hidden;
-    const updatedPost = await Post.findByIdAndUpdate(
+    await Post.findByIdAndUpdate(
       postId,
       { hidden: newHiddenStatus, hiddenAt: new Date() },
       { new: true }
     );
     const message = newHiddenStatus ? "Post hidden!" : "Post unhidden!";
-    return res.status(200).json({ msg: message, post: updatedPost });
+    return res.status(200).json({ msg: message });
   } catch (error) {
     return res.status(500).json(error.message);
   }
@@ -164,16 +164,15 @@ export const bookmarkPost = async (req, res) => {
       throw new Error("No such post!");
     }
     const isbookmarkedByCurrUser = post.bookmarkedBy.includes(userId);
-    let updatedPost;
     if (isbookmarkedByCurrUser) {
-      updatedPost = await Post.findByIdAndUpdate(
+      await Post.findByIdAndUpdate(
         postId,
         { $pull: { bookmarkedBy: userId } },
         { new: true }
       );
       await User.findByIdAndUpdate(userId, { $pull: { bookmarks: postId } });
     } else {
-      updatedPost = await Post.findByIdAndUpdate(
+      await Post.findByIdAndUpdate(
         postId,
         { $push: { bookmarkedBy: userId } },
         { new: true }
@@ -182,7 +181,6 @@ export const bookmarkPost = async (req, res) => {
     }
     return res.status(200).json({
       msg: isbookmarkedByCurrUser ? "Removed bookmark!" : "Post bookmarked!",
-      post: updatedPost,
     });
   } catch (error) {
     return res.status(500).json(error.message);
