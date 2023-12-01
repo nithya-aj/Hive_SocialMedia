@@ -18,20 +18,8 @@ const postSlice = createSlice({
     setLikedPosts: (state, action) => {
       state.likedPosts = action.payload;
     },
-    updateLikedPosts: (state, action) => {
-      const updatedPost = action.payload;
-      state.likedPosts = state.likedPosts.map((post) =>
-        post._id === updatedPost._id ? updatedPost : post
-      );
-    },
     setBookmarkedPosts: (state, action) => {
       state.bookmarkedPosts = action.payload;
-    },
-    updateBookmarkedPosts: (state, action) => {
-      const updatedPost = action.payload;
-      state.bookmarkedPosts = state.bookmarkedPosts.map((post) =>
-        post._id === updatedPost._id ? updatedPost : post
-      );
     },
     setPost: (state, action) => {
       const updatedPost = action.payload;
@@ -56,8 +44,6 @@ export const {
   setPost,
   setLikedPosts,
   setBookmarkedPosts,
-  updateLikedPosts,
-  updateBookmarkedPosts,
 } = postSlice.actions;
 export const selectEditData = (state) => state.posts.editPostData;
 export default postSlice.reducer;
