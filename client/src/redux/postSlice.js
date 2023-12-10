@@ -7,11 +7,14 @@ const initialState = {
   bookmarkedPosts: [],
   editPostData: null,
 };
-
 const postSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
+    sharePost: (state, action) => {
+      const newPost = action.payload;
+      state.posts.unshift(newPost);
+    },
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
@@ -22,11 +25,11 @@ const postSlice = createSlice({
       state.bookmarkedPosts = action.payload;
     },
     setPost: (state, action) => {
-      const updatedPost = action.payload;
-      console.log(updatedPost, "updatedPost from postSlice");
-      state.posts = state.posts.map((post) =>
-        post._id === updatedPost._id ? updatedPost : post
-      );
+      const updatedPosts = state.posts.map((post) => {
+        if (post._id === action.payload.post._id) return action.payload.post;
+        return post;
+      });
+      state.posts = updatedPosts;
     },
     setEditData: (state, action) => {
       state.editPostData = action.payload;
@@ -44,6 +47,7 @@ export const {
   setPost,
   setLikedPosts,
   setBookmarkedPosts,
+  sharePost,
 } = postSlice.actions;
 export const selectEditData = (state) => state.posts.editPostData;
 export default postSlice.reducer;

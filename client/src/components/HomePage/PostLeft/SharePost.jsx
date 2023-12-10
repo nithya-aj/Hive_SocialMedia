@@ -6,10 +6,11 @@ import { FaPhotoVideo } from "react-icons/fa";
 import IconButton from "@mui/material/IconButton";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import close from "@/assets/close.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { apiRequest, handleFileUpload } from "@/utils";
 import UserAvatar from "@/components/widget/UserAvatar";
 import ToastCmp from "@/components/ToastCmp";
+import { sharePost } from "@/redux/postSlice";
 function SharePost() {
   const theme = useTheme();
   const main = theme.palette.background.main;
@@ -24,6 +25,8 @@ function SharePost() {
   const [photo, setPhoto] = useState("");
   const { token } = useSelector((state) => state.auth);
   const [alert, setAlert] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
@@ -54,14 +57,17 @@ function SharePost() {
           token: token,
           data: { desc, imageUrl: fileName },
         });
-        console.log(response, "response from post creation");
+        console.log(response.data, "response from post creation");
+        dispatch(sharePost(response.data));
+        console.log("first");
         setDesc("");
         setPhoto(null);
+        console.log("second");
       } else {
         setAlert(true);
       }
     } catch (error) {
-      console.error(error.response.message);
+      console.error(error);
     }
   };
 

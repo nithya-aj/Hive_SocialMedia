@@ -22,12 +22,9 @@ export const createPost = async (req, res) => {
     if (isEmpty) {
       return res.status(400).json({ message: "All fields are required!" });
     }
-    await Post.create({ ...req.body, userId: req.user.id });
-    const post = await Post.find({ userId: req.user.id }).sort({
-      createdAt: -1,
-    });
-    console.log(post);
-    return res.status(201).json({ msg: "Post created!" });
+    const data = await Post.create({ ...req.body, userId: req.user.id });
+    console.log(data);
+    return res.status(201).json({ msg: "Post created!", data });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json(error.message);

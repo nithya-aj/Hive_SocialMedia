@@ -138,11 +138,6 @@ export default function Post({ data, page }) {
     },
   ];
 
-  useEffect(() => {
-    fetchDetails();
-    fetchComments();
-  }, [dispatch, data?._id, data?.userId]); // eslint-disable-line react-hooks/exhaustive-deps
-
   // fetching user details
   const fetchDetails = async () => {
     try {
@@ -195,7 +190,8 @@ export default function Post({ data, page }) {
         url: `/post/like/${postId}`,
         token: token,
       });
-      dispatch(setPost(response.post));
+      console.log(response)
+      dispatch(setPost(response));
     } catch (error) {
       console.error(error);
     }
@@ -249,12 +245,17 @@ export default function Post({ data, page }) {
     }
   };
 
+  useEffect(() => {
+    fetchDetails();
+    fetchComments();
+  }, [dispatch, data?._id, data?.userId]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleOptionClick = (option) => {
     switch (option.name) {
       case "Edit":
         console.log("edit option clicked!?");
         dispatch(setEditData(data));
-        setModal(true);
+        setModal(true); 
         console.log("edit option last");
         break;
       case "Share":
