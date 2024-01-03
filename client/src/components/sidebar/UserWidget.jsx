@@ -13,6 +13,7 @@ const UserWidget = () => {
   const purple = theme.palette.neutral.purple;
   const name = useSelector((state) => state.auth.user?.name);
   const userName = useSelector((state) => state.auth.user?.username);
+  console.log(name, userName)
   return (
     <Box
       sx={{

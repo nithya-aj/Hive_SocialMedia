@@ -10,6 +10,10 @@ import { useTheme } from "@emotion/react";
 import { BsPersonCheckFill } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
 import FlexCenter from "../../widget/FlexCenter";
+import { apiRequest } from "@/utils";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setAllUsers } from "@/redux/userSlice";
 
 const FriendsReq = () => {
   const theme = useTheme();
@@ -21,6 +25,25 @@ const FriendsReq = () => {
   const textMain = theme.palette.neutral.main;
   const purple = theme.palette.neutral.purple;
   const red = theme.palette.neutral.red;
+  const dispatch = useDispatch();
+  const allUsers = useSelector((state) => state.users.allUsers);
+  const userData = allUsers.slice(0,3);
+console.log(userData)
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await apiRequest({
+          url: "/user/find-all",
+        });
+        dispatch(setAllUsers(response));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUsers();
+  }, [dispatch]);
+
+  console.log(allUsers);
 
   return (
     <Card
@@ -49,167 +72,62 @@ const FriendsReq = () => {
         <Divider sx={{ height: "1px", width: "100%", my: "10px" }} />
       </FlexCenter>
       <Box sx={{ overflow: "auto", display: "flex", flexDirection: "column" }}>
-        <Box
-          sx={{
-            display: "flex",
-            px: "0.5rem",
-            py: "0.8rem",
-            ":hover": { backgroundColor: alt, borderRadius: "10px" },
-          }}
-        >
+        {userData?.map((data, id) => (
           <Box
+            key={id}
             sx={{
               display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              width: "70%",
+              px: "0.5rem",
+              py: "0.8rem",
+              ":hover": { backgroundColor: alt, borderRadius: "10px" },
             }}
           >
-            <Avatar
-              aria-label="avatar"
-              sx={{
-                height: "2.3rem",
-                width: "2.3rem",
-                backgroundColor: light,
-                color: textMain,
-              }}
-            >
-              R
-            </Avatar>
             <Box
               sx={{
-                overflow: "hidden",
-                display: "inline-block",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-                color: medium,
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                width: "70%",
               }}
             >
-              <Typography sx={{ fontSize: "0.75rem", color: medium }}>
-                Alex
-              </Typography>
-              <Typography variant="caption" noWrap sx={{ color: medium }}>
-                17 muthal friends
-              </Typography>
+              <Avatar
+                aria-label="avatar"
+                sx={{
+                  height: "2.3rem",
+                  width: "2.3rem",
+                  backgroundColor: light,
+                  color: textMain,
+                }}
+              >
+                R
+              </Avatar>
+              <Box
+                sx={{
+                  overflow: "hidden",
+                  display: "inline-block",
+                  whiteSpace: "nowrap",
+                  textOverflow: "ellipsis",
+                  color: medium,
+                }}
+              >
+                <Typography sx={{ fontSize: "0.75rem", color: medium }}>
+                  {data.username}
+                </Typography>
+                <Typography variant="caption" noWrap sx={{ color: medium }}>
+                  3 muthal friends
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <IconButton aria-label="check">
+                <BsPersonCheckFill style={{ color: purple }} />
+              </IconButton>
+              <IconButton aria-label="decline">
+                <AiFillCloseCircle style={{ color: red }} />
+              </IconButton>
             </Box>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton aria-label="check">
-              <BsPersonCheckFill style={{ color: purple }} />
-            </IconButton>
-            <IconButton aria-label="decline">
-              <AiFillCloseCircle style={{ color: red }} />
-            </IconButton>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            px: "0.5rem",
-            py: "0.8rem",
-            ":hover": { backgroundColor: alt, borderRadius: "10px" },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              width: "70%",
-            }}
-          >
-            <Avatar
-              aria-label="avatar"
-              sx={{
-                height: "2.3rem",
-                width: "2.3rem",
-                backgroundColor: light,
-                color: textMain,
-              }}
-            >
-              R
-            </Avatar>
-            <Box
-              sx={{
-                overflow: "hidden",
-                display: "inline-block",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-                color: medium,
-              }}
-            >
-              <Typography sx={{ fontSize: "0.75rem", color: medium }}>
-                Alex
-              </Typography>
-              <Typography variant="caption" noWrap sx={{ color: medium }}>
-                10 muthal friends
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton aria-label="check">
-              <BsPersonCheckFill style={{ color: purple }} />
-            </IconButton>
-            <IconButton aria-label="decline">
-              <AiFillCloseCircle style={{ color: red }} />
-            </IconButton>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            px: "0.5rem",
-            py: "0.8rem",
-            ":hover": { backgroundColor: alt, borderRadius: "10px" },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              width: "70%",
-            }}
-          >
-            <Avatar
-              aria-label="avatar"
-              sx={{
-                height: "2.3rem",
-                width: "2.3rem",
-                backgroundColor: light,
-                color: textMain,
-              }}
-            >
-              R
-            </Avatar>
-            <Box
-              sx={{
-                overflow: "hidden",
-                display: "inline-block",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-                color: medium,
-              }}
-            >
-              <Typography sx={{ fontSize: "0.75rem", color: medium }}>
-                Sreya
-              </Typography>
-              <Typography variant="caption" noWrap sx={{ color: medium }}>
-                3 muthal friends
-              </Typography>
-            </Box>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton aria-label="check">
-              <BsPersonCheckFill style={{ color: purple }} />
-            </IconButton>
-            <IconButton aria-label="decline">
-              <AiFillCloseCircle style={{ color: red }} />
-            </IconButton>
-          </Box>
-        </Box>
+        ))}
       </Box>
     </Card>
   );

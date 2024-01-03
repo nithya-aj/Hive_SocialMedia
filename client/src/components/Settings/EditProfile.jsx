@@ -22,7 +22,7 @@ const EditProfile = () => {
     <Box
       sx={{
         color: maintxt,
-        p: "0rem 1rem",
+        p: "1rem",
         display: "flex",
         flexDirection: "column",
         gap: "1.5rem",

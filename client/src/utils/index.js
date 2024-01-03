@@ -253,3 +253,17 @@ export const likedPosts = async (uri, token) => {
     console.log(error);
   }
 };
+
+// get all users 
+export const fetchUsers = async (uri) => {
+  try {
+    const res = await apiRequest({
+      url: uri,
+      method: "GET"
+    })
+    console.log(res)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}
