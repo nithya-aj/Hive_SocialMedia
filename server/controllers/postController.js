@@ -27,9 +27,8 @@ export const createPost = async (req, res) => {
       createdAt: -1,
     });
     console.log(post);
-    return res.status(201).json({ msg: "Post created!" });
+    return res.status(201).json(post);
   } catch (error) {
-    console.log(error.message);
     return res.status(500).json(error.message);
   }
 };
@@ -90,15 +89,16 @@ export const likePost = async (req, res) => {
     }
     // check if the current user is already liked or not
     const isLikedByCurrUser = post.likes.includes(userId);
+    let updatedPost;
     if (isLikedByCurrUser) {
-      await Post.findByIdAndUpdate(
+      updatedPost = await Post.findByIdAndUpdate(
         postId,
         { $pull: { likes: userId } },
         { new: true }
       );
       await User.findByIdAndUpdate(userId, { $pull: { likedPosts: postId } });
     } else {
-      await Post.findByIdAndUpdate(
+      updatedPost = await Post.findByIdAndUpdate(
         postId,
         { $push: { likes: userId } },
         { new: true }
@@ -107,6 +107,7 @@ export const likePost = async (req, res) => {
     }
     return res.status(200).json({
       msg: isLikedByCurrUser ? "Post unliked!" : "Post liked🎉",
+      post: updatedPost,
     });
   } catch (error) {
     return res.status(500).json(error.message);

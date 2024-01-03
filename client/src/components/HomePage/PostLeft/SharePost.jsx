@@ -6,12 +6,14 @@ import { FaPhotoVideo } from "react-icons/fa";
 import IconButton from "@mui/material/IconButton";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import close from "@/assets/close.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { apiRequest, handleFileUpload } from "@/utils";
+import { setPosts } from "@/redux/postSlice";
 import UserAvatar from "@/components/widget/UserAvatar";
 import ToastCmp from "@/components/ToastCmp";
 function SharePost() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const main = theme.palette.background.main;
   const alt = theme.palette.background.alt;
   const textMain = theme.palette.neutral.main;
@@ -55,6 +57,7 @@ function SharePost() {
           data: { desc, imageUrl: fileName },
         });
         console.log(response, "response from post creation");
+        dispatch(setPosts(response));
         setDesc("");
         setPhoto(null);
       } else {
