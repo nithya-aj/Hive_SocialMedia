@@ -13,32 +13,61 @@ const Friends = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.users.allUsers);
   console.log(allUsers);
+  const userId = useSelector((state) => state.auth.user?._id);
+  const activeUser = useSelector((state) => state.auth.user);
+  console.log(userId);
+
+  console.log(activeUser);
+  const followers = allUsers.filter((user) => user.followings.includes(userId));
+  const followings = allUsers.filter((user) => user.followers.includes(userId));
+  const friends = allUsers.filter(
+    (user) =>
+      user.followings.includes(userId) &&
+      user.followers.includes(userId) &&
+      user._id !== userId
+  );
+
+  console.log(followers);
+  console.log(followings);
+  console.log(friends);
 
   useEffect(() => {
-    if (isActive === "suggestions") {
-      const fetchUsers = async () => {
-        try {
-          const response = await apiRequest({
-            url: "/user/find-all",
-          });
-          dispatch(setAllUsers(response));
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchUsers();
-    } else if (isActive === "") {
-      console.log("");
-    } else {
-      console.log("");
-    }
-  }, [dispatch]);
+    const fetchUsers = async () => {
+      try {
+        const response = await apiRequest({
+          url: "/user/find-all",
+        });
+        dispatch(setAllUsers(response));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUsers();
+  }, [dispatch, isActive]);
 
   return (
     <Box sx={{ height: "100%" }}>
       {isActive === "suggestions" && (
         <Grid container spacing={2}>
           {allUsers?.map((userData, index) => (
+            <Grid item key={index} xs={4}>
+              <FriendsCard friend={userData} tab="followers" />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+      {isActive === "followers" && (
+        <Grid container spacing={2}>
+          {followers?.map((userData, index) => (
+            <Grid item key={index} xs={4}>
+              <FriendsCard friend={userData} tab="followers" />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+      {isActive === "following" && (
+        <Grid container spacing={2}>
+          {followings?.map((userData, index) => (
             <Grid item key={index} xs={4}>
               <FriendsCard friend={userData} tab="followers" />
             </Grid>
