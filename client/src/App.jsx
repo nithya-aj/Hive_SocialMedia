@@ -20,10 +20,8 @@ import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import NotificationsPage from "./pages/NotificationsPage";
 import MessagesPage from "./pages/MessagesPage";
-import Suggestions from "./components/Suggestions";
-import Following from "./components/Following";
-import Followers from "./components/Followers";
 import EditProfile from "./components/Settings/EditProfile";
+import Friends from "./components/Friends";
 
 const AuthPage = lazy(() => import("./pages/AuthPage"));
 
@@ -48,9 +46,9 @@ const App = () => {
                 <Route path="/" element={<FeedsPage />} />
                 <Route path="/friends" element={<FriendsPage />}>
                   <Route path="" element={<Navigate to="followers" />} />
-                  <Route exact path="followers" element={<Followers />} />
-                  <Route path="following" element={<Following />} />
-                  <Route path="suggestions" element={<Suggestions />} />
+                  <Route exact path="followers" element={<Friends />} />
+                  <Route path="following" element={<Friends />} />
+                  <Route path="suggestions" element={<Friends />} />
                 </Route>
                 <Route path="/messages" element={<MessagesPage />} />
                 <Route path="/notifications" element={<NotificationsPage />} />

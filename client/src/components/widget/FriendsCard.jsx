@@ -10,6 +10,7 @@ const FriendsCard = ({ friend, tab }) => {
   const darkbg = theme.palette.background.darkbg;
   const alt = theme.palette.background.alt;
   const orange = theme.palette.neutral.orange;
+  console.log(friend)
   return (
     <>
       <Box
@@ -17,7 +18,6 @@ const FriendsCard = ({ friend, tab }) => {
           backgroundColor: darkbg,
           display: "flex",
           flexDirection: "column",
-          gap: "2rem",
           borderRadius: "4px",
           overflow: "hidden",
           height: "100%",
@@ -26,7 +26,7 @@ const FriendsCard = ({ friend, tab }) => {
       >
         <FlexCenter sx={{ flexDirection: "column", gap: 0.5, py: "1rem" }}>
           <Avatar sx={{ width: "3rem", height: "3rem" }} />
-          <Typography>{friend.name}</Typography>
+          <Typography>{friend.username}</Typography>
           <Typography>ceo & founder of cole</Typography>
         </FlexCenter>
         {tab === "followers" && (

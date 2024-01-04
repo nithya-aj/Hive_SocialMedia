@@ -1,6 +1,4 @@
-import { Box, Grid, useMediaQuery } from "@mui/material";
-import React from "react";
-import { Pagination } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import FriendsCard from "../widget/FriendsCard";
 
 const Followers = () => {
@@ -26,51 +24,16 @@ const Followers = () => {
     { name: "Follower 19" },
     { name: "Follower 20" },
   ];
-  const [page, setPage] = React.useState(1);
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-  const extraLargeBreakpoint = 1540;
-  const isExtraLarge = useMediaQuery((theme) =>
-    theme.breakpoints.up(extraLargeBreakpoint)
-  );
-  const spacing = isExtraLarge ? 2 : 3;
-  const itemsPerPage = isExtraLarge ? 9 : 6;
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const displayedFollowers = followers.slice(startIndex, endIndex);
 
   return (
-    <Box
-      sx={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "auto",
-      }}
-    >
-      <Grid container spacing={spacing}>
-        {displayedFollowers.map((follower, index) => (
+    <Box sx={{ height: "100%" }}>
+      <Grid container spacing={2}>
+        {followers.map((data, index) => (
           <Grid item key={index} xs={4}>
-            <FriendsCard friend={follower} tab="followers" />
+            <FriendsCard friend={data} tab="followers" />
           </Grid>
         ))}
       </Grid>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          marginTop: "auto",
-          justifyContent: "center",
-        }}
-      >
-        <Pagination
-          count={Math.ceil(followers.length / itemsPerPage)}
-          page={page}
-          onChange={handleChange}
-          sx={{ mt: 2 }}
-        />
-      </Box>
     </Box>
   );
 };

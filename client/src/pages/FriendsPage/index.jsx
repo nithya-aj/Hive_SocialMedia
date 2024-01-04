@@ -8,7 +8,6 @@ function FriendsPage() {
   const darkbg = theme.palette.background.darkbg;
   const main = theme.palette.neutral.main;
   const purple = theme.palette.neutral.purple;
-
   const TabLink = ({ to, children }) => {
     const location = useLocation();
     const isActive = location.pathname.includes(to);
@@ -51,18 +50,18 @@ function FriendsPage() {
           borderRadius: "0px",
           display: "flex",
           alignItems: "center",
-          marginBottom: "auto",
           backgroundColor: darkbg,
           gap: 3,
           overflow: "hidden",
+          mb: "1rem",
         }}
       >
         <TabLink to="followers">Followers</TabLink>
         <TabLink to="following">Following</TabLink>
         <TabLink to="suggestions">Suggestions</TabLink>
       </Box>
-      <Box sx={{ height: "100%", p: "2rem 0rem 1rem 0rem", flexGrow: 1 }}>
-        <Outlet />
+      <Box sx={{ height: "100%", flexGrow: 1, overflowY: "auto" }}>
+        <Outlet/>
       </Box>
     </Box>
   );
