@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 
-const FriendsCard = ({ friend, tab, fetchUsers }) => {
+const FriendsCard = ({ friend, tab }) => {
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
   const alt = theme.palette.background.alt;
@@ -24,7 +24,19 @@ const FriendsCard = ({ friend, tab, fetchUsers }) => {
         token: token,
         method: "PUT",
       });
-      fetchUsers();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFriend = async () => {
+    try {
+      const response = await apiRequest({
+        url: `/user/un-follow/${friend._id}`,
+        token: token,
+        method: "PUT",
+      });
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -131,10 +143,11 @@ const FriendsCard = ({ friend, tab, fetchUsers }) => {
                 height: "100%",
                 fontSize: "1.2rem",
                 ":hover": { color: orange },
+                cursor: "pointer",
               }}
+              onClick={removeFriend}
             >
               <Box
-                sx={{ cursor: "pointer" }}
                 component={motion.div}
                 whileTap={{ scale: 0.8 }}
                 whileHover={{ scale: 1.2 }}
@@ -178,7 +191,9 @@ const FriendsCard = ({ friend, tab, fetchUsers }) => {
                 height: "100%",
                 fontSize: "1.2rem",
                 ":hover": { color: orange },
+                cursor: "pointer",
               }}
+              onClick={addFriend}
             >
               <Box
                 sx={{ cursor: "pointer" }}

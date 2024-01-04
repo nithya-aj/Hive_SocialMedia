@@ -3,7 +3,7 @@ import FriendsCard from "../widget/FriendsCard";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { setAllUsers } from "@/redux/userSlice";
-import { apiRequest, fetchUsers } from "@/utils";
+import { apiRequest } from "@/utils";
 import { useDispatch, useSelector } from "react-redux";
 
 const Friends = () => {
@@ -11,8 +11,9 @@ const Friends = () => {
   const isActive = location.pathname.split("/")[2];
   console.log(isActive);
   const dispatch = useDispatch();
-  const allUsers = useSelector((state) => state.users.allUsers);
   const userId = useSelector((state) => state.auth.user?._id);
+  const allUsers = useSelector((state) => state.users.allUsers);
+  const suggestions = allUsers.filter((user) => user._id !== userId);
 
   const followers = allUsers.filter((user) => user.followings.includes(userId));
   const followings = allUsers.filter((user) => user.followers.includes(userId));
@@ -63,13 +64,9 @@ const Friends = () => {
       )}
       {isActive === "suggestions" && (
         <Grid container spacing={2}>
-          {allUsers?.map((userData, index) => (
+          {suggestions?.map((userData, index) => (
             <Grid item key={index} xs={4}>
-              <FriendsCard
-                friend={userData}
-                tab="suggestions"
-                fetchUsers={fetchUsers}
-              />
+              <FriendsCard friend={userData} tab="suggestions" />
             </Grid>
           ))}
         </Grid>
