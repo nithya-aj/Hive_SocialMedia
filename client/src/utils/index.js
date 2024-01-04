@@ -267,3 +267,17 @@ export const fetchUsers = async (uri) => {
     console.log(error)
   }
 }
+
+// add friends
+export const addFriend = async (uri, token) => {
+  try {
+    const res = await apiRequest({
+      url: uri,
+      method: 'PUT',
+      token: token
+    })
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}

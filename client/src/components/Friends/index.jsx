@@ -3,7 +3,7 @@ import FriendsCard from "../widget/FriendsCard";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { setAllUsers } from "@/redux/userSlice";
-import { apiRequest } from "@/utils";
+import { apiRequest, fetchUsers } from "@/utils";
 import { useDispatch, useSelector } from "react-redux";
 
 const Friends = () => {
@@ -12,12 +12,8 @@ const Friends = () => {
   console.log(isActive);
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.users.allUsers);
-  console.log(allUsers);
   const userId = useSelector((state) => state.auth.user?._id);
-  const activeUser = useSelector((state) => state.auth.user);
-  console.log(userId);
 
-  console.log(activeUser);
   const followers = allUsers.filter((user) => user.followings.includes(userId));
   const followings = allUsers.filter((user) => user.followers.includes(userId));
   const friends = allUsers.filter(
@@ -47,15 +43,6 @@ const Friends = () => {
 
   return (
     <Box sx={{ height: "100%" }}>
-      {isActive === "suggestions" && (
-        <Grid container spacing={2}>
-          {allUsers?.map((userData, index) => (
-            <Grid item key={index} xs={4}>
-              <FriendsCard friend={userData} tab="followers" />
-            </Grid>
-          ))}
-        </Grid>
-      )}
       {isActive === "followers" && (
         <Grid container spacing={2}>
           {followers?.map((userData, index) => (
@@ -69,7 +56,20 @@ const Friends = () => {
         <Grid container spacing={2}>
           {followings?.map((userData, index) => (
             <Grid item key={index} xs={4}>
-              <FriendsCard friend={userData} tab="followers" />
+              <FriendsCard friend={userData} tab="following" />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+      {isActive === "suggestions" && (
+        <Grid container spacing={2}>
+          {allUsers?.map((userData, index) => (
+            <Grid item key={index} xs={4}>
+              <FriendsCard
+                friend={userData}
+                tab="suggestions"
+                fetchUsers={fetchUsers}
+              />
             </Grid>
           ))}
         </Grid>
