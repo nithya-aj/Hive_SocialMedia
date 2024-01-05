@@ -28,7 +28,7 @@ const Friends = () => {
   console.log(followings);
   console.log(friends);
 
-  const fetchUsers = useCallback(async () => {
+  const fetchUsers = useCallback(async () => { // eslint-disable-line react-hooks/exhaustive-deps
     try {
       const response = await apiRequest({
         url: "/user/find-all",
@@ -41,7 +41,7 @@ const Friends = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [dispatch, isActive]);
+  }, [dispatch, isActive]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box sx={{ height: "100%" }}>
@@ -49,7 +49,12 @@ const Friends = () => {
         <Grid container spacing={2}>
           {followers?.map((userData, index) => (
             <Grid item key={index} xs={4}>
-              <FriendsCard data={userData} tab="followers" friends={friends} />
+              <FriendsCard
+                data={userData}
+                tab="followers"
+                friends={friends}
+                fetchUsers={fetchUsers}
+              />
             </Grid>
           ))}
         </Grid>
@@ -75,6 +80,7 @@ const Friends = () => {
                 data={userData}
                 tab="suggestions"
                 friends={friends}
+                fetchUsers={fetchUsers}
               />
             </Grid>
           ))}

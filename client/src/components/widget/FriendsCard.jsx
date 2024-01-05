@@ -28,6 +28,7 @@ const FriendsCard = ({ data, tab, friends, fetchUsers }) => {
           token: token,
           method: "PUT",
         });
+        fetchUsers();
         console.log(response);
       } catch (error) {
         console.log(error);
