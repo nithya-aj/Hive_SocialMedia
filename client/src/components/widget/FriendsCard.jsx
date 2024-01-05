@@ -6,35 +6,43 @@ import { IoCloseCircle } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const FriendsCard = ({ data, tab, friends }) => {
   const theme = useTheme();
+  const mode = useSelector((state) => state.theme.mode);
   const darkbg = theme.palette.background.darkbg;
   const alt = theme.palette.background.alt;
   const orange = theme.palette.neutral.orange;
   const purple = theme.palette.neutral.purple;
-  console.log(data);
-  console.log(friends);
-
-  console.log(data._id);
-
-  const friendsIds = friends?.map((val) => val._id);
-  console.log(friendsIds);
-
   const token = useSelector((store) => store.auth.token);
 
-  const isFriend = friendsIds?.includes(data._id);
+  const isFriend = friends?.map((val) => val._id).includes(data._id);
+  console.log(isFriend);
 
   const addFriend = async () => {
-    try {
-      const response = await apiRequest({
-        url: `/user/follow/${data._id}`,
-        token: token,
-        method: "PUT",
+    if (!isFriend) {
+      try {
+        const response = await apiRequest({
+          url: `/user/follow/${data._id}`,
+          token: token,
+          method: "PUT",
+        });
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      toast.info("You are already following this user!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: mode === "light" ? "light" : "dark",
       });
-      console.log(response);
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -104,7 +112,6 @@ const FriendsCard = ({ data, tab, friends }) => {
                 fontSize: "1.2rem",
                 ":hover": { color: orange },
                 cursor: "pointer",
-                ...(isFriend ? { pointerEvents: "none", opacity: 0.6 } : {}),
               }}
               onClick={addFriend}
             >
