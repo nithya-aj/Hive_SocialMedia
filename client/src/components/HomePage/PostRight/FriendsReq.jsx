@@ -10,10 +10,7 @@ import { useTheme } from "@emotion/react";
 import { BsPersonCheckFill } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
 import FlexCenter from "../../widget/FlexCenter";
-import { apiRequest } from "@/utils";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setAllUsers } from "@/redux/userSlice";
+import { useSelector } from "react-redux";
 
 const FriendsReq = () => {
   const theme = useTheme();
@@ -25,25 +22,12 @@ const FriendsReq = () => {
   const textMain = theme.palette.neutral.main;
   const purple = theme.palette.neutral.purple;
   const red = theme.palette.neutral.red;
-  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.auth.user?._id);
   const allUsers = useSelector((state) => state.users.allUsers);
-  const userData = allUsers.slice(0,3);
-console.log(userData)
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await apiRequest({
-          url: "/user/find-all",
-        });
-        dispatch(setAllUsers(response));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchUsers();
-  }, [dispatch]);
 
-  console.log(allUsers);
+  const followers = allUsers.filter((user) => user.followings.includes(userId));
+
+  console.log(followers);
 
   return (
     <Card
@@ -72,7 +56,7 @@ console.log(userData)
         <Divider sx={{ height: "1px", width: "100%", my: "10px" }} />
       </FlexCenter>
       <Box sx={{ overflow: "auto", display: "flex", flexDirection: "column" }}>
-        {userData?.map((data, id) => (
+        {followers?.map((data, id) => (
           <Box
             key={id}
             sx={{

@@ -48,7 +48,7 @@ const Friends = () => {
         <Grid container spacing={2}>
           {followers?.map((userData, index) => (
             <Grid item key={index} xs={4}>
-              <FriendsCard friend={userData} tab="followers" />
+              <FriendsCard data={userData} tab="followers" friends={friends} />
             </Grid>
           ))}
         </Grid>
@@ -57,7 +57,7 @@ const Friends = () => {
         <Grid container spacing={2}>
           {followings?.map((userData, index) => (
             <Grid item key={index} xs={4}>
-              <FriendsCard friend={userData} tab="following" />
+              <FriendsCard data={userData} tab="following" />
             </Grid>
           ))}
         </Grid>
@@ -66,7 +66,11 @@ const Friends = () => {
         <Grid container spacing={2}>
           {suggestions?.map((userData, index) => (
             <Grid item key={index} xs={4}>
-              <FriendsCard friend={userData} tab="suggestions" />
+              <FriendsCard
+                data={userData}
+                tab="suggestions"
+                friends={friends}
+              />
             </Grid>
           ))}
         </Grid>

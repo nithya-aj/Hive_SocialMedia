@@ -1,26 +1,34 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import FlexCenter from "./FlexCenter";
 import { useTheme } from "@emotion/react";
-import { FaUserMinus, FaUserPlus } from "react-icons/fa";
+import { FaUserMinus, FaUserPlus, FaUserCheck } from "react-icons/fa";
 import { IoCloseCircle } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 
-const FriendsCard = ({ friend, tab }) => {
+const FriendsCard = ({ data, tab, friends }) => {
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
   const alt = theme.palette.background.alt;
   const orange = theme.palette.neutral.orange;
-  console.log(friend);
+  const purple = theme.palette.neutral.purple;
+  console.log(data);
+  console.log(friends);
+
+  console.log(data._id);
+
+  const friendsIds = friends?.map((val) => val._id);
+  console.log(friendsIds);
 
   const token = useSelector((store) => store.auth.token);
-  console.log(token);
+
+  const isFriend = friendsIds?.includes(data._id);
 
   const addFriend = async () => {
     try {
       const response = await apiRequest({
-        url: `/user/follow/${friend._id}`,
+        url: `/user/follow/${data._id}`,
         token: token,
         method: "PUT",
       });
@@ -33,7 +41,7 @@ const FriendsCard = ({ friend, tab }) => {
   const removeFriend = async () => {
     try {
       const response = await apiRequest({
-        url: `/user/un-follow/${friend._id}`,
+        url: `/user/un-follow/${data._id}`,
         token: token,
         method: "PUT",
       });
@@ -58,7 +66,7 @@ const FriendsCard = ({ friend, tab }) => {
       >
         <FlexCenter sx={{ flexDirection: "column", gap: 0.5, py: "1rem" }}>
           <Avatar sx={{ width: "3rem", height: "3rem" }} />
-          <Typography>{friend.username}</Typography>
+          <Typography>{data.username}</Typography>
           <Typography>ceo & founder of cole</Typography>
         </FlexCenter>
         {tab === "followers" && (
@@ -96,6 +104,7 @@ const FriendsCard = ({ friend, tab }) => {
                 fontSize: "1.2rem",
                 ":hover": { color: orange },
                 cursor: "pointer",
+                ...(isFriend ? { pointerEvents: "none", opacity: 0.6 } : {}),
               }}
               onClick={addFriend}
             >
@@ -104,7 +113,7 @@ const FriendsCard = ({ friend, tab }) => {
                 whileTap={{ scale: 0.8 }}
                 whileHover={{ scale: 1.2 }}
               >
-                <FaUserPlus />
+                {isFriend ? <FaUserCheck color={purple} /> : <FaUserPlus />}
               </Box>
             </FlexCenter>
           </Box>
@@ -201,7 +210,7 @@ const FriendsCard = ({ friend, tab }) => {
                 whileTap={{ scale: 0.8 }}
                 whileHover={{ scale: 1.2 }}
               >
-                <FaUserPlus />
+                {isFriend ? <FaUserCheck color={purple} /> : <FaUserPlus />}
               </Box>
             </FlexCenter>
           </Box>
