@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import FriendsCard from "../widget/FriendsCard";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { setAllUsers } from "@/redux/userSlice";
 import { apiRequest } from "@/utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,17 +28,18 @@ const Friends = () => {
   console.log(followings);
   console.log(friends);
 
+  const fetchUsers = useCallback(async () => {
+    try {
+      const response = await apiRequest({
+        url: "/user/find-all",
+      });
+      dispatch(setAllUsers(response));
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await apiRequest({
-          url: "/user/find-all",
-        });
-        dispatch(setAllUsers(response));
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchUsers();
   }, [dispatch, isActive]);
 
@@ -57,7 +58,11 @@ const Friends = () => {
         <Grid container spacing={2}>
           {followings?.map((userData, index) => (
             <Grid item key={index} xs={4}>
-              <FriendsCard data={userData} tab="following" />
+              <FriendsCard
+                data={userData}
+                tab="following"
+                fetchUsers={fetchUsers}
+              />
             </Grid>
           ))}
         </Grid>

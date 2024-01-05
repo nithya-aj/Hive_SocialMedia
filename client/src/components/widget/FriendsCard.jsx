@@ -8,7 +8,7 @@ import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const FriendsCard = ({ data, tab, friends }) => {
+const FriendsCard = ({ data, tab, friends, fetchUsers }) => {
   const theme = useTheme();
   const mode = useSelector((state) => state.theme.mode);
   const darkbg = theme.palette.background.darkbg;
@@ -53,6 +53,7 @@ const FriendsCard = ({ data, tab, friends }) => {
         token: token,
         method: "PUT",
       });
+      fetchUsers();
       console.log(response);
     } catch (error) {
       console.log(error);
