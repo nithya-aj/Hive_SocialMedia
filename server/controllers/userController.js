@@ -121,7 +121,7 @@ export const unfollowUser = async (req, res) => {
       if (!friend) {
         return res
           .status(204)
-          .json({ msg: "User not found with the provided ID" });
+          .json({ msg: "User not found!" });
       }
 
       if (!friend.followers.includes(req.user.id)) {
@@ -149,3 +149,24 @@ export const unfollowUser = async (req, res) => {
       .json({ msg: "You cannot follow or unfollow yourself." });
   }
 };
+// remove a follower
+export const removeFollower = async (req, res) => {
+  try {
+    const follower = await User.findById(req.params.id)
+    if (!follower) {
+      return res.status(204).json({ msg: "User not found!" })
+    }
+    if (!follower.followings.includes(req.user.id)) {
+      return res.status(401).json({ msg: "This user is not following you" })
+    }
+    await User.findByIdAndUpdate(req.params.id, {
+      $pull: { followings: req.user.id }
+    })
+    await User.findByIdAndUpdate(req.user.id, {
+      $pull: { followers: req.params.id }
+    })
+    return res.status(200).json({ msg: "Friend removed!" });
+  } catch (error) {
+    return res.status(500).json(error.message)
+  }
+}

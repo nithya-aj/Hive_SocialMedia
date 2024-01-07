@@ -1,4 +1,4 @@
-import { getUser, getAll, updateUser, deleteUser, getUserFriends, followUser, unfollowUser } from '../controllers/userController.js'
+import { getUser, getAll, updateUser, deleteUser, getUserFriends, followUser, unfollowUser, removeFollower } from '../controllers/userController.js'
 import express from 'express'
 import { verifyToken } from '../middlewares/auth.js'
 const userRouter = express.Router()
@@ -10,6 +10,7 @@ userRouter.get('/find/friends/:id', getUserFriends)
 userRouter.put('/update/:id', verifyToken, updateUser)
 userRouter.put('/follow/:id', verifyToken, followUser)
 userRouter.put('/un-follow/:id', verifyToken, unfollowUser)
+userRouter.put('/remove/:id', verifyToken, removeFollower)
 
 userRouter.delete('/delete/:id', verifyToken, deleteUser)
 
