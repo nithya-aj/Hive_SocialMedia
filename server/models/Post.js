@@ -9,13 +9,13 @@ const PostSchema = new mongoose.Schema(
     desc: {
       type: String,
       required: true,
-      validate: {
-        validator: function (v) {
-          return v.length >= 3 && v.length <= 100;
-        },
-        message: (props) =>
-          `${props.value} must be between 30 and 100 characters!`,
-      },
+      // validate: {
+      //   validator: function (v) {
+      //     return v.length >= 3 && v.length <= 100;
+      //   },
+      //   message: (props) =>
+      //     `${props.value} must be between 30 and 100 characters!`,
+      // },
     },
     imageUrl: {
       type: String,
