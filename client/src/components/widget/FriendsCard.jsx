@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import UserAvatar from "./UserAvatar";
 
 const FriendsCard = ({ data, tab, fetchUsers }) => {
   const theme = useTheme();
@@ -17,6 +18,10 @@ const FriendsCard = ({ data, tab, fetchUsers }) => {
   const purple = theme.palette.neutral.purple;
   const token = useSelector((store) => store.auth.token);
   const userId = useSelector((state) => state.auth.user?._id);
+  const posts = useSelector((state) => state.posts.posts);
+  console.log(posts);
+
+  const postCount = posts.filter((v) => v._id === data._id).length;
 
   console.log(data);
   const isFriend = data.followers.includes(userId);
@@ -75,7 +80,7 @@ const FriendsCard = ({ data, tab, fetchUsers }) => {
           width: "100%",
         }}
       >
-        <FlexCenter sx={{ flexDirection: "column", gap: 0.5, py: "1rem" }}>
+        {/* <FlexCenter sx={{ flexDirection: "column", gap: 0.5, py: "1rem" }}>
           <Avatar sx={{ width: "3rem", height: "3rem" }} />
           <Typography>{data.username}</Typography>
           <Typography>ceo & founder of cole</Typography>
@@ -224,7 +229,78 @@ const FriendsCard = ({ data, tab, fetchUsers }) => {
               </Box>
             </FlexCenter>
           </Box>
-        )}
+        )} */}
+
+        <Box
+          sx={{
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: "5px",
+            height: "10rem",
+            p: "1rem",
+            backgroundImage: "url(https://source.unsplash.com/featured/340)",
+            "&::before": {
+              content: '""',
+              display: "block",
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              background: "linear-gradient(transparent, rgba(0, 0, 0, 0.95))",
+            },
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "linear-gradient(rgba(0, 0, 0, 0.95), transparent)",
+            }}
+          />
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.2rem",
+              zIndex: 1,
+            }}
+          >
+            <Typography variant="h4">{data.name}</Typography>
+            <Typography>@{data.username}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              zIndex: 1,
+            }}
+          >
+            <Box sx={{ textAlign: "center" }}>
+              <Typography>{data.followers.length}</Typography>
+              <Typography>Followers</Typography>
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Typography>{data.followings.length}</Typography>
+              <Typography>Followings</Typography>
+            </Box>
+            <Box sx={{ textAlign: "center" }}>
+              <Typography>{postCount}</Typography>
+              <Typography>Posts</Typography>
+            </Box>
+          </Box>
+        </Box>
       </Box>
     </>
   );

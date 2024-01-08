@@ -26,11 +26,7 @@ const ProfileCard = () => {
   const light = theme.palette.neutral.light;
   const purple = theme.palette.neutral.purple;
   const [edit, setEdit] = useState(false);
-
-  const followers = user.followers.length;
-  const followings = user.followings.length;
-  const postCount = posts.length;
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("edited!");
@@ -66,15 +62,15 @@ const ProfileCard = () => {
   const userData = [
     {
       title: "Followers",
-      value: followers,
+      value: user.followers.length,
     },
     {
       title: "Following",
-      value: followings,
+      value: user.followings.length,
     },
     {
       title: "Posts",
-      value: postCount,
+      value: posts.length,
     },
   ];
 
