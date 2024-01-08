@@ -8,7 +8,7 @@ import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const FriendsCard = ({ data, tab, friends, fetchUsers }) => {
+const FriendsCard = ({ data, tab, fetchUsers }) => {
   const theme = useTheme();
   const mode = useSelector((state) => state.theme.mode);
   const darkbg = theme.palette.background.darkbg;
@@ -16,9 +16,10 @@ const FriendsCard = ({ data, tab, friends, fetchUsers }) => {
   const orange = theme.palette.neutral.orange;
   const purple = theme.palette.neutral.purple;
   const token = useSelector((store) => store.auth.token);
+  const userId = useSelector((state) => state.auth.user?._id);
 
-  const isFriend = friends?.map((val) => val._id).includes(data._id);
-  console.log(isFriend);
+  console.log(data);
+  const isFriend = data.followers.includes(userId);
 
   const addFriend = async () => {
     if (!isFriend) {

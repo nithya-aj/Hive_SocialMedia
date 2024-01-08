@@ -28,7 +28,7 @@ const Friends = () => {
   console.log(followings);
   console.log(friends);
 
-  const fetchUsers = useCallback(async () => { // eslint-disable-line react-hooks/exhaustive-deps
+  const fetchUsers = useCallback(async () => {  // eslint-disable-line react-hooks/exhaustive-deps
     try {
       const response = await apiRequest({
         url: "/user/find-all",
@@ -52,7 +52,6 @@ const Friends = () => {
               <FriendsCard
                 data={userData}
                 tab="followers"
-                friends={friends}
                 fetchUsers={fetchUsers}
               />
             </Grid>
@@ -79,7 +78,6 @@ const Friends = () => {
               <FriendsCard
                 data={userData}
                 tab="suggestions"
-                friends={friends}
                 fetchUsers={fetchUsers}
               />
             </Grid>
