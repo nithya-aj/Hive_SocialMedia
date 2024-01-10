@@ -13,6 +13,7 @@ const Friends = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user?._id);
   const allUsers = useSelector((state) => state.users.allUsers);
+  console.log(allUsers, "dadfasdfadfsadfadsfs");
   const suggestions = allUsers.filter((user) => user._id !== userId);
 
   const followers = allUsers.filter((user) => user.followings.includes(userId));
@@ -28,7 +29,8 @@ const Friends = () => {
   console.log(followings);
   console.log(friends);
 
-  const fetchUsers = useCallback(async () => {  // eslint-disable-line react-hooks/exhaustive-deps
+  const fetchUsers = useCallback(async () => {
+    // eslint-disable-line react-hooks/exhaustive-deps
     try {
       const response = await apiRequest({
         url: "/user/find-all",

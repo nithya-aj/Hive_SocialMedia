@@ -115,14 +115,36 @@ export const likePost = async (req, res) => {
 };
 
 // to fetch timeline posts of user
-export const getPosts = async (req, res) => {
+export const getTimeLinePosts = async (req, res) => {
   try {
+    // Fetching current user
     const currentUser = await User.findById(req.user.id).exec();
-    const userIdsToQuery = [currentUser._id, ...currentUser.followings];
+    if (!currentUser) {
+      return res.status(404).json({ error: "Current user not found" });
+    }
 
-    const timeLinePosts = await Post.find({ userId: { $in: userIdsToQuery } })
-      .sort({ createdAt: -1 })
-      .exec();
+    let timeLinePosts
+    // For new users
+    if (currentUser.followings.length === 0) {
+      timeLinePosts = await Post.aggregate([
+        { $sample: { size: 10 } }
+      ]).exec()
+    } else {
+      // for users having followings
+      const followIds = [currentUser._id, ...currentUser.followings]
+      const friendsPosts = await Post.find({ userId: { $in: followIds } })
+        .sort({ createdAt: -1 })
+        .exec();
+      console.log(friendsPosts, 'friendsPosts')
+      console.log(followIds, 'followers id')
+      const otherUsersPosts = await Post.find({ userId: { $nin: followIds } })
+        .sort({ createdAt: -1 })
+        .exec();
+      console.log(otherUsersPosts, 'otherUsersPosts')
+      timeLinePosts = [...friendsPosts, ...otherUsersPosts]
+      console.log(timeLinePosts, 'timeLinePosts')
+    }
+
     return res.json(timeLinePosts);
   } catch (error) {
     console.error("Error fetching timeline posts:", error);

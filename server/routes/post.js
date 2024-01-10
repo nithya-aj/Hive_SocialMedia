@@ -3,7 +3,7 @@ import {
   createPost,
   updatePost,
   deletePost,
-  getPosts,
+  getTimeLinePosts,
   likePost,
   togglePostHiddenStatus,
   bookmarkPost,
@@ -15,7 +15,7 @@ import { verifyToken } from "../middlewares/auth.js";
 
 const postRouter = express.Router();
 
-postRouter.get("/", verifyToken, getPosts);
+postRouter.get("/", verifyToken, getTimeLinePosts);
 postRouter.get("/find/:id", getPost);
 postRouter.get("/:userId/liked-posts", verifyToken, getUserLikedPosts);
 postRouter.get("/:userId/bookmarked-posts", verifyToken, getAllBookmarkedPosts);

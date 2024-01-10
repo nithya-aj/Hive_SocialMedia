@@ -28,9 +28,10 @@ const FriendsReq = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user?._id);
   const token = useSelector((store) => store.auth.token);
-  const allUsers = useSelector((state) => state.users.allUsers);
+  // const allUsers = useSelector((state) => state.users.allUsers);
+  const allUsers = [];
   console.log(allUsers[5]);
-  const friendReqs = allUsers.filter(
+  const friendReqs = allUsers?.filter(
     (user) =>
       user.followings.includes(userId) &&
       !allUsers.some((follower) => follower.followings.includes(user._id))
@@ -38,7 +39,7 @@ const FriendsReq = () => {
 
   console.log(friendReqs);
 
-  const fetchUsers = (async () => {
+  const fetchUsers = async () => {
     // eslint-disable-line react-hooks/exhaustive-deps
     try {
       const response = await apiRequest({
@@ -48,9 +49,10 @@ const FriendsReq = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  };
 
-  const addFriend = useCallback(async (id) => { // eslint-disable-line react-hooks/exhaustive-deps
+  const addFriend = useCallback(async (id) => {
+    // eslint-disable-line react-hooks/exhaustive-deps
     try {
       const response = await apiRequest({
         url: `/user/follow/${id}`,
