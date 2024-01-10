@@ -131,20 +131,16 @@ export const getTimeLinePosts = async (req, res) => {
       ]).exec()
     } else {
       // for users having followings
-      const followIds = [currentUser._id, ...currentUser.followings]
-      const friendsPosts = await Post.find({ userId: { $in: followIds } })
+      // const followIds = [currentUser._id, ...currentUser.followings]
+      const reversedFollowings = [...currentUser.followings].reverse();
+      const friendsPosts = await Post.find({ userId: { $in: reversedFollowings } })
         .sort({ createdAt: -1 })
         .exec();
-      console.log(friendsPosts, 'friendsPosts')
-      console.log(followIds, 'followers id')
-      const otherUsersPosts = await Post.find({ userId: { $nin: followIds } })
+      const otherUsersPosts = await Post.find({ userId: { $nin: reversedFollowings } })
         .sort({ createdAt: -1 })
         .exec();
-      console.log(otherUsersPosts, 'otherUsersPosts')
-      timeLinePosts = [...friendsPosts, ...otherUsersPosts]
-      console.log(timeLinePosts, 'timeLinePosts')
+      timeLinePosts = [...friendsPosts, ...otherUsersPosts];
     }
-
     return res.json(timeLinePosts);
   } catch (error) {
     console.error("Error fetching timeline posts:", error);
