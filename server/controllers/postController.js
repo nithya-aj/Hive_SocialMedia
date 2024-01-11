@@ -2,16 +2,25 @@ import mongoose from "mongoose";
 import User from "../models/User.js";
 import Post from "../models/Post.js";
 
-// to fetch posts of a particular user
+// to fetch particular post
 export const getPost = async (req, res) => {
   try {
     const post = await Post.findById({
-      userId: req.params.id,
-      hidden: false,
-    }).sort({ createdAt: -1 });
+      _id: req.params.id
+    })
     return res.status(200).json(post);
   } catch (error) {
     return res.status(500).json(error.message);
+  }
+};
+
+// to fetch all the posts 
+export const getAllPosts = async (req, res) => {
+  try {
+    const allPosts = await Post.find({});
+    return res.status(200).json(allPosts);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -116,20 +125,20 @@ export const likePost = async (req, res) => {
 
 // to fetch timeline posts of user
 export const getTimeLinePosts = async (req, res) => {
-    try {
-        const currentUser = await User.findById(req.user.id);
-        const userPosts = await Post.find({ userId: currentUser._id });
-        const friendPosts = await Promise.all(
-            currentUser.followings.map((friendId) => {
-                return Post.find({ userId: friendId })
-            })
-        )
-        const allPosts = userPosts.concat(...friendPosts).sort((a, b) => b.createdAt - a.createdAt)
-        return res.json(allPosts)
-    } catch (error) {
-        console.error('Error fetching timeline posts:', error)
-        return res.status(500).json({ error: 'Error fetching timeline posts' })
-    }
+  try {
+    const currentUser = await User.findById(req.user.id);
+    const userPosts = await Post.find({ userId: currentUser._id });
+    const friendPosts = await Promise.all(
+      currentUser.followings.map((friendId) => {
+        return Post.find({ userId: friendId })
+      })
+    )
+    const allPosts = userPosts.concat(...friendPosts).sort((a, b) => b.createdAt - a.createdAt)
+    return res.json(allPosts)
+  } catch (error) {
+    console.error('Error fetching timeline posts:', error)
+    return res.status(500).json({ error: 'Error fetching timeline posts' })
+  }
 }
 
 // to hide and unhide the post
