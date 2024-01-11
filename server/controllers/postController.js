@@ -116,37 +116,21 @@ export const likePost = async (req, res) => {
 
 // to fetch timeline posts of user
 export const getTimeLinePosts = async (req, res) => {
-  try {
-    // Fetching current user
-    const currentUser = await User.findById(req.user.id).exec();
-    if (!currentUser) {
-      return res.status(404).json({ error: "Current user not found" });
+    try {
+        const currentUser = await User.findById(req.user.id);
+        const userPosts = await Post.find({ userId: currentUser._id });
+        const friendPosts = await Promise.all(
+            currentUser.followings.map((friendId) => {
+                return Post.find({ userId: friendId })
+            })
+        )
+        const allPosts = userPosts.concat(...friendPosts).sort((a, b) => b.createdAt - a.createdAt)
+        return res.json(allPosts)
+    } catch (error) {
+        console.error('Error fetching timeline posts:', error)
+        return res.status(500).json({ error: 'Error fetching timeline posts' })
     }
-
-    let timeLinePosts
-    // For new users
-    if (currentUser.followings.length === 0) {
-      timeLinePosts = await Post.aggregate([
-        { $sample: { size: 10 } }
-      ]).exec()
-    } else {
-      // for users having followings
-      // const followIds = [currentUser._id, ...currentUser.followings]
-      const reversedFollowings = [...currentUser.followings].reverse();
-      const friendsPosts = await Post.find({ userId: { $in: reversedFollowings } })
-        .sort({ createdAt: -1 })
-        .exec();
-      const otherUsersPosts = await Post.find({ userId: { $nin: reversedFollowings } })
-        .sort({ createdAt: -1 })
-        .exec();
-      timeLinePosts = [...friendsPosts, ...otherUsersPosts];
-    }
-    return res.json(timeLinePosts);
-  } catch (error) {
-    console.error("Error fetching timeline posts:", error);
-    return res.status(500).json({ error: "Error fetching timeline posts" });
-  }
-};
+}
 
 // to hide and unhide the post
 export const togglePostHiddenStatus = async (req, res) => {
