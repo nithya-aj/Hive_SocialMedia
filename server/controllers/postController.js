@@ -133,8 +133,11 @@ export const getTimeLinePosts = async (req, res) => {
         return Post.find({ userId: friendId })
       })
     )
-    const allPosts = userPosts.concat(...friendPosts).sort((a, b) => b.createdAt - a.createdAt)
-    return res.json(allPosts)
+    const timeLinePosts = userPosts.concat(...friendPosts).sort((a, b) => b.createdAt - a.createdAt)
+    const allPosts = (await Post.find({}))
+    const otherPosts = allPosts.filter(post => !timeLinePosts.some(data => post.id === data.id))
+    const posts = [...timeLinePosts, ...otherPosts]
+    return res.json(posts)
   } catch (error) {
     console.error('Error fetching timeline posts:', error)
     return res.status(500).json({ error: 'Error fetching timeline posts' })

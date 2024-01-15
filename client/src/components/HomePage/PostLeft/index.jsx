@@ -18,7 +18,7 @@ function PostLeft({ page }) {
     try {
       const response = await apiRequest({
         method: "GET",
-        url: "/post/",
+        url: "/post/find",
         token: token,
       });
       console.log(response, "response from post");

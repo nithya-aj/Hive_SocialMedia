@@ -18,7 +18,7 @@ const postRouter = express.Router();
 
 postRouter.get("/", getAllPosts);
 postRouter.get("/find/:id", getPost);
-postRouter.get("/find/", verifyToken, getTimeLinePosts);
+postRouter.get("/find", verifyToken, getTimeLinePosts);
 postRouter.get("/:userId/liked-posts", verifyToken, getUserLikedPosts);
 postRouter.get("/:userId/bookmarked-posts", verifyToken, getAllBookmarkedPosts);
 
