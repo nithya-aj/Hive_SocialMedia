@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Grid } from "@mui/material";
 import FriendsCard from "../widget/FriendsCard";
 import { useLocation } from "react-router-dom";
@@ -13,11 +14,11 @@ const Friends = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user?._id);
   const allUsers = useSelector((state) => state.users.allUsers);
-  console.log(allUsers, "dadfasdfadfsadfadsfs");
-  const suggestions = allUsers.filter((user) => user._id !== userId);
-
+  console.log(allUsers, "allUsers from friends>index.js");
+  const suggestions = allUsers.filter((user) => user?._id !== userId);
   const followers = allUsers.filter((user) => user.followings.includes(userId));
   const followings = allUsers.filter((user) => user.followers.includes(userId));
+
   const friends = allUsers.filter(
     (user) =>
       user.followings.includes(userId) &&
@@ -30,7 +31,6 @@ const Friends = () => {
   console.log(friends);
 
   const fetchUsers = useCallback(async () => {
-    // eslint-disable-line react-hooks/exhaustive-deps
     try {
       const response = await apiRequest({
         url: "/user/find-all",
@@ -43,7 +43,7 @@ const Friends = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [dispatch, isActive]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dispatch, isActive]); 
 
   return (
     <Box sx={{ height: "100%" }}>

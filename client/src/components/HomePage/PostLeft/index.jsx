@@ -7,12 +7,15 @@ import { useEffect, useState } from "react";
 import { apiRequest } from "@/utils";
 import { setPosts } from "@/redux/postSlice";
 import noData from "@/assets/noData.png";
+import { useLocation } from "react-router-dom";
 
 function PostLeft({ page }) {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
   const posts = useSelector((state) => state.posts.posts);
   const [hiddenPostCount, setHiddenPostCount] = useState(0);
+  const location = useLocation();
+  const paramId = location.pathname.split("/")[2];
 
   const getPosts = async () => {
     try {
@@ -30,7 +33,7 @@ function PostLeft({ page }) {
     }
   };
 
-  console.log(posts, "posts");
+  console.log(posts, "posts from postLeft/index.jsx");
 
   useEffect(() => {
     getPosts();
@@ -42,7 +45,6 @@ function PostLeft({ page }) {
         .sort((a, b) => new Date(b.likedAt) - new Date(a.likedAt))
         .reverse()
     : [];
-  console.log(sortedHiddenPosts);
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -87,7 +89,7 @@ function PostLeft({ page }) {
                     ));
                   case "profile":
                     return posts.map((post) =>
-                      post.userId === user._id && !post.hidden ? (
+                      post.userId === paramId && !post.hidden ? (
                         <Post data={post} key={post._id} />
                       ) : null
                     );

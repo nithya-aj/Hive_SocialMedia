@@ -397,7 +397,7 @@ export default function Post({ data, page }) {
           }
           title={
             <Link
-              to={`/profile/${user._id}`}
+              to={`/profile/${data.userId}`}
               style={{
                 margin: 0,
                 padding: 0,
