@@ -10,14 +10,20 @@ import { useDispatch, useSelector } from "react-redux";
 const Friends = () => {
   const location = useLocation();
   const isActive = location.pathname.split("/")[2];
-  console.log(isActive);
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user?._id);
   const allUsers = useSelector((state) => state.users.allUsers);
-  console.log(allUsers, "allUsers from friends>index.js");
   const suggestions = allUsers.filter((user) => user?._id !== userId);
   const followers = allUsers.filter((user) => user.followings.includes(userId));
   const followings = allUsers.filter((user) => user.followers.includes(userId));
+  const posts = useSelector((state) => state.posts.posts);
+  console.log(posts);
+  console.log(followers, "followers");
+
+  const handlePostCount = (friendId) => {
+    const postCount = posts.filter((post) => post.userId === friendId).length;
+    return postCount;
+  };
 
   const friends = allUsers.filter(
     (user) =>
@@ -25,10 +31,6 @@ const Friends = () => {
       user.followers.includes(userId) &&
       user._id !== userId
   );
-
-  console.log(followers);
-  console.log(followings);
-  console.log(friends);
 
   const fetchUsers = useCallback(async () => {
     try {
@@ -43,7 +45,7 @@ const Friends = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [dispatch, isActive]); 
+  }, [dispatch, isActive]);
 
   return (
     <Box sx={{ height: "100%" }}>
@@ -52,6 +54,7 @@ const Friends = () => {
           {followers?.map((userData, index) => (
             <Grid item key={index} xs={4}>
               <FriendsCard
+                postCount={handlePostCount(userData._id)}
                 data={userData}
                 tab="followers"
                 fetchUsers={fetchUsers}
@@ -68,6 +71,7 @@ const Friends = () => {
                 data={userData}
                 tab="following"
                 fetchUsers={fetchUsers}
+                postCount={handlePostCount(userData._id)}
               />
             </Grid>
           ))}
@@ -81,6 +85,7 @@ const Friends = () => {
                 data={userData}
                 tab="suggestions"
                 fetchUsers={fetchUsers}
+                postCount={handlePostCount(userData._id)}
               />
             </Grid>
           ))}

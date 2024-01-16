@@ -8,8 +8,9 @@ import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import UserAvatar from "./UserAvatar";
+import profilePhoto from "../../assets/profile.png";
 
-const FriendsCard = ({ data, tab, fetchUsers }) => {
+const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
   const theme = useTheme();
   const mode = useSelector((state) => state.theme.mode);
   const darkbg = theme.palette.background.darkbg;
@@ -18,10 +19,6 @@ const FriendsCard = ({ data, tab, fetchUsers }) => {
   const purple = theme.palette.neutral.purple;
   const token = useSelector((store) => store.auth.token);
   const userId = useSelector((state) => state.auth.user?._id);
-  const posts = useSelector((state) => state.posts.posts);
-  console.log(posts);
-
-  const postCount = posts.filter((v) => v._id === data._id).length;
 
   console.log(data);
   const isFriend = data.followers.includes(userId);
@@ -233,7 +230,7 @@ const FriendsCard = ({ data, tab, fetchUsers }) => {
 
         <Box
           sx={{
-            backgroundSize: "cover",
+            backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             display: "flex",
@@ -242,9 +239,9 @@ const FriendsCard = ({ data, tab, fetchUsers }) => {
             position: "relative",
             overflow: "hidden",
             borderRadius: "5px",
-            height: "10rem",
+            height: "16rem",
             p: "1rem",
-            backgroundImage: "url(https://source.unsplash.com/featured/340)",
+            backgroundImage: `url(${profilePhoto})`,
             "&::before": {
               content: '""',
               display: "block",
