@@ -8,7 +8,7 @@ import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import UserAvatar from "./UserAvatar";
-import profilePhoto from "../../assets/profile.png";
+import profile from "../../assets/profile.png";
 
 const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
   const theme = useTheme();
@@ -240,8 +240,6 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
             overflow: "hidden",
             borderRadius: "5px",
             height: "16rem",
-            p: "1rem",
-            backgroundImage: `url(${profilePhoto})`,
             "&::before": {
               content: '""',
               display: "block",
@@ -250,7 +248,12 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
               position: "absolute",
               top: 0,
               left: 0,
-              background: "linear-gradient(transparent, rgba(0, 0, 0, 0.95))",
+              background: `linear-gradient(transparent, ${
+                theme.palette.mode === "light"
+                  ? "rgba(255, 255, 255, 0.95)"
+                  : "rgba(0, 0, 0, 0.95)"
+              })`,
+              zIndex: 1,
             },
           }}
         >
@@ -261,27 +264,85 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
               left: 0,
               width: "100%",
               height: "100%",
-              background: "linear-gradient(rgba(0, 0, 0, 0.95), transparent)",
+              background: `linear-gradient(transparent, ${
+                theme.palette.mode === "light"
+                  ? "rgba(255, 255, 255, 0.95)"
+                  : "rgba(0, 0, 0, 0.95)"
+              })`,
+              zIndex: 1,
             }}
           />
 
-          <Box
-            sx={{
+          <img
+            // src={profilePhoto}
+            // // src="https://source.unsplash.com/featured/340"
+            src={
+              data?.profilePic
+                ? `http://localhost:8080/images/${data?.profilePic}`
+                : profile
+            }
+            alt=""
+            style={{
+              position: "absolute",
+              zIndex: 0,
+              height: data?.profilePic ? "19rem" : "14rem",
+              width: data?.profilePic ? "20rem" : "13rem",
+              paddingTop: data?.profilePic ? "" : "1rem",
+              backgroundSize: "contain",
+              backgroundPosition: "center",
               display: "flex",
-              flexDirection: "column",
-              gap: "0.2rem",
-              zIndex: 1,
+              alignSelf: "center",
             }}
-          >
-            <Typography variant="h4">{data.name}</Typography>
-            <Typography>@{data.username}</Typography>
-          </Box>
+          />
+          {tab === "followers" && (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.2rem",
+                zIndex: 1,
+                p: "1rem",
+              }}
+            >
+              <Typography variant="h4">{data.name}</Typography>
+              <Typography>@{data.username}</Typography>
+            </Box>
+          )}
+          {tab === "following" && (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.2rem",
+                zIndex: 1,
+                p: "1rem",
+              }}
+            >
+              <Typography variant="h4">{data.name}</Typography>
+              <Typography>@{data.username}</Typography>
+            </Box>
+          )}
+          {tab === "suggestions" && (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.2rem",
+                zIndex: 1,
+                p: "1rem",
+              }}
+            >
+              <Typography variant="h4">{data.name}</Typography>
+              <Typography>@{data.username}</Typography>
+            </Box>
+          )}
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
               zIndex: 1,
+              p: "1rem",
             }}
           >
             <Box sx={{ textAlign: "center" }}>
