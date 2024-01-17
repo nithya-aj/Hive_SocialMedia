@@ -1,8 +1,9 @@
-import { Avatar, Box, Grid, ListItemText, Typography } from "@mui/material";
+import { Box, Grid, ListItemText, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import ReactTimeago from "react-timeago";
 import { apiRequest } from "../../utils";
+import UserAvatar from "../widget/UserAvatar";
 
 const Comment = ({ comment }) => {
   const theme = useTheme();
@@ -16,6 +17,7 @@ const Comment = ({ comment }) => {
           method: "GET",
           url: `/user/find/${comment.userId}`,
         });
+        console.log(response, "response from command page");
         setCommentAuthor(response);
       } catch (error) {
         console.error(error);
@@ -35,11 +37,7 @@ const Comment = ({ comment }) => {
             mt: "5px",
           }}
         >
-          <Avatar
-            alt="Remy Sharp"
-            src="https://source.unsplash.com/featured/300x198"
-            sx={{ height: "2.3rem", width: "2.3rem" }}
-          />
+          <UserAvatar isBorder={false} userProfile={commentAuthor.profilePic} />
         </Box>
       </Grid>
       <Grid item xs={10} lg={10.7} md={10.5}>

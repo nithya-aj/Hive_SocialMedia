@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
   FormControl,
@@ -146,7 +147,7 @@ export default function Post({ data, page }) {
   useEffect(() => {
     fetchDetails();
     fetchComments();
-  }, [dispatch, data?._id, data?.userId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [dispatch, data?._id, data?.userId]);
 
   // fetching user details
   const fetchDetails = async () => {
@@ -286,7 +287,7 @@ export default function Post({ data, page }) {
         break;
     }
   };
-
+  console.log(authorDetails, "------------------------------------");
   return (
     <>
       <Card
@@ -317,7 +318,9 @@ export default function Post({ data, page }) {
               fontSize: "10px",
             },
           }}
-          avatar={<UserAvatar />}
+          avatar={
+            <UserAvatar isBorder={true} userProfile={authorDetails.profilePic} />
+          }
           action={
             <>
               {page === "hiddenPosts" ? (

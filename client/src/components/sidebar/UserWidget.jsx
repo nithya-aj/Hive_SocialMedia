@@ -11,8 +11,8 @@ const UserWidget = () => {
   const main = theme.palette.neutral.main;
   const medium = theme.palette.neutral.medium;
   const purple = theme.palette.neutral.purple;
-  const name = useSelector((state) => state.auth.user?.name);
-  const userName = useSelector((state) => state.auth.user?.username);
+  const user = useSelector((state) => state.auth.user);
+  console.log(user, "user from userWidget");
   return (
     <Box
       sx={{
@@ -30,7 +30,11 @@ const UserWidget = () => {
       }}
     >
       <Box>
-        <UserAvatar sidebar={true} />
+        <UserAvatar
+          sidebar={true}
+          isBorder={true}
+          userProfile={user?.profilePic}
+        />
       </Box>
       <Box sx={{ display: { xs: "none", sm: "block", width: "70%" } }}>
         <Box
@@ -48,14 +52,14 @@ const UserWidget = () => {
             variant="body1"
             sx={{ fontSize: "1rem", marginBottom: "0", color: main }}
           >
-            {name}
+            {user.name}
           </Typography>
           <Typography
             noWrap
             variant="body2"
             sx={{ fontWeight: "300", marginBottom: "0", color: medium }}
           >
-            @{userName}
+            @ {user.username}
           </Typography>
         </Box>
       </Box>

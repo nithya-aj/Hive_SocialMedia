@@ -1,6 +1,8 @@
 import { useTheme } from "@emotion/react";
 import { Box, Button, InputBase, Paper } from "@mui/material";
 import UserAvatar from "../widget/UserAvatar";
+import { useEffect, useState } from "react";
+import { apiRequest } from "@/utils";
 
 const EditPost = ({ postData, handleEditPost, handleInputChange }) => {
   const theme = useTheme();
@@ -8,6 +10,23 @@ const EditPost = ({ postData, handleEditPost, handleInputChange }) => {
   const alt = theme.palette.background.alt;
   const textMain = theme.palette.neutral.main;
   const darkbg = theme.palette.background.darkbg;
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const user = await apiRequest({
+          method: "GET",
+          url: `/user/find/${postData.userId}`,
+        });
+        setUserDetails(user);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserDetails();
+  }, [postData.userId]);
+
   return (
     <Box
       component={"form"}
@@ -49,7 +68,7 @@ const EditPost = ({ postData, handleEditPost, handleInputChange }) => {
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <Box>
-          <UserAvatar />
+          <UserAvatar isBorder={true} userProfile={userDetails?.profilePic} />
         </Box>
         <Box sx={{ width: "100%" }}>
           <Paper

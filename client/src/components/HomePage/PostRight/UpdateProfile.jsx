@@ -10,8 +10,10 @@ import { useState } from "react";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import UserAvatar from "../../widget/UserAvatar";
 import UpdateModal from "../../Modals/UpdateModal";
+import { useSelector } from "react-redux";
 
 const UpdateProfile = () => {
+  const user = useSelector((state) => state.auth);
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
   const main = theme.palette.neutral.main;
@@ -34,7 +36,7 @@ const UpdateProfile = () => {
           justifyContent: "center",
         }}
       >
-        <UserAvatar />
+        <UserAvatar userProfile={user?.profilePic} isBorder={true} />
         <Typography
           sx={{ fontSize: "19px", fontWeight: 300, mt: "0.5rem", color: main }}
         >

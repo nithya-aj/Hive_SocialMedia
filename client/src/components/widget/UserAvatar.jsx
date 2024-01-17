@@ -2,7 +2,6 @@ import { Badge, Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@emotion/react";
-import { useSelector } from "react-redux";
 import profile from "../../assets/profile.png";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -34,54 +33,31 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const UserAvatar = ({ sidebar }) => {
+const UserAvatar = ({ sidebar, userProfile, isBorder }) => {
   const theme = useTheme();
   const orange = theme.palette.neutral.orange;
-  const user = useSelector((state) => state.auth);
   return (
     <Box>
-      {sidebar ? (
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          variant="dot"
-        >
-          <Avatar
-            sx={{
-              width: "2.5rem",
-              height: "2.5rem",
-              border: `2px solid ${orange}`,
-              padding: "6px",
-            }}
-            alt="Remy Sharp"
-            src={
-              user?.profilePic
-                ? `http://localhost:8080/images/${user?.profilePic}`
-                : profile
-            }
-          />
-        </StyledBadge>
-      ) : (
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        >
-          <Avatar
-            sx={{
-              width: "2.5rem",
-              height: "2.5rem",
-              border: `2px solid ${orange}`,
-              padding: "6px",
-            }}
-            alt="Remy Sharp"
-            src={
-              user?.profilePic
-                ? `http://localhost:8080/images/${user?.profilePic}`
-                : profile
-            }
-          />
-        </StyledBadge>
-      )}
+      <StyledBadge
+        overlap="circular"
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        variant={sidebar ? "dot" : ""}
+      >
+        <Avatar
+          sx={{
+            width: "2.5rem",
+            height: "2.5rem",
+            border: isBorder ? `2px solid ${orange}` : "",
+            padding: "6px",
+          }}
+          alt="Remy Sharp"
+          src={
+            userProfile?.profilePic
+              ? `http://localhost:8080/images/${userProfile?.profilePic}`
+              : profile
+          }
+        />
+      </StyledBadge>
     </Box>
   );
 };

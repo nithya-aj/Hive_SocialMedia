@@ -70,7 +70,7 @@ const FriendsReq = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  }, []);
 
   useEffect(() => {
     allUsers;

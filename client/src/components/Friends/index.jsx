@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Grid } from "@mui/material";
 import FriendsCard from "../widget/FriendsCard";
 import { useLocation } from "react-router-dom";
@@ -32,7 +31,7 @@ const Friends = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  },[dispatch]);
 
   useEffect(() => {
     fetchUsers();
