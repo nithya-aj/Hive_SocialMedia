@@ -1,26 +1,19 @@
-import { Avatar, Box, Typography } from "@mui/material";
-import FlexCenter from "./FlexCenter";
+import { Box, IconButton, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { FaUserMinus, FaUserPlus, FaUserCheck } from "react-icons/fa";
-import { IoCloseCircle } from "react-icons/io5";
-import { motion } from "framer-motion";
 import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import UserAvatar from "./UserAvatar";
 import profile from "../../assets/profile.png";
+import { BiSolidMessageSquareDetail } from "react-icons/bi";
 
 const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
   const theme = useTheme();
   const mode = useSelector((state) => state.theme.mode);
   const darkbg = theme.palette.background.darkbg;
-  const alt = theme.palette.background.alt;
-  const orange = theme.palette.neutral.orange;
-  const purple = theme.palette.neutral.purple;
   const token = useSelector((store) => store.auth.token);
   const userId = useSelector((state) => state.auth.user?._id);
 
-  console.log(data);
   const isFriend = data.followers.includes(userId);
 
   const addFriend = async () => {
@@ -264,11 +257,10 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
               left: 0,
               width: "100%",
               height: "100%",
-              background: `linear-gradient(transparent, ${
+              background:
                 theme.palette.mode === "light"
-                  ? "rgba(255, 255, 255, 0.95)"
-                  : "rgba(0, 0, 0, 0.95)"
-              })`,
+                  ? "linear-gradient(rgba(255, 255, 255, 0.95), transparent)"
+                  : "linear-gradient(rgba(0, 0, 0, 0.95), transparent)",
               zIndex: 1,
             }}
           />
@@ -294,48 +286,47 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
               alignSelf: "center",
             }}
           />
-          {tab === "followers" && (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.2rem",
-                zIndex: 1,
-                p: "1rem",
-              }}
-            >
+          <Box
+            sx={{
+              display: "flex",
+              gap: "1rem",
+              alignItems: "center",
+              zIndex: 1,
+              p: "1rem",
+            }}
+          >
+            <Box sx={{ flexDirection: "column" }}>
               <Typography variant="h4">{data.name}</Typography>
               <Typography>@{data.username}</Typography>
             </Box>
-          )}
-          {tab === "following" && (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.2rem",
-                zIndex: 1,
-                p: "1rem",
-              }}
-            >
-              <Typography variant="h4">{data.name}</Typography>
-              <Typography>@{data.username}</Typography>
-            </Box>
-          )}
-          {tab === "suggestions" && (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.2rem",
-                zIndex: 1,
-                p: "1rem",
-              }}
-            >
-              <Typography variant="h4">{data.name}</Typography>
-              <Typography>@{data.username}</Typography>
-            </Box>
-          )}
+            {tab === "followers" && (
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <IconButton onClick={addFriend}>
+                  {isFriend ? <BiSolidMessageSquareDetail /> : <FaUserPlus />}
+                </IconButton>
+                <IconButton>
+                  <FaUserMinus />
+                </IconButton>
+              </Box>
+            )}
+            {tab === "following" && (
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <IconButton>
+                  <BiSolidMessageSquareDetail />
+                </IconButton>
+                <IconButton onClick={removeFriend}>
+                  <FaUserMinus />
+                </IconButton>
+              </Box>
+            )}
+            {tab === "suggestions" && (
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <IconButton onClick={addFriend} disabled={isFriend}>
+                  {isFriend ? <FaUserCheck /> : <FaUserPlus />}
+                </IconButton>
+              </Box>
+            )}
+          </Box>
           <Box
             sx={{
               display: "flex",

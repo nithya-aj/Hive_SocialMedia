@@ -10,7 +10,7 @@ import { AiFillHome } from "react-icons/ai";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { IoNotifications } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
-import { FaUserPlus, FaUser } from "react-icons/fa";
+import { FaUserFriends, FaUser } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
@@ -32,7 +32,7 @@ function SidebarNav() {
     },
     {
       name: "Friends",
-      icon: FaUserPlus,
+      icon: FaUserFriends,
       link: "/friends",
     },
     {
