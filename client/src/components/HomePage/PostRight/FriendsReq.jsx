@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Avatar,
   Box,
@@ -7,13 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import { AiFillCloseCircle } from "react-icons/ai";
 import FlexCenter from "../../widget/FlexCenter";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import { apiRequest } from "@/utils";
 import { setAllUsers } from "@/redux/userSlice";
+import { Link } from "react-router-dom";
+import noData from "@/assets/noData.png";
 
 const FriendsReq = () => {
   const theme = useTheme();
@@ -24,17 +26,23 @@ const FriendsReq = () => {
   const light = theme.palette.neutral.light;
   const textMain = theme.palette.neutral.main;
   const purple = theme.palette.neutral.purple;
-  const red = theme.palette.neutral.red;
+  const fontSm = theme.palette.neutral.fontSm;
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user?._id);
   const token = useSelector((store) => store.auth.token);
   const allUsers = useSelector((state) => state.users.allUsers);
-  console.log(allUsers[5]);
   const friendReqs = allUsers?.filter(
     (user) =>
       user.followings.includes(userId) &&
       !allUsers.some((follower) => follower.followings.includes(user._id))
   );
+  const muthalFriends = allUsers.filter(
+    (user) =>
+      user.followings.includes(userId) &&
+      user.followers.includes(userId) &&
+      user._id !== userId
+  ).length;
+  console.log(muthalFriends, "friends");
 
   console.log(friendReqs);
 
@@ -50,7 +58,7 @@ const FriendsReq = () => {
     }
   };
 
-  const addFriend = useCallback(async (id) => {  // eslint-disable-line react-hooks/exhaustive-deps
+  const addFriend = useCallback(async (id) => {
     try {
       const response = await apiRequest({
         url: `/user/follow/${id}`,
@@ -86,78 +94,102 @@ const FriendsReq = () => {
         }}
       >
         <Typography variant="h5" sx={{ color: mediumMain }}>
-          Friend Request
+          Friend Requests
         </Typography>
-        <Typography variant="caption" sx={{ color: medium, cursor: "pointer" }}>
-          See All
-        </Typography>
+        <Link to={"/friends/followers"} style={{ textDecoration: "none" }}>
+          <Typography
+            variant="caption"
+            sx={{ color: medium, cursor: "pointer" }}
+          >
+            See All
+          </Typography>
+        </Link>
       </Box>
       <FlexCenter>
         <Divider sx={{ height: "1px", width: "100%", my: "10px" }} />
       </FlexCenter>
-      <Box sx={{ overflow: "auto", display: "flex", flexDirection: "column" }}>
-        {friendReqs?.map((data, id) => {
-          return (
-            <Box
-              key={id}
-              sx={{
-                display: "flex",
-                px: "0.5rem",
-                py: "0.8rem",
-                ":hover": { backgroundColor: alt, borderRadius: "10px" },
-              }}
-            >
+      {friendReqs.length ? (
+        <Box
+          sx={{ overflow: "auto", display: "flex", flexDirection: "column" }}
+        >
+          {friendReqs?.map((data, id) => {
+            return (
               <Box
+                key={id}
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "1rem",
-                  width: "70%",
+                  justifyContent: "space-between",
+                  p: "0.8rem 0.5rem",
+                  ":hover": { backgroundColor: alt, borderRadius: "10px" },
                 }}
               >
-                <Avatar
-                  aria-label="avatar"
-                  sx={{
-                    height: "2.3rem",
-                    width: "2.3rem",
-                    backgroundColor: light,
-                    color: textMain,
-                  }}
-                >
-                  R
-                </Avatar>
                 <Box
                   sx={{
-                    overflow: "hidden",
-                    display: "inline-block",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                    color: medium,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "1rem",
+                    width: "70%",
                   }}
                 >
-                  <Typography sx={{ fontSize: "0.75rem", color: medium }}>
-                    {data.username}
-                  </Typography>
-                  <Typography variant="caption" noWrap sx={{ color: medium }}>
-                    3 muthal friends
-                  </Typography>
+                  <Avatar
+                    aria-label="avatar"
+                    sx={{
+                      height: "2.3rem",
+                      width: "2.3rem",
+                      backgroundColor: light,
+                      color: textMain,
+                    }}
+                  >
+                    R
+                  </Avatar>
+                  <Box
+                    sx={{
+                      overflow: "hidden",
+                      display: "inline-block",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                      color: medium,
+                    }}
+                  >
+                    <Typography sx={{ fontSize: "0.75rem", color: medium }}>
+                      {data.username}
+                    </Typography>
+                    <Typography variant="caption" noWrap sx={{ color: medium }}>
+                      {muthalFriends} muthal friends
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <IconButton
+                    aria-label="check"
+                    onClick={() => addFriend(data._id)}
+                  >
+                    <FaUserPlus style={{ color: purple }} />
+                  </IconButton>
                 </Box>
               </Box>
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <IconButton
-                  aria-label="check"
-                  onClick={() => addFriend(data._id)}
-                >
-                  <FaUserPlus style={{ color: purple }} />
-                </IconButton>
-                <IconButton aria-label="decline">
-                  <AiFillCloseCircle style={{ color: red }} />
-                </IconButton>
-              </Box>
-            </Box>
-          );
-        })}
-      </Box>
+            );
+          })}
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+          }}
+        >
+          <img src={noData} alt="" style={{ height: "3rem", width: "3rem" }} />
+          <Link to={"friends/suggestions"} style={{ textDecoration: "none" }}>
+            <Typography variant="body2" color={fontSm}>
+              Connect with new friends
+            </Typography>
+          </Link>
+        </Box>
+      )}
     </Card>
   );
 };

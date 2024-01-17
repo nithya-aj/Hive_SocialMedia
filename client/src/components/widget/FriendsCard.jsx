@@ -19,13 +19,12 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
   const addFriend = async () => {
     if (!isFriend) {
       try {
-        const response = await apiRequest({
+        await apiRequest({
           url: `/user/follow/${data._id}`,
           token: token,
           method: "PUT",
         });
         fetchUsers();
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -43,10 +42,24 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
     }
   };
 
-  const removeFriend = async () => {
+  const unFollowFriend = async () => {
     try {
       const response = await apiRequest({
         url: `/user/un-follow/${data._id}`,
+        token: token,
+        method: "PUT",
+      });
+      fetchUsers();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFriend = async () => {
+    try {
+      const response = await apiRequest({
+        url: `/user/remove/${data._id}`,
         token: token,
         method: "PUT",
       });
@@ -70,157 +83,6 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
           width: "100%",
         }}
       >
-        {/* <FlexCenter sx={{ flexDirection: "column", gap: 0.5, py: "1rem" }}>
-          <Avatar sx={{ width: "3rem", height: "3rem" }} />
-          <Typography>{data.username}</Typography>
-          <Typography>ceo & founder of cole</Typography>
-        </FlexCenter>
-        {tab === "followers" && (
-          <Box
-            sx={{
-              overflow: "hidden ",
-              borderTop: `1px solid ${alt}`,
-              display: "flex",
-              alignItems: "center",
-              height: "3rem",
-            }}
-          >
-            <FlexCenter
-              sx={{
-                width: "50%",
-                height: "100%",
-                borderRight: `1px solid ${alt}`,
-                fontSize: "1.2rem",
-                ":hover": { color: orange },
-              }}
-            >
-              <Box
-                sx={{ cursor: "pointer" }}
-                component={motion.div}
-                whileTap={{ scale: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                <IoCloseCircle />
-              </Box>
-            </FlexCenter>
-            <FlexCenter
-              sx={{
-                width: "50%",
-                height: "100%",
-                fontSize: "1.2rem",
-                ":hover": { color: orange },
-                cursor: "pointer",
-              }}
-              onClick={addFriend}
-            >
-              <Box
-                component={motion.div}
-                whileTap={{ scale: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                {isFriend ? <FaUserCheck color={purple} /> : <FaUserPlus />}
-              </Box>
-            </FlexCenter>
-          </Box>
-        )}
-        {tab === "following" && (
-          <Box
-            sx={{
-              overflow: "hidden ",
-              borderTop: `1px solid ${alt}`,
-              display: "flex",
-              alignItems: "center",
-              height: "3rem",
-            }}
-          >
-            <FlexCenter
-              sx={{
-                width: "50%",
-                height: "100%",
-                borderRight: `1px solid ${alt}`,
-                fontSize: "1.2rem",
-                ":hover": { color: orange },
-              }}
-            >
-              <Box
-                sx={{ cursor: "pointer" }}
-                component={motion.div}
-                whileTap={{ scale: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                <IoCloseCircle />
-              </Box>
-            </FlexCenter>
-            <FlexCenter
-              sx={{
-                width: "50%",
-                height: "100%",
-                fontSize: "1.2rem",
-                ":hover": { color: orange },
-                cursor: "pointer",
-              }}
-              onClick={removeFriend}
-            >
-              <Box
-                component={motion.div}
-                whileTap={{ scale: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                <FaUserMinus />
-              </Box>
-            </FlexCenter>
-          </Box>
-        )}
-        {tab === "suggestions" && (
-          <Box
-            sx={{
-              overflow: "hidden ",
-              borderTop: `1px solid ${alt}`,
-              display: "flex",
-              alignItems: "center",
-              height: "3rem",
-            }}
-          >
-            <FlexCenter
-              sx={{
-                width: "50%",
-                height: "100%",
-                borderRight: `1px solid ${alt}`,
-                fontSize: "1.2rem",
-                ":hover": { color: orange },
-              }}
-            >
-              <Box
-                sx={{ cursor: "pointer" }}
-                component={motion.div}
-                whileTap={{ scale: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                <IoCloseCircle />
-              </Box>
-            </FlexCenter>
-            <FlexCenter
-              sx={{
-                width: "50%",
-                height: "100%",
-                fontSize: "1.2rem",
-                ":hover": { color: orange },
-                cursor: "pointer",
-              }}
-              onClick={addFriend}
-            >
-              <Box
-                sx={{ cursor: "pointer" }}
-                component={motion.div}
-                whileTap={{ scale: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                {isFriend ? <FaUserCheck color={purple} /> : <FaUserPlus />}
-              </Box>
-            </FlexCenter>
-          </Box>
-        )} */}
-
         <Box
           sx={{
             backgroundSize: "contain",
@@ -301,10 +163,14 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
             </Box>
             {tab === "followers" && (
               <Box sx={{ display: "flex", gap: 1 }}>
-                <IconButton onClick={addFriend}>
-                  {isFriend ? <BiSolidMessageSquareDetail /> : <FaUserPlus />}
-                </IconButton>
                 <IconButton>
+                  {isFriend ? (
+                    <BiSolidMessageSquareDetail />
+                  ) : (
+                    <FaUserPlus onClick={addFriend} />
+                  )}
+                </IconButton>
+                <IconButton onClick={removeFriend}>
                   <FaUserMinus />
                 </IconButton>
               </Box>
@@ -314,7 +180,7 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
                 <IconButton>
                   <BiSolidMessageSquareDetail />
                 </IconButton>
-                <IconButton onClick={removeFriend}>
+                <IconButton onClick={unFollowFriend}>
                   <FaUserMinus />
                 </IconButton>
               </Box>

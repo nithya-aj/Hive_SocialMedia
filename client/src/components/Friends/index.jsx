@@ -17,20 +17,11 @@ const Friends = () => {
   const followers = allUsers.filter((user) => user.followings.includes(userId));
   const followings = allUsers.filter((user) => user.followers.includes(userId));
   const posts = useSelector((state) => state.posts.posts);
-  console.log(posts);
-  console.log(followers, "followers");
 
   const handlePostCount = (friendId) => {
     const postCount = posts.filter((post) => post.userId === friendId).length;
     return postCount;
   };
-
-  const friends = allUsers.filter(
-    (user) =>
-      user.followings.includes(userId) &&
-      user.followers.includes(userId) &&
-      user._id !== userId
-  );
 
   const fetchUsers = useCallback(async () => {
     try {

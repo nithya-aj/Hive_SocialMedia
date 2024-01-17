@@ -282,6 +282,20 @@ export const addFriend = async (uri, token) => {
   }
 }
 
+// unfollow friend
+export const unFollowFriend = async (uri, token) => {
+  try {
+    const res = await apiRequest({
+      url: uri,
+      method: 'PUT',
+      token: token
+    })
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // remove friend
 export const removeFriend = async (uri, token) => {
   try {
