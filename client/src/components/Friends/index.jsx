@@ -31,11 +31,11 @@ const Friends = () => {
     } catch (error) {
       console.log(error);
     }
-  },[dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     fetchUsers();
-  }, [dispatch, isActive]);
+  }, [dispatch, isActive, fetchUsers]);
 
   return (
     <Box sx={{ height: "100%" }}>
