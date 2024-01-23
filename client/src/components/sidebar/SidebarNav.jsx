@@ -31,7 +31,7 @@ function SidebarNav() {
       link: "/",
     },
     {
-      name: "Friends",
+      name: "Community",
       icon: FaUserFriends,
       link: "/friends",
     },

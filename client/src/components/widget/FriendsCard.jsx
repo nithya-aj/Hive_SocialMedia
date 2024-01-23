@@ -1,16 +1,18 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import { FaUserMinus, FaUserPlus, FaUserCheck } from "react-icons/fa";
 import { apiRequest } from "@/utils";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import profile from "../../assets/profile.png";
-import { BiSolidMessageSquareDetail } from "react-icons/bi";
+import UserAvatar from "./UserAvatar";
 
-const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
+const FriendsCard = ({ data, tab, fetchUsers }) => {
   const theme = useTheme();
   const mode = useSelector((state) => state.theme.mode);
+  const medium = theme.palette.neutral.medium;
+  const purple = theme.palette.neutral.purple;
   const darkbg = theme.palette.background.darkbg;
+  const alt = theme.palette.background.alt;
+  const main = theme.palette.neutral.main;
   const token = useSelector((store) => store.auth.token);
   const userId = useSelector((state) => state.auth.user?._id);
 
@@ -85,16 +87,12 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
       >
         <Box
           sx={{
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
             display: "flex",
             justifyContent: "space-between",
             flexDirection: "column",
             position: "relative",
             overflow: "hidden",
             borderRadius: "5px",
-            height: "16rem",
             "&::before": {
               content: '""',
               display: "block",
@@ -103,117 +101,158 @@ const FriendsCard = ({ data, tab, fetchUsers, postCount }) => {
               position: "absolute",
               top: 0,
               left: 0,
-              background: `linear-gradient(transparent, ${
-                theme.palette.mode === "light"
-                  ? "rgba(255, 255, 255, 0.95)"
-                  : "rgba(0, 0, 0, 0.95)"
-              })`,
+              background: darkbg,
               zIndex: 1,
             },
           }}
         >
           <Box
             sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background:
-                theme.palette.mode === "light"
-                  ? "linear-gradient(rgba(255, 255, 255, 0.95), transparent)"
-                  : "linear-gradient(rgba(0, 0, 0, 0.95), transparent)",
-              zIndex: 1,
-            }}
-          />
-
-          <img
-            // src={profilePhoto}
-            // // src="https://source.unsplash.com/featured/340"
-            src={
-              data?.profilePic
-                ? `http://localhost:8080/images/${data?.profilePic}`
-                : profile
-            }
-            alt=""
-            style={{
-              position: "absolute",
-              zIndex: 0,
-              height: data?.profilePic ? "19rem" : "14rem",
-              width: data?.profilePic ? "20rem" : "13rem",
-              paddingTop: data?.profilePic ? "" : "1rem",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
               display: "flex",
-              alignSelf: "center",
-            }}
-          />
-          <Box
-            sx={{
-              display: "flex",
-              gap: "1rem",
-              alignItems: "center",
-              zIndex: 1,
-              p: "1rem",
-            }}
-          >
-            <Box sx={{ flexDirection: "column" }}>
-              <Typography variant="h4">{data.name}</Typography>
-              <Typography>@{data.username}</Typography>
-            </Box>
-            {tab === "followers" && (
-              <Box sx={{ display: "flex", gap: 1 }}>
-                <IconButton>
-                  {isFriend ? (
-                    <BiSolidMessageSquareDetail />
-                  ) : (
-                    <FaUserPlus onClick={addFriend} />
-                  )}
-                </IconButton>
-                <IconButton onClick={removeFriend}>
-                  <FaUserMinus />
-                </IconButton>
-              </Box>
-            )}
-            {tab === "following" && (
-              <Box sx={{ display: "flex", gap: 1 }}>
-                <IconButton>
-                  <BiSolidMessageSquareDetail />
-                </IconButton>
-                <IconButton onClick={unFollowFriend}>
-                  <FaUserMinus />
-                </IconButton>
-              </Box>
-            )}
-            {tab === "suggestions" && (
-              <Box sx={{ display: "flex", gap: 1 }}>
-                <IconButton onClick={addFriend} disabled={isFriend}>
-                  {isFriend ? <FaUserCheck /> : <FaUserPlus />}
-                </IconButton>
-              </Box>
-            )}
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
               justifyContent: "space-between",
               zIndex: 1,
               p: "1rem",
             }}
           >
-            <Box sx={{ textAlign: "center" }}>
-              <Typography>{data.followers.length}</Typography>
-              <Typography>Followers</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                gap: "1rem",
+                flexDirection: "column",
+                color: main,
+              }}
+            >
+              <UserAvatar userProfile={data.profilePic} />
+              <Box sx={{ flexDirection: "column" }}>
+                <Typography variant="h5">{data.name}</Typography>
+                <Typography variant="caption" color={medium}>
+                  @{data.username}
+                </Typography>
+              </Box>
             </Box>
-            <Box sx={{ textAlign: "center" }}>
-              <Typography>{data.followings.length}</Typography>
-              <Typography>Followings</Typography>
-            </Box>
-            <Box sx={{ textAlign: "center" }}>
-              <Typography>{postCount}</Typography>
-              <Typography>Posts</Typography>
-            </Box>
+            {tab === "followers" && (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  color: main,
+                }}
+              >
+                <Box
+                  sx={{
+                    p: 1,
+                    border: `1px solid ${alt}`,
+                    borderRadius: "5px",
+                    width: "5rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    ":hover": {
+                      color: purple,
+                    },
+                  }}
+                  onClick={removeFriend}
+                >
+                  Remove
+                </Box>
+                <Box
+                  sx={{
+                    p: 1,
+                    border: `1px solid ${alt}`,
+                    borderRadius: "5px",
+                    width: "5rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    ":hover": {
+                      color: purple,
+                    },
+                  }}
+                  onClick={!isFriend && addFriend}
+                >
+                  {isFriend ? "Message" : "Follow"}
+                </Box>
+              </Box>
+            )}
+            {tab === "following" && (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  color: main,
+                }}
+              >
+                <Box
+                  sx={{
+                    p: 1,
+                    border: `1px solid ${alt}`,
+                    borderRadius: "5px",
+                    width: "5rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    ":hover": {
+                      color: purple,
+                    },
+                  }}
+                  onClick={unFollowFriend}
+                >
+                  Unfollow
+                </Box>
+                <Box
+                  sx={{
+                    p: 1,
+                    border: `1px solid ${alt}`,
+                    borderRadius: "5px",
+                    width: "5rem",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    ":hover": {
+                      color: purple,
+                    },
+                  }}
+                >
+                  Message
+                </Box>
+              </Box>
+            )}
+            {tab === "suggestions" && (
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  color: main,
+                }}
+              >
+                <Box
+                  sx={{
+                    p: 1,
+                    border: `1px solid ${alt}`,
+                    borderRadius: "5px",
+                    width: "5rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: isFriend ? "not-allowed" : "pointer",
+                    disabled: isFriend,
+                    ":hover": {
+                      color: isFriend ? "" : purple,
+                    },
+                  }}
+                  disabled={isFriend}
+                  onClick={!isFriend && addFriend}
+                >
+                  {isFriend ? "Following" : "Follow"}
+                </Box>
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>

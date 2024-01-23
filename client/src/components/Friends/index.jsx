@@ -15,12 +15,6 @@ const Friends = () => {
   const suggestions = allUsers.filter((user) => user?._id !== userId);
   const followers = allUsers.filter((user) => user.followings.includes(userId));
   const followings = allUsers.filter((user) => user.followers.includes(userId));
-  const posts = useSelector((state) => state.posts.posts);
-
-  const handlePostCount = (friendId) => {
-    const postCount = posts.filter((post) => post.userId === friendId).length;
-    return postCount;
-  };
 
   const fetchUsers = useCallback(async () => {
     try {
@@ -44,7 +38,6 @@ const Friends = () => {
           {followers?.map((userData, index) => (
             <Grid item key={index} xs={4}>
               <FriendsCard
-                postCount={handlePostCount(userData._id)}
                 data={userData}
                 tab="followers"
                 fetchUsers={fetchUsers}
@@ -61,7 +54,6 @@ const Friends = () => {
                 data={userData}
                 tab="following"
                 fetchUsers={fetchUsers}
-                postCount={handlePostCount(userData._id)}
               />
             </Grid>
           ))}
@@ -75,7 +67,6 @@ const Friends = () => {
                 data={userData}
                 tab="suggestions"
                 fetchUsers={fetchUsers}
-                postCount={handlePostCount(userData._id)}
               />
             </Grid>
           ))}

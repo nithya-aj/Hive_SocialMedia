@@ -47,7 +47,7 @@ const UserAvatar = ({ sidebar, userProfile, isBorder }) => {
           sx={{
             width: "2.5rem",
             height: "2.5rem",
-            border: isBorder ? `2px solid ${orange}` : "",
+            border: isBorder ? `1px solid ${orange}` : ``,
             padding: "6px",
           }}
           alt="Remy Sharp"

@@ -14,6 +14,7 @@ import ToastCmp from "@/components/ToastCmp";
 function SharePost() {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
   const main = theme.palette.background.main;
   const alt = theme.palette.background.alt;
   const textMain = theme.palette.neutral.main;
@@ -124,7 +125,7 @@ function SharePost() {
         )}
         <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <Box>
-            <UserAvatar />
+            <UserAvatar isBorder={true} userProfile={user?.profilePic} />
           </Box>
           <Box sx={{ width: "100%" }}>
             <Paper
