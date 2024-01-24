@@ -10,16 +10,15 @@ const commentSlice = createSlice({
     reducers: {
         setComments: (state, action) => {
             const { postId, comments } = action.payload;
-            state.comments[postId] = comments;
-        },
-        setComment: (state, action) => {
-            const { postId, comment: updatedComment } = action.payload;
-            state.comments[postId] = state.comments[postId].map((comment) =>
-                comment._id === updatedComment._id ? updatedComment : comment
-            );
-        },
+            return {
+                comments: {
+                    ...state.comments,
+                    [postId]: comments,
+                }
+            }
+        }
     },
 });
 
-export const { setComments, setComment } = commentSlice.actions;
+export const { setComments } = commentSlice.actions;
 export default commentSlice.reducer;

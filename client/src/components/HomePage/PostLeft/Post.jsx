@@ -88,6 +88,7 @@ export default function Post({ data, page }) {
   const comments = useSelector(
     (state) => state.comments.comments[data?._id] || []
   );
+  console.log(comments, "comments");
   const postCommentCount = comments?.length;
   const { user, token } = useSelector((state) => state.auth);
   const mode = useSelector((state) => state.theme.mode);
@@ -287,7 +288,6 @@ export default function Post({ data, page }) {
         break;
     }
   };
-  console.log(authorDetails, "------------------------------------");
   return (
     <>
       <Card
@@ -319,7 +319,10 @@ export default function Post({ data, page }) {
             },
           }}
           avatar={
-            <UserAvatar isBorder={true} userProfile={authorDetails.profilePic} />
+            <UserAvatar
+              isBorder={true}
+              userProfile={authorDetails.profilePic}
+            />
           }
           action={
             <>
