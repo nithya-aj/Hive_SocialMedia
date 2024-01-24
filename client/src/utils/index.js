@@ -17,12 +17,15 @@ export const apiRequest = async ({ url, token, data, method }) => {
         Authorization: token ? `Bearer ${token}` : "",
       },
     });
-    return response?.data;
+    return response
   } catch (error) {
     const err = error.response;
-    console.log(err)
-    toast.warn(err.data.message)
-    return { status: err.success, message: err.message };
+    if (err) {
+      toast.warn(err.data.message);
+      throw new Error(err.data.message);
+    } else {
+      throw new Error("An unexpected error occurred.");
+    }
   }
 };
 

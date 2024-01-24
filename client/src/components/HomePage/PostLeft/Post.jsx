@@ -76,6 +76,7 @@ const FormControlStyled = styled(FormControl)(({ theme }) => ({
 }));
 
 export default function Post({ data, page }) {
+  console.log(data);
   const dispatch = useDispatch();
   const theme = useTheme();
   const darkbg = theme.palette.background.darkbg;
@@ -157,7 +158,7 @@ export default function Post({ data, page }) {
         method: "GET",
         url: `/user/find/${data.userId}`,
       });
-      setAuthorDetails(response);
+      setAuthorDetails(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -170,7 +171,8 @@ export default function Post({ data, page }) {
         method: "GET",
         url: `/comment/${data._id}`,
       });
-      dispatch(setComments({ postId: data._id, comments: response }));
+      console.log(response.data);
+      dispatch(setComments({ postId: data._id, comments: response.data }));
     } catch (error) {
       console.error(error);
     }
@@ -202,10 +204,11 @@ export default function Post({ data, page }) {
         url: `/post/like/${postId}`,
         token: token,
       });
+      console.log(response);
       if (page === "settings") {
-        dispatch(updateLikedPosts(response.post));
+        dispatch(updateLikedPosts(response.data.post));
       } else {
-        dispatch(setPost(response.post));
+        dispatch(setPost(response.data.post));
       }
     } catch (error) {
       console.error(error);
@@ -221,9 +224,9 @@ export default function Post({ data, page }) {
         token: token,
       });
       if (page === "settings") {
-        dispatch(updateBookmarkedPosts(response.post));
+        dispatch(updateBookmarkedPosts(response.data.post));
       } else {
-        dispatch(setPost(response.post));
+        dispatch(setPost(response.data.post));
       }
     } catch (error) {
       console.error(error);
@@ -238,9 +241,10 @@ export default function Post({ data, page }) {
         url: `/post/hide-unhide/${postId}`,
         token: token,
       });
-      dispatch(setPost(response.post));
-      console.log(response, "respones from handleHidePost");
-      toast.success(`${response.msg}`, {
+      console.log(response);
+      dispatch(setPost(response.data.post));
+      console.log(response.data, "respones from handleHidePost");
+      toast.success(`${response.data.msg}`, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,

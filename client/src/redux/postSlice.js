@@ -35,7 +35,6 @@ const postSlice = createSlice({
     },
     setPost: (state, action) => {
       const updatedPost = action.payload;
-      console.log(updatedPost, "updatedPost from postSlice");
       state.posts = state.posts.map((post) =>
         post._id === updatedPost._id ? updatedPost : post
       );

@@ -34,6 +34,7 @@ function SharePost() {
       if (photo === "" || desc === "") {
         setAlert(true);
         setTimeout(() => setAlert(false), 2100);
+        return;
       }
       let fileName = null;
       if (photo) {
@@ -47,18 +48,19 @@ function SharePost() {
           data: formData,
           token: token,
         });
-      } else {
-        return;
       }
-      if (photo !== "" || desc !== "") {
-        const response = await apiRequest({
-          method: "POST",
-          url: `/post/create`,
-          token: token,
-          data: { desc, imageUrl: fileName },
-        });
-        console.log(response, "response from post creation");
-        dispatch(setPosts(response));
+      const response = await apiRequest({
+        method: "POST",
+        url: `/post/create`,
+        token: token,
+        data: { desc, imageUrl: fileName },
+      });
+
+      console.log(response, "response from post creation");
+      console.log(response.status);
+
+      if (response.status === 201) {
+        dispatch(setPosts(response.data));
         setDesc("");
         setPhoto(null);
       } else {
@@ -76,7 +78,7 @@ function SharePost() {
 
   return (
     <>
-      {alert && <ToastCmp err={"Please fill out the fields"} type={"warn"} />}
+      {alert && <ToastCmp err={"Something went wrong!"} type={"warn"} />}
       <Box
         component={"form"}
         sx={{

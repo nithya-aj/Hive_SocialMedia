@@ -12,7 +12,7 @@ const Friends = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user?._id);
   const allUsers = useSelector((state) => state.users.allUsers);
-  const suggestions = allUsers.filter((user) => user?._id !== userId);
+  const suggestions = allUsers?.filter((user) => user?._id !== userId);
   const followers = allUsers.filter((user) => user.followings.includes(userId));
   const followings = allUsers.filter((user) => user.followers.includes(userId));
 
@@ -21,7 +21,8 @@ const Friends = () => {
       const response = await apiRequest({
         url: "/user/find-all",
       });
-      dispatch(setAllUsers(response));
+      console.log(response);
+      dispatch(setAllUsers(response.data));
     } catch (error) {
       console.log(error);
     }

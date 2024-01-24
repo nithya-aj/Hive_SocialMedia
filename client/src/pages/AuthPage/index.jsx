@@ -35,7 +35,8 @@ const AuthPage = () => {
           url: "/auth/register",
           data: { username, name, email, password },
         });
-        dispatch(setRegister(response));
+        const { others, token } = response.data;
+        dispatch(setRegister({ others, token }));
         navigate("/");
       } else {
         if (email === "" || password === "") {
@@ -50,7 +51,8 @@ const AuthPage = () => {
           url: "/auth/login",
           data: { email, password },
         });
-        dispatch(setLogin(response));
+        const { others, token } = response.data;
+        dispatch(setLogin({ others, token }));
         navigate("/");
       }
     } catch (error) {

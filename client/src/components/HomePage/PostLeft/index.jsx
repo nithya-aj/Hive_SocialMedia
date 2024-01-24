@@ -13,6 +13,7 @@ function PostLeft({ page }) {
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
   const posts = useSelector((state) => state.posts.posts);
+  console.log(posts);
   const [hiddenPostCount, setHiddenPostCount] = useState(0);
   const location = useLocation();
   const paramId = location.pathname.split("/")[2];
@@ -24,16 +25,14 @@ function PostLeft({ page }) {
         url: "/post/find",
         token: token,
       });
-      console.log(response, "response from post");
-      dispatch(setPosts(response));
+      console.log(response.data, "response from post");
+      dispatch(setPosts(response.data));
       const hiddenPostsLength = response.filter((post) => post.hidden).length;
       setHiddenPostCount(hiddenPostsLength);
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(posts, "posts from postLeft/index.jsx");
 
   useEffect(() => {
     getPosts();

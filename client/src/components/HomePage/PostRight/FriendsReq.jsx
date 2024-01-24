@@ -29,6 +29,7 @@ const FriendsReq = () => {
   const userId = useSelector((state) => state.auth.user?._id);
   const token = useSelector((store) => store.auth.token);
   const allUsers = useSelector((state) => state.users.allUsers);
+  console.log(allUsers,'---------------------')
   const suggestions = allUsers
     .filter((user) => user?._id !== userId)
     .filter((user) => !user.followers.includes(userId))
@@ -55,7 +56,7 @@ const FriendsReq = () => {
       const response = await apiRequest({
         url: "/user/find-all",
       });
-      dispatch(setAllUsers(response));
+      dispatch(setAllUsers(response.data));
     } catch (error) {
       console.log(error);
     }
