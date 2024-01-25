@@ -27,26 +27,48 @@ const ConfirmModal = ({ setConfirmModal, postToDelete }) => {
     border: `1px solid ${light}`,
     boxShadow: 24,
   };
+  const getPosts = async () => {
+    const response = await apiRequest({
+      url: "/post/find",
+      token: token,
+    });
+    console.log(response.data, "response from post");
+    dispatch(setPosts(response.data));
+  };
 
   const deletePost = async (postId) => {
     try {
-      const response = await apiRequest({
+      const res = await apiRequest({
         method: "DELETE",
         url: `/post/${postId}/delete`,
         token: token,
       });
-      dispatch(setPosts(response.posts));
-      setConfirmModal(false);
-      toast.success(`Post deleted!`, {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: mode === "light" ? "light" : "dark",
-      });
+      if (res.status === 200) {
+        getPosts();
+        setConfirmModal(false);
+        toast.success(`Post deleted!`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: mode === "light" ? "light" : "dark",
+        });
+      } else {
+        setConfirmModal(false);
+        toast.error(`Something went wrong`, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: mode === "light" ? "light" : "dark",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -92,7 +114,7 @@ const ConfirmModal = ({ setConfirmModal, postToDelete }) => {
                 sx={{ textTransform: "none" }}
                 onClick={() => setConfirmModal(false)}
               >
-                Discard
+                Cancel
               </Button>
               <Button
                 variant="outlined"
@@ -100,7 +122,7 @@ const ConfirmModal = ({ setConfirmModal, postToDelete }) => {
                 sx={{ textTransform: "none" }}
                 onClick={() => deletePost(postToDelete)}
               >
-                Confirm
+                Delete
               </Button>
             </Box>
           </Box>

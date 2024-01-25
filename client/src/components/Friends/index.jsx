@@ -21,7 +21,6 @@ const Friends = () => {
       const response = await apiRequest({
         url: "/user/find-all",
       });
-      console.log(response);
       dispatch(setAllUsers(response.data));
     } catch (error) {
       console.log(error);

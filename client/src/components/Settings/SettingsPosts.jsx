@@ -28,8 +28,10 @@ const SettingsPosts = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.auth);
-  const likedPosts = useSelector((state) => state.posts.likedPosts);
-  const bookmarkedPosts = useSelector((state) => state.posts.bookmarkedPosts);
+  const likedPosts = useSelector((state) => state.posts.likedPosts.data);
+  const bookmarkedPosts = useSelector(
+    (state) => state.posts.bookmarkedPosts.data
+  );
   const main = theme.palette.background.main;
   const textMain = theme.palette.neutral.main;
   var url = window.location.href;

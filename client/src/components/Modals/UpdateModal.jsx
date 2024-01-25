@@ -41,7 +41,7 @@ const UpdateModal = ({ page, modal, setModal }) => {
         data: editedPost,
         token: token,
       });
-      dispatch(setPost(response));
+      dispatch(setPost(response.data));
       dispatch(clearEditData());
       setModal(false);
     } catch (error) {
@@ -73,7 +73,7 @@ const UpdateModal = ({ page, modal, setModal }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <FlexBetween sx={{ pl: 2, pr: 1, py: 1, height:'8%' }}>
+          <FlexBetween sx={{ pl: 2, pr: 1, py: 1, height: "8%" }}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {page === "profile" ? "Complete Profile" : "Update Post"}
             </Typography>
