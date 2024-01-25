@@ -15,6 +15,9 @@ const postSlice = createSlice({
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
+    addPost: (state, action) => {
+      state.posts.unshift(action.payload)
+    },
     setLikedPosts: (state, action) => {
       state.likedPosts = action.payload;
     },
@@ -57,6 +60,7 @@ export const {
   setBookmarkedPosts,
   updateLikedPosts,
   updateBookmarkedPosts,
+  addPost
 } = postSlice.actions;
 export const selectEditData = (state) => state.posts.editPostData;
 export default postSlice.reducer;

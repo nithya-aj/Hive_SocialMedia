@@ -17,7 +17,7 @@ const Comment = ({ comment }) => {
           method: "GET",
           url: `/user/find/${comment.userId}`,
         });
-        setCommentAuthor(response);
+        setCommentAuthor(response.data);
       } catch (error) {
         console.error(error);
       }

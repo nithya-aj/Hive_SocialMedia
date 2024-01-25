@@ -8,7 +8,7 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import close from "@/assets/close.png";
 import { useDispatch, useSelector } from "react-redux";
 import { apiRequest, handleFileUpload } from "@/utils";
-import { setPosts } from "@/redux/postSlice";
+import { addPost } from "@/redux/postSlice";
 import UserAvatar from "@/components/widget/UserAvatar";
 import ToastCmp from "@/components/ToastCmp";
 function SharePost() {
@@ -56,11 +56,11 @@ function SharePost() {
         data: { desc, imageUrl: fileName },
       });
 
-      console.log(response, "response from post creation");
+      console.log(response.data, "response from post creation");
       console.log(response.status);
 
       if (response.status === 201) {
-        dispatch(setPosts(response.data));
+        dispatch(addPost(response.data));
         setDesc("");
         setPhoto(null);
       } else {
