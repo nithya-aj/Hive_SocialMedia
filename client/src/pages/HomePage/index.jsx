@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
 import { Outlet, useLocation } from "react-router-dom"; // Import useLocation
@@ -6,6 +7,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar";
 import RightBar from "../../components/Rightbar";
 import NavItems from "../../components/MobileSidebar.jsx/NavItems";
+import { useEffect, useState } from "react";
+import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -15,6 +19,20 @@ const HomePage = () => {
 
   const isMessagesRoute = location.pathname.startsWith("/messages");
   const isSettingsRoute = location.pathname.startsWith("/settings");
+
+  const [socket, setSocket] = useState(null);
+
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
+
+  useEffect(() => {
+    setSocket(io("http://localhost:4000"));
+  }, []);
+  useEffect(() => {
+    if (socket) {
+      socket.emit("newUser", user.username);
+    }
+  }, [socket, user]);
 
   return (
     <>
