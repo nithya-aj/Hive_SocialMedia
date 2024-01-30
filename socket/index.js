@@ -27,6 +27,13 @@ io.on("connection", (socket) => {
         addNewUser(username, socket.id)
     })
 
+    socket.on("sendLikeNotification", ({ senderName, recieverName }) => {
+        const receiver = getUser(recieverName)
+        io.to(receiver.socketId).emit("getNotification", {
+            senderName
+        })
+    })
+
     socket.on("disconnect", () => {
         removeUser(socket.id)
     })

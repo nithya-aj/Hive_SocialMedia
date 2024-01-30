@@ -2,13 +2,23 @@ import { useTheme } from "@emotion/react";
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { IoMdSettings } from "react-icons/io";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useEffect, useState } from "react";
 
-function NotificationsPage() {
+const NotificationsPage = ({ socket }) => {
   const theme = useTheme();
   const main = theme.palette.background.main;
   const textMain = theme.palette.neutral.main;
   const fontSm = theme.palette.neutral.fontSm;
   const dark = theme.palette.neutral.dark;
+
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    socket.on("getNotification", (data) => {
+      setNotifications((prev) => [...prev, data]);
+    });
+  }, [socket]);
+  console.log(notifications);
   return (
     <Box
       sx={{
@@ -88,298 +98,10 @@ function NotificationsPage() {
               />
             </IconButton>
           </Box>
-
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Avatar src="https://source.unsplash.com/featured/300x177" />
-              <Box>
-                <Typography sx={{ fontSize: "0.9rem", color: textMain }}>
-                  Yarzdan followed you
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  sx={{ fontWeight: "300", color: fontSm }}
-                >
-                  4 minute ago
-                </Typography>
-              </Box>
-            </Box>
-            <IconButton aria-label="settings">
-              <MoreVertIcon
-                style={{ cursor: "pointer", fontSize: "1rem", color: textMain }}
-              />
-            </IconButton>
-          </Box>
-
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Avatar src="https://source.unsplash.com/featured/300x118" />
-              <Box>
-                <Typography sx={{ fontSize: "0.9rem", color: textMain }}>
-                  Yarzdan commented on your photo
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  sx={{ fontWeight: "300", color: fontSm }}
-                >
-                  4 minute ago
-                </Typography>
-              </Box>
-            </Box>
-            <IconButton aria-label="settings">
-              <MoreVertIcon
-                style={{ cursor: "pointer", fontSize: "1rem", color: textMain }}
-              />
-            </IconButton>
-          </Box>
-
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Avatar src="https://source.unsplash.com/featured/300x178" />
-              <Box>
-                <Typography sx={{ fontSize: "0.9rem", color: textMain }}>
-                  Yarzdan commented on your photo
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  sx={{ fontWeight: "300", color: fontSm }}
-                >
-                  4 minute ago
-                </Typography>
-              </Box>
-            </Box>
-            <IconButton aria-label="settings">
-              <MoreVertIcon
-                style={{ cursor: "pointer", fontSize: "1rem", color: textMain }}
-              />
-            </IconButton>
-          </Box>
-
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-              <Avatar src="https://source.unsplash.com/featured/300x171" />
-              <Box>
-                <Typography sx={{ fontSize: "0.9rem", color: textMain }}>
-                  Yarzdan followed you
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  sx={{ fontWeight: "300", color: fontSm }}
-                >
-                  4 minute ago
-                </Typography>
-              </Box>
-            </Box>
-            <IconButton aria-label="settings">
-              <MoreVertIcon
-                style={{ cursor: "pointer", fontSize: "1rem", color: textMain }}
-              />
-            </IconButton>
-          </Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
-          <Box
-            sx={{
-              height: "3.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              px: "1.5rem",
-              backgroundColor: main,
-              ":hover": { backgroundColor: dark },
-              cursor: "pointer",
-            }}
-          ></Box>
         </Box>
       </Box>
     </Box>
   );
-}
+};
 
 export default NotificationsPage;

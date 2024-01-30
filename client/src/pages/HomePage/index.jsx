@@ -7,9 +7,10 @@ import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar";
 import RightBar from "../../components/Rightbar";
 import NavItems from "../../components/MobileSidebar.jsx/NavItems";
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { disconnectSocket, setSocket } from "@/redux/socketSlice";
 import { io } from "socket.io-client";
-import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const theme = useTheme();
@@ -19,24 +20,27 @@ const HomePage = () => {
 
   const isMessagesRoute = location.pathname.startsWith("/messages");
   const isSettingsRoute = location.pathname.startsWith("/settings");
-
-  const [socket, setSocket] = useState(null);
-
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
+  const socket = useSelector((state) => state.socket.socket);
+  console.log(socket);
 
   useEffect(() => {
-    setSocket(io("http://localhost:4000"));
+    dispatch(setSocket(io("http://localhost:4000")));
+    return () => {
+      dispatch(disconnectSocket());
+    };
   }, []);
   useEffect(() => {
-    if (socket) {
-      socket.emit("newUser", user.username);
-    }
+    socket?.emit("newUser", user.username);
+    return () => {
+      socket?.disconnect();
+    };
   }, [socket, user]);
 
   return (
     <>
-      <Navbar />
+      <Navbar socket={socket} />
       {isMessagesRoute || isSettingsRoute ? (
         <>
           <Grid container sx={{ flexGrow: 1 }} backgroundColor={main}>

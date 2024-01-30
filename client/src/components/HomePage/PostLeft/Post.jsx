@@ -210,6 +210,10 @@ export default function Post({ data, page }) {
       } else {
         dispatch(setPost(response.data.post));
       }
+      // socket.emit("sendLikeNotification", {
+      //   senderName: user.username,
+      //   receiverName: data.username,
+      // });
     } catch (error) {
       console.error(error);
     }

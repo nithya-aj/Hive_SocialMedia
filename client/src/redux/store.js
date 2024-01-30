@@ -15,6 +15,7 @@ import themeSlice from "./themeSlice";
 import postSlice from "./postSlice";
 import commentSlice from "./commentSlice";
 import userSlice from "./userSlice";
+import socketSlice from "./socketSlice";
 
 const persistConfig = {
     key: "auth",
@@ -27,7 +28,8 @@ const reducers = combineReducers({
     theme: themeSlice,
     posts: postSlice,
     comments: commentSlice,
-    users: userSlice 
+    users: userSlice,
+    socket: socketSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers);
