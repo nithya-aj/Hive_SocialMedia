@@ -33,9 +33,6 @@ const HomePage = () => {
   }, []);
   useEffect(() => {
     socket?.emit("newUser", user.username);
-    return () => {
-      socket?.disconnect();
-    };
   }, [socket, user]);
 
   return (

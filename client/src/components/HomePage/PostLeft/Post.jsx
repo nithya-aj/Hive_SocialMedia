@@ -90,6 +90,8 @@ export default function Post({ data, page }) {
     (state) => state.comments.comments[data?._id] || []
   );
   console.log(comments, "comments");
+  const socket = useSelector((state) => state.socket.socket);
+  console.log(socket);
   const postCommentCount = comments?.length;
   const { user, token } = useSelector((state) => state.auth);
   const mode = useSelector((state) => state.theme.mode);
@@ -210,10 +212,10 @@ export default function Post({ data, page }) {
       } else {
         dispatch(setPost(response.data.post));
       }
-      // socket.emit("sendLikeNotification", {
-      //   senderName: user.username,
-      //   receiverName: data.username,
-      // });
+      socket.emit("sendLikeNotification", {
+        senderName: user.username,
+        recieverName: authorDetails.username,
+      });
     } catch (error) {
       console.error(error);
     }

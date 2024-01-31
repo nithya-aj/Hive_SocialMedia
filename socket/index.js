@@ -11,6 +11,7 @@ console.log(onlineUsers, 'onlineUsers')
 
 const addNewUser = (username, socketId) => {
     !onlineUsers.some(user => user.username === username) && onlineUsers.push({ username, socketId })
+    console.log(onlineUsers, 'onlineUsers')
 }
 
 const removeUser = (socketId) => {
@@ -28,12 +29,14 @@ io.on("connection", (socket) => {
     })
 
     socket.on("sendLikeNotification", ({ senderName, recieverName }) => {
+        console.log(recieverName, 'recieverName')
+        console.log(senderName, 'senderName')
         const receiver = getUser(recieverName)
+        console.log(receiver, 'receiver')
         io.to(receiver.socketId).emit("getNotification", {
             senderName
         })
     })
-
     socket.on("disconnect", () => {
         removeUser(socket.id)
     })
