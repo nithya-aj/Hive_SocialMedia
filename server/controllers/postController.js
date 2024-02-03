@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import User from "../models/User.js";
 import Post from "../models/Post.js";
+import Notification from "../models/Notifications.js";
 
 // to fetch particular post
 export const getPost = async (req, res) => {
@@ -106,6 +107,14 @@ export const likePost = async (req, res) => {
       );
       await User.findByIdAndUpdate(userId, { $push: { likedPosts: postId } });
     }
+    // manage notification 
+    const notification = new Notification({
+      senderId: userId,
+      receiverId: post.userId,
+      postId: postId,
+      type: 'like',
+    })
+    await notification.save()
     return res.status(200).json({
       msg: isLikedByCurrUser ? "Post unliked!" : "Post liked🎉",
       post: updatedPost,

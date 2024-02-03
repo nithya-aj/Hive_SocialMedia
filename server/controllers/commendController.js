@@ -1,4 +1,6 @@
 import Comment from '../models/Comment.js'
+import Notification from '../models/Notifications.js'
+import Post from '../models/Post.js'
 
 // fetching comments from particular posts
 export const getCommentsFromPost = async (req, res) => {
@@ -15,6 +17,18 @@ export const createComment = async (req, res) => {
     try {
         const createdComment = await Comment.create({ ...req.body, userId: req.user.id })
         console.log(createdComment, 'createdComment')
+        const post = await Post.findById(req.body.postId)
+        if (!post) {
+            return res.status(404).json({ msg: "No such post" });
+        }
+        // manage notification 
+        const notification = new Notification({
+            senderId: req.user.id,
+            receiverId: post.userId,
+            postId: req.body.postId,
+            type: 'comment',
+        })
+        await notification.save()
         res.status(201).json(createdComment)
     } catch (error) {
         return res.status(500).json(error.message)
