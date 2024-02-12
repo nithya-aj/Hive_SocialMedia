@@ -312,3 +312,15 @@ export const removeFriend = async (uri, token) => {
     console.log(error)
   }
 }
+
+// get all notification
+export const getNotifications = async (uri) => {
+  try {
+    await apiRequest({
+      url: uri,
+      method: 'GET',
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}

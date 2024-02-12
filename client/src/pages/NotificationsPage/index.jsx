@@ -3,7 +3,7 @@ import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { IoMdSettings } from "react-icons/io";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { apiRequest } from "@/utils";
 
 const NotificationsPage = () => {
   const theme = useTheme();
@@ -11,14 +11,23 @@ const NotificationsPage = () => {
   const textMain = theme.palette.neutral.main;
   const fontSm = theme.palette.neutral.fontSm;
   const dark = theme.palette.neutral.dark;
-  const socket = useSelector((state) => state.socket.socket);
   const [notifications, setNotifications] = useState([]);
 
+  console.log(notifications, "----------------------");
   useEffect(() => {
-    socket.on("getNotification", (data) => {
-      setNotifications((prev) => [...prev, data]);
-    });
-  }, [socket]);
+    const getNotifications = async () => {
+      const response = await apiRequest({
+        method: "GET",
+        url: "/notification/",
+      });
+      console.log(response, "00000000000000000000000");
+      console.log(
+        setNotifications(response.data.notifications),
+        "-----------------------------------"
+      );
+    };
+    getNotifications();
+  }, []);
   console.log(notifications);
   return (
     <Box
