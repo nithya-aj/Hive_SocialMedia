@@ -2,11 +2,12 @@ import Notification from '../models/Notifications.js'
 
 export const getAllNotificaitons = async (req, res) => {
     const page = parseInt(req.query.page || 1);
-    const pageSize = parseInt(req.query.pageSize || 10);
+    const pageSize = parseInt(req.query.pageSize || 8);
     try {
         const totalNotifications = await Notification.countDocuments();
         console.log(totalNotifications, 'totalNotifications');
         const notifications = await Notification.find({})
+            .sort({ createdAt: -1 })
             .skip((page - 1) * pageSize)
             .limit(pageSize);
         console.log('notifications', notifications);

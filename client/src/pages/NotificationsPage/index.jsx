@@ -4,6 +4,7 @@ import { IoMdSettings } from "react-icons/io";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useState } from "react";
 import { apiRequest } from "@/utils";
+import ReactTimeago from "react-timeago";
 
 const NotificationsPage = () => {
   const theme = useTheme();
@@ -12,6 +13,7 @@ const NotificationsPage = () => {
   const fontSm = theme.palette.neutral.fontSm;
   const dark = theme.palette.neutral.dark;
   const [notifications, setNotifications] = useState([]);
+  const [usersDetails, setUsersDetails] = useState({});
 
   console.log(notifications, "----------------------");
   useEffect(() => {
@@ -20,15 +22,25 @@ const NotificationsPage = () => {
         method: "GET",
         url: "/notification/",
       });
-      console.log(response, "00000000000000000000000");
-      console.log(
-        setNotifications(response.data.notifications),
-        "-----------------------------------"
-      );
+      setNotifications(response.data.notifications),
+        response.data.notifications.forEach((notification) => {
+          getUserDetails(notification.senderId);
+        });
+    };
+    const getUserDetails = async (id) => {
+      const response = await apiRequest({
+        method: "GET",
+        url: `/user/find/${id}`,
+      });
+      setUsersDetails((prevState) => ({
+        ...prevState,
+        [id]: response.data, // Use senderId as key
+      }));
     };
     getNotifications();
   }, []);
-  console.log(notifications);
+
+  console.log(usersDetails);
   return (
     <Box
       sx={{
@@ -93,13 +105,15 @@ const NotificationsPage = () => {
                 <Avatar src="https://source.unsplash.com/featured/300x138" />
                 <Box>
                   <Typography sx={{ fontSize: "0.9rem", color: textMain }}>
-                    {data.senderName} commented on your photo
+                    {usersDetails[data.senderId]?.username} 
+                    {data.type === "comment" ? " commented" : " liked"} on your
+                    photo
                   </Typography>
                   <Typography
                     variant="subtitle2"
                     sx={{ fontWeight: "300", color: fontSm }}
                   >
-                    4 minute ago
+                    <ReactTimeago date={data?.createdAt} />
                   </Typography>
                 </Box>
               </Box>
