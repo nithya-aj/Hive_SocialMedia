@@ -5,6 +5,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useState } from "react";
 import { apiRequest } from "@/utils";
 import ReactTimeago from "react-timeago";
+import { useSelector } from "react-redux";
 
 const NotificationsPage = () => {
   const theme = useTheme();
@@ -12,18 +13,19 @@ const NotificationsPage = () => {
   const textMain = theme.palette.neutral.main;
   const fontSm = theme.palette.neutral.fontSm;
   const dark = theme.palette.neutral.dark;
+  const user = useSelector((state) => state.auth.user._id);
   const [notifications, setNotifications] = useState([]);
   const [usersDetails, setUsersDetails] = useState({});
 
-  console.log(notifications, "----------------------");
   useEffect(() => {
     const getNotifications = async () => {
       const response = await apiRequest({
         method: "GET",
-        url: "/notification/",
+        url: `/notification/${user}`,
       });
-      setNotifications(response.data.notifications),
-        response.data.notifications.forEach((notification) => {
+      console.log(response.data);
+      setNotifications(response.data),
+        response.data.forEach((notification) => {
           getUserDetails(notification.senderId);
         });
     };
@@ -105,9 +107,10 @@ const NotificationsPage = () => {
                 <Avatar src="https://source.unsplash.com/featured/300x138" />
                 <Box>
                   <Typography sx={{ fontSize: "0.9rem", color: textMain }}>
-                    {usersDetails[data.senderId]?.username} 
-                    {data.type === "comment" ? " commented" : " liked"} on your
-                    photo
+                    {usersDetails[data.senderId]?.username}
+                    {data.type === "comment"
+                      ? " commented on your post"
+                      : " liked your post"}
                   </Typography>
                   <Typography
                     variant="subtitle2"

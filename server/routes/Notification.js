@@ -1,9 +1,9 @@
 import express from 'express'
 import { verifyToken } from '../middlewares/auth.js'
-import { getAllNotificaitons } from '../controllers/NotificationController.js'
+import { getNotificationsForUser  } from '../controllers/NotificationController.js'
 
 const notificationRouter = express.Router()
 
-notificationRouter.get('/', getAllNotificaitons)
+notificationRouter.get('/:userId', getNotificationsForUser )
 
 export default notificationRouter

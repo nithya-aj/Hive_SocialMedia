@@ -7,7 +7,7 @@ export const API = axios.create({
   responseType: "json",
 });
 
-export const apiRequest = async ({ url, token, data, method }) => {
+export const  apiRequest = async ({ url, token, data, method }) => {
   try {
     const response = await API(url, {
       method: method,
