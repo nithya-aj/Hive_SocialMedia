@@ -1,20 +1,12 @@
 import { useTheme } from "@emotion/react";
-import {
-  Box,
-  Card,
-  Divider,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Card, Divider, IconButton, Typography } from "@mui/material";
 import { MdEmail } from "react-icons/md";
 import { HiAtSymbol } from "react-icons/hi";
 import { HiBuildingOffice } from "react-icons/hi2";
 import { MdCake, MdEdit } from "react-icons/md";
 import { FaUserAlt, FaUserTag } from "react-icons/fa";
-import { GiCheckMark } from "react-icons/gi";
 import FlexCenter from "./FlexCenter";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 const ProfileCard = () => {
@@ -24,14 +16,6 @@ const ProfileCard = () => {
   const darkbg = theme.palette.background.darkbg;
   const main = theme.palette.neutral.main;
   const light = theme.palette.neutral.light;
-  const purple = theme.palette.neutral.purple;
-  const [edit, setEdit] = useState(false);
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("edited!");
-  };
-
   const data = [
     {
       icon: <HiAtSymbol />,
@@ -119,103 +103,36 @@ const ProfileCard = () => {
           position: "relative",
         }}
       >
-        {edit ? (
-          <>
-            <Box
-              component="form"
-              onClick={handleSubmit}
-              sx={{ display: "flex", flexDirection: "column", gap: 2 }}
-            >
-              {data.map(
-                (item, id) =>
-                  item.name && (
-                    <Box
-                      key={id}
-                      sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}
-                    >
-                      {item.icon}
-                      <TextField
-                        sx={{
-                          width: "100%",
-                          ".css-ume8vi-MuiInputBase-input-MuiInput-input": {
-                            padding: "0",
-                            height: "1em",
-                          },
-                          ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
-                            padding: "0",
-                            height: "1em",
-                          },
-                          ".css-uh6r06-MuiInputBase-root-MuiInput-root:after": {
-                            borderBottom: `1px solid ${purple}`,
-                          },
-                        }}
-                        id="standard-basic"
-                        variant="standard"
-                        placeholder={item.name}
-                      />
-                    </Box>
-                  )
-              )}
+        <Box
+          sx={{
+            height: "2.1rem",
+            width: "2.1rem",
+            backgroundColor: light,
+            position: "absolute",
+            top: "-1rem",
+            right: "1rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "50%",
+            border: `2px solid ${darkbg}`,
+          }}
+        >
+          <IconButton>
+            <MdEdit size={"1rem"} style={{ color: darkbg }} />
+          </IconButton>
+        </Box>
+        {data.map(
+          (item, id) =>
+            item.name && (
               <Box
-                component="button"
-                sx={{
-                  height: "2.1rem",
-                  width: "2.1rem",
-                  backgroundColor: light,
-                  position: "absolute",
-                  top: "-1rem",
-                  right: "1rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "50%",
-                  border: `2px solid ${darkbg}`,
-                }}
-                type="submit"
-                onClick={() => setEdit(false)}
+                key={id}
+                sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}
               >
-                <IconButton>
-                  <GiCheckMark size={"1rem"} style={{ color: "green" }} />
-                </IconButton>
+                {item.icon}
+                <Typography style={{ lineHeight: 1 }}>{item.name}</Typography>
               </Box>
-            </Box>
-          </>
-        ) : (
-          <>
-            <Box
-              sx={{
-                height: "2.1rem",
-                width: "2.1rem",
-                backgroundColor: light,
-                position: "absolute",
-                top: "-1rem",
-                right: "1rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                border: `2px solid ${darkbg}`,
-              }}
-            >
-              <IconButton onClick={() => setEdit(true)}>
-                <MdEdit size={"1rem"} style={{ color: darkbg }} />
-              </IconButton>
-            </Box>
-            {data.map(
-              (item, id) =>
-                item.name && (
-                  <Box
-                    key={id}
-                    sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}
-                  >
-                    {item.icon}
-                    <Typography style={{ lineHeight: 1 }}>
-                      {item.name}
-                    </Typography>
-                  </Box>
-                )
-            )}
-          </>
+            )
         )}
       </Box>
     </Card>
